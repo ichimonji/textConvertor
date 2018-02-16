@@ -1,7 +1,7 @@
 :root {
   font-size: 14px;
 }
-@media screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   :root {
     font-size: 12px;
   }
@@ -17,6 +17,12 @@ textarea,
 input[type=text] {
   font-family: inherit;
   font-family: 'Noto Sans JP', sans-serif;
+}
+@media only screen and (max-width: 768px) {
+  textarea,
+  input[type=text] {
+    font-size: 16px !important;
+  }
 }
 input[type=radio],
 input[type=checkbox] {
@@ -36,10 +42,21 @@ h3 {
   color: #aaa;
   font-size: 2rem;
 }
+@media only screen and (max-width: 768px) {
+  .header {
+    font-size: 1.5rem;
+    margin-bottom: 0;
+  }
+}
 .header > .head {
   margin: 0;
   padding: 10px;
   font-weight: 900;
+}
+@media only screen and (max-width: 768px) {
+  .header > .head {
+    padding-bottom: 0;
+  }
 }
 .container {
   width: 100%;
@@ -165,6 +182,13 @@ h3 {
 .main-wrap .form-group {
   margin-bottom: 0;
 }
+@media only screen and (max-width: 768px) {
+  .main-wrap {
+    padding: 2px;
+    min-width: 200px;
+    border-radius: 0;
+  }
+}
 .area-input {
   display: -webkit-box;
   display: -moz-box;
@@ -265,6 +289,11 @@ h3 {
   -webkit-align-items: flex-start;
   align-items: flex-start;
 }
+@media only screen and (max-width: 768px) {
+  .area-control {
+    margin: 1px;
+  }
+}
 .genre {
   display: none;
 }
@@ -319,6 +348,17 @@ h3 {
   display: inline-block;
   font-size: 0;
 }
+.ct-set > .body .btn:not(:last-of-type),
+.ct-set > .body .input-group:not(:last-of-type) .form-control:last-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-left-width: 0px;
+}
+.ct-set > .body .btn:not(:first-of-type),
+.ct-set > .body .input-group:not(:first-of-type) .form-control:first-child {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
 .ct-set > .head {
   width: 10em;
   margin-bottom: 0;
@@ -338,17 +378,6 @@ h3 {
 }
 .ct-set > .head label {
   margin-bottom: 0;
-}
-.ct-set > .body .btn:not(:last-of-type),
-.ct-set > .body .input-group:not(:last-of-type) .form-control:last-child {
-  border-top-right-radius: 0;
-  border-bottom-right-radius: 0;
-  border-left-width: 0px;
-}
-.ct-set > .body .btn:not(:first-of-type),
-.ct-set > .body .input-group:not(:first-of-type) .form-control:first-child {
-  border-top-left-radius: 0;
-  border-bottom-left-radius: 0;
 }
 .link-list {
   display: block;
@@ -370,7 +399,7 @@ h3 {
   color: #aaa;
   margin-top: 15px;
 }
-@media screen and (max-width: 1200px) {
+@media only screen and (max-width: 1200px) {
   .info {
     padding: 0 10px 10px;
   }
@@ -381,17 +410,10 @@ h3 {
 .cd a {
   color: #fff;
 }
-@media screen and (max-width: 767px) {
+@media only screen and (max-width: 768px) {
   #lengthDisp {
     text-align: center;
     margin-bottom: 5px;
-  }
-  .header {
-    font-size: 1.5rem;
-    margin-bottom: 0;
-  }
-  .header .head {
-    padding-bottom: 0;
   }
   .area-input {
     -webkit-box-orient: vertical;
@@ -428,18 +450,6 @@ h3 {
     width: 50%;
     text-align: center;
     border-radius: 0 !important;
-  }
-  textarea,
-  input[type=text] {
-    font-size: 16px !important;
-  }
-  .main-wrap {
-    padding: 2px;
-    min-width: 200px;
-    border-radius: 0;
-  }
-  .area-control {
-    margin: 1px;
   }
   .btn-group-sm > .btn,
   .btn-sm {
