@@ -1,0 +1,290 @@
+doctype html
+
+mixin metaAll( arr )
+  each val in arr
+    if val[0] === 'http-equiv'
+      meta( http-equiv = val[1], content = val[2] )
+    else if val[0] === 'name'
+      meta( name = val[1], content = val[2] )
+    else if val[0] === 'property'
+      meta( property = val[1], content = val[2] )
+mixin linkAll( arr )
+  each val in arr
+    link( rel = 'stylesheet', href = val )
+mixin jsAll( arr )
+  each val in arr
+    script( src = val )
+mixin bt( id, title, txt )
+  - txt = txt.replace( '→', ' <i class="glyphicon glyphicon-arrow-right"></i> ' )
+  if title !== ''
+    button.btn.btn-primary.btn-sm.bt-control( type = 'button', title = title, value = id ) !{txt}
+  else
+    button.btn.btn-primary.btn-sm.bt-control( type = 'button', value = id ) !{txt}
+mixin lb( group, tp, val, txt, ckd )
+  if tp === 'cb'
+    - type = 'checkbox'
+  else
+    - type = 'radio'
+  - val = val.replace('&amp;','&')
+  if ckd
+    label.btn.btn-primary #[input( class = group, name = group, type = type, value != val, checked = 'checked' )] #{txt}
+  else
+    label.btn.btn-primary #[input( class = group, name = group, type = type, value != val )] #{txt}
+
+-
+  const
+    $title = '汎用テキストコンバータ'
+    metas = [
+      [ 'http-equiv', 'X-UA-Compatible', 'IE=edge' ],
+      [ 'name', 'viewport', 'width=device-width,initial-scale=1' ],
+      [ 'http-equiv', 'Content-Language', 'en' ],
+      [ 'http-equiv', 'Content-Type', 'text/html; charset=UTF-8" ' ],
+      [ 'name', 'twitter:site', '@ichimonji_haji' ],
+      [ 'name', 'description', 'テキストに対して色々な変換を行うためのツールです。' ],
+      [ 'name', 'twitter:card', 'summary' ],
+      [ 'name', 'apple-mobile-web-app-capable', 'yes' ],
+      [ 'http-equiv', 'Content-Language', 'ja' ],
+      [ 'http-equiv', 'Content-Type', 'text/html; charset=UTF-8' ],
+      [ 'http-equiv', 'Content-Script-Type', 'text/javascript' ],
+      [ 'http-equiv', 'Content-Style-Type', 'text/css' ],
+      [ 'property', 'og:title', $title ],
+      [ 'property', 'og:url', 'http://myth.maji.asia/code/' ],
+      [ 'property', 'og:description', 'テキストに対して色々な変換を行うためのツールです。' ],
+      [ 'property', 'og:image', 'http://myth.maji.asia/figure/aloes.jpg' ],
+      [ 'name', 'twitter:image', 'http://myth.maji.asia/figure/aloes.jpg' ],
+    ]
+    links = [
+      'https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css',
+      'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css',
+      'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
+      'https://fonts.googleapis.com/css?family=Lato:400,700,900',
+      'http://fonts.googleapis.com/earlyaccess/notosansjp.css',
+      'css/common.css'
+    ]
+    scripts = [
+      'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js',
+      'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js',
+      'js/pinyin.js',
+      'js/cjk.js',
+      'js/japanese.js',
+      'js/common.js'
+    ]
+
+html( lang = 'en' )
+  head
+    title= $title
+    meta( charset = 'utf-8' )
+    +metaAll( metas )
+    link( rel = 'image_src', href = 'http://myth.maji.asia/figure/aloes.jpg' )
+    +linkAll( links )
+  body
+    header.header
+      h1.head= $title
+    main.main
+      div.main-wrap
+        section.area-input
+          div.area-input-text
+            div.form-group
+              label( for = 'text-i' ) Original Text #[span#selDisp]
+              textarea.form-control#text-i( placeholder = 'Original Text' )
+          div.area-input-text
+            div.form-group
+              label( for= 'text-o' ) Converted Text
+              textarea.form-control#text-o( placeholder = 'Converted Text' )
+          div.area-input-button
+            div#lengthDisp
+            div.btn-group-vertical
+              button.btn.btn-primary.btn-sm.bt-control( value = 'move', type = 'button' ) #[i.glyphicon.glyphicon-chevron-left] MOVE
+              button.btn.btn-primary.btn-sm.bt-control( value = 'delete', type = 'button' ) #[i.glyphicon.glyphicon-remove] DELETE
+              button.btn.btn-primary.btn-sm.bt-control( value = 'undo', type = 'button' ) #[i.glyphicon.glyphicon-undo] UNDO
+              label.btn.btn-sm.btn-primary #[input.automove( name = 'automove', type = 'checkbox' )] AUTO MOVE
+        section.area-control
+          input.genre#ctset01( type = 'checkbox', name = 'genre', checked = 'checked' )
+          dl.ct-set
+            dt.head: label( for = 'ctset01' )= 'ケース'
+            dd.body
+              +bt( 'case-title', '頭文字のみ大文字に', 'TITLE' )
+              +bt( 'case-upper', '全て大文字に', 'UPPER' )
+              +bt( 'case-lower', '全て小文字に', 'LOWER' )
+              +bt( 'case-swap', '大文字小文字を反転', 'SWAP' )
+              +bt( 'case1', 'シングルクォーテーションをダブルクーテーションに', '\'\'→\"\"' )
+              +bt( 'case2', 'ダブルクーテーションをシングルクォーテーションに', '\"\"→\'\'' )
+              +bt( 'case3', '文字間のハイフンをアンダーバーに', 'abc-def→abc_def' )
+              +bt( 'case4', '文字間のアンダーバーをハイフンに', 'abc_def→abc-def' )
+              +bt( 'case5', 'キャメルケースをハイフンに', 'abcDef→abc-def' )
+              +bt( 'case6', '文字間のハイフンをキャメルケースに', 'abc-def→abcDef' )
+              +bt( 'case7', '符号付きラテン文字を標準化', 'Àóṫœ→Aotoe' )
+          input.genre#ctset02( type = 'checkbox', name = 'genre', checked = 'checked' )
+          dl.ct-set
+            dt.head: label( for = 'ctset02' )= 'Url/Base64'
+            dd.body
+              +bt( 'url-encode', 'パーセントエンコード（;/?:@& = +$-_!~*.,()a#\'以外）', 'URL エンコード(軽)' )
+              +bt( 'url-encode2', 'パーセントエンコード（-_!~*.()a\'以外）', 'URL エンコード(中)' )
+              +bt( 'url-encode3', 'パーセントエンコード（*+-_./以外）', 'URL エンコード(強)' )
+              +bt( 'url-decode', 'パーセントでコード（全て）', 'URL デコード' )
+              +bt( 'b64-encode', 'BASE64 エンコード', 'BASE64 エンコード' )
+              +bt( 'b64-decode', 'BASE64 デコード', 'BASE64 デコード' )
+          input.genre#ctset03( type = 'checkbox', name = 'genre', checked = 'checked' )
+          dl.ct-set
+            dt.head: label( for = 'ctset03' )= 'Unicode関連'
+            dd.body
+              +bt( 'uni-escape', 'Unicode値でのパーセントエンコード（%u～）', 'エスケープ' )
+              +bt( 'uni-unescape', 'Unicode値でのパーセントデコード', 'アンエスケープ' )
+              +bt( 'uniH-escape', 'HTML数値文字参照（\&#x～;）', 'HTMLエスケープ(中)' )
+              +bt( 'uniH-escape2', '全文字をHTML数値文字参照（\&#x～;）', 'HTMLエスケープ(強)' )
+              +bt( 'uniH-unescape', '文字参照、実体参照を復号', 'HTMLアンエスケープ' )
+              +bt( 'uni-escape3', 'HTMLタグ用文字を実体参照化', '[<>\&]の実体参照化' )
+              +bt( 'uni-escape4', 'UTF32のオーバーフロー分をサロゲートペアに変換', 'UTF-32→UTF-16' )
+              +bt( 'uni-escape5', 'サロゲートペアをUTF32表記に', 'UTF-16→UTF-32' )
+          input.genre#ctset04( type = 'checkbox', name = 'genre', checked = 'checked' )
+          dl.ct-set
+            dt.head: label( for = 'ctset04' )= '数値型/数字'
+            dd.body
+              +bt( 'num-10_2', '10進数を2進数に', 'Dec→Bin' )
+              +bt( 'num-2_10', '2進数を10進数に', 'Bin→Dec' )
+              +bt( 'num-10_16', '10進数を16進数に', 'Dec→Hex' )
+              +bt( 'num-16_10', '16進数を10進数に', 'Hex→Dec' )
+              +bt( 'num-2_16', '2進数を16進数に', 'Bin→Hex' )
+              +bt( 'num-16_2', '16進数を2進数に', 'Hex→Bin' )
+              +bt( 'num-a_j', 'アラビア数字を漢数字に（桁付き）', '123→百二十三' )
+              +bt( 'num-a_j2', 'アラビア数字を漢数字に（桁なし）', '123→一二三' )
+              +bt( 'num-j_a', '漢数字をアラビア数字に', '百二十三→123' )
+              br
+              div.btn-group.btn-group-sm( role = 'group', aria-label = '...' )
+                +lb( 'roman_class', 'rd', 'M', 'M(1~3999)', true )
+                +lb( 'roman_class', 'rd', 'C1', 'ↀ(1~399999)' )
+                +lb( 'roman_class', 'rd', 'C2', 'CIↃ(1~399999)' )
+                +bt( 'num-a_r', 'アラビア数字をローマ数字に', 'Arabic→Roman' )
+                +bt( 'num-r_a', 'ローマ数字をアラビア数字に', 'Roman→Arabic' )
+          input.genre#ctset05( type = 'checkbox', name = 'genre', checked = 'checked' )
+          dl.ct-set
+            dt.head: label( for = 'ctset05' )= '抽出/排除'
+            dd.body
+              div.btn-group.btn-group-sm( role = 'group', aria-label = '...' )
+                +lb( 'extract_reg', 'cb', 'A-Z', 'ABC' )
+                +lb( 'extract_reg', 'cb', 'a-z', 'abc' )
+                +lb( 'extract_reg', 'cb', '0-9', '123' )
+                +lb( 'extract_reg', 'cb', ' 　 -‏‏ \t\v\u{00A0}\u{1680}​\u{180E}\u{2028}\u{2029}\u{202F}\u{205F}​\u{3000}\u{FEFF}', 'スペース' )
+                +lb( 'extract_reg', 'cb', '\n\r\f', '改行' )
+                +lb( 'extract_reg', 'cb', '\.,-|_/', '.,-/|_' )
+                +lb( 'extract_reg', 'cb', '\?\!&quot;&apos;$%^', '?!\"\'$%^' )
+                +lb( 'extract_reg', 'cb', '&:;#\\(\\)\\{\\}\\[\\]', '&:;#(){}[]' )
+                +lb( 'extract_reg', 'cb', '\u{3040}-\u{3096}', 'あ' )
+                +lb( 'extract_reg', 'cb', '\u{30A0}-\u{30FF}\u{31F0}-\u{31FF}', 'ア' )
+                +lb( 'extract_reg', 'cb', '々〇〻\u{2E80}-\u{2FDF}\u{3400}-\u{4DBF}\u{4E00}-\u{9FFF}\u{F900}-\u{FAFF}\u{20000}-\u{2A6DF}', '漢' )
+                +lb( 'extract_reg', 'cb', '\u{3000}-\u{303F}\u{3099}-\u{309F}\u{3200}-\u{33FF}\u{FE10}-\u{FE1F}\u{FF00}-\u{FFEF}', '全角記号' )
+                +bt( 'extract', '選択した対象を抽出', '抽出' )
+                +bt( 'exclude', '選択した対象を排除', '排除' )
+          input.genre#ctset06( type = 'checkbox', name = 'genre', checked = 'checked' )
+          dl.ct-set
+            dt.head: label( for = 'ctset06' )= '一括排除'
+            dd.body
+              +bt( 'newline', '', '全ての改行' )
+              +bt( 'html', '', 'HTMLタグ' )
+              +bt( 'space', '', '余分なスペース' )
+              +bt( 'margin', '', '余分な改行' )
+              +bt( 'ex_dup1', '', '重複する文字' )
+              +bt( 'ex_dup2', '', '重複する行' )
+              +bt( 'ex_dup3', '', '重複する単語' )
+          input.genre#ctset07( type = 'checkbox', name = 'genre', checked = 'checked' )
+          dl.ct-set
+            dt.head: label( for = 'ctset07' )= '反転/ソート'
+            dd.body
+              +bt( 'rev-chara', '', '文字単位で反転' )
+              +bt( 'rev-line', '', '行単位で反転' )
+              +bt( 'rev-word', '', '単語単位で反転' )
+              +bt( 'sort1', '', '行単位で昇順に整列' )
+              +bt( 'sort2', '', '行単位で降順に整列' )
+              +bt( 'sort3', '', '文字単位で昇順に整列' )
+              +bt( 'sort4', '', '文字単位で降順に整列' )
+          input.genre#ctset08( type = 'checkbox', name = 'genre', checked = 'checked' )
+          dl.ct-set
+            dt.head: label( for = 'ctset08' )= '重複文字/行列'
+            dd.body
+              +bt( 'dup1', '重複部分のみ削除', 'ABA→AB' )
+              +bt( 'dup2', '重複部分を重複したまま抽出', 'ABA→AA' )
+              +bt( 'dup3', '重複した文字以外を抽出', 'ABA→B' )
+              +bt( 'dup4', '重複部分を重複させないで抽出', 'ABA→A' )
+              div.btn-group.btn-group-sm( role = 'group', aria-label = '...' )
+                +lb( 'matrix', 'rd', '\t', 'タブ', true )
+                +lb( 'matrix', 'rd', '\,', ',' )
+                +lb( 'matrix', 'rd', ' ', 'スペース' )
+                +lb( 'matrix', 'rd', '', '1文字ずつ' )
+                +bt( 'matrix-change', '区切り文字と行を基準に行と列を入れ替え', '行と列を入れ替え' )
+          input.genre#ctset09( type = 'checkbox', name = 'genre', checked = 'checked' )
+          dl.ct-set
+            dt.head: label( for = 'ctset09' )= '日本語関連'
+            dd.body
+              +bt( 'jpn1', '全角ひらがなを全角カタカナに', 'あ→ア' )
+              +bt( 'jpn2', '全角カタカナを全角ひらがなに', 'ア→あ' )
+              +bt( 'jpn3', '半角カタカナを全角カタカナに', 'ｱ→ア' )
+              +bt( 'jpn4', '全角カタカナを半角カタカナに', 'ア→ｱ' )
+              +bt( 'jpn5', '半角英数字を全角英数字に', 'A1→Ａ１' )
+              +bt( 'jpn6', '全角英数字を半角英数字に', 'Ａ１→A1' )
+              +bt( 'jpn7', '新字体を旧字体に（異体字セレクタ分を含まない）', '新字→旧字（中）' )
+              +bt( 'jpn7b', '新字体を旧字体に（異体字セレクタ分を含む）', '新字→旧字（強）' )
+              +bt( 'jpn8', '旧字体を新字体に（異体字セレクタ分を含む）', '旧字→新字' )
+              +bt( 'jpn9', '漢数字を大字に', '一二→壱弐' )
+              +bt( 'jpna', '大字を漢数字に', '壱弐→一二' )
+              +bt( 'jpnb', '全角カタカナを訓令式ローマ字表記に', 'トウキョウ→tôkyô' )
+              +bt( 'jpnc', '全角カタカナをヘボン式ローマ字表記に', 'トウキョウ→tokyo' )
+              +bt( 'jpnd', 'ヘボン式ローマ字を全角カタカナに', 'tokyo→トキョ' )
+          input.genre#ctset10( type = 'checkbox', name = 'genre', checked = 'checked' )
+          dl.ct-set
+            dt.head: label( for = 'ctset10' )= 'CJK関連'
+            dd.body
+              +bt( 'tocjk1', '日本字体を簡体字に', '日→簡体' )
+              +bt( 'tocjk2', '日本字体を繁体字に', '日→繁体' )
+              +bt( 'tocjk3', '簡体字を日本字体に', '簡体→日' )
+              +bt( 'tocjk4', '繁体字を日本字体に', '繁体→日' )
+              +bt( 'tocjk5', '簡体字を繁体字に', '簡体→繁体' )
+              +bt( 'tocjk6', '繁体字を簡体字に', '繁体→簡体' )
+              +bt( 'tocjk7', '漢字の直後にピンインを追加', 'ピンイン' )
+          input.genre#ctset11( type = 'checkbox', name = 'genre', checked = 'checked' )
+          dl.ct-set
+            dt.head: label( for = 'ctset11' )= 'Sanskrit'
+            dd.body
+              +bt( 'skt1', 'デーヴァナガリーを京都・ハーバード方式に', 'संस्कृत→saMskRta' )
+              +bt( 'skt2', 'デーヴァナガリーをIASTに', 'संस्कृत→saṃskṛta' )
+              +bt( 'skt3', '京都・ハーバード方式をデーヴァナガリーに', 'saMskRta→संस्कृत' )
+              +bt( 'skt4', '京都・ハーバード方式をIASTに', 'saMskRta→saṃskṛta' )
+              +bt( 'skt5', 'IASTをデーヴァナガリーに', 'saṃskṛta→संस्कृत' )
+              +bt( 'skt6', 'IASTを京都・ハーバード方式に', 'saṃskṛta→saMskRta' )
+          input.genre#ctset12( type = 'checkbox', name = 'genre', checked = 'checked' )
+          dl.ct-set
+            dt.head: label( for = 'ctset12' )= '正規表現'
+            dd.body.form-inline
+              div.form-group
+                div.input-group.input-group-sm
+                  span.input-group-btn
+                    label.btn.btn-primary #[input#caps(type = 'checkbox' )] Aa
+                  input.form-control( type = 'text', id = 'rep_find', value = '', placeholder = 'Find What' )
+                div.input-group.input-group-sm
+                  input.form-control( type = 'text', id = 'rep_rep', value = '', placeholder = 'Replace With' )
+                  span.input-group-btn
+                    button.btn.btn-primary.bt-control( type = 'btton' , value = 'replacement' )= 'Replace'
+        ul.link-list
+          li: a( target='_blank', href='https://codepen.io/ichimonzi/details/ZJWEZQ/' )= 'codepen'
+      section.info
+        div( lang = 'jp' )
+          p
+            | 「Original Text」欄に変換したいテキストを入れ各種の変換ボタンを押してください。「Converted Text」欄に変換後のテキストが出力されます。<br>
+            | 変換後のテキストをさらに変換したい場合は「MOVE」ボタンを押して変換後テキストを「Original Text」欄に移動させてください。<br>
+            | 「AUTO MOVE」にチェックを入れると自動で変換後のテキストが「Original Text」欄に移動します。
+          p
+            | 「Original Text」欄でテキストを選択したまま各種変換ボタンを押すと、その選択範囲にのみ変換が適用されます。<br>
+            | 「UNDO」を押す度に変換前の状態に一つずつ戻ります。
+        h2 注意
+        div( lang = 'jp' )
+          ul
+            li アラビア数字をローマ数字に関して、ↀ型の場合の100000である「ↈ（&amp;#x2188;）」はほとんどのフォントで表示が不可能です。
+            li アラビア数字から漢数字の変換（桁付き）に関して、少数の桁（分、厘、毛など）に関しては考慮せず数字のみを列記する方式にしております。
+            li 日本字体、簡体字、繁体字の相互変換に関して、変換候補が複数ある場合、「（A|B|C）」といった形式で表示します。
+            li ピンイン表記追加に関して、ピンインは「[A/B/C]」といった形式で表示します。
+            li 全角カタカナからの訓令式・ヘボン式ローマ字変換に関して、特殊な用法や表外の訓に関しては（99式などに倣った）独自の変換をしています。
+            li 新字体→旧字体の変換において旧字が別字として存在しない、あるいはUTF16範囲にない場合は異体字セレクタによって旧字体を表示します。
+          ul
+            li CJK変換に関してはまだ実用段階ではなく試用運転です。一部の文字の簡体字化、繁体字化が再現されていません。
+            li 「符号付きラテン文字を標準化」では結合分音記号も削除します。
+            li 「サンスクリット変換」のIAST方式、HK方式の変換では拡張IAST（ISO-15919方式）ではなく元来の方式のためISO-15919方式を正しく変換できません。
+    +jsAll( scripts )

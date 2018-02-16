@@ -1,0 +1,278 @@
+@import 'nib'
+
+:root
+  font-size: 14px
+  @media screen and (max-width: 767px)
+    font-size:12px
+
+html,body
+  padding: 0
+  margin: 0
+  font-family: 'Lato', 'Noto Sans JP', sans-serif
+  background-color: #333
+
+textarea
+input[type=text]
+  font-family: inherit
+  font-family: 'Noto Sans JP', sans-serif
+
+input[type=radio]
+input[type=checkbox]
+  margin-top: 0
+  vertical-align: middle
+  position: relative
+  top: -2px
+
+
+
+h1, h2, h3
+  font-size: inherit
+
+.header
+  background-color: #555
+  margin: 0 0 10px
+  color: #aaa
+  font-size: 2rem
+  & > .head
+    margin: 0
+    padding: 10px
+    font-weight: 900
+
+.container
+  width: 100%
+  min-height: 100vh
+  display: flex
+  flex-direction: column
+  flex-wrap: nowrap
+  justify-content: stretch
+  align-items: stretch
+  margin: 0
+  padding: 0
+
+.main
+  display: flex
+  flex-grow: 1
+  flex-direction: column
+  flex-wrap: nowrap
+  justify-content: center
+  align-items: center
+  margin: 0
+  padding: 0
+
+.main-wrap
+  display: flex
+  flex-direction: column
+  flex-wrap: nowrap
+  justify-content: flex-start
+  align-items: stretch
+  margin: 0
+  padding: 0
+  background-color: #555
+  width: 1200px
+  min-width: 800px
+  max-width: 100%
+  box-sizing: border-box
+  padding: 4px
+  color: #aaa
+  border-radius: 10px
+  .form-group
+    margin-bottom 0
+
+.area-input
+  display: flex
+  flex-direction: row
+  flex-wrap: nowrap
+  justify-content: center
+  align-items: flex-end
+  margin: 0
+  padding: 0
+  &-text
+  &-button
+    padding: 4px
+    box-sizing: border-box
+    flex-shrink: 1
+  &-text
+    flex-grow: 45
+    textarea
+      height: 240px
+  &-button .btn-group-vertical .btn
+    text-align: left
+
+.glyphicon-undo
+  transform: scale(-1,1)
+  &:before
+    content: "\e030"
+.area-control
+  display: flex
+  flex-direction: row
+  flex-wrap: wrap
+  justify-content: flex-start
+  align-items: flex-start
+.genre
+  display: none
+  &:not(:checked)
+    & + .ct-set
+      width: auto
+      & > .body
+        display: none
+.ct-set
+  display: flex
+  flex-direction: row
+  flex-wrap: nowrap
+  justify-content: flex-start
+  align-items: flex-start
+  width: 100%
+  padding: 5px
+  box-sizing: border-box
+  margin: 0
+  & > .body
+    width: auto
+    flex-shrink: 1
+    display: inline-block
+    font-size: 0
+  & > .head
+    width: 10em
+    margin-bottom: 0
+    border: none
+    color: #286090
+    text-align: right
+    padding-right: 10px
+    flex-shrink: 0
+    border-radius: 3px
+    background-color: #fff
+    padding: 5px 10px
+    font-size: 12px
+    line-height: 1.5
+    margin-right: 3px
+    border: 1px solid #fff
+    label
+      margin-bottom: 0
+  & > .body .btn:not(:last-of-type)
+  & > .body .input-group:not(:last-of-type) .form-control:last-child
+    border-top-right-radius: 0
+    border-bottom-right-radius: 0
+    border-left-width: 0px
+
+  & > .body .btn:not(:first-of-type)
+  & > .body .input-group:not(:first-of-type) .form-control:first-child
+    border-top-left-radius: 0
+    border-bottom-left-radius: 0
+
+.link-list
+  display: block
+  margin: 10px auto 10px
+  text-align: center
+  li
+    display: inline-block
+    & + li
+      margin-left: 20px
+    a
+      display: block
+
+.info
+  width: 100%
+  max-width: 1200px
+  color: #aaaaaa
+  margin-top: 15px
+  @media screen and (max-width:1200px)
+    padding: 0 10px 10px
+
+.cd
+  text-align: center
+  a
+    color: #ffffff
+
+@media screen and (max-width:767px)
+  #lengthDisp
+    text-align: center
+    margin-bottom: 5px
+
+  .header
+    font-size: 1.5rem
+    margin-bottom 0
+    .head
+      padding-bottom: 0
+
+  .area-input
+    flex-direction: column
+    align-items: stretch
+    &-text textarea
+      width: auto
+      height: 160px
+    &-button
+      width: 100%
+      .btn-group-vertical
+        display: block
+        width: 80%
+        text-align: center
+        font-size: 0
+        margin: 0 auto
+        border-radius: 4px
+        overflow: hidden
+        .btn
+          display: inline-block
+          width: 50%
+          text-align: center
+          border-radius: 0!important
+  textarea
+  input[type=text]
+    font-size: 16px!important
+  .main-wrap
+    padding: 2px
+    min-width: 200px
+    border-radius: 0
+  .area-control
+    margin: 1px
+  .btn-group-sm > .btn, .btn-sm
+    padding: 5px
+  .ct-set
+    padding-bottom: 0
+    flex-direction: column
+    align-items: flex-start
+    overflow: hidden
+    border-radius: 3px
+    padding: 0
+    margin: 1px
+    width: 100%
+    flex-grow: 1
+    & > .body
+      width: 100%
+      display: flex
+      flex-direction: row
+      flex-wrap: wrap
+      justify-content: stretch
+      align-items: flex-start
+      .btn-group
+        width: 100%
+        display: flex
+        flex-direction: row
+        flex-wrap: wrap
+        justify-content: stretch
+        align-items: flex-start
+        border-radius: 0 !important
+        border-width: 0 !important
+      .btn
+      .input-group .form-control
+      .btn:not(:first-of-type)
+      .input-group:not(:first-of-type) .form-control:first-child
+      .btn:not(:last-of-type)
+      .input-group:not(:last-of-type) .form-control:last-child
+        flex-grow: 1
+        border-radius: 0 !important
+        border-width: 0 !important
+      .btn:not(:last-of-type)
+      .input-group:not(:last-of-type) .form-control:last-child
+        border-left-width: 1px
+    & > .head
+      text-align: left
+      width: 100%
+      border: none
+      margin-bottom: 0
+      border-radius: 0
+      label
+        margin-bottom: 0
+        width: 100%
+    .form-inline
+      display: block
+    [for=text-i]
+      display: none

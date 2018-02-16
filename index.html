@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>汎用テキストコンバータ</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="Content-Language" content="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8&quot; ">
+    <meta name="twitter:site" content="@ichimonji_haji">
+    <meta name="description" content="テキストに対して色々な変換を行うためのツールです。">
+    <meta name="twitter:card" content="summary">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta http-equiv="Content-Language" content="ja">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="Content-Script-Type" content="text/javascript">
+    <meta http-equiv="Content-Style-Type" content="text/css">
+    <meta property="og:title" content="汎用テキストコンバータ">
+    <meta property="og:url" content="http://myth.maji.asia/code/">
+    <meta property="og:description" content="テキストに対して色々な変換を行うためのツールです。">
+    <meta property="og:image" content="http://myth.maji.asia/figure/aloes.jpg">
+    <meta name="twitter:image" content="http://myth.maji.asia/figure/aloes.jpg">
+    <link rel="image_src" href="http://myth.maji.asia/figure/aloes.jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,900">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/earlyaccess/notosansjp.css">
+    <link rel="stylesheet" href="css/common.css">
+  </head>
+  <body>
+    <header class="header">
+      <h1 class="head">汎用テキストコンバータ</h1>
+    </header>
+    <main class="main">
+      <div class="main-wrap">
+        <section class="area-input">
+          <div class="area-input-text">
+            <div class="form-group">
+              <label for="text-i">Original Text <span id="selDisp"></span></label>
+              <textarea class="form-control" id="text-i" placeholder="Original Text"></textarea>
+            </div>
+          </div>
+          <div class="area-input-text">
+            <div class="form-group">
+              <label for="text-o">Converted Text</label>
+              <textarea class="form-control" id="text-o" placeholder="Converted Text"></textarea>
+            </div>
+          </div>
+          <div class="area-input-button">
+            <div id="lengthDisp"></div>
+            <div class="btn-group-vertical">
+              <button class="btn btn-primary btn-sm bt-control" value="move" type="button"><i class="glyphicon glyphicon-chevron-left"></i> MOVE</button>
+              <button class="btn btn-primary btn-sm bt-control" value="delete" type="button"><i class="glyphicon glyphicon-remove"></i> DELETE</button>
+              <button class="btn btn-primary btn-sm bt-control" value="undo" type="button"><i class="glyphicon glyphicon-undo"></i> UNDO</button>
+              <label class="btn btn-sm btn-primary">
+                <input class="automove" name="automove" type="checkbox"> AUTO MOVE
+              </label>
+            </div>
+          </div>
+        </section>
+        <section class="area-control">
+          <input class="genre" id="ctset01" type="checkbox" name="genre" checked="checked">
+          <dl class="ct-set">
+            <dt class="head">
+              <label for="ctset01">ケース</label>
+            </dt>
+            <dd class="body">
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="頭文字のみ大文字に" value="case-title">TITLE</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="全て大文字に" value="case-upper">UPPER</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="全て小文字に" value="case-lower">LOWER</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="大文字小文字を反転" value="case-swap">SWAP</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="シングルクォーテーションをダブルクーテーションに" value="case1">'' <i class="glyphicon glyphicon-arrow-right"></i> ""</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="ダブルクーテーションをシングルクォーテーションに" value="case2">"" <i class="glyphicon glyphicon-arrow-right"></i> ''</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="文字間のハイフンをアンダーバーに" value="case3">abc-def <i class="glyphicon glyphicon-arrow-right"></i> abc_def</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="文字間のアンダーバーをハイフンに" value="case4">abc_def <i class="glyphicon glyphicon-arrow-right"></i> abc-def</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="キャメルケースをハイフンに" value="case5">abcDef <i class="glyphicon glyphicon-arrow-right"></i> abc-def</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="文字間のハイフンをキャメルケースに" value="case6">abc-def <i class="glyphicon glyphicon-arrow-right"></i> abcDef</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="符号付きラテン文字を標準化" value="case7">Àóṫœ <i class="glyphicon glyphicon-arrow-right"></i> Aotoe</button>
+            </dd>
+          </dl>
+          <input class="genre" id="ctset02" type="checkbox" name="genre" checked="checked">
+          <dl class="ct-set">
+            <dt class="head">
+              <label for="ctset02">Url/Base64</label>
+            </dt>
+            <dd class="body">
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="パーセントエンコード（;/?:@&amp; = +$-_!~*.,()a#'以外）" value="url-encode">URL エンコード(軽)</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="パーセントエンコード（-_!~*.()a'以外）" value="url-encode2">URL エンコード(中)</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="パーセントエンコード（*+-_./以外）" value="url-encode3">URL エンコード(強)</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="パーセントでコード（全て）" value="url-decode">URL デコード</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="BASE64 エンコード" value="b64-encode">BASE64 エンコード</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="BASE64 デコード" value="b64-decode">BASE64 デコード</button>
+            </dd>
+          </dl>
+          <input class="genre" id="ctset03" type="checkbox" name="genre" checked="checked">
+          <dl class="ct-set">
+            <dt class="head">
+              <label for="ctset03">Unicode関連</label>
+            </dt>
+            <dd class="body">
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="Unicode値でのパーセントエンコード（%u～）" value="uni-escape">エスケープ</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="Unicode値でのパーセントデコード" value="uni-unescape">アンエスケープ</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="HTML数値文字参照（&amp;#x～;）" value="uniH-escape">HTMLエスケープ(中)</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="全文字をHTML数値文字参照（&amp;#x～;）" value="uniH-escape2">HTMLエスケープ(強)</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="文字参照、実体参照を復号" value="uniH-unescape">HTMLアンエスケープ</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="HTMLタグ用文字を実体参照化" value="uni-escape3">[<>&]の実体参照化</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="UTF32のオーバーフロー分をサロゲートペアに変換" value="uni-escape4">UTF-32 <i class="glyphicon glyphicon-arrow-right"></i> UTF-16</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="サロゲートペアをUTF32表記に" value="uni-escape5">UTF-16 <i class="glyphicon glyphicon-arrow-right"></i> UTF-32</button>
+            </dd>
+          </dl>
+          <input class="genre" id="ctset04" type="checkbox" name="genre" checked="checked">
+          <dl class="ct-set">
+            <dt class="head">
+              <label for="ctset04">数値型/数字</label>
+            </dt>
+            <dd class="body">
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="10進数を2進数に" value="num-10_2">Dec <i class="glyphicon glyphicon-arrow-right"></i> Bin</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="2進数を10進数に" value="num-2_10">Bin <i class="glyphicon glyphicon-arrow-right"></i> Dec</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="10進数を16進数に" value="num-10_16">Dec <i class="glyphicon glyphicon-arrow-right"></i> Hex</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="16進数を10進数に" value="num-16_10">Hex <i class="glyphicon glyphicon-arrow-right"></i> Dec</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="2進数を16進数に" value="num-2_16">Bin <i class="glyphicon glyphicon-arrow-right"></i> Hex</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="16進数を2進数に" value="num-16_2">Hex <i class="glyphicon glyphicon-arrow-right"></i> Bin</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="アラビア数字を漢数字に（桁付き）" value="num-a_j">123 <i class="glyphicon glyphicon-arrow-right"></i> 百二十三</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="アラビア数字を漢数字に（桁なし）" value="num-a_j2">123 <i class="glyphicon glyphicon-arrow-right"></i> 一二三</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="漢数字をアラビア数字に" value="num-j_a">百二十三 <i class="glyphicon glyphicon-arrow-right"></i> 123</button><br>
+              <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                <label class="btn btn-primary">
+                  <input class="roman_class" name="roman_class" type="radio" value="M" checked="checked"> M(1~3999)
+                </label>
+                <label class="btn btn-primary">
+                  <input class="roman_class" name="roman_class" type="radio" value="C1"> ↀ(1~399999)
+                </label>
+                <label class="btn btn-primary">
+                  <input class="roman_class" name="roman_class" type="radio" value="C2"> CIↃ(1~399999)
+                </label>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="アラビア数字をローマ数字に" value="num-a_r">Arabic <i class="glyphicon glyphicon-arrow-right"></i> Roman</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="ローマ数字をアラビア数字に" value="num-r_a">Roman <i class="glyphicon glyphicon-arrow-right"></i> Arabic</button>
+              </div>
+            </dd>
+          </dl>
+          <input class="genre" id="ctset05" type="checkbox" name="genre" checked="checked">
+          <dl class="ct-set">
+            <dt class="head">
+              <label for="ctset05">抽出/排除</label>
+            </dt>
+            <dd class="body">
+              <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                <label class="btn btn-primary">
+                  <input class="extract_reg" name="extract_reg" type="checkbox" value="A-Z"> ABC
+                </label>
+                <label class="btn btn-primary">
+                  <input class="extract_reg" name="extract_reg" type="checkbox" value="a-z"> abc
+                </label>
+                <label class="btn btn-primary">
+                  <input class="extract_reg" name="extract_reg" type="checkbox" value="0-9"> 123
+                </label>
+                <label class="btn btn-primary">
+                  <input class="extract_reg" name="extract_reg" type="checkbox" value=" 　 -‏‏ 	  ​᠎    ​　﻿"> スペース
+                </label>
+                <label class="btn btn-primary">
+                  <input class="extract_reg" name="extract_reg" type="checkbox" value="
+"> 改行
+                </label>
+                <label class="btn btn-primary">
+                  <input class="extract_reg" name="extract_reg" type="checkbox" value=".,-|_/"> .,-/|_
+                </label>
+                <label class="btn btn-primary">
+                  <input class="extract_reg" name="extract_reg" type="checkbox" value="?!&quot;&apos;$%^"> ?!&quot;'$%^
+                </label>
+                <label class="btn btn-primary">
+                  <input class="extract_reg" name="extract_reg" type="checkbox" value="&:;#\(\)\{\}\[\]"> &amp;:;#(){}[]
+                </label>
+                <label class="btn btn-primary">
+                  <input class="extract_reg" name="extract_reg" type="checkbox" value="぀-ゖ"> あ
+                </label>
+                <label class="btn btn-primary">
+                  <input class="extract_reg" name="extract_reg" type="checkbox" value="゠-ヿㇰ-ㇿ"> ア
+                </label>
+                <label class="btn btn-primary">
+                  <input class="extract_reg" name="extract_reg" type="checkbox" value="々〇〻⺀-⿟㐀-䶿一-鿿豈-﫿𠀀-𪛟"> 漢
+                </label>
+                <label class="btn btn-primary">
+                  <input class="extract_reg" name="extract_reg" type="checkbox" value="　-〿゙-ゟ㈀-㏿︐-︟＀-￯"> 全角記号
+                </label>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="選択した対象を抽出" value="extract">抽出</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="選択した対象を排除" value="exclude">排除</button>
+              </div>
+            </dd>
+          </dl>
+          <input class="genre" id="ctset06" type="checkbox" name="genre" checked="checked">
+          <dl class="ct-set">
+            <dt class="head">
+              <label for="ctset06">一括排除</label>
+            </dt>
+            <dd class="body">
+              <button class="btn btn-primary btn-sm bt-control" type="button" value="newline">全ての改行</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" value="html">HTMLタグ</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" value="space">余分なスペース</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" value="margin">余分な改行</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" value="ex_dup1">重複する文字</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" value="ex_dup2">重複する行</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" value="ex_dup3">重複する単語</button>
+            </dd>
+          </dl>
+          <input class="genre" id="ctset07" type="checkbox" name="genre" checked="checked">
+          <dl class="ct-set">
+            <dt class="head">
+              <label for="ctset07">反転/ソート</label>
+            </dt>
+            <dd class="body">
+              <button class="btn btn-primary btn-sm bt-control" type="button" value="rev-chara">文字単位で反転</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" value="rev-line">行単位で反転</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" value="rev-word">単語単位で反転</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" value="sort1">行単位で昇順に整列</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" value="sort2">行単位で降順に整列</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" value="sort3">文字単位で昇順に整列</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" value="sort4">文字単位で降順に整列</button>
+            </dd>
+          </dl>
+          <input class="genre" id="ctset08" type="checkbox" name="genre" checked="checked">
+          <dl class="ct-set">
+            <dt class="head">
+              <label for="ctset08">重複文字/行列</label>
+            </dt>
+            <dd class="body">
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="重複部分のみ削除" value="dup1">ABA <i class="glyphicon glyphicon-arrow-right"></i> AB</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="重複部分を重複したまま抽出" value="dup2">ABA <i class="glyphicon glyphicon-arrow-right"></i> AA</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="重複した文字以外を抽出" value="dup3">ABA <i class="glyphicon glyphicon-arrow-right"></i> B</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="重複部分を重複させないで抽出" value="dup4">ABA <i class="glyphicon glyphicon-arrow-right"></i> A</button>
+              <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                <label class="btn btn-primary">
+                  <input class="matrix" name="matrix" type="radio" value="	" checked="checked"> タブ
+                </label>
+                <label class="btn btn-primary">
+                  <input class="matrix" name="matrix" type="radio" value=","> ,
+                </label>
+                <label class="btn btn-primary">
+                  <input class="matrix" name="matrix" type="radio" value=" "> スペース
+                </label>
+                <label class="btn btn-primary">
+                  <input class="matrix" name="matrix" type="radio" value=""> 1文字ずつ
+                </label>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="区切り文字と行を基準に行と列を入れ替え" value="matrix-change">行と列を入れ替え</button>
+              </div>
+            </dd>
+          </dl>
+          <input class="genre" id="ctset09" type="checkbox" name="genre" checked="checked">
+          <dl class="ct-set">
+            <dt class="head">
+              <label for="ctset09">日本語関連</label>
+            </dt>
+            <dd class="body">
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="全角ひらがなを全角カタカナに" value="jpn1">あ <i class="glyphicon glyphicon-arrow-right"></i> ア</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="全角カタカナを全角ひらがなに" value="jpn2">ア <i class="glyphicon glyphicon-arrow-right"></i> あ</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="半角カタカナを全角カタカナに" value="jpn3">ｱ <i class="glyphicon glyphicon-arrow-right"></i> ア</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="全角カタカナを半角カタカナに" value="jpn4">ア <i class="glyphicon glyphicon-arrow-right"></i> ｱ</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="半角英数字を全角英数字に" value="jpn5">A1 <i class="glyphicon glyphicon-arrow-right"></i> Ａ１</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="全角英数字を半角英数字に" value="jpn6">Ａ１ <i class="glyphicon glyphicon-arrow-right"></i> A1</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="新字体を旧字体に（異体字セレクタ分を含まない）" value="jpn7">新字 <i class="glyphicon glyphicon-arrow-right"></i> 旧字（中）</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="新字体を旧字体に（異体字セレクタ分を含む）" value="jpn7b">新字 <i class="glyphicon glyphicon-arrow-right"></i> 旧字（強）</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="旧字体を新字体に（異体字セレクタ分を含む）" value="jpn8">旧字 <i class="glyphicon glyphicon-arrow-right"></i> 新字</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="漢数字を大字に" value="jpn9">一二 <i class="glyphicon glyphicon-arrow-right"></i> 壱弐</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="大字を漢数字に" value="jpna">壱弐 <i class="glyphicon glyphicon-arrow-right"></i> 一二</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="全角カタカナを訓令式ローマ字表記に" value="jpnb">トウキョウ <i class="glyphicon glyphicon-arrow-right"></i> tôkyô</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="全角カタカナをヘボン式ローマ字表記に" value="jpnc">トウキョウ <i class="glyphicon glyphicon-arrow-right"></i> tokyo</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="ヘボン式ローマ字を全角カタカナに" value="jpnd">tokyo <i class="glyphicon glyphicon-arrow-right"></i> トキョ</button>
+            </dd>
+          </dl>
+          <input class="genre" id="ctset10" type="checkbox" name="genre" checked="checked">
+          <dl class="ct-set">
+            <dt class="head">
+              <label for="ctset10">CJK関連</label>
+            </dt>
+            <dd class="body">
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="日本字体を簡体字に" value="tocjk1">日 <i class="glyphicon glyphicon-arrow-right"></i> 簡体</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="日本字体を繁体字に" value="tocjk2">日 <i class="glyphicon glyphicon-arrow-right"></i> 繁体</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="簡体字を日本字体に" value="tocjk3">簡体 <i class="glyphicon glyphicon-arrow-right"></i> 日</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="繁体字を日本字体に" value="tocjk4">繁体 <i class="glyphicon glyphicon-arrow-right"></i> 日</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="簡体字を繁体字に" value="tocjk5">簡体 <i class="glyphicon glyphicon-arrow-right"></i> 繁体</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="繁体字を簡体字に" value="tocjk6">繁体 <i class="glyphicon glyphicon-arrow-right"></i> 簡体</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="漢字の直後にピンインを追加" value="tocjk7">ピンイン</button>
+            </dd>
+          </dl>
+          <input class="genre" id="ctset11" type="checkbox" name="genre" checked="checked">
+          <dl class="ct-set">
+            <dt class="head">
+              <label for="ctset11">Sanskrit</label>
+            </dt>
+            <dd class="body">
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="デーヴァナガリーを京都・ハーバード方式に" value="skt1">संस्कृत <i class="glyphicon glyphicon-arrow-right"></i> saMskRta</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="デーヴァナガリーをIASTに" value="skt2">संस्कृत <i class="glyphicon glyphicon-arrow-right"></i> saṃskṛta</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="京都・ハーバード方式をデーヴァナガリーに" value="skt3">saMskRta <i class="glyphicon glyphicon-arrow-right"></i> संस्कृत</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="京都・ハーバード方式をIASTに" value="skt4">saMskRta <i class="glyphicon glyphicon-arrow-right"></i> saṃskṛta</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="IASTをデーヴァナガリーに" value="skt5">saṃskṛta <i class="glyphicon glyphicon-arrow-right"></i> संस्कृत</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="IASTを京都・ハーバード方式に" value="skt6">saṃskṛta <i class="glyphicon glyphicon-arrow-right"></i> saMskRta</button>
+            </dd>
+          </dl>
+          <input class="genre" id="ctset12" type="checkbox" name="genre" checked="checked">
+          <dl class="ct-set">
+            <dt class="head">
+              <label for="ctset12">正規表現</label>
+            </dt>
+            <dd class="body form-inline">
+              <div class="form-group">
+                <div class="input-group input-group-sm"><span class="input-group-btn">
+                    <label class="btn btn-primary">
+                      <input id="caps" type="checkbox"> Aa
+                    </label></span>
+                  <input class="form-control" type="text" id="rep_find" value="" placeholder="Find What">
+                </div>
+                <div class="input-group input-group-sm">
+                  <input class="form-control" type="text" id="rep_rep" value="" placeholder="Replace With"><span class="input-group-btn">
+                    <button class="btn btn-primary bt-control" type="btton" value="replacement">Replace</button></span>
+                </div>
+              </div>
+            </dd>
+          </dl>
+        </section>
+        <ul class="link-list">
+          <li><a target="_blank" href="https://codepen.io/ichimonzi/details/ZJWEZQ/">codepen</a></li>
+        </ul>
+      </div>
+      <section class="info">
+        <div lang="jp">
+          <p>
+            「Original Text」欄に変換したいテキストを入れ各種の変換ボタンを押してください。「Converted Text」欄に変換後のテキストが出力されます。<br>
+            変換後のテキストをさらに変換したい場合は「MOVE」ボタンを押して変換後テキストを「Original Text」欄に移動させてください。<br>
+            「AUTO MOVE」にチェックを入れると自動で変換後のテキストが「Original Text」欄に移動します。
+          </p>
+          <p>
+            「Original Text」欄でテキストを選択したまま各種変換ボタンを押すと、その選択範囲にのみ変換が適用されます。<br>
+            「UNDO」を押す度に変換前の状態に一つずつ戻ります。
+          </p>
+        </div>
+        <h2>注意</h2>
+        <div lang="jp">
+          <ul>
+            <li>アラビア数字をローマ数字に関して、ↀ型の場合の100000である「ↈ（&amp;#x2188;）」はほとんどのフォントで表示が不可能です。</li>
+            <li>アラビア数字から漢数字の変換（桁付き）に関して、少数の桁（分、厘、毛など）に関しては考慮せず数字のみを列記する方式にしております。</li>
+            <li>日本字体、簡体字、繁体字の相互変換に関して、変換候補が複数ある場合、「（A|B|C）」といった形式で表示します。</li>
+            <li>ピンイン表記追加に関して、ピンインは「[A/B/C]」といった形式で表示します。</li>
+            <li>全角カタカナからの訓令式・ヘボン式ローマ字変換に関して、特殊な用法や表外の訓に関しては（99式などに倣った）独自の変換をしています。</li>
+            <li>新字体→旧字体の変換において旧字が別字として存在しない、あるいはUTF16範囲にない場合は異体字セレクタによって旧字体を表示します。</li>
+          </ul>
+          <ul>
+            <li>CJK変換に関してはまだ実用段階ではなく試用運転です。一部の文字の簡体字化、繁体字化が再現されていません。</li>
+            <li>「符号付きラテン文字を標準化」では結合分音記号も削除します。</li>
+            <li>「サンスクリット変換」のIAST方式、HK方式の変換では拡張IAST（ISO-15919方式）ではなく元来の方式のためISO-15919方式を正しく変換できません。</li>
+          </ul>
+        </div>
+      </section>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="js/pinyin.js"></script>
+    <script src="js/cjk.js"></script>
+    <script src="js/japanese.js"></script>
+    <script src="js/common.js"></script>
+  </body>
+</html>
