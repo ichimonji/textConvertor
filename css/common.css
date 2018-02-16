@@ -408,7 +408,7 @@ h3 {
     align-items: stretch;
   }
   .area-input-text textarea {
-    width: auto;
+    width: 100%;
     height: 160px;
   }
   .area-input-button {
