@@ -208,6 +208,7 @@ $(function() {
   $bt.on('click',e => {
     let ival = $( e.currentTarget ).val(),
       iStr = $ipt.val(),
+      instArr = '', instArr2 = '', i, j,
       instStr = '', instStr2 = '', instNum = 0,
       oStr = '', find = '', flg = 'g', hi,lo,
       beforeStr = '', endStr = '',
@@ -884,6 +885,66 @@ $(function() {
         oStr = iStr.replace( find,instStr2 );
         break;
 
+    // numbering
+      case 'numbering':
+        mx_st = parseInt($('#mx_start').val(), 10);
+        mx_ed = parseInt($('#mx_end').val(), 10);
+        mx_sp = parseInt($('#mx_step').val(), 10);
+        mx_jn = $('#mx_join').val().replace(/\\n/g,'\n');
+        mx_jnReg = new RegExp( mx_jn, 'g' );
+        instArr = [];
+        instStr = '';
+        for (i = mx_st; i <= mx_ed; i = i + mx_sp) {
+          instArr.push(i);
+        }
+        instArr2 = iStr.split(mx_jnReg);
+        mxLength = instArr.length <= instArr2.length ? instArr2.length : instArr.length;
+        for (j = 0; j < mxLength; j++){
+          if( instArr[j] ){
+            instStr += instArr[j];
+          }
+          if( instArr2[j] ){
+            instStr += instArr2[j];
+          }
+          instStr += mx_jn;
+        }
+        oStr = instStr;
+        break;
+
+    // merge
+      case 'merge1':
+        oStr = iStr + '\n' + $opt.val();
+        break;
+      case 'merge2':
+        instArr = iStr.split(/\n/g);
+        instArr2 = $opt.val().split(/\n/g);
+        mxLength = instArr.length <= instArr2.length ? instArr2.length : instArr.length;
+        for (i = 0; i < mxLength; i++){
+          if( instArr[i] ){
+            instStr += instArr[i];
+          }
+          if( instArr2[i] ){
+            instStr += instArr2[i];
+          }
+          instStr += '\n';
+        }
+        oStr = instStr;
+        break;
+      case 'merge3':
+        instArr = iStr.split('');
+        instArr2 = $opt.val().split('');
+        mxLength = instArr.length <= instArr2.length ? instArr2.length : instArr.length;
+        for (i = 0; i < mxLength; i++){
+          if( instArr[i] ){
+            instStr += instArr[i];
+          }
+          if( instArr2[i] ){
+            instStr += instArr2[i];
+          }
+        }
+        oStr = instStr;
+        break;
+
     // other
       case 'move':
         iStr = $opt.val();
@@ -922,18 +983,6 @@ $(function() {
       output( iStr,oStr );
     }
   });
-
-  // $genre.each(function(){
-  //  check = $(this).find('.genre').prop('checked');
-  //  if( !check ){
-  //    $(this).find('.body').addClass('hidden');
-  //  }
-  // });
-
-  // $genreHead.on('click', function(e){
-  //  $(this).parents('.ct-set').find('.body').toggleClass('hidden');
-  //  e.preventDefault();
-  // });
 
   output( $ipt.val(),$opt.val() );
 });

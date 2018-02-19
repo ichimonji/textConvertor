@@ -1,17 +1,30 @@
 @import 'nib'
 
+// width global
 sm = 768px
 lg = 1200px
 
+// color global
 $col_white = #fff
 $col_lightgray = #aaa
 $col_gray = #555
 $col_darkgray = #333
 $col_primary = #286090
 
+// mixins
+// breakpoint(media query)
 breakpoint(scname)
   @media only screen and (max-width: scname)
     {block}
+
+// flex shorthand
+flexer(dir = row, wr = nowrap, jc = flex-start, ai = stretch, ac = stretch)
+  display flex
+  flex-direction dir
+  flex-wrap wr
+  justify-content jc
+  align-items ai
+  align-content ac
 
 :root
   font-size 14px
@@ -61,30 +74,18 @@ h1, h2, h3
 .container
   width 100%
   min-height 100vh
-  display flex
-  flex-direction column
-  flex-wrap nowrap
-  justify-content stretch
-  align-items stretch
+  flexer( column, nowrap, stretch, stretch )
   margin 0
   padding 0
 
 .main
-  display flex
+  flexer( column, nowrap, center, center )
   flex-grow 1
-  flex-direction column
-  flex-wrap nowrap
-  justify-content center
-  align-items center
   margin 0
   padding 0
 
 .main-wrap
-  display flex
-  flex-direction column
-  flex-wrap nowrap
-  justify-content flex-start
-  align-items stretch
+  flexer( column, nowrap, flex-start, stretch )
   margin 0
   padding 0
   background-color $col_gray
@@ -103,11 +104,7 @@ h1, h2, h3
     border-radius 0
 
 .area-input
-  display flex
-  flex-direction row
-  flex-wrap nowrap
-  justify-content center
-  align-items flex-end
+  flexer( row, nowrap, center, flex-end )
   margin 0
   padding 0
   &-text
@@ -127,11 +124,7 @@ h1, h2, h3
   &:before
     content "\e030"
 .area-control
-  display flex
-  flex-direction row
-  flex-wrap wrap
-  justify-content flex-start
-  align-items flex-start
+  flexer( row, wrap, flex-start, flex-start )
   +breakpoint(sm)
     margin 1px
 .genre
@@ -142,11 +135,7 @@ h1, h2, h3
       & > .body
         display none
 .ct-set
-  display flex
-  flex-direction row
-  flex-wrap nowrap
-  justify-content flex-start
-  align-items flex-start
+  flexer( row, nowrap, flex-start, flex-start )
   width 100%
   padding 5px
   box-sizing border-box
@@ -246,18 +235,10 @@ h1, h2, h3
     flex-grow 1
     & > .body
       width 100%
-      display flex
-      flex-direction row
-      flex-wrap wrap
-      justify-content stretch
-      align-items flex-start
+      flexer( row, wrap, stretch, flex-start )
       .btn-group
         width 100%
-        display flex
-        flex-direction row
-        flex-wrap wrap
-        justify-content stretch
-        align-items flex-start
+        flexer( row, wrap, stretch, flex-start )
         border-radius 0 !important
         border-width 0 !important
       .btn
@@ -272,6 +253,9 @@ h1, h2, h3
       .btn:not(:last-of-type)
       .input-group:not(:last-of-type) .form-control:last-child
         border-left-width 1px
+      .form-inline
+        display block
+        width 100%
     & > .head
       text-align left
       width 100%
@@ -281,7 +265,18 @@ h1, h2, h3
       label
         margin-bottom 0
         width 100%
-    .form-inline
-      display block
     [for=text-i]
       display none
+
+// 特殊
+#ctset13 + .ct-set
+  .form-group
+    .input-group-sm
+      float left
+      width 25%
+      +breakpoint(sm)
+        width 50%
+      .input-group-btn
+        width 24%
+        .btn
+          width 100%

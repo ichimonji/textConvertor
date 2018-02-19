@@ -50,9 +50,12 @@
           <div class="area-input-button">
             <div id="lengthDisp"></div>
             <div class="btn-group-vertical">
-              <button class="btn btn-primary btn-sm bt-control" value="move" type="button"><i class="glyphicon glyphicon-chevron-left"></i> MOVE</button>
-              <button class="btn btn-primary btn-sm bt-control" value="delete" type="button"><i class="glyphicon glyphicon-remove"></i> DELETE</button>
-              <button class="btn btn-primary btn-sm bt-control" value="undo" type="button"><i class="glyphicon glyphicon-undo"></i> UNDO</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="変換後テキストを変換前テキストエリアへ移動" value="move"><i class="glyphicon glyphicon-chevron-left"></i> MOVE
+              </button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="テキストを一括削除" value="delete"><i class="glyphicon glyphicon-remove"></i> DELETE
+              </button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="一段階前に戻す" value="undo"><i class="glyphicon glyphicon-undo"></i> UNDO
+              </button>
               <label class="btn btn-sm btn-primary">
                 <input class="automove" name="automove" type="checkbox"> AUTO MOVE
               </label>
@@ -123,7 +126,7 @@
               <button class="btn btn-primary btn-sm bt-control" type="button" title="16進数を2進数に" value="num-16_2">Hex <i class="glyphicon glyphicon-arrow-right"></i> Bin</button>
               <button class="btn btn-primary btn-sm bt-control" type="button" title="アラビア数字を漢数字に（桁付き）" value="num-a_j">123 <i class="glyphicon glyphicon-arrow-right"></i> 百二十三</button>
               <button class="btn btn-primary btn-sm bt-control" type="button" title="アラビア数字を漢数字に（桁なし）" value="num-a_j2">123 <i class="glyphicon glyphicon-arrow-right"></i> 一二三</button>
-              <button class="btn btn-primary btn-sm bt-control" type="button" title="漢数字をアラビア数字に" value="num-j_a">百二十三 <i class="glyphicon glyphicon-arrow-right"></i> 123</button><br>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="漢数字をアラビア数字に" value="num-j_a">百二十三 <i class="glyphicon glyphicon-arrow-right"></i> 123</button>
               <div class="btn-group btn-group-sm" role="group" aria-label="...">
                 <label class="btn btn-primary">
                   <input class="roman_class" name="roman_class" type="radio" value="M" checked="checked"> M(1~3999)
@@ -301,19 +304,62 @@
             <dt class="head">
               <label for="ctset12">正規表現</label>
             </dt>
-            <dd class="body form-inline">
-              <div class="form-group">
-                <div class="input-group input-group-sm"><span class="input-group-btn">
-                    <label class="btn btn-primary">
-                      <input id="caps" type="checkbox"> Aa
-                    </label></span>
-                  <input class="form-control" type="text" id="rep_find" value="" placeholder="Find What">
-                </div>
-                <div class="input-group input-group-sm">
-                  <input class="form-control" type="text" id="rep_rep" value="" placeholder="Replace With"><span class="input-group-btn">
-                    <button class="btn btn-primary bt-control" type="btton" value="replacement">Replace</button></span>
+            <dd class="body">
+              <div class="form-inline">
+                <div class="form-group">
+                  <div class="input-group input-group-sm"><span class="input-group-btn">
+                      <label class="btn btn-primary">
+                        <input id="caps" type="checkbox"> Aa
+                      </label></span>
+                    <input class="form-control" type="text" id="rep_find" value="" placeholder="Find What">
+                  </div>
+                  <div class="input-group input-group-sm">
+                    <input class="form-control" type="text" id="rep_rep" value="" placeholder="Replace With"><span class="input-group-btn">
+                      <button class="btn btn-primary bt-control" type="button" value="replacement">Replace</button></span>
+                  </div>
                 </div>
               </div>
+            </dd>
+          </dl>
+          <input class="genre" id="ctset13" type="checkbox" name="genre" checked="checked">
+          <dl class="ct-set">
+            <dt class="head">
+              <label for="ctset13">連番生成</label>
+            </dt>
+            <dd class="body">
+              <div class="form-inline">
+                <div class="form-group">
+                  <div class="input-group input-group-sm"><span class="input-group-btn">
+                      <label class="btn btn-primary">from</label></span>
+                    <input class="form-control" type="text" id="mx_start" value="0" placeholder="Start">
+                  </div>
+                  <div class="input-group input-group-sm"><span class="input-group-btn">
+                      <label class="btn btn-primary">to</label></span>
+                    <input class="form-control" type="text" id="mx_end" value="100" placeholder="End">
+                  </div>
+                  <div class="input-group input-group-sm"><span class="input-group-btn">
+                      <label class="btn btn-primary">step</label></span>
+                    <input class="form-control" type="text" id="mx_step" value="1" placeholder="Step">
+                  </div>
+                  <div class="input-group input-group-sm"><span class="input-group-btn">
+                      <label class="btn btn-primary">join</label></span>
+                    <input class="form-control" type="text" id="mx_join" value="
+" placeholder="Join"><span class="input-group-btn">
+                      <button class="btn btn-primary bt-control" type="button" value="numbering">Numbering</button></span>
+                  </div>
+                </div>
+              </div>
+            </dd>
+          </dl>
+          <input class="genre" id="ctset14" type="checkbox" name="genre" checked="checked">
+          <dl class="ct-set">
+            <dt class="head">
+              <label for="ctset14">左右連結</label>
+            </dt>
+            <dd class="body">
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="左右を上下結合" value="merge1">上下に結合</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="左右を行ごとに結合" value="merge2">行ごとに結合</button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="左右を文字ごとに結合" value="merge3">文字ごとに結合</button>
             </dd>
           </dl>
         </section>
@@ -323,20 +369,13 @@
       </div>
       <section class="info">
         <div lang="jp">
-          <p>
-            「Original Text」欄に変換したいテキストを入れ各種の変換ボタンを押してください。「Converted Text」欄に変換後のテキストが出力されます。<br>
-            変換後のテキストをさらに変換したい場合は「MOVE」ボタンを押して変換後テキストを「Original Text」欄に移動させてください。<br>
-            「AUTO MOVE」にチェックを入れると自動で変換後のテキストが「Original Text」欄に移動します。
-          </p>
-          <p>
-            「Original Text」欄でテキストを選択したまま各種変換ボタンを押すと、その選択範囲にのみ変換が適用されます。<br>
-            「UNDO」を押す度に変換前の状態に一つずつ戻ります。
-          </p>
+          <p>「Original Text」欄に変換したいテキストを入れ各種の変換ボタンを押してください。「Converted Text」欄に変換後のテキストが出力されます。<br>変換後のテキストをさらに変換したい場合は「MOVE」ボタンを押して変換後テキストを「Original Text」欄に移動させてください。<br>「AUTO MOVE」にチェックを入れると自動で変換後のテキストが「Original Text」欄に移動します。</p>
+          <p>「Original Text」欄でテキストを選択したまま各種変換ボタンを押すと、その選択範囲にのみ変換が適用されます。<br>「UNDO」を押す度に変換前の状態に一つずつ戻ります。</p>
         </div>
         <h2>注意</h2>
         <div lang="jp">
           <ul>
-            <li>アラビア数字をローマ数字に関して、ↀ型の場合の100000である「ↈ（&amp;#x2188;）」はほとんどのフォントで表示が不可能です。</li>
+            <li>アラビア数字をローマ数字に関して、ↀ型の場合の100000である「ↈ（&amp;amp;#x2188;）」はほとんどのフォントで表示が不可能です。</li>
             <li>アラビア数字から漢数字の変換（桁付き）に関して、少数の桁（分、厘、毛など）に関しては考慮せず数字のみを列記する方式にしております。</li>
             <li>日本字体、簡体字、繁体字の相互変換に関して、変換候補が複数ある場合、「（A|B|C）」といった形式で表示します。</li>
             <li>ピンイン表記追加に関して、ピンインは「[A/B/C]」といった形式で表示します。</li>
