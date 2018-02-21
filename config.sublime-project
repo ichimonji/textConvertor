@@ -3,6 +3,9 @@
 	[
 		{
 			"path": "."
+		},
+		{
+			"path": "D:\\project\\branch\\smarty\\templates"
 		}
 	]
 }

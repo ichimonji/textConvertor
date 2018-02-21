@@ -71,6 +71,14 @@ h1, h2, h3
     +breakpoint(sm)
       padding-bottom 0
 
+.footer
+  background-color $col_gray
+  margin 10px 0 0
+  padding 5px 10px
+  color $col_lightgray
+  font-size 1rem
+  text-align right
+
 .container
   width 100%
   min-height 100vh
@@ -116,8 +124,11 @@ h1, h2, h3
     flex-grow 45
     textarea
       height 240px
-  &-button .btn-group-vertical .btn
-    text-align left
+  &-button
+    .btn-group-vertical
+      width 100%
+      .btn
+        text-align left
 
 .glyphicon-undo
   transform scale(-1,1)
@@ -132,19 +143,50 @@ h1, h2, h3
   &:not(:checked)
     & + .ct-set
       width auto
+      margin-right -5px
       & > .body
         display none
+      & > .head
+        margin-right 5px
+        text-align center
 .ct-set
   flexer( row, nowrap, flex-start, flex-start )
-  width 100%
   padding 5px
   box-sizing border-box
   margin 0
+  width 100%
   & > .body
     width auto
     flex-shrink 1
     display inline-block
     font-size 0
+    border-radius 3px
+    overflow hidden
+    flexer( row, wrap, stretch, flex-start )
+    .btn
+      flex 1 1
+      border-top none
+      border-bottom none
+      border-left none
+      border-right none
+      border-radius 0
+    .btn-group
+      flexer( row, wrap, stretch, flex-start )
+      width 100%
+    & > .btn
+      margin-top -1px
+      margin-left -1px
+      border-top 1px solid rgba(0,0,0,.1) !important
+      border-left 1px solid rgba(0,0,0,.1) !important
+    & > .btn-group
+      margin-top -1px
+      border-top 1px solid rgba(0,0,0,.1) !important
+    & > .btn-group
+      & > .btn
+        margin-top -1px
+        margin-left -1px
+        border-top 1px solid rgba(0,0,0,.1) !important
+        border-left 1px solid rgba(0,0,0,.1) !important
     .btn:not(:last-of-type)
     .input-group:not(:last-of-type) .form-control:last-child
       border-top-right-radius 0
@@ -155,7 +197,7 @@ h1, h2, h3
       border-top-left-radius 0
       border-bottom-left-radius 0
   & > .head
-    width 10em
+    width 8em
     margin-bottom 0
     border none
     color $col_primary
@@ -164,12 +206,13 @@ h1, h2, h3
     flex-shrink 0
     border-radius 3px
     background-color $col_white
-    padding 5px 10px
+    padding 4px 6px
     font-size 12px
     line-height 1.5
-    margin-right 3px
+    margin-right 10px
     border 1px solid $col_white
     label
+      display block
       margin-bottom 0
 
 .link-list
@@ -182,14 +225,6 @@ h1, h2, h3
       margin-left 20px
     a
       display block
-
-.info
-  width 100%
-  max-width lg
-  color $col_lightgray
-  margin-top 15px
-  +breakpoint(lg)
-    padding 0 10px 10px
 
 .cd
   text-align center
@@ -209,7 +244,7 @@ h1, h2, h3
     &-button
       width 100%
       .btn-group-vertical
-        display block
+        flexer( row, wrap, stretch, flex-start )
         width 80%
         text-align center
         font-size 0
@@ -217,8 +252,9 @@ h1, h2, h3
         border-radius 4px
         overflow hidden
         .btn
+          flex 1 1
+          min-width 33%
           display inline-block
-          width 50%
           text-align center
           border-radius 0!important
   .btn-group-sm > .btn, .btn-sm
@@ -235,6 +271,7 @@ h1, h2, h3
     flex-grow 1
     & > .body
       width 100%
+      border-radius 0 0 3px 3px
       flexer( row, wrap, stretch, flex-start )
       .btn-group
         width 100%
@@ -268,15 +305,37 @@ h1, h2, h3
     [for=text-i]
       display none
 
+.btn-group-sm
+  background-color lighten($col_primary,35%)
+  label.btn-primary
+    background-color transparent
+    border-radius 0
+    border none
+
 // 特殊
+#ctset05 + .ct-set
+  & > .body
+    label.btn
+      min-width 13%
+
+
 #ctset13 + .ct-set
   .form-group
     .input-group-sm
       float left
-      width 25%
+      width 15%
+      &:last-child
+        width auto
+        border-radius 0 3px 3px 0
+        overflow hidden
+        +breakpoint(sm)
+          border-radius 0
       +breakpoint(sm)
-        width 50%
+        width 33.3%
+        &:nth-of-type(3n)
+          width 33.4%
       .input-group-btn
         width 24%
-        .btn
+        & > .btn
+          padding 5px
           width 100%

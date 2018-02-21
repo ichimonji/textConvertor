@@ -56,6 +56,8 @@
               </button>
               <button class="btn btn-primary btn-sm bt-control" type="button" title="一段階前に戻す" value="undo"><i class="glyphicon glyphicon-undo"></i> UNDO
               </button>
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="左右を入れ替え" value="change"><i class="fa fa-exchange"></i> REPLACE
+              </button>
               <label class="btn btn-sm btn-primary">
                 <input class="automove" name="automove" type="checkbox"> AUTO MOVE
               </label>
@@ -315,7 +317,7 @@
                   </div>
                   <div class="input-group input-group-sm">
                     <input class="form-control" type="text" id="rep_rep" value="" placeholder="Replace With"><span class="input-group-btn">
-                      <button class="btn btn-primary bt-control" type="button" value="replacement">Replace</button></span>
+                      <button class="btn btn-primary bt-control" type="button" title="置換" value="replacement">置換</button></span>
                   </div>
                 </div>
               </div>
@@ -330,22 +332,27 @@
               <div class="form-inline">
                 <div class="form-group">
                   <div class="input-group input-group-sm"><span class="input-group-btn">
-                      <label class="btn btn-primary">from</label></span>
-                    <input class="form-control" type="text" id="mx_start" value="0" placeholder="Start">
+                      <label class="btn btn-primary" title="～から">from</label></span>
+                    <input class="form-control" type="number" min="0" id="mx_start" value="0" placeholder="Start">
                   </div>
                   <div class="input-group input-group-sm"><span class="input-group-btn">
-                      <label class="btn btn-primary">to</label></span>
-                    <input class="form-control" type="text" id="mx_end" value="100" placeholder="End">
+                      <label class="btn btn-primary" title="～まで">to</label></span>
+                    <input class="form-control" type="number" min="1" id="mx_end" value="100" placeholder="End">
                   </div>
                   <div class="input-group input-group-sm"><span class="input-group-btn">
-                      <label class="btn btn-primary">step</label></span>
-                    <input class="form-control" type="text" id="mx_step" value="1" placeholder="Step">
+                      <label class="btn btn-primary" title="～刻みで">step</label></span>
+                    <input class="form-control" type="number" min="1" id="mx_step" value="1" placeholder="Step">
                   </div>
                   <div class="input-group input-group-sm"><span class="input-group-btn">
-                      <label class="btn btn-primary">join</label></span>
-                    <input class="form-control" type="text" id="mx_join" value="
-" placeholder="Join"><span class="input-group-btn">
-                      <button class="btn btn-primary bt-control" type="button" value="numbering">Numbering</button></span>
+                      <label class="btn btn-primary" title="ゼロパディング">padding</label></span>
+                    <input class="form-control" type="number" min="0" id="mx_padding" value="3" placeholder="Padding">
+                  </div>
+                  <div class="input-group input-group-sm"><span class="input-group-btn">
+                      <label class="btn btn-primary" title="ごとに">join</label></span>
+                    <input class="form-control" type="text" id="mx_join" value="\n" placeholder="Join">
+                  </div>
+                  <div class="input-group input-group-sm">
+                    <button class="form-control btn btn-primary bt-control" type="button" title="連番生成" value="numbering">生成</button>
                   </div>
                 </div>
               </div>
@@ -364,32 +371,12 @@
           </dl>
         </section>
         <ul class="link-list">
-          <li><a target="_blank" href="https://codepen.io/ichimonzi/details/ZJWEZQ/">codepen</a></li>
+          <li><a class="btn btn-primary" target="_blank" href="readme.html">help</a></li>
+          <li><a class="btn btn-primary" target="_blank" href="https://codepen.io/ichimonzi/details/ZJWEZQ/">codepen</a></li>
         </ul>
       </div>
-      <section class="info">
-        <div lang="jp">
-          <p>「Original Text」欄に変換したいテキストを入れ各種の変換ボタンを押してください。「Converted Text」欄に変換後のテキストが出力されます。<br>変換後のテキストをさらに変換したい場合は「MOVE」ボタンを押して変換後テキストを「Original Text」欄に移動させてください。<br>「AUTO MOVE」にチェックを入れると自動で変換後のテキストが「Original Text」欄に移動します。</p>
-          <p>「Original Text」欄でテキストを選択したまま各種変換ボタンを押すと、その選択範囲にのみ変換が適用されます。<br>「UNDO」を押す度に変換前の状態に一つずつ戻ります。</p>
-        </div>
-        <h2>注意</h2>
-        <div lang="jp">
-          <ul>
-            <li>アラビア数字をローマ数字に関して、ↀ型の場合の100000である「ↈ（&amp;amp;#x2188;）」はほとんどのフォントで表示が不可能です。</li>
-            <li>アラビア数字から漢数字の変換（桁付き）に関して、少数の桁（分、厘、毛など）に関しては考慮せず数字のみを列記する方式にしております。</li>
-            <li>日本字体、簡体字、繁体字の相互変換に関して、変換候補が複数ある場合、「（A|B|C）」といった形式で表示します。</li>
-            <li>ピンイン表記追加に関して、ピンインは「[A/B/C]」といった形式で表示します。</li>
-            <li>全角カタカナからの訓令式・ヘボン式ローマ字変換に関して、特殊な用法や表外の訓に関しては（99式などに倣った）独自の変換をしています。</li>
-            <li>新字体→旧字体の変換において旧字が別字として存在しない、あるいはUTF16範囲にない場合は異体字セレクタによって旧字体を表示します。</li>
-          </ul>
-          <ul>
-            <li>CJK変換に関してはまだ実用段階ではなく試用運転です。一部の文字の簡体字化、繁体字化が再現されていません。</li>
-            <li>「符号付きラテン文字を標準化」では結合分音記号も削除します。</li>
-            <li>「サンスクリット変換」のIAST方式、HK方式の変換では拡張IAST（ISO-15919方式）ではなく元来の方式のためISO-15919方式を正しく変換できません。</li>
-          </ul>
-        </div>
-      </section>
     </main>
+    <footer class="footer"><a href="https://twitter.com/ichimonji_haji"><i class="fa fa-twitter"></i> @ichimonji_haji</a></footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="js/pinyin.js"></script>

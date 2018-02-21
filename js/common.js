@@ -466,6 +466,8 @@ $(function() {
       case 'uniH-unescape':
         instStr = iStr.replace( chara, ( r, r1 ) => charaMap[r1] );
         instStr = instStr.replace( /\&\#([0-9]{4,5})\;/gi, ( r, r1 ) => '%u' + ( parseInt( r1,10 ) ).toString( 16 ) );
+        instStr = instStr.replace( /(\&\#\x)([0-9a-f]{2,2}\;)/gi, '$1' +'00' +'$2' );
+        instStr = instStr.replace( /(\&\#\x)([0-9a-f]{3,3}\;)/gi, '$1' +'0' +'$2' );
         instStr = instStr.replace( /\&\#\x([0-9a-f]{4,5})\;/gi, '%u$1' );
         oStr = unescape( instStr );
         break;
@@ -887,11 +889,14 @@ $(function() {
 
     // numbering
       case 'numbering':
-        mx_st = parseInt($('#mx_start').val(), 10);
-        mx_ed = parseInt($('#mx_end').val(), 10);
-        mx_sp = parseInt($('#mx_step').val(), 10);
-        mx_jn = $('#mx_join').val().replace(/\\n/g,'\n');
-        mx_jnReg = new RegExp( mx_jn, 'g' );
+        let
+          mx_st = parseInt($('#mx_start').val(), 10),
+          mx_ed = parseInt($('#mx_end').val(), 10),
+          mx_sp = parseInt($('#mx_step').val(), 10),
+          mx_pd = parseInt($('#mx_padding').val(), 10),
+          mx_jn = $('#mx_join').val().replace(/\\n/g,'\n'),
+          mx_jnReg = new RegExp( mx_jn, 'g' ),
+          pd = Array(mx_pd + 1).join('0');
         instArr = [];
         instStr = '';
         for (i = mx_st; i <= mx_ed; i = i + mx_sp) {
@@ -901,7 +906,7 @@ $(function() {
         mxLength = instArr.length <= instArr2.length ? instArr2.length : instArr.length;
         for (j = 0; j < mxLength; j++){
           if( instArr[j] ){
-            instStr += instArr[j];
+            instStr += ( pd + instArr[j]).slice(-mx_pd);
           }
           if( instArr2[j] ){
             instStr += instArr2[j];
@@ -970,10 +975,16 @@ $(function() {
           }
         ];
         break;
+      case 'change':
+        iStr = $ipt.val();
+        oStr = $opt.val();
+        $ipt.val( oStr );
+        $opt.val( iStr );
+        break;
       default:
         break;
     }
-    if( ival !== 'undo' && ival !== 'delete' ){
+    if( ival !== 'undo' && ival !== 'delete' && ival !== 'change' ){
       if( tmpFlg ){
         iStr = beforeStr + iStr + endStr;
         oStr = beforeStr + oStr + endStr;
