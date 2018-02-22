@@ -340,9 +340,17 @@ h1, h2, h3
       background-color $col_primary
       color $col_white
       border none
+      padding 10px
+      .close
+      .close:focus
+      .close:hover
+        color $col_white
     &-body
       padding 10px
       font-size 12px
+      blockquote
+        font-size 12px
+        padding 5px
       & > h1
         display none
       & > h2
@@ -350,21 +358,25 @@ h1, h2, h3
         color $col_white
         margin 10px -10px -10px
         padding 10px
+      & > h3
+        display block
+        background-color $col_gray
+        color $col_white
+        margin 10px -10px 10px
+        padding 6px 10px
+        & + br
+          display none
       & > ul > li
-        & > p > strong:first-child
-          display block
-          background-color $col_gray
-          color $col_white
-          margin 10px -10px 10px
-          padding 6px 10px
-          & + br
-            display none
+        padding-left 5px
+        & > code:first-child
+          margin-left -5px
+        & + li
+          margin-top 5px
         & > ul > li
           padding-left 5px
-          & > code:first-child
-            margin-left -5px
-          & + li
-            margin-top 5px
+          text-indent -5px
+    &-footer
+      padding 10px
 
 // 特殊
 #ctset05 + .ct-set
