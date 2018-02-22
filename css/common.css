@@ -332,6 +332,11 @@ h3 {
 .glyphicon-undo:before {
   content: "\e030";
 }
+@media only screen and (max-width: 768px) {
+  .glyphicon-chevron-left:before {
+    content: "\e113";
+  }
+}
 .area-control {
   display: -webkit-box;
   display: -moz-box;

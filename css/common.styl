@@ -144,10 +144,15 @@ h1, h2, h3
       .btn
         text-align left
 
-.glyphicon-undo
-  transform scale(-1,1)
-  &:before
-    content "\e030"
+.glyphicon
+  &-undo
+    transform scale(-1,1)
+    &:before
+      content "\e030"
+  &-chevron-left
+    &:before
+      +break(sm)
+        content "\e113"
 .area-control
   flexer( row, wrap, flex-start, flex-start )
   +break(sm)
