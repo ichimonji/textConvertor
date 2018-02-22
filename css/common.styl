@@ -331,6 +331,41 @@ h1, h2, h3
     border-radius 0
     border none
 
+// help
+.help
+  .modal
+    &-content
+      overflow hidden
+    &-header
+      background-color $col_primary
+      color $col_white
+      border none
+    &-body
+      padding 10px
+      font-size 12px
+      & > h1
+        display none
+      & > h2
+        background-color $col_darkgray
+        color $col_white
+        margin 10px -10px -10px
+        padding 10px
+      & > ul > li
+        & > p > strong:first-child
+          display block
+          background-color $col_gray
+          color $col_white
+          margin 10px -10px 10px
+          padding 6px 10px
+          & + br
+            display none
+        & > ul > li
+          padding-left 5px
+          & > code:first-child
+            margin-left -5px
+          & + li
+            margin-top 5px
+
 // 特殊
 #ctset05 + .ct-set
   & > .body

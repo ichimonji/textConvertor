@@ -30,7 +30,8 @@
   </head>
   <body>
     <header class="header">
-      <h1 class="head">汎用テキストコンバータ</h1><a class="btn btn-primary" target="_blank" href="readme.html">help</a>
+      <h1 class="head">汎用テキストコンバータ</h1>
+      <button class="btn btn-primary" data-toggle="modal" data-target="#help">help</button>
     </header>
     <main class="main">
       <div class="main-wrap">
@@ -375,11 +376,291 @@
           </dl>
         </section>
         <ul class="link-list">
-          <li><a class="btn btn-primary" target="_blank" href="readme.html">help</a></li>
+          <li><a class="btn btn-primary" data-toggle="modal" data-target="#help">help</a></li>
           <li><a class="btn btn-primary" target="_blank" href="https://codepen.io/ichimonzi/details/ZJWEZQ/">codepen</a></li>
         </ul>
       </div>
+      <section class="info"></section>
     </main>
+  </body>
+</html>
+<div class="modal help fade" id="help" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">汎用テキストコンバータ help</h4>
+      </div>
+      <div class="modal-body"><h1>汎用テキストコンバータ</h1>
+<p>「Original Text」欄に変換したいテキストを入れ各種の変換ボタンを押してください。「Converted Text」欄に変換後のテキストが出力されます。<br>
+変換後のテキストをさらに変換したい場合は「MOVE」ボタンを押して変換後テキストを「Original Text」欄に移動させてください。
+「AUTO MOVE」にチェックを入れると自動で変換後のテキストが「Original Text」欄に移動します。</p>
+<p>「Original Text」欄でテキストを選択したまま各種変換ボタンを押すと、その選択範囲にのみ変換が適用されます。<br>
+「UNDO」を押す度に変換前の状態に一つずつ戻ります。<br>
+「REPLACE」を押すとテキストエリアの左右を入れ替えることができます。</p>
+<h2>各項目の説明</h2>
+<ul>
+<li>
+<p><strong>ケース</strong><br>
+半角英単語のケース操作を行う。またケース変換の他にクォーテーションの変更や符号付ラテン文字の符号解除なども行う。<br>
+※ 「符号付きラテン文字を標準化」では結合分音記号も削除します。</p>
+<ul>
+<li><code>TITLE</code><br>
+「タイトルケース」 頭文字のみ大文字に</li>
+<li><code>UPPER</code><br>
+「アッパーケース」 全て大文字に</li>
+<li><code>LOWER</code><br>
+「ロウアーケース」 全て小文字に</li>
+<li><code>SWAP</code><br>
+「ケーススワップ」 大文字小文字を逆転</li>
+<li><code>\'\'→\&quot;\&quot;</code><br>
+シングルクォーテーションをダブルクーテーションに</li>
+<li><code>\&quot;\&quot;→\'\'</code><br>
+ダブルクーテーションをシングルクォーテーションに</li>
+<li><code>abc-def→abc_def</code><br>
+文字間のハイフンをアンダーバーに</li>
+<li><code>abc_def→abc-def</code><br>
+文字間のアンダーバーをハイフンに</li>
+<li><code>abcDef→abc-def</code><br>
+キャメルケースをハイフンに</li>
+<li><code>abc-def→abcDef</code><br>
+文字間のハイフンをキャメルケースに</li>
+<li><code>Àóṫœ→Aoto</code><br>
+符号付きラテン文字の符号を解除</li>
+</ul>
+</li>
+<li>
+<p><strong>Url/Base64</strong><br>
+各種エンコード／デコードを行う。</p>
+<ul>
+<li><code>URL エンコード(軽)</code><br>
+パーセントエンコード（;/?:@&amp; = +$-_!~*.,()a#'以外）を実行</li>
+<li><code>URL エンコード(中)</code><br>
+パーセントエンコード（-_!~*.()a'以外）を実行</li>
+<li><code>URL エンコード(強)</code><br>
+パーセントエンコード（*+-_./以外）を実行</li>
+<li><code>URL デコード</code><br>
+パーセントエンコードをすべてデコード</li>
+<li><code>BASE64 エンコード</code><br>
+BASE64エンコードを実行</li>
+<li><code>BASE64 デコード</code><br>
+BASE64エンコードをすべてデコード</li>
+</ul>
+</li>
+<li>
+<p><strong>Unicode関連</strong><br>
+Unicode関連の変換を行う。</p>
+<ul>
+<li><code>エスケープ</code><br>
+Unicode値でのパーセントエンコード（%u～）</li>
+<li><code>アンエスケープ</code><br>
+Unicode値でのパーセントデコード</li>
+<li><code>HTMLエスケープ(中)</code><br>
+HTML数値文字参照（&amp;#x～;）</li>
+<li><code>HTMLエスケープ(強)</code><br>
+全文字をHTML数値文字参照（&amp;#x～;）</li>
+<li><code>HTMLアンエスケープ</code><br>
+文字参照、実体参照を復号</li>
+<li><code>[&lt;&gt;\&amp;]の実体参照化</code><br>
+HTMLタグ用文字を実体参照化</li>
+<li><code>UTF-32→UTF-16</code><br>
+UTF32のオーバーフロー分をサロゲートペアに変換</li>
+<li><code>UTF-16→UTF-32</code><br>
+サロゲートペアをUTF32表記に</li>
+</ul>
+</li>
+<li>
+<p><strong>数値型/数字</strong><br>
+数値型に対しての進数変換や、アラビア数字からほかの数字記号への変換などを行う。<br>
+※ アラビア数字をローマ数字に関して、ↀ型の場合の100000である「ↈ（&amp;#x2188;）」はほとんどのフォントで表示が不可能です。<br>
+※ アラビア数字から漢数字の変換（桁付き）に関して、少数の桁（分、厘、毛など）に関しては考慮せず数字のみを列記する方式にしております。</p>
+<ul>
+<li><code>Dec→Bin</code> <code>Bin→Dec</code><br>
+10進数を2進数に、あるいはその逆</li>
+<li><code>Dec→Hex</code> <code>Hex→Dec</code><br>
+10進数を16進数に、あるいはその逆</li>
+<li><code>Bin→Hex</code> <code>Hex→Bin</code><br>
+2進数を16進数に、あるいはその逆</li>
+<li><code>123→百二十三</code><br>
+アラビア数字を漢数字に（桁付き）</li>
+<li><code>123→一二三</code><br>
+アラビア数字を漢数字に（桁なし）</li>
+<li><code>百二十三→123</code><br>
+漢数字をアラビア数字に</li>
+<li><code>Arabic→Roman</code> <code>Roman→Arabic</code><br>
+アラビア数字をローマ数字に或いはその逆に変換<br>
+変換型は「M(1~3999)」型、「ↀ(1~399999)」型、「CIↃ(1~399999)」型の3つから選ぶことができる。</li>
+</ul>
+</li>
+<li>
+<p><strong>抽出/排除</strong><br>
+チェックした文字種類のみを抽出、あるいは排除した文字列を出力する</p>
+</li>
+<li>
+<p><strong>一括排除</strong><br>
+該当の対象文字を文字列から排除する</p>
+<ul>
+<li><code>全ての改行</code><br>
+すべての改行、改頁コードを削除</li>
+<li><code>ＨＴＭＬタグ</code><br>
+開始タグ、終了タグ、独立タグをすべて削除</li>
+<li><code>余分なスペース</code><br>
+行頭のスペースを削除し、単語間の複数スペースを単独スペースに変換</li>
+<li><code>余分な改行</code><br>
+連続する改行コードを単独に変換、文頭文末の改行も削除</li>
+<li><code>重複する文字</code><br>
+重複する文字をすべて削除</li>
+<li><code>重複する行</code><br>
+まったく同じ行を削除</li>
+<li><code>重複する単語</code><br>
+まったく同じ単語を削除（スペース区切り評価）</li>
+</ul>
+</li>
+<li>
+<p><strong>反転/ソート</strong><br>
+文字列全体に対して反転やソートを行う。<br>
+※ ソート順位の評価はUnicode順となります。</p>
+<ul>
+<li><code>文字単位で反転</code><br>
+文字単位でテキスト全体を反転</li>
+<li><code>行単位で反転</code><br>
+行単位でテキスト全体を反転</li>
+<li><code>単語単位で反転</code><br>
+単語（スペース区切り評価）でテキスト全体を反転</li>
+<li><code>行単位で昇順に整列</code><br>
+行単位でテキスト全体を昇順ソート</li>
+<li><code>行単位で降順に整列</code><br>
+行単位でテキスト全体を降順ソート</li>
+<li><code>文字単位で昇順に整列</code><br>
+文字単位でテキスト全体を昇順ソート</li>
+<li><code>文字単位で降順に整列</code><br>
+文字単位でテキスト全体を降順ソート</li>
+</ul>
+</li>
+<li>
+<p><strong>重複文字/行列</strong><br>
+重複文字に対して操作や行列に対しての変換を行う。</p>
+<ul>
+<li><code>ABA→AB</code><br>
+重複部分のみ削除</li>
+<li><code>ABA→AA</code><br>
+重複部分を重複したまま抽出</li>
+<li><code>ABA→B</code><br>
+重複した文字以外を抽出</li>
+<li><code>ABA→A</code><br>
+重複部分を重複させないで抽出</li>
+<li><code>行と列を入れ替え</code><br>
+チェックされた文字を列区切りに使って行と列を入れ替えます</li>
+</ul>
+</li>
+<li>
+<p><strong>日本語関連</strong><br>
+日本語テキストに関して様々な変換を行う。<br>
+※ 全角カタカナからの訓令式・ヘボン式ローマ字変換に関して、特殊な用法や表外の訓に関しては（99式などに倣った）独自の変換をしています。<br>
+※ 新字体→旧字体の変換において旧字が別字として存在しない、あるいはUTF16範囲にない場合は異体字セレクタによって旧字体を表示します。</p>
+<ul>
+<li><code>あ→ア</code> <code>ア→あ</code><br>
+全角ひらがなを全角カタカナに、あるいはその逆</li>
+<li><code>ｱ→ア</code> <code>ア→ｱ</code><br>
+半角カタカナを全角カタカナに、あるいはその逆</li>
+<li><code>A1→Ａ１</code> <code>Ａ１→A1</code><br>
+半角英数字を全角英数字に、あるいはその逆</li>
+<li><code>新字→旧字（中）</code><br>
+新字体を旧字体に（異体字セレクタ分を含まない）</li>
+<li><code>新字→旧字（強）</code><br>
+新字体を旧字体に（異体字セレクタ分を含む）</li>
+<li><code>旧字→新字</code><br>
+旧字体を新字体に（異体字セレクタ分を含む）</li>
+<li><code>一二→壱弐</code> <code>壱弐→一二</code><br>
+漢数字を大字に、あるいはその逆</li>
+<li><code>トウキョウ→tôkyô</code><br>
+全角カタカナを訓令式ローマ字表記に</li>
+<li><code>トウキョウ→tokyo</code><br>
+全角カタカナをヘボン式ローマ字表記に</li>
+<li><code>tokyo→トキョ</code><br>
+ヘボン式ローマ字を全角カタカナに</li>
+</ul>
+</li>
+<li>
+<p><strong>CJK関連</strong><br>
+漢字に対して様々な変換を行う。<br>
+※ CJK変換全般に関して、一部の文字の変換が不可逆変換であるため正しく変換されない恐れがあります。<br>
+※ ピンイン表記追加に関して、ピンインは「[A/B/C]」といった形式で表示します。</p>
+<ul>
+<li><code>日→簡体</code><br>
+日本字体を簡体字に</li>
+<li><code>日→繁体</code><br>
+日本字体を繁体字に</li>
+<li><code>簡体→日</code><br>
+簡体字を日本字体に</li>
+<li><code>繁体→日</code><br>
+繁体字を日本字体に</li>
+<li><code>簡体→繁体</code><br>
+簡体字を繁体字に</li>
+<li><code>繁体→簡体</code><br>
+繁体字を簡体字に</li>
+<li><code>ピンイン</code><br>
+漢字の直後にピンインを追加</li>
+</ul>
+</li>
+<li>
+<p><strong>Sanskrit</strong><br>
+サンスクリットの各種変換を行う。<br>
+※ 「サンスクリット変換」のIAST方式、HK方式の変換では拡張IAST（ISO-15919方式）ではなく元来の方式のためISO-15919方式を正しく変換できません。</p>
+<ul>
+<li><code>संस्कृत→saMskRta</code><br>
+デーヴァナガリーを京都・ハーバード方式に</li>
+<li><code>संस्कृत→saṃskṛta</code><br>
+デーヴァナガリーをIASTに</li>
+<li><code>saMskRta→संस्कृत</code><br>
+京都・ハーバード方式をデーヴァナガリーに</li>
+<li><code>saMskRta→saṃskṛta</code><br>
+京都・ハーバード方式をIASTに</li>
+<li><code>saṃskṛta→संस्कृत</code><br>
+IASTをデーヴァナガリーに</li>
+<li><code>saṃskṛta→saMskRta</code><br>
+IASTを京都・ハーバード方式に</li>
+</ul>
+</li>
+<li>
+<p><strong>正規表現</strong><br>
+正規表現置換を行う</p>
+</li>
+<li>
+<p><strong>連番生成</strong><br>
+連番を生成します。<br>
+生成される連番は <strong>from</strong> から <strong>to</strong> までの間、 <strong>step</strong> 刻みの数字で、<br>
+<strong>padding</strong> によってゼロパディングを行います。<br>
+生成された連番は <strong>join</strong> に従って変換前テキストに挿入されます。<br>
+<strong>Reg</strong> の正規表現に従って連番と変換前テキストが成形されます。<br>
+<code>$1</code>は連番、<code>$2</code>は変換前テキストを示し、例えばRegが<br>
+<code>$1: $2</code>の場合、出力されるのは</p>
+<blockquote>
+<p>001: 変換前のテキスト1<br>
+002: 変換前のテキスト2<br>
+003: 変換前のテキスト3</p>
+</blockquote>
+<p>といったテキストになります。</p>
+</li>
+<li>
+<p><strong>左右連結</strong><br>
+左右のテキストエリアを使った連結を行います。</p>
+<ul>
+<li><code>上下に結合</code><br>
+左右のテキストエリアを上下結合した結果を出力</li>
+<li><code>行ごとに結合</code><br>
+左右のテキストエリアを行ごとに結合した結果を出力</li>
+<li><code>文字ごとに結合</code><br>
+左右のテキストエリアを文字ごとに結合した結果を出力</li>
+</ul>
+</li>
+</ul>
+
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+      </div>
+    </div>
     <footer class="footer"><a href="https://twitter.com/ichimonji_haji"><i class="fa fa-twitter"></i> @ichimonji_haji</a></footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -387,5 +668,5 @@
     <script src="js/cjk.js"></script>
     <script src="js/japanese.js"></script>
     <script src="js/common.js"></script>
-  </body>
-</html>
+  </div>
+</div>

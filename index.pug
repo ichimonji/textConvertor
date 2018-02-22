@@ -13,7 +13,7 @@ html( lang = 'en' )
   body
     header.header
       h1.head= $title
-      a.btn.btn-primary( target='_blank', href='readme.html' )= 'help'
+      button.btn.btn-primary( data-toggle = 'modal', data-target = '#help' )= 'help'
     main.main
       div.main-wrap
         section.area-input
@@ -78,8 +78,20 @@ html( lang = 'en' )
                   button.form-control.btn.btn-primary.bt-control( type = 'button', title = '連番生成', value = 'numbering' ) 生成
           +dlBox('ctset14')
         ul.link-list
-          li: a.btn.btn-primary( target='_blank', href='readme.html' )= 'help'
+          li: a.btn.btn-primary( data-toggle = 'modal', data-target = '#help' )= 'help'
           li: a.btn.btn-primary( target='_blank', href='https://codepen.io/ichimonzi/details/ZJWEZQ/' )= 'codepen'
+      section.info
+div.modal.help.fade#help( tabindex = '-1', role = 'dialog' )
+  div.modal-dialog( role = 'document' )
+    div.modal-content
+      div.modal-header
+        button.close( type = 'button', data-dismiss = 'modal', aria-label = 'Close' )
+          span( aria-hidden = 'true' ) &times;
+        h4.modal-title #{$title} help
+      div.modal-body
+        include:markdown-it readme.md
+      div.modal-footer
+        button.btn.btn-default( type = 'button', data-dismiss = 'modal' ) Close
     footer.footer
       a( href = 'https://twitter.com/ichimonji_haji' ) #[i.fa.fa-twitter] @ichimonji_haji
     +jsAll( scripts )
