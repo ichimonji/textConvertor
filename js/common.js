@@ -895,23 +895,29 @@ $(function() {
           mx_sp = parseInt($('#mx_step').val(), 10),
           mx_pd = parseInt($('#mx_padding').val(), 10),
           mx_jn = $('#mx_join').val().replace(/\\n/g,'\n'),
-          mx_jnReg = new RegExp( mx_jn, 'g' ),
+          mx_reg = $('#mx_reg').val(),
+          mx_jnReg = new RegExp(mx_jn, 'g'),
           pd = Array(mx_pd + 1).join('0');
         instArr = [];
         instStr = '';
+        instStr2 = '';
         for (i = mx_st; i <= mx_ed; i = i + mx_sp) {
           instArr.push(i);
         }
         instArr2 = iStr.split(mx_jnReg);
         mxLength = instArr.length <= instArr2.length ? instArr2.length : instArr.length;
         for (j = 0; j < mxLength; j++){
-          if( instArr[j] ){
-            instStr += ( pd + instArr[j]).slice(-mx_pd);
+          instStr2 = '';
+          if( instArr.length > j ){
+            instStr2 += '___1___' + ( pd + instArr[j]).slice(-mx_pd) + '___1___';
           }
-          if( instArr2[j] ){
-            instStr += instArr2[j];
+          if( instArr2.length > j ){
+            instStr2 += '___2___' + instArr2[j] + '___2___';
           }
-          instStr += mx_jn;
+          instStr2 = instStr2.replace(/___1___(.*?)___1______2___(.*?)___2___/g, mx_reg);
+          instStr2 = instStr2.replace(/___1___(.*?)___1___/g, '$1');
+          instStr2 = instStr2.replace(/___2___(.*?)___2___/g, '$1');
+          instStr += instStr2 + mx_jn;
         }
         oStr = instStr;
         break;

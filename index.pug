@@ -13,6 +13,7 @@ html( lang = 'en' )
   body
     header.header
       h1.head= $title
+      a.btn.btn-primary( target='_blank', href='readme.html' )= 'help'
     main.main
       div.main-wrap
         section.area-input
@@ -69,6 +70,10 @@ html( lang = 'en' )
                   span.input-group-btn
                     label.btn.btn-primary( title = 'ごとに' ) join
                   input.form-control( type = 'text', id = 'mx_join', value = '\\n', placeholder = 'Join' )
+                div.input-group.input-group-sm
+                  span.input-group-btn
+                    label.btn.btn-primary( title = '置換' ) Reg
+                  input.form-control( type = 'text', id = 'mx_reg', value = '$1: $2', placeholder = 'Reg' )
                 div.input-group.input-group-sm
                   button.form-control.btn.btn-primary.bt-control( type = 'button', title = '連番生成', value = 'numbering' ) 生成
           +dlBox('ctset14')

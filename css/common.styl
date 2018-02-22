@@ -12,8 +12,8 @@ $col_darkgray = #333
 $col_primary = #286090
 
 // mixins
-// breakpoint(media query)
-breakpoint(scname)
+// break(media query)
+break(scname)
   @media only screen and (max-width: scname)
     {block}
 
@@ -28,7 +28,7 @@ flexer(dir = row, wr = nowrap, jc = flex-start, ai = stretch, ac = stretch)
 
 :root
   font-size 14px
-  +breakpoint(sm)
+  +break(sm)
     font-size 12px
 
 html,body
@@ -41,7 +41,7 @@ textarea
 input[type=text]
   font-family inherit
   font-family 'Noto Sans JP', sans-serif
-  +breakpoint(sm)
+  +break(sm)
     font-size 16px!important
 
 input[type=radio]
@@ -61,15 +61,23 @@ h1, h2, h3
   margin 0 0 10px
   color $col_lightgray
   font-size 2rem
-  +breakpoint(sm)
+  padding 10px
+  flexer( row, nowrap, space-between, center )
+  +break(sm)
+    background-color $col_darkgray
     font-size 1.5rem
     margin-bottom 0
+    padding 5px
   & > .head
+    display inline-block
     margin 0
-    padding 10px
     font-weight 900
-    +breakpoint(sm)
-      padding-bottom 0
+    vertical-align middle
+  & > .btn
+    line-height 1
+    vertical-align middle
+    +break(sm)
+      padding 4px
 
 .footer
   background-color $col_gray
@@ -78,6 +86,9 @@ h1, h2, h3
   color $col_lightgray
   font-size 1rem
   text-align right
+  +break(sm)
+    background-color $col_darkgray
+    margin-top 0
 
 .container
   width 100%
@@ -106,7 +117,10 @@ h1, h2, h3
   border-radius 10px
   .form-group
     margin-bottom 0
-  +breakpoint(sm)
+    & > label
+      +break(sm)
+        display none
+  +break(sm)
     padding 2px
     min-width 200px
     border-radius 0
@@ -136,7 +150,7 @@ h1, h2, h3
     content "\e030"
 .area-control
   flexer( row, wrap, flex-start, flex-start )
-  +breakpoint(sm)
+  +break(sm)
     margin 1px
 .genre
   display none
@@ -144,11 +158,15 @@ h1, h2, h3
     & + .ct-set
       width auto
       margin-right -5px
+      +break(sm)
+        margin-right 1px
       & > .body
         display none
       & > .head
         margin-right 5px
         text-align center
+        +break(sm)
+          margin-right 0
 .ct-set
   flexer( row, nowrap, flex-start, flex-start )
   padding 5px
@@ -231,7 +249,7 @@ h1, h2, h3
   a
     color $col_white
 
-+breakpoint(sm)
++break(sm)
   #lengthDisp
     text-align center
     margin-bottom 5px
@@ -241,6 +259,7 @@ h1, h2, h3
     &-text textarea
       width 100%
       height 160px
+      padding 5px
     &-button
       width 100%
       .btn-group-vertical
@@ -316,7 +335,11 @@ h1, h2, h3
 #ctset05 + .ct-set
   & > .body
     label.btn
+      width auto
       min-width 13%
+      +break(sm)
+        min-width auto
+        width auto
 
 
 #ctset13 + .ct-set
@@ -328,12 +351,19 @@ h1, h2, h3
         width auto
         border-radius 0 3px 3px 0
         overflow hidden
-        +breakpoint(sm)
+        +break(sm)
           border-radius 0
-      +breakpoint(sm)
+      +break(sm)
         width 33.3%
-        &:nth-of-type(3n)
+        &:nth-of-type(3)
           width 33.4%
+        &:nth-of-type(4)
+        &:nth-of-type(5)
+          width 50%
+        &:nth-of-type(6)
+          width 70%
+        &:nth-of-type(7)
+          width 30%
       .input-group-btn
         width 24%
         & > .btn
