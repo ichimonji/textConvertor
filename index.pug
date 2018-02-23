@@ -51,47 +51,42 @@ html( lang = 'en' )
             div.form-inline
               div.form-group
                 div.input-group.input-group-sm
-                  span.input-group-btn
-                    label.btn.btn-primary( title = '～から' ) from
-                  input.form-control( type = 'number', min　= 0, id = 'mx_start', value = '0', placeholder = 'Start' )
+                  label.input-group-addon( title = '～から' ) from
+                  input.form-control#mx_start( type = 'number', value = '0', placeholder = 'Start' )
                 div.input-group.input-group-sm
-                  span.input-group-btn
-                    label.btn.btn-primary( title = '～まで' ) to
-                  input.form-control( type = 'number', min = 1, id = 'mx_end', value = '100', placeholder = 'End' )
+                  label.input-group-addon( title = '～まで' ) to
+                  input.form-control#mx_end( type = 'number', value = '100', placeholder = 'End' )
                 div.input-group.input-group-sm
-                  span.input-group-btn
-                    label.btn.btn-primary( title = '～刻みで' ) step
-                  input.form-control( type = 'number', min = 1, id = 'mx_step', value = '1', placeholder = 'Step' )
+                  label.input-group-addon( title = '～刻みで' ) step
+                  input.form-control#mx_step( type = 'number', value = '1', placeholder = 'Step' )
                 div.input-group.input-group-sm
-                  span.input-group-btn
-                    label.btn.btn-primary( title = 'ゼロパディング' ) padding
-                  input.form-control( type = 'number', min = 0, id = 'mx_padding', value = '3', placeholder = 'Padding' )
+                  label.input-group-addon( title = 'ゼロパディング' ) padding
+                  input.form-control#mx_padding( type = 'number', value = '3', placeholder = 'Padding' )
                 div.input-group.input-group-sm
-                  span.input-group-btn
-                    label.btn.btn-primary( title = 'ごとに' ) join
-                  input.form-control( type = 'text', id = 'mx_join', value = '\\n', placeholder = 'Join' )
+                  label.input-group-addon( title = 'ごとに' ) join
+                  input.form-control#mx_join( type = 'text', value = '\\n', placeholder = 'Join' )
                 div.input-group.input-group-sm
-                  span.input-group-btn
-                    label.btn.btn-primary( title = '置換' ) Reg
-                  input.form-control( type = 'text', id = 'mx_reg', value = '$1: $2', placeholder = 'Reg' )
+                  label.input-group-addon( title = '置換' ) Reg
+                  input.form-control#mx_reg( type = 'text', value = '$1: $2', placeholder = 'Reg' )
                 div.input-group.input-group-sm
+                  label.input-group-addon #[input#mx_of( type = 'checkbox', checked = 'checked' )] overflow
                   button.form-control.btn.btn-primary.bt-control( type = 'button', title = '連番生成', value = 'numbering' ) 生成
           +dlBox('ctset14')
         ul.link-list
           li: a.btn.btn-primary( data-toggle = 'modal', data-target = '#help' )= 'help'
           li: a.btn.btn-primary( target='_blank', href='https://codepen.io/ichimonzi/details/ZJWEZQ/' )= 'codepen'
       section.info
-div.modal.help.fade#help( tabindex = '-1', role = 'dialog' )
-  div.modal-dialog( role = 'document' )
-    div.modal-content
-      div.modal-header
-        button.close( type = 'button', data-dismiss = 'modal', aria-label = 'Close' )
-          span( aria-hidden = 'true' ) &times;
-        h4.modal-title #{$title} help
-      div.modal-body
-        include:markdown-it readme.md
-      div.modal-footer
-        button.btn.btn-default( type = 'button', data-dismiss = 'modal' ) Close
+        div.modal.help.fade#help( tabindex = '-1', role = 'dialog' )
+          div.modal-dialog( role = 'document' )
+            div.modal-content
+              div.modal-header
+                button.close( type = 'button', data-dismiss = 'modal', aria-label = 'Close' )
+                  span( aria-hidden = 'true' ) &times;
+                h4.modal-title #{$title} help
+              div.modal-body
+                include:markdown-it readme.md
+              div.modal-footer
+                button.btn.btn-default( type = 'button', data-dismiss = 'modal' ) Close
     footer.footer
       a( href = 'https://twitter.com/ichimonji_haji' ) #[i.fa.fa-twitter] @ichimonji_haji
     +jsAll( scripts )

@@ -332,31 +332,34 @@
             <dd class="body">
               <div class="form-inline">
                 <div class="form-group">
-                  <div class="input-group input-group-sm"><span class="input-group-btn">
-                      <label class="btn btn-primary" title="～から">from</label></span>
-                    <input class="form-control" type="number" min="0" id="mx_start" value="0" placeholder="Start">
-                  </div>
-                  <div class="input-group input-group-sm"><span class="input-group-btn">
-                      <label class="btn btn-primary" title="～まで">to</label></span>
-                    <input class="form-control" type="number" min="1" id="mx_end" value="100" placeholder="End">
-                  </div>
-                  <div class="input-group input-group-sm"><span class="input-group-btn">
-                      <label class="btn btn-primary" title="～刻みで">step</label></span>
-                    <input class="form-control" type="number" min="1" id="mx_step" value="1" placeholder="Step">
-                  </div>
-                  <div class="input-group input-group-sm"><span class="input-group-btn">
-                      <label class="btn btn-primary" title="ゼロパディング">padding</label></span>
-                    <input class="form-control" type="number" min="0" id="mx_padding" value="3" placeholder="Padding">
-                  </div>
-                  <div class="input-group input-group-sm"><span class="input-group-btn">
-                      <label class="btn btn-primary" title="ごとに">join</label></span>
-                    <input class="form-control" type="text" id="mx_join" value="\n" placeholder="Join">
-                  </div>
-                  <div class="input-group input-group-sm"><span class="input-group-btn">
-                      <label class="btn btn-primary" title="置換">Reg</label></span>
-                    <input class="form-control" type="text" id="mx_reg" value="$1: $2" placeholder="Reg">
+                  <div class="input-group input-group-sm">
+                    <label class="input-group-addon" title="～から">from</label>
+                    <input class="form-control" id="mx_start" type="number" value="0" placeholder="Start">
                   </div>
                   <div class="input-group input-group-sm">
+                    <label class="input-group-addon" title="～まで">to</label>
+                    <input class="form-control" id="mx_end" type="number" value="100" placeholder="End">
+                  </div>
+                  <div class="input-group input-group-sm">
+                    <label class="input-group-addon" title="～刻みで">step</label>
+                    <input class="form-control" id="mx_step" type="number" value="1" placeholder="Step">
+                  </div>
+                  <div class="input-group input-group-sm">
+                    <label class="input-group-addon" title="ゼロパディング">padding</label>
+                    <input class="form-control" id="mx_padding" type="number" value="3" placeholder="Padding">
+                  </div>
+                  <div class="input-group input-group-sm">
+                    <label class="input-group-addon" title="ごとに">join</label>
+                    <input class="form-control" id="mx_join" type="text" value="\n" placeholder="Join">
+                  </div>
+                  <div class="input-group input-group-sm">
+                    <label class="input-group-addon" title="置換">Reg</label>
+                    <input class="form-control" id="mx_reg" type="text" value="$1: $2" placeholder="Reg">
+                  </div>
+                  <div class="input-group input-group-sm">
+                    <label class="input-group-addon">
+                      <input id="mx_of" type="checkbox" checked="checked"> overflow
+                    </label>
                     <button class="form-control btn btn-primary bt-control" type="button" title="連番生成" value="numbering">生成</button>
                   </div>
                 </div>
@@ -380,18 +383,15 @@
           <li><a class="btn btn-primary" target="_blank" href="https://codepen.io/ichimonzi/details/ZJWEZQ/">codepen</a></li>
         </ul>
       </div>
-      <section class="info"></section>
-    </main>
-  </body>
-</html>
-<div class="modal help fade" id="help" tabindex="-1" role="dialog">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title">汎用テキストコンバータ help</h4>
-      </div>
-      <div class="modal-body"><h1>汎用テキストコンバータ</h1>
+      <section class="info">
+        <div class="modal help fade" id="help" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">汎用テキストコンバータ help</h4>
+              </div>
+              <div class="modal-body"><h1>汎用テキストコンバータ</h1>
 <p>「Original Text」欄に変換したいテキストを入れ各種の変換ボタンを押してください。「Converted Text」欄に変換後のテキストが出力されます。<br>
 変換後のテキストをさらに変換したい場合は「MOVE」ボタンを押して変換後テキストを「Original Text」欄に移動させてください。<br>
 「AUTO MOVE」にチェックを入れると自動で変換後のテキストが「Original Text」欄に移動します。</p>
@@ -608,8 +608,12 @@ IASTを京都・ハーバード方式に</li>
 <p>連番を生成します。<br>
 生成される連番は <strong>from</strong> から <strong>to</strong> までの間、 <strong>step</strong> 刻みの数字で、<br>
 <strong>padding</strong> によってゼロパディングを行います。<br>
-生成された連番は <strong>join</strong> に従って変換前テキストに挿入されます。<br>
-<strong>Reg</strong> の正規表現に従って連番と変換前テキストが成形されます。<br>
+生成された連番は <strong>join</strong> に従って変換前テキストに挿入されます。例えばjoinが</p>
+<pre><code>\n
+</code></pre>
+<p>のとき、連番は行ごとに挿入されます。</p>
+<p><strong>Reg</strong> の正規表現に従って連番と変換前テキストが成形されます。<br>
+<strong>overflow</strong> にチェックがついていると、連番の数が変換前テキストより勝っていても最後まで連番を出力します。<br>
 <code>$1</code>は連番、<code>$2</code>は変換前テキストを示し、例えばRegが</p>
 <pre><code>$1: $2
 </code></pre>
@@ -619,6 +623,7 @@ IASTを京都・ハーバード方式に</li>
 003: 変換前のテキスト3
 </code></pre>
 <p>といったテキストになります。</p>
+<p>※ 計算できないような数値を各値に入れた場合、処理がエラーとなりハングアップする可能性があります。</p>
 <h3>左右連結</h3>
 <p>左右のテキストエリアを使った連結を行います。</p>
 <ul>
@@ -681,11 +686,15 @@ IASTを京都・ハーバード方式に</li>
 </li>
 </ul>
 
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
-      </div>
-    </div>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
     <footer class="footer"><a href="https://twitter.com/ichimonji_haji"><i class="fa fa-twitter"></i> @ichimonji_haji</a></footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -694,5 +703,5 @@ IASTを京都・ハーバード方式に</li>
     <script src="js/japanese.js"></script>
     <script src="js/other.js"></script>
     <script src="js/common.js"></script>
-  </div>
-</div>
+  </body>
+</html>

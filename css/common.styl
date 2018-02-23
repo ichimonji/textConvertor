@@ -9,7 +9,8 @@ $col_white = #fff
 $col_lightgray = #aaa
 $col_gray = #555
 $col_darkgray = #333
-$col_primary = #286090
+$col_primary = #337ab7
+$col_primaryHover = #286090
 
 // mixins
 // break(media query)
@@ -329,13 +330,6 @@ h1, h2, h3
     [for=text-i]
       display none
 
-.btn-group-sm
-  background-color lighten($col_primary,35%)
-  label.btn-primary
-    background-color transparent
-    border-radius 0
-    border none
-
 // help
 .help
   .modal
@@ -356,6 +350,8 @@ h1, h2, h3
       blockquote
         font-size 12px
         padding 5px
+      strong
+        font-size 14px
       & > h1
         display none
       & > h2
@@ -398,24 +394,29 @@ h1, h2, h3
   .form-group
     .input-group-sm
       float left
-      width 15%
-      &:last-child
-        width auto
-        border-radius 0 3px 3px 0
-        overflow hidden
-        +break(sm)
-          border-radius 0
+      width 25%
+      &:nth-of-type(5)
+      &:nth-of-type(6)
+        width 33.3%
+      &:nth-of-type(7)
+        width 33.4%
       +break(sm)
         width 33.3%
         &:nth-of-type(3)
           width 33.4%
         &:nth-of-type(4)
+          width 40%
         &:nth-of-type(5)
-          width 50%
+          width 60%
         &:nth-of-type(6)
-          width 70%
         &:nth-of-type(7)
-          width 30%
+          width 50%
+      .input-group-addon
+        background-color $col_primary
+        color $col_white
+        border-radius 0
+        border none
+        padding 5px
       .input-group-btn
         width 24%
         & > .btn

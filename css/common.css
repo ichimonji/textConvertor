@@ -565,7 +565,7 @@ h3 {
   width: 8em;
   margin-bottom: 0;
   border: none;
-  color: #286090;
+  color: #337ab7;
   text-align: right;
   padding-right: 10px;
   -webkit-flex-shrink: 0;
@@ -828,19 +828,11 @@ h3 {
     display: none;
   }
 }
-.btn-group-sm {
-  background-color: #599ad1;
-}
-.btn-group-sm label.btn-primary {
-  background-color: transparent;
-  border-radius: 0;
-  border: none;
-}
 .help .modal-content {
   overflow: hidden;
 }
 .help .modal-header {
-  background-color: #286090;
+  background-color: #337ab7;
   color: #fff;
   border: none;
   padding: 10px;
@@ -857,6 +849,9 @@ h3 {
 .help .modal-body blockquote {
   font-size: 12px;
   padding: 5px;
+}
+.help .modal-body strong {
+  font-size: 14px;
 }
 .help .modal-body > h1 {
   display: none;
@@ -905,17 +900,14 @@ h3 {
 }
 #ctset13 + .ct-set .form-group .input-group-sm {
   float: left;
-  width: 15%;
+  width: 25%;
 }
-#ctset13 + .ct-set .form-group .input-group-sm:last-child {
-  width: auto;
-  border-radius: 0 3px 3px 0;
-  overflow: hidden;
+#ctset13 + .ct-set .form-group .input-group-sm:nth-of-type(5),
+#ctset13 + .ct-set .form-group .input-group-sm:nth-of-type(6) {
+  width: 33.3%;
 }
-@media only screen and (max-width: 768px) {
-  #ctset13 + .ct-set .form-group .input-group-sm:last-child {
-    border-radius: 0;
-  }
+#ctset13 + .ct-set .form-group .input-group-sm:nth-of-type(7) {
+  width: 33.4%;
 }
 @media only screen and (max-width: 768px) {
   #ctset13 + .ct-set .form-group .input-group-sm {
@@ -924,16 +916,23 @@ h3 {
   #ctset13 + .ct-set .form-group .input-group-sm:nth-of-type(3) {
     width: 33.4%;
   }
-  #ctset13 + .ct-set .form-group .input-group-sm:nth-of-type(4),
+  #ctset13 + .ct-set .form-group .input-group-sm:nth-of-type(4) {
+    width: 40%;
+  }
   #ctset13 + .ct-set .form-group .input-group-sm:nth-of-type(5) {
+    width: 60%;
+  }
+  #ctset13 + .ct-set .form-group .input-group-sm:nth-of-type(6),
+  #ctset13 + .ct-set .form-group .input-group-sm:nth-of-type(7) {
     width: 50%;
   }
-  #ctset13 + .ct-set .form-group .input-group-sm:nth-of-type(6) {
-    width: 70%;
-  }
-  #ctset13 + .ct-set .form-group .input-group-sm:nth-of-type(7) {
-    width: 30%;
-  }
+}
+#ctset13 + .ct-set .form-group .input-group-sm .input-group-addon {
+  background-color: #337ab7;
+  color: #fff;
+  border-radius: 0;
+  border: none;
+  padding: 5px;
 }
 #ctset13 + .ct-set .form-group .input-group-sm .input-group-btn {
   width: 24%;

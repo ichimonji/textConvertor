@@ -755,27 +755,49 @@ $(function() {
           mx_pd = parseInt($('#mx_padding').val(), 10),
           mx_jn = $('#mx_join').val().replace(/\\n/g,'\n'),
           mx_reg = $('#mx_reg').val(),
+          mx_of = $('#mx_of').prop('checked'),
           mx_jnReg = new RegExp(mx_jn, 'g'),
           pd = Array(mx_pd + 1).join('0');
+        if( mx_st > mx_ed && mx_sp > 0 ){
+          break;
+        } else if( mx_sp === 0 || mx_st === mx_ed ){
+          break;
+        } else if( mx_st < mx_ed && mx_sp < 0 ){
+          break;
+        }
         instArr = [];
         instStr = '';
         instStr2 = '';
-        for (i = mx_st; i <= mx_ed; i = i + mx_sp) {
-          instArr.push(i);
+        if( mx_st < mx_ed ){
+          for (i = mx_st; i <= mx_ed; i = i + mx_sp) {
+            instArr.push(i);
+          }
+        } else {
+          for (i = mx_st; i >= mx_ed; i = i + mx_sp) {
+            instArr.push(i);
+          }
         }
         instArr2 = iStr.split(mx_jnReg);
         mxLength = instArr.length <= instArr2.length ? instArr2.length : instArr.length;
+        mxLength = !mx_of ? instArr2.length : mxLength;
         for (j = 0; j < mxLength; j++){
           instStr2 = '';
           if( instArr.length > j ){
-            instStr2 += '___1___' + ( pd + instArr[j]).slice(-mx_pd) + '___1___';
+            if( instArr[j] < 0 ){
+              instStr3 = '-' + ( ( pd + (instArr[j] * -1 ) ).slice(-mx_pd) );
+            } else {
+              instStr3 = ( pd + instArr[j]).slice(-mx_pd);
+            }
+            instStr2 += '___1___' + instStr3 + '___1___';
+          } else {
+            instStr2 += '___1______1___';
           }
           if( instArr2.length > j ){
             instStr2 += '___2___' + instArr2[j] + '___2___';
+          } else {
+            instStr2 += '___2______2___';
           }
           instStr2 = instStr2.replace(/___1___(.*?)___1______2___(.*?)___2___/g, mx_reg);
-          instStr2 = instStr2.replace(/___1___(.*?)___1___/g, '$1');
-          instStr2 = instStr2.replace(/___2___(.*?)___2___/g, '$1');
           instStr += instStr2 + mx_jn;
         }
         oStr = instStr;
