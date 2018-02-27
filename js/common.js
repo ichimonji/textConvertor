@@ -5,17 +5,40 @@ $(function() {
     $bt = $( '.bt-control' ),
     $genre = $( '.ct-set' ),
     $genreHead = $genre.find( '.head label' ),
-    $genreBody = $genre.find( '.body' );
+    $genreBody = $genre.find( '.body' ),
+    DayArr = [
+      ['Sunday', 'Sun', 'S', '日曜日', '日'],
+      ['Monday', 'Mon', 'M', '月曜日', '月'],
+      ['Tuesday', 'Tue', 'T', '火曜日', '火'],
+      ['Wednesday', 'Wed', 'W', '水曜日', '水'],
+      ['Thursday', 'Thu', 'T', '木曜日', '木'],
+      ['Friday', 'Fri', 'F', '金曜日', '金'],
+      ['Saturday', 'Sat', 'S', '土曜日', '土']
+    ],
+    MonthArr = [
+      ['January', 'Jan', '一月', '睦月'],
+      ['February', 'Feb', '二月', '如月'],
+      ['March', 'Mar', '三月', '弥生'],
+      ['April', 'Apr', '四月', '卯月'],
+      ['May', 'May', '五月', '皐月'],
+      ['June', 'Jun', '六月', '水無月'],
+      ['July', 'Jul', '七月', '文月'],
+      ['August', 'Aug', '八月', '葉月'],
+      ['September', 'Sep', '九月', '長月'],
+      ['October', 'Oct', '十月', '神無月'],
+      ['November', 'Nov', '十一月', '霜月'],
+      ['December', 'Dec', '十二月', '師走']
+    ];
 
   let
     histArr = [ { 'ipt':'', 'opt':'' } ],
-    instArr, lastArr, i, check,
+    instArr, lastArr, i, j, check,
     tmp, tmpFlg = false;
 
   Array.prototype.getArrLast = function(){ return this[this.length -1];};
   Array.prototype.arrIndex = function( r ){
     instArr = [];
-    for (var i = 0; i < this.length; i++) {
+    for (i = 0; i < this.length; i++) {
       if( this[i].indexOf(r) !== -1 ) instArr.push( i );
     }
     return instArr;
@@ -43,11 +66,11 @@ $(function() {
       }
       return this;
     },
-    toRoman = function( r, num ){
-      return romanTh[r].replace( /(.)/g,n => num[parseInt( n,10 )] );
+    toRoman = function(r, num){
+      return romanTh[r].replace(/(.)/g, n => num[parseInt(n, 10)]);
     },
-    dupDelete = function( str ){
-      return str.split('').filter( ( x, i, self ) => self.indexOf(x) === i ).join('');
+    dupDelete = function(str){
+      return str.split('').filter(( x, i, self) => self.indexOf(x) === i ).join('');
     };
 
   // 部分選択用
@@ -92,166 +115,167 @@ $(function() {
         oStr = iStr.toLowerCase();
         break;
       case 'case-swap':
-        oStr = iStr.replace( /[a-zA-Z]/g,r => r[( /[a-z]/g ).test( r ) ? 'toUpperCase' :'toLowerCase']() );
+        oStr = iStr.replace(/[a-zA-Z]/g, r => r[(/[a-z]/g).test(r) ? 'toUpperCase' : 'toLowerCase']());
         break;
       case 'case1':
-        oStr = iStr.replace( /\"/g,'\'' );
+        oStr = iStr.replace(/\"/g, '\'');
         break;
       case 'case2':
-        oStr = iStr.replace( /\'/g,'\"' );
+        oStr = iStr.replace(/\'/g, '\"');
         break;
       case 'case3':
-        oStr = iStr.replace( /(\w+)\-(?=(\w+))/g,'$1_' );
+        oStr = iStr.replace(/(\w+)\-(?=(\w+))/g, '$1_');
         break;
       case 'case4':
-        oStr = iStr.replace( /([A-Za-z0-9]+)\_(?=([A-Za-z0-9]+))/g,'$1\-' );
+        oStr = iStr.replace(/([A-Za-z0-9]+)\_(?=([A-Za-z0-9]+))/g, '$1\-');
         break;
       case 'case5':
-        oStr = iStr.replace( /([a-z0-9]+)([A-Z])(?=(\w+))/g,( r,r1,r2 ) => r1 + '-' + r2.toLowerCase() );
+        oStr = iStr.replace(/([a-z0-9]+)([A-Z])(?=(\w+))/g, (r, r1, r2) => r1 + '-' + r2.toLowerCase());
         break;
       case 'case6':
-        oStr = iStr.replace( /(\w+)\-(\w)(?=(\w+))/g,( r,r1,r2 ) => r1 + r2.toUpperCase() );
+        oStr = iStr.replace(/(\w+)\-(\w)(?=(\w+))/g, (r, r1, r2) => r1 + r2.toUpperCase());
         break;
       case 'case7':
-        oStr = iStr.replace( latin, r => {
-          instStr = latinVariety.filter( s => ( s[1].join('').indexOf(r) !== -1 ) )[0][0];
-          return ( r === r.toLowerCase() ) ? instStr : instStr.toUpperCase();
-        }).replace( /[\u0300-\u036F]/g, '' );
+        oStr = iStr.replace(latin, r => {
+          instStr = latinVariety.filter(s => (s[1].join('').indexOf(r) !== -1))[0][0];
+          return (r === r.toLowerCase()) ? instStr : instStr.toUpperCase();
+        }).replace(/[\u0300-\u036F]/g, '');
         break;
 
     // Numeric 1
       case 'num-10_2':
-        oStr = iStr.replace( /([0-9.]+)/g,n => parseInt( n,10 ).toString( 2 ) );
+        oStr = iStr.replace(/([0-9.]+)/g, n => parseInt(n, 10).toString(2));
         break;
       case 'num-2_10':
-        oStr = iStr.replace( /([01]+)/g,n => parseInt( n,2 ).toString( 10 ) );
+        oStr = iStr.replace(/([01]+)/g, n => parseInt(n, 2).toString(10));
         break;
       case 'num-10_16':
-        oStr = iStr.replace( /([0-9.]+)/g,n => parseInt( n,10 ).toString( 16 ) );
+        oStr = iStr.replace(/([0-9.]+)/g, n => parseInt(n, 10).toString(16));
         break;
       case 'num-16_10':
-        oStr = iStr.replace( /([0-9a-fA-F]+)/g,n => parseInt( n,16 ).toString( 10 ) );
+        oStr = iStr.replace(/([0-9a-fA-F]+)/g, n => parseInt(n, 16).toString(10));
         break;
       case 'num-2_16':
-        oStr = iStr.replace( /([01]+)/g,n => parseInt( n,2 ).toString( 16 ) );
+        oStr = iStr.replace(/([01]+)/g, n => parseInt(n, 2).toString(16));
         break;
       case 'num-16_2':
-        oStr = iStr.replace( /([0-9a-fA-F]+)/g,n => parseInt( n,16 ).toString( 2 ) );
+        oStr = iStr.replace(/([0-9a-fA-F]+)/g, n => parseInt(n, 16).toString(2));
         break;
     // Numeric 2
       case 'num-a_j':
-        oStr = iStr.replace( /([0-9\,\.]+)/g,n => {
-          instNum = n.replace( /,/g,'' );
+        oStr = iStr.replace(/([0-9\,\.]+)/g, n => {
+          instNum = n.replace(/,/g, '');
           instNum.match(/(\d+)(?:\.(\d+))?/i);
           int = RegExp.$1;
           fract = RegExp.$2;
           seisuu = '';
-          for( i = int.length - 1; i >= 0; i-- ){
-            seisuu += zero2nine[parseInt( int[int.length - i - 1],10 )];
-            if( i % 4 === 0 ){
-              seisuu += suffices[( i / 4 ) | 0];
+          var i;
+          for(i = int.length - 1; i >= 0; i--){
+            seisuu += zero2nine[parseInt(int[int.length - i - 1],10)];
+            if(i % 4 === 0){
+              seisuu += suffices[(i / 4) | 0];
             } else {
               seisuu += ten2thou[i % 4];
             }
           }
-          seisuu = seisuu.replace( /〇[十百千]/g,'' );
-          seisuu = seisuu.replace( /一([十百千])/g,'$1' );
-          seisuu = seisuu.replace( /〇/g,'' );
-          seisuu = seisuu.replace( /([万億兆京垓穣溝澗正載極]|禾予|恒河沙|阿僧祇|那由他|不可思議|無量大数)([万億兆京垓穣溝澗正載極]|禾予|恒河沙|阿僧祇|那由他|不可思議|無量大数)/g,'$1');
-          seisuu = seisuu.replace( '禾予','%uD855%uDF71' );
+          seisuu = seisuu.replace(/〇[十百千]/g, '');
+          seisuu = seisuu.replace(/一([十百千])/g, '$1');
+          seisuu = seisuu.replace(/〇/g, '');
+          seisuu = seisuu.replace(/([万億兆京垓穣溝澗正載極]|禾予|恒河沙|阿僧祇|那由他|不可思議|無量大数)([万億兆京垓穣溝澗正載極]|禾予|恒河沙|阿僧祇|那由他|不可思議|無量大数)/g, '$1');
+          seisuu = seisuu.replace('禾予', '%uD855%uDF71');
           seisuu = unescape( seisuu );
-          if( seisuu === '' ) seisuu = zero;
-          if( fract ) shousuu = point + fract.replace( /(.)/g,n => zero2nine[parseInt( n,10 )] );
+          if(seisuu === '') seisuu = zero;
+          if(fract) shousuu = point + fract.replace(/(.)/g, n => zero2nine[parseInt(n, 10)]);
           return seisuu + shousuu;
         } );
         break;
       case 'num-a_j2':
-        oStr = iStr.replace( /([0-9\,\.]+)/g,n => {
-          instStr = n.replace( /([0-9])/g, r => zero2nine[parseInt( r, 10 )]);
-          return instStr.replace(',','').replace('\.','点');
+        oStr = iStr.replace(/([0-9\,\.]+)/g, n => {
+          instStr = n.replace(/([0-9])/g, r => zero2nine[parseInt(r, 10)]);
+          return instStr.replace(',', '').replace('\.', '点');
         } );
         break;
       case 'num-j_a':
-        let k_10_1 = new RegExp('(([零点〇一二三四五六七八九十百千万億兆京垓穣溝澗正載極]|\uD855\uDF71|恒河沙|阿僧祇|那由他|不可思議|無量大数)+)','gu');
-        oStr = iStr.replace( k_10_1,r => {
-          k_10_2 = new RegExp('(\uD855\uDF71|\u25771)','gu');
-          instStr = r.replace( k_10_2,'禾予' );
+        let k_10_1 = new RegExp('(([零点〇一二三四五六七八九十百千万億兆京垓穣溝澗正載極]|\uD855\uDF71|恒河沙|阿僧祇|那由他|不可思議|無量大数)+)', 'gu');
+        oStr = iStr.replace(k_10_1, r => {
+          k_10_2 = new RegExp('(\uD855\uDF71|\u25771)', 'gu');
+          instStr = r.replace(k_10_2, '禾予');
           int = instStr.split('点')[0];
           fract = instStr.split('点')[1];
           let now_keta;
-          if( int === '零' ){
+          if(int === '零'){
             seisuu = '0';
           } else {
-            instArr = int.split( /([万億兆京垓穣溝澗正載極]|禾予|恒河沙|阿僧祇|那由他|不可思議|無量大数)/ );
+            instArr = int.split(/([万億兆京垓穣溝澗正載極]|禾予|恒河沙|阿僧祇|那由他|不可思議|無量大数)/);
             for( i = 0; i < instArr.length; i++ ){
-              if( instArr[i].match( /([万億兆京垓穣溝澗正載極]|禾予|恒河沙|阿僧祇|那由他|不可思議|無量大数)/ ) !== null ){
-                now_keta = suffices.indexOf( RegExp.$1 );
-                if( instArr[i + 2] !== suffices[now_keta - 1] && now_keta > 1 ) instArr.splice( i + 1,0,'〇千〇百〇十〇',suffices[now_keta - 1] );
+              if( instArr[i].match(/([万億兆京垓穣溝澗正載極]|禾予|恒河沙|阿僧祇|那由他|不可思議|無量大数)/) !== null){
+                now_keta = suffices.indexOf(RegExp.$1);
+                if(instArr[i + 2] !== suffices[now_keta - 1] && now_keta > 1) instArr.splice(i + 1, 0, '〇千〇百〇十〇', suffices[now_keta - 1]);
               } else {
-                instArr[i] = instArr[i].replace( /([十百千]|^)([十百千])/g,'$1一$2' );
-                if( instArr[i].indexOf('千') === -1 ) instArr[i] = '〇千' + instArr[i];
-                if( instArr[i].indexOf('百') === -1 ) instArr[i] = instArr[i].slice(0,2) + '〇百' + instArr[i].slice(2,instArr[i].length);
-                if( instArr[i].indexOf('十') === -1 ) instArr[i] = instArr[i].slice(0,4) + '〇十' + instArr[i].slice(4,instArr[i].length);
-                if( instArr[i].charAt( instArr[i].length - 1 ) === '十' ) instArr[i] = instArr[i] + '〇';
+                instArr[i] = instArr[i].replace(/([十百千]|^)([十百千])/g, '$1一$2');
+                if(instArr[i].indexOf('千') === -1) instArr[i] = '〇千' + instArr[i];
+                if(instArr[i].indexOf('百') === -1) instArr[i] = instArr[i].slice(0, 2) + '〇百' + instArr[i].slice(2, instArr[i].length);
+                if(instArr[i].indexOf('十') === -1) instArr[i] = instArr[i].slice(0, 4) + '〇十' + instArr[i].slice(4, instArr[i].length);
+                if(instArr[i].charAt(instArr[i].length - 1) === '十') instArr[i] = instArr[i] + '〇';
               }
             }
-            seisuu = instArr.join('').replace( /([十百千万億兆京垓穣禾予溝澗正載極恒河沙阿僧祇那由他不可思議無量大数])/g,'' );
-            seisuu = seisuu.replace( /(.)/g,n => zero2nine.indexOf( n ) );
-            seisuu = seisuu.replace( /^0+/g,'' );
+            seisuu = instArr.join('').replace(/([十百千万億兆京垓穣禾予溝澗正載極恒河沙阿僧祇那由他不可思議無量大数])/g, '');
+            seisuu = seisuu.replace(/(.)/g, n => zero2nine.indexOf(n));
+            seisuu = seisuu.replace(/^0+/g,'');
           }
-          if( fract ) shousuu += '\.' + fract.replace( /(.)/g,n => zero2nine.indexOf( n ) );
+          if(fract) shousuu += '\.' + fract.replace(/(.)/g, n => zero2nine.indexOf(n));
           return seisuu + shousuu;
         } );
         break;
       case 'num-a_r':
-        oStr = iStr.replace( /([0-9][0-9.,]+|[0-9]+)/g,n => {
-          instNum = parseInt( n.replace( /,/g,'' ).split( '.' )[0] );
+        oStr = iStr.replace(/([0-9][0-9.,]+|[0-9]+)/g, n => {
+          instNum = parseInt(n.replace(/,/g, '').split('.')[0]);
           rom = '';
-          if( instNum < 1 || instNum > 399999 ){
+          if(instNum < 1 || instNum > 399999) {
             return instNum;
-          } else if( instNum > 3999 && $('.roman_class:checked').val() === 'M' ) {
+          } else if(instNum > 3999 && $('.roman_class:checked').val() === 'M') {
             return instNum;
           } else {
-            if( instNum >= 100000 ){
-              instStr = ( instNum / 100000 ) | 0;
-              rom += Array( instStr + 1 ).join( roman[5] );
+            if(instNum >= 100000){
+              instStr = (instNum / 100000) | 0;
+              rom += Array(instStr + 1).join(roman[5]);
               instNum -= instStr * 100000;
             }
-            if( instNum >= 10000 ){
-              instStr = ( instNum / 10000 ) | 0;
-              rom += toRoman( instStr - 1,roman[4] );
+            if(instNum >= 10000){
+              instStr = (instNum / 10000) | 0;
+              rom += toRoman(instStr - 1,roman[4]);
               instNum -= instStr * 10000;
             }
-            if( instNum >= 1000 ){
-              instStr = ( instNum / 1000 ) | 0;
-              rom += toRoman( instStr - 1,roman[3] );
+            if(instNum >= 1000){
+              instStr = (instNum / 1000) | 0;
+              rom += toRoman(instStr - 1,roman[3]);
               instNum -= instStr * 1000;
             }
-            if( instNum >= 100 ){
-              instStr = ( instNum / 100 ) | 0;
-              rom += toRoman( instStr - 1,roman[2] );
+            if(instNum >= 100){
+              instStr = (instNum / 100) | 0;
+              rom += toRoman(instStr - 1,roman[2]);
               instNum -= instStr * 100;
             }
-            if( instNum >= 10 ){
-              instStr = ( instNum / 10 ) | 0;
-              rom += toRoman( instStr - 1,roman[1] );
+            if(instNum >= 10){
+              instStr = (instNum / 10) | 0;
+              rom += toRoman(instStr - 1,roman[1]);
               instNum -= instStr * 10;
             }
-            if( instNum !== 0 ){
-              rom += toRoman( instNum - 1,roman[0] );
+            if(instNum !== 0){
+              rom += toRoman(instNum - 1,roman[0]);
             }
-            romanConv = new RegExp( '[' + romanStr_base.join('') + ']','g' );
-            if( $('.roman_class:checked').val() === 'C1' ){
-              rom = rom.replace( romanConv,n => romanStr1[romanStr_base.indexOf( n )] );
-            } else if( $('.roman_class:checked').val() === 'C2' ){
-              rom = rom.replace( romanConv,n => romanStr2[romanStr_base.indexOf( n )] );
+            romanConv = new RegExp('[' + romanStr_base.join('') + ']', 'g');
+            if($('.roman_class:checked').val() === 'C1'){
+              rom = rom.replace(romanConv, n => romanStr1[romanStr_base.indexOf(n)]);
+            } else if($('.roman_class:checked').val() === 'C2'){
+              rom = rom.replace(romanConv, n => romanStr2[romanStr_base.indexOf(n)]);
             }
             return rom;
           }
         });
         break;
       case 'num-r_a':
-        oStr = iStr.replace( findR,n => {
+        oStr = iStr.replace( findR, n => {
           instStr = n.replace( /[ↀↁↂↇↈ]/g,s => romanStr_base[romanStr1.indexOf( s )] );
           instNum = 0;
           instStr = instStr.replace( findR2,r => romanUni[r] );
@@ -343,7 +367,7 @@ $(function() {
         break;
       case 'uni-escape5':
         instReg = new RegExp( '(&#x|%u)(d[89a-f][0-9a-f]{2,2})(;{0,1})(&#x|%u)(d[c-f][0-9a-f]{2,2})(;{0,1})','gi' );
-        oStr = iStr.replace( instReg,( r,r1,r2,r3,r4,r5,r6 ) => {
+        oStr = iStr.replace( instReg, ( r,r1,r2,r3,r4,r5,r6 ) => {
           hi = parseInt( r2,16 );
           lo = parseInt( r5,16 );
           instNum = 0x10000 + ( hi - 0xD800 ) * 0x400 + ( lo - 0xDC00 );
@@ -509,7 +533,7 @@ $(function() {
         instStr = instStr.replace( kun1,r => kunre[kun1_arr.indexOf(r)][1] );
         instStr = instStr.replace( /ッ([kstnhmyrgzjpbd])/g,'$1$1' ).replace( /ッ/g,'\'' );
         instStr = instStr.replace( /o[uo]/g,'ô' ).replace( /uu/g,'û' ).replace( /ii/g,'î' );
-        instStr = instStr.replace( /([aiueo])ー/g,( r,r1 ) => 'âîûêô'['aiueo'.indexOf(r1)] );
+        instStr = instStr.replace( /([aiueo])ー/g, ( r,r1 ) => 'âîûêô'['aiueo'.indexOf(r1)] );
         oStr = instStr;
         break;
       case 'jpnc':
@@ -529,8 +553,8 @@ $(function() {
 
     // CJK Characters
       case 'tocjk1':
-        oStr = iStr.replace( findWordN,r => escape( cjk_word[findWordN_arr.indexOf(r)][0] ) );
-        oStr = oStr.replace( findN,r => {
+        oStr = iStr.replace( findWordN, r => escape( cjk_word[findWordN_arr.indexOf(r)][0] ) );
+        oStr = oStr.replace( findN, r => {
           instArr = findN_arr.arrIndex(r);
           if( instArr.length === 1 ){
             if( findK_arr[instArr[0]].length === 1 ){
@@ -540,7 +564,7 @@ $(function() {
             }
           } else {
             instStr2 = '';
-            for ( var i = 0; i < instArr.length; i++ ) {
+            for (i = 0; i < instArr.length; i++ ) {
               instStr2 += findK_arr[instArr[i]];
             }
             instStr2 = dupDelete( instStr2 );
@@ -562,7 +586,7 @@ $(function() {
             }
           } else {
             instStr2 = '';
-            for ( var i = 0; i < instArr.length; i++ ) {
+            for (i = 0; i < instArr.length; i++ ) {
               instStr2 += findH_arr[instArr[i]];
             }
             instStr2 = dupDelete( instStr2 );
@@ -573,8 +597,8 @@ $(function() {
         oStr = unescape( oStr );
         break;
       case 'tocjk3':
-        oStr = iStr.replace( findWordK,r => escape( cjk_word[findWordK_arr.indexOf(r)][2] ) );
-        oStr = oStr.replace( findK,r => {
+        oStr = iStr.replace( findWordK, r => escape( cjk_word[findWordK_arr.indexOf(r)][2] ) );
+        oStr = oStr.replace( findK, r => {
           instArr = findK_arr.arrIndex(r);
           if( instArr.length === 1 ){
             if( findN_arr[instArr[0]].length === 1 ){
@@ -584,7 +608,7 @@ $(function() {
             }
           } else {
             instStr2 = '';
-            for ( var i = 0; i < instArr.length; i++ ) {
+            for (i = 0; i < instArr.length; i++ ) {
               instStr2 += findN_arr[instArr[i]];
             }
             instStr2 = dupDelete( instStr2 );
@@ -595,8 +619,8 @@ $(function() {
         oStr = unescape( oStr );
         break;
       case 'tocjk4':
-        oStr = iStr.replace( findWordH,r => escape( cjk_word[findWordH_arr.indexOf(r)][2] ) );
-        oStr = oStr.replace( findH,r => {
+        oStr = iStr.replace( findWordH, r => escape( cjk_word[findWordH_arr.indexOf(r)][2] ) );
+        oStr = oStr.replace( findH, r => {
           instArr = findH_arr.arrIndex(r);
           if( instArr.length === 1 ){
             if( findN_arr[instArr[0]].length === 1 ){
@@ -606,7 +630,7 @@ $(function() {
             }
           } else {
             instStr2 = '';
-            for ( var i = 0; i < instArr.length; i++ ) {
+            for (i = 0; i < instArr.length; i++ ) {
               instStr2 += findN_arr[instArr[i]];
             }
             instStr2 = dupDelete( instStr2 );
@@ -617,8 +641,8 @@ $(function() {
         oStr = unescape( oStr );
         break;
       case 'tocjk5':
-        oStr = iStr.replace( findWordK,r => escape( cjk_word[findWordK_arr.indexOf(r)][1] ) );
-        oStr = oStr.replace( findK,r => {
+        oStr = iStr.replace( findWordK, r => escape( cjk_word[findWordK_arr.indexOf(r)][1] ) );
+        oStr = oStr.replace( findK, r => {
           instArr = findK_arr.arrIndex(r);
           if( instArr.length === 1 ){
             if( findH_arr[instArr[0]].length === 1 ){
@@ -628,7 +652,7 @@ $(function() {
             }
           } else {
             instStr2 = '';
-            for ( var i = 0; i < instArr.length; i++ ) {
+            for ( i = 0; i < instArr.length; i++ ) {
               instStr2 += findH_arr[instArr[i]];
             }
             instStr2 = dupDelete( instStr2 );
@@ -639,8 +663,8 @@ $(function() {
         oStr = unescape( oStr );
         break;
       case 'tocjk6':
-        oStr = iStr.replace( findWordH,r => escape( cjk_word[findWordH_arr.indexOf(r)][1] ) );
-        oStr = oStr.replace( findH,r => {
+        oStr = iStr.replace( findWordH, r => escape( cjk_word[findWordH_arr.indexOf(r)][1] ) );
+        oStr = oStr.replace( findH, r => {
           instArr = findH_arr.arrIndex(r);
           if( instArr.length === 1 ){
             if( findK_arr[instArr[0]].length === 1 ){
@@ -650,7 +674,7 @@ $(function() {
             }
           } else {
             instStr2 = '';
-            for ( var i = 0; i < instArr.length; i++ ) {
+            for ( i = 0; i < instArr.length; i++ ) {
               instStr2 += findK_arr[instArr[i]];
             }
             instStr2 = dupDelete( instStr2 );
@@ -661,7 +685,7 @@ $(function() {
         oStr = unescape( oStr );
         break;
       case 'tocjk7':
-        instStr = escape( iStr ).replace( pin,( r,r1 ) => r + '\[' + pinyin[r1] + '\]' );
+        instStr = escape( iStr ).replace( pin,( r, r1 ) => r + '\[' + pinyin[r1] + '\]' );
         oStr = unescape( instStr );
         break;
 
@@ -749,15 +773,18 @@ $(function() {
     // numbering
       case 'numbering':
         let
-          mx_st = parseInt($('#mx_start').val(), 10),
-          mx_ed = parseInt($('#mx_end').val(), 10),
-          mx_sp = parseInt($('#mx_step').val(), 10),
-          mx_pd = parseInt($('#mx_padding').val(), 10),
-          mx_jn = $('#mx_join').val().replace(/\\n/g,'\n'),
+          mx_st = parseFloat($('#mx_start').val()),
+          mx_ed = parseFloat($('#mx_end').val()),
+          mx_sp = parseFloat($('#mx_step').val()),
+          mx_pd = parseFloat($('#mx_padding').val()),
+          mx_jn = $('#mx_join').val().replace(/\\n/g, '\n'),
           mx_reg = $('#mx_reg').val(),
+          mx_reg2 = $('#mx_reg2').val(),
           mx_of = $('#mx_of').prop('checked'),
           mx_jnReg = new RegExp(mx_jn, 'g'),
-          pd = Array(mx_pd + 1).join('0');
+          pd = Array(mx_pd + 1).join('0'),
+          i = 0,
+          mop = 10000;
         if( mx_st > mx_ed && mx_sp > 0 ){
           break;
         } else if( mx_sp === 0 || mx_st === mx_ed ){
@@ -768,12 +795,20 @@ $(function() {
         instArr = [];
         instStr = '';
         instStr2 = '';
+
+        padZeroLength = 0;
+        padZero = '';
+        if( Math.abs(mx_sp) < 1 ){
+          padZeroLength = Math.abs(mx_sp).toString().length-2;
+          padZero = Array(padZeroLength + 1).join('0');
+        }
+
         if( mx_st < mx_ed ){
-          for (i = mx_st; i <= mx_ed; i = i + mx_sp) {
+          for (i = mx_st; i <= mx_ed; i = Math.round((i + mx_sp)　*　mop, 2)　/　mop) {
             instArr.push(i);
           }
         } else {
-          for (i = mx_st; i >= mx_ed; i = i + mx_sp) {
+          for (i = mx_st; i >= mx_ed; i = Math.round((i + mx_sp)　*　mop, 2)　/　mop) {
             instArr.push(i);
           }
         }
@@ -783,10 +818,16 @@ $(function() {
         for (j = 0; j < mxLength; j++){
           instStr2 = '';
           if( instArr.length > j ){
+            instStr3 = Math.abs(instArr[j]) | 0;
+            instStr3 = ( pd + instStr3).slice(-mx_pd);
             if( instArr[j] < 0 ){
-              instStr3 = '-' + ( ( pd + (instArr[j] * -1 ) ).slice(-mx_pd) );
-            } else {
-              instStr3 = ( pd + instArr[j]).slice(-mx_pd);
+              instStr3 = '-' + instStr3;
+            }
+            if( Math.abs(mx_sp) < 1 ){
+              m = Math.round((instArr[j] % 1) * mop) / mop;
+              m = m ? m.toString(10).split('.')[1] : 0;
+              m = (m + padZero).substr(0, padZeroLength);
+              instStr3 = instStr3 + '.' + m;
             }
             instStr2 += '___1___' + instStr3 + '___1___';
           } else {
@@ -799,6 +840,76 @@ $(function() {
           }
           instStr2 = instStr2.replace(/___1___(.*?)___1______2___(.*?)___2___/g, mx_reg);
           instStr += instStr2 + mx_jn;
+        }
+        oStr = instStr;
+        break;
+
+    // dating
+      case 'dating':
+        let
+          dt_st = new Date($('#dt_start').val()),
+          dt_ed = new Date($('#dt_end').val()),
+          dt_sp = parseInt($('#dt_step').val(), 10) * 60 * 60 * 24 * 1000,
+          dt_jn = $('#dt_join').val().replace(/\\n/g, '\n'),
+          dt_of = $('#dt_of').prop('checked'),
+          dt_reg = $('#dt_reg').val(),
+          dt_reg2 = $('#dt_reg2').val(),
+          dt_jnReg = new RegExp(dt_jn, 'g'),
+          x = 0,
+          YYYY,YY,MM,M,DD,D,d,d1,d2,d3,d4,d5,m,m1,m2,m3,m4
+          dateTypeAll = {};
+        instArr = [];
+        dt_st = dt_st.getTime();
+        dt_ed = dt_ed.getTime();
+        if(dt_sp < 0){
+          for (x = dt_st; x >= dt_ed; x = x + dt_sp) {
+            instArr.push(x);
+          }
+        } else if(dt_sp > 0){
+          for (x = dt_st; x <= dt_ed; x = x + dt_sp) {
+            instArr.push(x);
+          }
+        }
+        instArr2 = iStr.split(dt_jnReg);
+        dtLength = instArr.length <= instArr2.length ? instArr2.length : instArr.length;
+        dtLength = !dt_of ? instArr2.length : dtLength;
+        for (j = 0; j < dtLength; j++){
+          instStr2 = '';
+          if( instArr.length > j ){
+            nDate = new Date(instArr[j]);
+            YYYY = nDate.getFullYear();
+            YY = YYYY.toString(10).slice(-2);
+            M = nDate.getMonth() + 1;
+            MM = ('0' + M).slice(-2);
+            D = nDate.getDate() + 1;
+            DD = ('0' + D).slice(-2);
+            d = nDate.getDay();
+            d1 = DayArr[d][0];
+            d2 = DayArr[d][1];
+            d3 = DayArr[d][2];
+            d4 = DayArr[d][3];
+            d5 = DayArr[d][4];
+            m1 = MonthArr[M-1][0];
+            m2 = MonthArr[M-1][1];
+            m3 = MonthArr[M-1][2];
+            m4 = MonthArr[M-1][3];
+            dateTypeAll = {'YYYY': YYYY,'YY': YY,'MM': MM,'M': M,'DD': DD,'D': D,'d1': d1,'d2': d2,'d3': d3,'d4': d4,'d5': d5,'m1': m1,'m2': m2,'m3': m3,'m4': m4};
+            instStr3 = dt_reg;
+            dateTypeReg = new RegExp('(' + Object.keys(dateTypeAll).join('|') + ')', 'g');
+            instStr3 = instStr3.replace(dateTypeReg, (r, r1) => dateTypeAll[r1]);
+
+            instStr2 += '___1___' + instStr3 + '___1___';
+          } else {
+            instStr2 += '___1______1___';
+          }
+          if( instArr2.length > j ){
+            instStr2 += '___2___' + instArr2[j] + '___2___';
+          } else {
+            instStr2 += '___2______2___';
+          }
+          console.log(instStr2)
+          instStr2 = instStr2.replace(/___1___(.*?)___1______2___(.*?)___2___/g, dt_reg2);
+          instStr += instStr2 + dt_jn;
         }
         oStr = instStr;
         break;
