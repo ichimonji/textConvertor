@@ -71,6 +71,29 @@ html( lang = 'en' )
                 div.input-group.input-group-sm
                   label.input-group-addon #[input#mx_of( type = 'checkbox', checked = 'checked' )] overflow
                   button.form-control.btn.btn-primary.bt-control( type = 'button', title = '連番生成', value = 'numbering' ) 生成
+          +dlBox('ctset15')
+            div.form-inline
+              div.form-group
+                div.input-group.input-group-sm
+                  label.input-group-addon( title = '開始日' ) Start
+                  input.form-control#dt_start( type = 'date', value = '2017-01-01', placeholder = 'YYYY-MM-DD', pattern = '[0-9\-/]' )
+                  label.input-group-addon( title = '終了日' ) End
+                  input.form-control#dt_end( type = 'date', value = '2017-12-12', placeholder = 'YYYY-MM-DD', pattern = '[0-9\-/]' )
+                div.input-group.input-group-sm
+                  label.input-group-addon( title = '～刻みで' ) step
+                  input.form-control#dt_step( type = 'number', value = '1', placeholder = 'Step' )
+                div.input-group.input-group-sm
+                  label.input-group-addon( title = 'ごとに' ) join
+                  input.form-control#dt_join( type = 'text', value = '\\n', placeholder = 'Join' )
+                div.input-group.input-group-sm
+                  label.input-group-addon( title = '日付タイプ' ) Type
+                  input.form-control#dt_reg( type = 'text', value = 'YYYY/MM/DD (d2)', placeholder = 'Type' )
+                div.input-group.input-group-sm
+                  label.input-group-addon( title = '置換' ) Reg
+                  input.form-control#dt_reg2( type = 'text', value = '$1: $2', placeholder = 'Reg' )
+                div.input-group.input-group-sm
+                  label.input-group-addon #[input#dt_of( type = 'checkbox', checked = 'checked' )] overflow
+                  button.form-control.btn.btn-primary.bt-control( type = 'button', title = '日付連番生成', value = 'dating' ) 生成
           +dlBox('ctset14')
         ul.link-list
           li: a.btn.btn-primary( data-toggle = 'modal', data-target = '#help' )= 'help'

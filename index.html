@@ -366,6 +366,46 @@
               </div>
             </dd>
           </dl>
+          <input class="genre" id="ctset15" type="checkbox" name="genre" checked="checked">
+          <dl class="ct-set">
+            <dt class="head">
+              <label for="ctset15">日付連番生成</label>
+            </dt>
+            <dd class="body">
+              <div class="form-inline">
+                <div class="form-group">
+                  <div class="input-group input-group-sm">
+                    <label class="input-group-addon" title="開始日">Start</label>
+                    <input class="form-control" id="dt_start" type="date" value="2017-01-01" placeholder="YYYY-MM-DD" pattern="[0-9-/]">
+                    <label class="input-group-addon" title="終了日">End</label>
+                    <input class="form-control" id="dt_end" type="date" value="2017-12-12" placeholder="YYYY-MM-DD" pattern="[0-9-/]">
+                  </div>
+                  <div class="input-group input-group-sm">
+                    <label class="input-group-addon" title="～刻みで">step</label>
+                    <input class="form-control" id="dt_step" type="number" value="1" placeholder="Step">
+                  </div>
+                  <div class="input-group input-group-sm">
+                    <label class="input-group-addon" title="ごとに">join</label>
+                    <input class="form-control" id="dt_join" type="text" value="\n" placeholder="Join">
+                  </div>
+                  <div class="input-group input-group-sm">
+                    <label class="input-group-addon" title="日付タイプ">Type</label>
+                    <input class="form-control" id="dt_reg" type="text" value="YYYY/MM/DD (d2)" placeholder="Type">
+                  </div>
+                  <div class="input-group input-group-sm">
+                    <label class="input-group-addon" title="置換">Reg</label>
+                    <input class="form-control" id="dt_reg2" type="text" value="$1: $2" placeholder="Reg">
+                  </div>
+                  <div class="input-group input-group-sm">
+                    <label class="input-group-addon">
+                      <input id="dt_of" type="checkbox" checked="checked"> overflow
+                    </label>
+                    <button class="form-control btn btn-primary bt-control" type="button" title="日付連番生成" value="dating">生成</button>
+                  </div>
+                </div>
+              </div>
+            </dd>
+          </dl>
           <input class="genre" id="ctset14" type="checkbox" name="genre" checked="checked">
           <dl class="ct-set">
             <dt class="head">
