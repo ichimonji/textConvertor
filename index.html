@@ -648,22 +648,130 @@ IASTを京都・ハーバード方式に</li>
 <p>連番を生成します。<br>
 生成される連番は <strong>from</strong> から <strong>to</strong> までの間、 <strong>step</strong> 刻みの数字で、<br>
 <strong>padding</strong> によってゼロパディングを行います。<br>
+stepが小数点の場合、小数点パディングは自動で行われます。<br>
 生成された連番は <strong>join</strong> に従って変換前テキストに挿入されます。例えばjoinが</p>
 <pre><code>\n
 </code></pre>
 <p>のとき、連番は行ごとに挿入されます。</p>
 <p><strong>Reg</strong> の正規表現に従って連番と変換前テキストが成形されます。<br>
 <strong>overflow</strong> にチェックがついていると、連番の数が変換前テキストより勝っていても最後まで連番を出力します。<br>
-<code>$1</code>は連番、<code>$2</code>は変換前テキストを示し、例えばRegが</p>
+<code>$1</code>は連番、<code>$2</code>は変換前テキストを示します。</p>
+<p>例えばJoinが <code>\n</code> Regが</p>
 <pre><code>$1: $2
 </code></pre>
 <p>の場合、出力されるのは</p>
-<pre><code>001: 変換前のテキスト1
-002: 変換前のテキスト2
-003: 変換前のテキスト3
+<pre><code>001: 変換前のテキスト1行目
+002: 変換前のテキスト2行目
+003: 変換前のテキスト3行目
 </code></pre>
 <p>といったテキストになります。</p>
-<p>※ 計算できないような数値を各値に入れた場合、処理がエラーとなりハングアップする可能性があります。</p>
+<p>※ 計算できないような数値を各値に入れた場合、処理がエラーとなりハングアップする可能性があります。<br>
+※ 小数点第3ケタまで計算します。それ以上の値を入れると小数点に誤差が出る恐れがあります。</p>
+<h3>日付連番生成</h3>
+<p>日付を基にした連番を生成します。<br>
+生成される連番は <strong>Start</strong> から <strong>End</strong> までの間、 <strong>step</strong> 刻みの日数で、<br>
+<strong>Type</strong> によって日付パターンを生成します。<br>
+stepが小数点の場合、小数点パディングは自動で行われます。<br>
+生成された日付連番は <strong>join</strong> に従って変換前テキストに挿入されます。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">パターン</th>
+<th style="text-align:left">説明</th>
+<th style="text-align:left">結果（例）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">YYYY</td>
+<td style="text-align:left">西暦（4ケタ）</td>
+<td style="text-align:left">2018</td>
+</tr>
+<tr>
+<td style="text-align:left">YY</td>
+<td style="text-align:left">西暦（2ケタ）</td>
+<td style="text-align:left">18</td>
+</tr>
+<tr>
+<td style="text-align:left">MM</td>
+<td style="text-align:left">月（ゼロパディング）</td>
+<td style="text-align:left">01</td>
+</tr>
+<tr>
+<td style="text-align:left">M</td>
+<td style="text-align:left">月</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">DD</td>
+<td style="text-align:left">日（ゼロパディング）</td>
+<td style="text-align:left">01</td>
+</tr>
+<tr>
+<td style="text-align:left">D</td>
+<td style="text-align:left">日</td>
+<td style="text-align:left">1</td>
+</tr>
+<tr>
+<td style="text-align:left">d1</td>
+<td style="text-align:left">曜日（英語）</td>
+<td style="text-align:left">Monday</td>
+</tr>
+<tr>
+<td style="text-align:left">d2</td>
+<td style="text-align:left">曜日（英語略）</td>
+<td style="text-align:left">Mon</td>
+</tr>
+<tr>
+<td style="text-align:left">d3</td>
+<td style="text-align:left">曜日（英語1文字）</td>
+<td style="text-align:left">M</td>
+</tr>
+<tr>
+<td style="text-align:left">d4</td>
+<td style="text-align:left">曜日（日本語）</td>
+<td style="text-align:left">月曜日</td>
+</tr>
+<tr>
+<td style="text-align:left">d5</td>
+<td style="text-align:left">曜日（日本語1文字）</td>
+<td style="text-align:left">月</td>
+</tr>
+<tr>
+<td style="text-align:left">m1</td>
+<td style="text-align:left">月（英語）</td>
+<td style="text-align:left">January</td>
+</tr>
+<tr>
+<td style="text-align:left">m2</td>
+<td style="text-align:left">月（英語略）</td>
+<td style="text-align:left">Jan</td>
+</tr>
+<tr>
+<td style="text-align:left">m3</td>
+<td style="text-align:left">月（日本語）</td>
+<td style="text-align:left">一月</td>
+</tr>
+<tr>
+<td style="text-align:left">m4</td>
+<td style="text-align:left">月（日本語異名）</td>
+<td style="text-align:left">睦月</td>
+</tr>
+</tbody>
+</table>
+<p>例えば、Joinが <code>\n</code> で、Typeが</p>
+<pre><code>YYYY/MM/DD (d2)
+</code></pre>
+<p>Regが</p>
+<pre><code>$1: $2
+</code></pre>
+<p>の場合、出力テキストは</p>
+<pre><code>2017/01/01 (Sun): 変換前のテキスト1行目
+2017/01/02 (Mon): 変換前のテキスト2行目
+2017/01/03 (Tue): 変換前のテキスト3行目
+・・・・・
+</code></pre>
+<p>といった感じになります。</p>
 <h3>左右連結</h3>
 <p>左右のテキストエリアを使った連結を行います。</p>
 <ul>

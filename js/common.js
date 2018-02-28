@@ -32,13 +32,13 @@ $(function() {
 
   let
     histArr = [ { 'ipt':'', 'opt':'' } ],
-    instArr, lastArr, i, j, check,
+    instArr, lastArr, i = 0, j = 0, check,
     tmp, tmpFlg = false;
 
   Array.prototype.getArrLast = function(){ return this[this.length -1];};
   Array.prototype.arrIndex = function( r ){
     instArr = [];
-    for (i = 0; i < this.length; i++) {
+    for(let i = 0; i < this.length; i++) {
       if( this[i].indexOf(r) !== -1 ) instArr.push( i );
     }
     return instArr;
@@ -90,11 +90,11 @@ $(function() {
   $bt.on('click',e => {
     let ival = $( e.currentTarget ).val(),
       iStr = $ipt.val(),
-      instArr = '', instArr2 = '', i, j,
+      instArr = '', instArr2 = '',
       instStr = '', instStr2 = '', instNum = 0,
       oStr = '', find = '', flg = 'g', hi,lo,
       beforeStr = '', endStr = '',
-      int, fract, seisuu = '', shousuu = '';
+      int, fract, seisuu = '', shousuu = '', i, j;
     instArr = [];
 
     if( tmpFlg ){
@@ -169,8 +169,7 @@ $(function() {
           int = RegExp.$1;
           fract = RegExp.$2;
           seisuu = '';
-          var i;
-          for(i = int.length - 1; i >= 0; i--){
+          for(let i = int.length - 1; i >= 0; i--){
             seisuu += zero2nine[parseInt(int[int.length - i - 1],10)];
             if(i % 4 === 0){
               seisuu += suffices[(i / 4) | 0];
@@ -207,7 +206,7 @@ $(function() {
             seisuu = '0';
           } else {
             instArr = int.split(/([万億兆京垓穣溝澗正載極]|禾予|恒河沙|阿僧祇|那由他|不可思議|無量大数)/);
-            for( i = 0; i < instArr.length; i++ ){
+            for(let i = 0; i < instArr.length; i++ ){
               if( instArr[i].match(/([万億兆京垓穣溝澗正載極]|禾予|恒河沙|阿僧祇|那由他|不可思議|無量大数)/) !== null){
                 now_keta = suffices.indexOf(RegExp.$1);
                 if(instArr[i + 2] !== suffices[now_keta - 1] && now_keta > 1) instArr.splice(i + 1, 0, '〇千〇百〇十〇', suffices[now_keta - 1]);
@@ -427,64 +426,64 @@ $(function() {
         oStr = instArr.join('\n');
         break;
       case 'ex_dup3':
-        instStr = iStr.replace( /\r\n/g,'\n' );
-        instArr = instStr.replace( /(\S+|\s+)/g,'$1|-|-|' ).split('|-|-|');
-        instArr = instArr.filter( ( x, i, self ) => ( /\s+/.test(x) || self.indexOf(x) === i ) );
+        instStr = iStr.replace( /\r\n/g, '\n' );
+        instArr = instStr.replace(/(\S+|\s+)/g, '$1|-|-|' ).split('|-|-|');
+        instArr = instArr.filter((x, i, self ) => ( /\s+/.test(x) || self.indexOf(x) === i));
         oStr = instArr.join('');
         break;
 
     // Reverse/Sort
       case 'rev-chara':
-        for( i = iStr.length - 1; i >= 0 ; i-- ) instStr += iStr.charAt( i );
+        for(let i = iStr.length - 1; i >= 0; i--) instStr += iStr.charAt(i);
         oStr = instStr;
         break;
       case 'rev-line':
-        instArr = iStr.replace( /\r\n/g,'\n' ).split( /\n/ );
-        for( i = instArr.length - 1; i >= 0 ; i-- ) instStr += instArr[i] + '\n';
+        instArr = iStr.replace(/\r\n/g, '\n').split(/\n/);
+        for(let i = instArr.length - 1; i >= 0; i--) instStr += instArr[i] + '\n';
         oStr = instStr;
         break;
       case 'rev-word':
-        instArr = iStr.replace( /\r\n/g,'\n' ).replace( /(\s)/g,'||||$1||||' ).split('||||');
-        for( i = instArr.length - 1; i >= 0 ; i-- ) instStr += instArr[i];
+        instArr = iStr.replace(/\r\n/g, '\n').replace(/(\s)/g, '||||$1||||').split('||||');
+        for(let i = instArr.length - 1; i >= 0; i--) instStr += instArr[i];
         oStr = instStr;
         break;
       case 'sort1':
-        instArr = iStr.replace( /\r\n/g,'\n' ).split( '\n' );
-        oStr = instArr.sort( ( a,b ) => ( ( a > b ) - ( a < b ) ) ).join('\n');
+        instArr = iStr.replace(/\r\n/g, '\n').split('\n');
+        oStr = instArr.sort((a, b) => ((a > b) - (a < b))).join('\n');
         break;
       case 'sort2':
-        instArr = iStr.replace( /\r\n/g,'\n' ).split( '\n' );
-        oStr = instArr.sort( ( a,b ) => ( ( a < b ) - ( a > b ) ) ).join('\n');
+        instArr = iStr.replace(/\r\n/g, '\n').split('\n');
+        oStr = instArr.sort((a, b) => ((a < b) - (a > b))).join('\n');
         break;
       case 'sort3':
-        instArr = iStr.replace( /\r\n/g,'\n' ).split( '' );
-        oStr = instArr.sort( ( a,b ) => ( ( a > b ) - ( a < b ) ) ).join('');
+        instArr = iStr.replace(/\r\n/g, '\n').split('');
+        oStr = instArr.sort((a, b) => ((a > b) - (a < b))).join('');
         break;
       case 'sort4':
-        instArr = iStr.replace( /\r\n/g,'\n' ).split( '' );
-        oStr = instArr.sort( ( a,b ) => ( ( a < b ) - ( a > b ) ) ).join('');
+        instArr = iStr.replace(/\r\n/g, '\n').split('');
+        oStr = instArr.sort((a, b) => ((a < b) - (a > b))).join('');
         break;
 
     // Duplication/matrix-change
       case 'dup1':
-        oStr = iStr.split('').filter( ( x, i, self ) => self.indexOf(x) === i ).join('');
+        oStr = iStr.split('').filter((x, i, self) => self.indexOf(x) === i).join('');
         break;
       case 'dup2':
-        oStr = iStr.split('').filter( ( x, i, self ) => self.indexOf(x) !== self.lastIndexOf(x) ).join('');
+        oStr = iStr.split('').filter((x, i, self) => self.indexOf(x) !== self.lastIndexOf(x)).join('');
         break;
       case 'dup3':
-        oStr = iStr.split('').filter( ( x, i, self ) => self.indexOf(x) === self.lastIndexOf(x) ).join('');
+        oStr = iStr.split('').filter((x, i, self) => self.indexOf(x) === self.lastIndexOf(x)).join('');
         break;
       case 'dup4':
-        oStr = iStr.split('').filter( ( x, i, self ) => ( self.indexOf(x) === i && i !== self.lastIndexOf(x) ) ).join('');
+        oStr = iStr.split('').filter((x, i, self) => (self.indexOf(x) === i && i !== self.lastIndexOf(x))).join('');
         break;
       case 'matrix-change':
-        var trans = a => Object.keys(a[0]).map( c => a.map( r => r[c] ) );
-        instArr = iStr.replace( /\r\n/g,'\n' ).split( '\n' );
-        splitter = ( $('.matrix:checked').val() ).replace('\\t','\t').replace('\\,','\,');
+        var trans = a => Object.keys(a[0]).map(c => a.map(r => r[c]));
+        instArr = iStr.replace(/\r\n/g, '\n').split('\n');
+        splitter = ($('.matrix:checked').val()).replace('\\t', '\t').replace('\\,','\,');
         instArr2 = [];
-        instArr = instArr.map( r => r.split( new RegExp( splitter, 'g') ) );
-        instStr = trans(instArr).map( r => r.join(splitter) ).join('\n');
+        instArr = instArr.map(r => r.split(new RegExp(splitter, 'g')));
+        instStr = trans(instArr).map(r => r.join(splitter)).join('\n');
         oStr = instStr;
         break;
 
@@ -564,7 +563,7 @@ $(function() {
             }
           } else {
             instStr2 = '';
-            for (i = 0; i < instArr.length; i++ ) {
+            for(let i = 0; i < instArr.length; i++ ) {
               instStr2 += findK_arr[instArr[i]];
             }
             instStr2 = dupDelete( instStr2 );
@@ -586,7 +585,7 @@ $(function() {
             }
           } else {
             instStr2 = '';
-            for (i = 0; i < instArr.length; i++ ) {
+            for(let i = 0; i < instArr.length; i++ ) {
               instStr2 += findH_arr[instArr[i]];
             }
             instStr2 = dupDelete( instStr2 );
@@ -608,7 +607,7 @@ $(function() {
             }
           } else {
             instStr2 = '';
-            for (i = 0; i < instArr.length; i++ ) {
+            for(let i = 0; i < instArr.length; i++ ) {
               instStr2 += findN_arr[instArr[i]];
             }
             instStr2 = dupDelete( instStr2 );
@@ -630,7 +629,7 @@ $(function() {
             }
           } else {
             instStr2 = '';
-            for (i = 0; i < instArr.length; i++ ) {
+            for(let i = 0; i < instArr.length; i++ ) {
               instStr2 += findN_arr[instArr[i]];
             }
             instStr2 = dupDelete( instStr2 );
@@ -652,7 +651,7 @@ $(function() {
             }
           } else {
             instStr2 = '';
-            for ( i = 0; i < instArr.length; i++ ) {
+            for(let i = 0; i < instArr.length; i++) {
               instStr2 += findH_arr[instArr[i]];
             }
             instStr2 = dupDelete( instStr2 );
@@ -674,7 +673,7 @@ $(function() {
             }
           } else {
             instStr2 = '';
-            for ( i = 0; i < instArr.length; i++ ) {
+            for(let i = 0; i < instArr.length; i++) {
               instStr2 += findK_arr[instArr[i]];
             }
             instStr2 = dupDelete( instStr2 );
@@ -804,18 +803,18 @@ $(function() {
         }
 
         if( mx_st < mx_ed ){
-          for (i = mx_st; i <= mx_ed; i = Math.round((i + mx_sp)　*　mop, 2)　/　mop) {
+          for(let i = mx_st; i <= mx_ed; i = Math.round((i + mx_sp)　*　mop, 2)　/　mop) {
             instArr.push(i);
           }
         } else {
-          for (i = mx_st; i >= mx_ed; i = Math.round((i + mx_sp)　*　mop, 2)　/　mop) {
+          for(let i = mx_st; i >= mx_ed; i = Math.round((i + mx_sp)　*　mop, 2)　/　mop) {
             instArr.push(i);
           }
         }
         instArr2 = iStr.split(mx_jnReg);
         mxLength = instArr.length <= instArr2.length ? instArr2.length : instArr.length;
         mxLength = !mx_of ? instArr2.length : mxLength;
-        for (j = 0; j < mxLength; j++){
+        for(let j = 0; j < mxLength; j++){
           instStr2 = '';
           if( instArr.length > j ){
             instStr3 = Math.abs(instArr[j]) | 0;
@@ -862,18 +861,18 @@ $(function() {
         dt_st = dt_st.getTime();
         dt_ed = dt_ed.getTime();
         if(dt_sp < 0){
-          for (x = dt_st; x >= dt_ed; x = x + dt_sp) {
+          for(let x = dt_st; x >= dt_ed; x = x + dt_sp) {
             instArr.push(x);
           }
         } else if(dt_sp > 0){
-          for (x = dt_st; x <= dt_ed; x = x + dt_sp) {
+          for(let x = dt_st; x <= dt_ed; x = x + dt_sp) {
             instArr.push(x);
           }
         }
         instArr2 = iStr.split(dt_jnReg);
         dtLength = instArr.length <= instArr2.length ? instArr2.length : instArr.length;
         dtLength = !dt_of ? instArr2.length : dtLength;
-        for (j = 0; j < dtLength; j++){
+        for(let j = 0; j < dtLength; j++){
           instStr2 = '';
           if( instArr.length > j ){
             nDate = new Date(instArr[j]);
@@ -881,7 +880,7 @@ $(function() {
             YY = YYYY.toString(10).slice(-2);
             M = nDate.getMonth() + 1;
             MM = ('0' + M).slice(-2);
-            D = nDate.getDate() + 1;
+            D = nDate.getDate();
             DD = ('0' + D).slice(-2);
             d = nDate.getDay();
             d1 = DayArr[d][0];
@@ -907,7 +906,6 @@ $(function() {
           } else {
             instStr2 += '___2______2___';
           }
-          console.log(instStr2)
           instStr2 = instStr2.replace(/___1___(.*?)___1______2___(.*?)___2___/g, dt_reg2);
           instStr += instStr2 + dt_jn;
         }
@@ -922,7 +920,7 @@ $(function() {
         instArr = iStr.split(/\n/g);
         instArr2 = $opt.val().split(/\n/g);
         mxLength = instArr.length <= instArr2.length ? instArr2.length : instArr.length;
-        for (i = 0; i < mxLength; i++){
+        for(let i = 0; i < mxLength; i++){
           if( instArr[i] ){
             instStr += instArr[i];
           }
@@ -937,7 +935,7 @@ $(function() {
         instArr = iStr.split('');
         instArr2 = $opt.val().split('');
         mxLength = instArr.length <= instArr2.length ? instArr2.length : instArr.length;
-        for (i = 0; i < mxLength; i++){
+        for(let i = 0; i < mxLength; i++){
           if( instArr[i] ){
             instStr += instArr[i];
           }
