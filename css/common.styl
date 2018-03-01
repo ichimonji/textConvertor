@@ -173,6 +173,24 @@ h1, h2, h3
         text-align center
         +break(sm)
           margin-right 0
+.ctLabel
+  margin 0 5px
+  width 100%
+  +break(sm)
+    margin 1px
+    width auto
+
+.ctGroup
+  display block
+  width auto
+  margin 1px
+  +break(sm)
+    flexer( column, nowrap, flex-start, stretch)
+  &Rd + &
+    display none
+  &Rd:checked + &
+    display flex
+
 .ct-set
   flexer( row, nowrap, flex-start, flex-start )
   padding 5px
@@ -291,7 +309,7 @@ h1, h2, h3
     overflow hidden
     border-radius 3px
     padding 0
-    margin 1px
+    margin 1px 0 2px
     width 100%
     flex-grow 1
     & > .body
@@ -364,14 +382,27 @@ h1, h2, h3
         color $col_white
         margin 10px -10px -10px
         padding 10px
+        font-size 18px
       & > h3
         display block
         background-color $col_gray
         color $col_white
         margin 10px -10px 10px
         padding 6px 10px
+        font-size 16px
         & + br
           display none
+      & > h4
+        display: block
+        margin: 10px 0
+        padding: 10px 10px 4px 0
+        border-bottom: 1px solid #000
+        font-size: 14px
+        line-height: 1
+        & + br
+          display none
+      & > h3 + h4
+        margin-top -10px
       & > ul > li
         padding-left 5px
         & > code:first-child
@@ -454,6 +485,35 @@ h1, h2, h3
           width 60%
         &:nth-of-type(5)
           width 40%
+      .input-group-addon
+        background-color $col_primary
+        color $col_white
+        border-radius 0
+        border none
+        padding 5px
+
+#ctset17 + .ct-set
+  .form-group
+    .input-group-sm
+      float left
+      width 25%
+      &:nth-of-type(1)
+      &:nth-of-type(3)
+        width 15%
+      &:nth-of-type(2)
+        width 20%
+      &:nth-of-type(4)
+      &:nth-of-type(5)
+        width 25%
+      +break(sm)
+        width 50%
+        &:nth-of-type(1)
+        &:nth-of-type(2)
+        &:nth-of-type(3)
+        &:nth-of-type(4)
+          width 50%
+        &:nth-of-type(5)
+          width 100%
       .input-group-addon
         background-color $col_primary
         color $col_white

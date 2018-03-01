@@ -50,9 +50,11 @@ mixin dlBox(id)
           +bt( val[0], val[1], val[2] )
       if setLbs
         div.btn-group.btn-group-sm( role = 'group', aria-label = '...' )
-          each val in setLbs.lb
-            +lb( ...val )
-          each val in setLbs.bt
-            +bt( val[0], val[1], val[2] )
+          if setLbs.lb
+            each val in setLbs.lb
+              +lb( ...val )
+          if setLbs.bt
+            each val in setLbs.bt
+              +bt( val[0], val[1], val[2] )
       if block
         block

@@ -5,30 +5,7 @@ $(function() {
     $bt = $( '.bt-control' ),
     $genre = $( '.ct-set' ),
     $genreHead = $genre.find( '.head label' ),
-    $genreBody = $genre.find( '.body' ),
-    DayArr = [
-      ['Sunday', 'Sun', 'S', '日曜日', '日'],
-      ['Monday', 'Mon', 'M', '月曜日', '月'],
-      ['Tuesday', 'Tue', 'T', '火曜日', '火'],
-      ['Wednesday', 'Wed', 'W', '水曜日', '水'],
-      ['Thursday', 'Thu', 'T', '木曜日', '木'],
-      ['Friday', 'Fri', 'F', '金曜日', '金'],
-      ['Saturday', 'Sat', 'S', '土曜日', '土']
-    ],
-    MonthArr = [
-      ['January', 'Jan', '一月', '睦月'],
-      ['February', 'Feb', '二月', '如月'],
-      ['March', 'Mar', '三月', '弥生'],
-      ['April', 'Apr', '四月', '卯月'],
-      ['May', 'May', '五月', '皐月'],
-      ['June', 'Jun', '六月', '水無月'],
-      ['July', 'Jul', '七月', '文月'],
-      ['August', 'Aug', '八月', '葉月'],
-      ['September', 'Sep', '九月', '長月'],
-      ['October', 'Oct', '十月', '神無月'],
-      ['November', 'Nov', '十一月', '霜月'],
-      ['December', 'Dec', '十二月', '師走']
-    ];
+    $genreBody = $genre.find( '.body' );
 
   let
     histArr = [ { 'ipt':'', 'opt':'' } ],
@@ -912,6 +889,41 @@ $(function() {
         oStr = instStr;
         break;
 
+    // listing
+      case 'listing':
+        let
+          rz_type = serialData[$('.rz_type:checked').val()];
+          rz_sp = $('#rz_step').val(),
+          rz_am = parseInt($('#rz_amount').val(), 10),
+          rz_jn = $('#rz_join').val().replace(/\\n/g, '\n'),
+          rz_of = $('#rz_of').prop('checked'),
+          rz_reg = $('#rz_reg').val(),
+          rz_jnReg = new RegExp(rz_jn, 'g');
+        instArr = [];
+        for(let i = 0; i <= rz_am; i++){
+          instArr.push(rz_type[i % rz_type.length])
+        }
+        instArr2 = iStr.split(rz_jnReg);
+        rzLength = instArr.length <= instArr2.length ? instArr2.length : instArr.length;
+        rzLength = !rz_of ? instArr2.length : rzLength;
+        for(let j = 0; j < rzLength; j++){
+          instStr2 = '';
+          if( instArr.length > j ){
+            instStr2 += '___1___' + instArr[j] + '___1___';
+          } else {
+            instStr2 += '___1______1___';
+          }
+          if( instArr2.length > j ){
+            instStr2 += '___2___' + instArr2[j] + '___2___';
+          } else {
+            instStr2 += '___2______2___';
+          }
+          instStr2 = instStr2.replace(/___1___(.*?)___1______2___(.*?)___2___/g, rz_reg);
+          instStr += instStr2 + rz_jn;
+        }
+        oStr = instStr;
+        break;
+
     // merge
       case 'merge1':
         oStr = iStr + '\n' + $opt.val();
@@ -990,6 +1002,16 @@ $(function() {
       output( iStr,oStr );
     }
   });
-
   output( $ipt.val(),$opt.val() );
+
+  // タブ操作
+  let
+    $ctGroupRd = $('[name = ctGroupRd]'),
+    $tabBtn = $('.ctLabel').children('.btn');
+  $ctGroupRd.on('change', function(e){
+    var ival = $ctGroupRd.filter(':checked').attr('id');
+    $tabBtn.addClass('btn-info').removeClass('btn-primary');
+    $tabBtn.filter('[for=' + ival + ']').addClass('btn-primary').removeClass('btn-info');
+  });
+  $tabBtn.eq(0).click();
 });
