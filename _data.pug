@@ -130,6 +130,7 @@
         'bts': [
           ['rev-chara', '', '文字単位で反転'],
           ['rev-line', '', '行単位で反転'],
+          ['rev-line2', '', '行ごとに文字単位で反転'],
           ['rev-word', '', '単語単位で反転'],
           ['sort1', '', '行単位で昇順に整列'],
           ['sort2', '', '行単位で降順に整列'],
@@ -239,14 +240,21 @@
         'str': '連続データ',
         'lbs': {
           'lb': [
-            ['rz_type', 'rd', 'hkana', 'あいう', true],
-            ['rz_type', 'rd', 'kkana', 'アイウ'],
-            ['rz_type', 'rd', 'iroha', 'いろは'],
-            ['rz_type', 'rd', 'iroha2', 'イロハ'],
-            ['rz_type', 'rd', 'iroha3', '以呂波'],
-            ['rz_type', 'rd', 'wcjk', '日月火'],
+            ['rz_type', 'rd', 'hkana', 'あ い う', true],
+            ['rz_type', 'rd', 'kkana', 'ア イ ウ'],
+            ['rz_type', 'rd', 'iroha', 'い ろ は'],
+            ['rz_type', 'rd', 'iroha2', 'イ ロ ハ'],
+            ['rz_type', 'rd', 'iroha3', '以 呂 波'],
+            ['rz_type', 'rd', 'wcjk', '日 月 火'],
+            ['rz_type', 'rd', 'wen', '曜日（英語）'],
+            ['rz_type', 'rd', 'wen2', '曜日（英語略）'],
+            ['rz_type', 'rd', 'men', '月（英語）'],
+            ['rz_type', 'rd', 'men2', '月（英語略）'],
             ['rz_type', 'rd', 'alpha', 'ABC'],
-            ['rz_type', 'rd', 'alpha2', 'abc']
+            ['rz_type', 'rd', 'alpha2', 'abc'],
+            ['rz_type', 'rd', 'eto12', '十二支'],
+            ['rz_type', 'rd', 'eto10', '十干'],
+            ['rz_type', 'rd', 'eto60', '干支']
           ]
         }
       }

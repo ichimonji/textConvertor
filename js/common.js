@@ -419,6 +419,13 @@ $(function() {
         for(let i = instArr.length - 1; i >= 0; i--) instStr += instArr[i] + '\n';
         oStr = instStr;
         break;
+      case 'rev-line2':
+        instArr = iStr.replace(/\r\n/g, '\n').split(/\n/);
+        for(let i = 0; i < instArr.length; i++){
+          instStr += instArr[i].split('').reverse().join('') + '\n';
+        }
+        oStr = instStr;
+        break;
       case 'rev-word':
         instArr = iStr.replace(/\r\n/g, '\n').replace(/(\s)/g, '||||$1||||').split('||||');
         for(let i = instArr.length - 1; i >= 0; i--) instStr += instArr[i];
@@ -893,14 +900,14 @@ $(function() {
       case 'listing':
         let
           rz_type = serialData[$('.rz_type:checked').val()];
-          rz_sp = $('#rz_step').val(),
+          rz_sp = parseInt($('#rz_step').val(), 10),
           rz_am = parseInt($('#rz_amount').val(), 10),
           rz_jn = $('#rz_join').val().replace(/\\n/g, '\n'),
           rz_of = $('#rz_of').prop('checked'),
           rz_reg = $('#rz_reg').val(),
           rz_jnReg = new RegExp(rz_jn, 'g');
         instArr = [];
-        for(let i = 0; i <= rz_am; i++){
+        for(let i = 0; i < rz_sp * rz_am; i = i + rz_sp){
           instArr.push(rz_type[i % rz_type.length])
         }
         instArr2 = iStr.split(rz_jnReg);

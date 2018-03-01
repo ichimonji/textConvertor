@@ -290,6 +290,7 @@
               <dd class="body">
                 <button class="btn btn-primary btn-sm bt-control" type="button" value="rev-chara">文字単位で反転</button>
                 <button class="btn btn-primary btn-sm bt-control" type="button" value="rev-line">行単位で反転</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" value="rev-line2">行ごとに文字単位で反転</button>
                 <button class="btn btn-primary btn-sm bt-control" type="button" value="rev-word">単語単位で反転</button>
                 <button class="btn btn-primary btn-sm bt-control" type="button" value="sort1">行単位で昇順に整列</button>
                 <button class="btn btn-primary btn-sm bt-control" type="button" value="sort2">行単位で降順に整列</button>
@@ -450,28 +451,49 @@
               <dd class="body">
                 <div class="btn-group btn-group-sm" role="group" aria-label="...">
                   <label class="btn btn-primary">
-                    <input class="rz_type" name="rz_type" type="radio" value="hkana" checked="checked"> あいう
+                    <input class="rz_type" name="rz_type" type="radio" value="hkana" checked="checked"> あ い う
                   </label>
                   <label class="btn btn-primary">
-                    <input class="rz_type" name="rz_type" type="radio" value="kkana"> アイウ
+                    <input class="rz_type" name="rz_type" type="radio" value="kkana"> ア イ ウ
                   </label>
                   <label class="btn btn-primary">
-                    <input class="rz_type" name="rz_type" type="radio" value="iroha"> いろは
+                    <input class="rz_type" name="rz_type" type="radio" value="iroha"> い ろ は
                   </label>
                   <label class="btn btn-primary">
-                    <input class="rz_type" name="rz_type" type="radio" value="iroha2"> イロハ
+                    <input class="rz_type" name="rz_type" type="radio" value="iroha2"> イ ロ ハ
                   </label>
                   <label class="btn btn-primary">
-                    <input class="rz_type" name="rz_type" type="radio" value="iroha3"> 以呂波
+                    <input class="rz_type" name="rz_type" type="radio" value="iroha3"> 以 呂 波
                   </label>
                   <label class="btn btn-primary">
-                    <input class="rz_type" name="rz_type" type="radio" value="wcjk"> 日月火
+                    <input class="rz_type" name="rz_type" type="radio" value="wcjk"> 日 月 火
+                  </label>
+                  <label class="btn btn-primary">
+                    <input class="rz_type" name="rz_type" type="radio" value="wen"> 曜日（英語）
+                  </label>
+                  <label class="btn btn-primary">
+                    <input class="rz_type" name="rz_type" type="radio" value="wen2"> 曜日（英語略）
+                  </label>
+                  <label class="btn btn-primary">
+                    <input class="rz_type" name="rz_type" type="radio" value="men"> 月（英語）
+                  </label>
+                  <label class="btn btn-primary">
+                    <input class="rz_type" name="rz_type" type="radio" value="men2"> 月（英語略）
                   </label>
                   <label class="btn btn-primary">
                     <input class="rz_type" name="rz_type" type="radio" value="alpha"> ABC
                   </label>
                   <label class="btn btn-primary">
                     <input class="rz_type" name="rz_type" type="radio" value="alpha2"> abc
+                  </label>
+                  <label class="btn btn-primary">
+                    <input class="rz_type" name="rz_type" type="radio" value="eto12"> 十二支
+                  </label>
+                  <label class="btn btn-primary">
+                    <input class="rz_type" name="rz_type" type="radio" value="eto10"> 十干
+                  </label>
+                  <label class="btn btn-primary">
+                    <input class="rz_type" name="rz_type" type="radio" value="eto60"> 干支
                   </label>
                 </div>
                 <div class="form-inline">
@@ -494,7 +516,7 @@
                     </div>
                     <div class="input-group input-group-sm">
                       <label class="input-group-addon">
-                        <input id="mx_of" type="checkbox" checked="checked"> overflow
+                        <input id="rz_of" type="checkbox" checked="checked"> overflow
                       </label>
                       <button class="form-control btn btn-primary bt-control" type="button" title="連続データ" value="listing">生成</button>
                     </div>
@@ -715,6 +737,8 @@ IASTを京都・ハーバード方式に</li>
 文字単位でテキスト全体を反転</li>
 <li><code>行単位で反転</code><br>
 行単位でテキスト全体を反転</li>
+<li><code>行ごとに文字単位で反転</code><br>
+一行ずつ文字を反転する</li>
 <li><code>単語単位で反転</code><br>
 単語（スペース区切り評価）でテキスト全体を反転</li>
 <li><code>行単位で昇順に整列</code><br>
