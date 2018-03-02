@@ -41,23 +41,23 @@ html( lang = 'en' )
             label.btn.btn-info( for = 'ctGroup_unit' ) 文字列生成
           input.ctGroupRd.hidden#ctGroup_code( type = 'radio', name = 'ctGroupRd', checked = 'checked' )
           div.ctGroup
-            +dlBox('ctset01')
-            +dlBox('ctset02')
-            +dlBox('ctset03')
-            +dlBox('ctset04')
+            +dlBox('ctset_case')
+            +dlBox('ctset_encode')
+            +dlBox('ctset_unicode')
+            +dlBox('ctset_numeral')
           input.ctGroupRd.hidden#ctGroup_lang( type = 'radio', name = 'ctGroupRd' )
           div.ctGroup
-            +dlBox('ctset16')
-            +dlBox('ctset09')
-            +dlBox('ctset10')
-            +dlBox('ctset11')
+            +dlBox('ctset_number')
+            +dlBox('ctset_japan')
+            +dlBox('ctset_cjk')
+            +dlBox('ctset_skt')
           input.ctGroupRd.hidden#ctGroup_cont( type = 'radio', name = 'ctGroupRd' )
           div.ctGroup
-            +dlBox('ctset05')
-            +dlBox('ctset06')
-            +dlBox('ctset07')
-            +dlBox('ctset08')
-            +dlBox('ctset12')
+            +dlBox('ctset_extract')
+            +dlBox('ctset_extall')
+            +dlBox('ctset_reverse')
+            +dlBox('ctset_dup')
+            +dlBox('ctset_grep')
               div.form-inline
                 div.form-group
                   div.input-group.input-group-sm
@@ -68,10 +68,10 @@ html( lang = 'en' )
                     input.form-control( type = 'text', id = 'rep_rep', value = '', placeholder = 'Replace With' )
                     span.input-group-btn
                       button.btn.btn-primary.bt-control( type = 'button', title = '置換' , value = 'replacement' ) 置換
-            +dlBox('ctset14')
+            +dlBox('ctset_side')
           input.ctGroupRd.hidden#ctGroup_unit( type = 'radio', name = 'ctGroupRd' )
           div.ctGroup
-            +dlBox('ctset13')
+            +dlBox('ctset_numbering')
               div.form-inline
                 div.form-group
                   div.input-group.input-group-sm
@@ -95,7 +95,7 @@ html( lang = 'en' )
                   div.input-group.input-group-sm
                     label.input-group-addon #[input#mx_of( type = 'checkbox', checked = 'checked' )] overflow
                     button.form-control.btn.btn-primary.bt-control( type = 'button', title = '連番生成', value = 'numbering' ) 生成
-            +dlBox('ctset15')
+            +dlBox('ctset_dating')
               div.form-inline
                 div.form-group
                   div.input-group.input-group-sm
@@ -118,9 +118,27 @@ html( lang = 'en' )
                   div.input-group.input-group-sm
                     label.input-group-addon #[input#dt_of( type = 'checkbox', checked = 'checked' )] overflow
                     button.form-control.btn.btn-primary.bt-control( type = 'button', title = '日付連番生成', value = 'dating' ) 生成
-            +dlBox('ctset17')
+            +dlBox('ctset_listing')
               div.form-inline
                 div.form-group
+                  div.input-group.input-group-sm
+                    label.input-group-addon( title = '種類' ) type
+                    select.form-control.rz-type( name = 'rz_type' )
+                      option( value = 'hkana', selected ) あいう～ん
+                      option( value = 'kkana' ) アイウ～ン
+                      option( value = 'iroha' ) いろは～ん
+                      option( value = 'iroha2' ) イロハ～ン
+                      option( value = 'iroha3' ) 以呂波～旡
+                      option( value = 'wcjk' ) 日月火～土
+                      option( value = 'wen' ) 曜日（英語）
+                      option( value = 'wen2' ) 曜日（英語略）
+                      option( value = 'men' ) 月（英語）
+                      option( value = 'men2' ) 月（英語略）
+                      option( value = 'alpha' ) ABC～Z
+                      option( value = 'alpha2' ) abc～z
+                      option( value = 'eto12' ) 十二支
+                      option( value = 'eto10' ) 十干
+                      option( value = 'eto60' ) 干支
                   div.input-group.input-group-sm
                     label.input-group-addon( title = '～刻みで' ) step
                     input.form-control#rz_step( type = 'number', value = '1', placeholder = 'Step' )

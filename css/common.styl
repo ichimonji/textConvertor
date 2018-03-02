@@ -174,18 +174,21 @@ h1, h2, h3
         +break(sm)
           margin-right 0
 .ctLabel
-  margin 0 5px
-  width 100%
+  margin 0 -4px
+  width auto
+  border-radius 0
+  .btn
+    border-radius 0 !important
   +break(sm)
-    margin 1px
     width auto
+    margin-bottom 3px
 
 .ctGroup
-  display block
+  flexer( column, nowrap, flex-start, stretch )
   width auto
   margin 1px
   +break(sm)
-    flexer( column, nowrap, flex-start, stretch)
+    flexer( column, nowrap, flex-start, stretch )
   &Rd + &
     display none
   &Rd:checked + &
@@ -498,21 +501,27 @@ h1, h2, h3
       float left
       width 25%
       &:nth-of-type(1)
-      &:nth-of-type(3)
-        width 15%
+        width 60%
       &:nth-of-type(2)
+      &:nth-of-type(3)
         width 20%
       &:nth-of-type(4)
       &:nth-of-type(5)
-        width 25%
+        width 33.33%
+      &:nth-of-type(6)
+        width 33.34%
       +break(sm)
         width 50%
         &:nth-of-type(1)
+          width 100%
         &:nth-of-type(2)
         &:nth-of-type(3)
-        &:nth-of-type(4)
           width 50%
+        &:nth-of-type(4)
+          width 40%
         &:nth-of-type(5)
+          width 60%
+        &:nth-of-type(6)
           width 100%
       .input-group-addon
         background-color $col_primary

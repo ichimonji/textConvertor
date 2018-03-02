@@ -74,10 +74,10 @@
           </div>
           <input class="ctGroupRd hidden" id="ctGroup_code" type="radio" name="ctGroupRd" checked="checked">
           <div class="ctGroup">
-            <input class="genre" id="ctset01" type="checkbox" name="genre" checked="checked">
+            <input class="genre" id="ctset_case" type="checkbox" name="genre" checked="checked">
             <dl class="ct-set">
               <dt class="head">
-                <label for="ctset01">ケース</label>
+                <label for="ctset_case">ケース</label>
               </dt>
               <dd class="body">
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="頭文字のみ大文字に" value="case-title">TITLE</button>
@@ -93,10 +93,10 @@
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="符号付きラテン文字を標準化" value="case7">Àóṫœ <i class="glyphicon glyphicon-arrow-right"></i> Aotoe</button>
               </dd>
             </dl>
-            <input class="genre" id="ctset02" type="checkbox" name="genre" checked="checked">
+            <input class="genre" id="ctset_encode" type="checkbox" name="genre" checked="checked">
             <dl class="ct-set">
               <dt class="head">
-                <label for="ctset02">Url/Base64</label>
+                <label for="ctset_encode">Url/Base64</label>
               </dt>
               <dd class="body">
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="パーセントエンコード（;/?:@&amp; = +$-_!~*.,()a#'以外）" value="url-encode">URL エンコード(軽)</button>
@@ -107,10 +107,10 @@
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="BASE64 デコード" value="b64-decode">BASE64 デコード</button>
               </dd>
             </dl>
-            <input class="genre" id="ctset03" type="checkbox" name="genre" checked="checked">
+            <input class="genre" id="ctset_unicode" type="checkbox" name="genre" checked="checked">
             <dl class="ct-set">
               <dt class="head">
-                <label for="ctset03">Unicode関連</label>
+                <label for="ctset_unicode">Unicode関連</label>
               </dt>
               <dd class="body">
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="Unicode値でのパーセントエンコード（%u～）" value="uni-escape">エスケープ</button>
@@ -123,10 +123,10 @@
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="サロゲートペアをUTF32表記に" value="uni-escape5">UTF-16 <i class="glyphicon glyphicon-arrow-right"></i> UTF-32</button>
               </dd>
             </dl>
-            <input class="genre" id="ctset04" type="checkbox" name="genre" checked="checked">
+            <input class="genre" id="ctset_numeral" type="checkbox" name="genre" checked="checked">
             <dl class="ct-set">
               <dt class="head">
-                <label for="ctset04">数値型</label>
+                <label for="ctset_numeral">数値型</label>
               </dt>
               <dd class="body">
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="10進数を2進数に" value="num-10_2">Dec <i class="glyphicon glyphicon-arrow-right"></i> Bin</button>
@@ -140,10 +140,10 @@
           </div>
           <input class="ctGroupRd hidden" id="ctGroup_lang" type="radio" name="ctGroupRd">
           <div class="ctGroup">
-            <input class="genre" id="ctset16" type="checkbox" name="genre" checked="checked">
+            <input class="genre" id="ctset_number" type="checkbox" name="genre" checked="checked">
             <dl class="ct-set">
               <dt class="head">
-                <label for="ctset16">数字</label>
+                <label for="ctset_number">数字</label>
               </dt>
               <dd class="body">
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="アラビア数字を漢数字に（桁付き）" value="num-a_j">123 <i class="glyphicon glyphicon-arrow-right"></i> 百二十三</button>
@@ -164,10 +164,10 @@
                 </div>
               </dd>
             </dl>
-            <input class="genre" id="ctset09" type="checkbox" name="genre" checked="checked">
+            <input class="genre" id="ctset_japan" type="checkbox" name="genre" checked="checked">
             <dl class="ct-set">
               <dt class="head">
-                <label for="ctset09">日本語関連</label>
+                <label for="ctset_japan">日本語関連</label>
               </dt>
               <dd class="body">
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="全角ひらがなを全角カタカナに" value="jpn1">あ <i class="glyphicon glyphicon-arrow-right"></i> ア</button>
@@ -186,10 +186,10 @@
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="ヘボン式ローマ字を全角カタカナに" value="jpnd">tokyo <i class="glyphicon glyphicon-arrow-right"></i> トキョ</button>
               </dd>
             </dl>
-            <input class="genre" id="ctset10" type="checkbox" name="genre" checked="checked">
+            <input class="genre" id="ctset_cjk" type="checkbox" name="genre" checked="checked">
             <dl class="ct-set">
               <dt class="head">
-                <label for="ctset10">CJK関連</label>
+                <label for="ctset_cjk">CJK関連</label>
               </dt>
               <dd class="body">
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="日本字体を簡体字に" value="tocjk1">日 <i class="glyphicon glyphicon-arrow-right"></i> 簡体</button>
@@ -201,10 +201,10 @@
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="漢字の直後にピンインを追加" value="tocjk7">ピンイン</button>
               </dd>
             </dl>
-            <input class="genre" id="ctset11" type="checkbox" name="genre" checked="checked">
+            <input class="genre" id="ctset_skt" type="checkbox" name="genre" checked="checked">
             <dl class="ct-set">
               <dt class="head">
-                <label for="ctset11">Sanskrit</label>
+                <label for="ctset_skt">Sanskrit</label>
               </dt>
               <dd class="body">
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="デーヴァナガリーを京都・ハーバード方式に" value="skt1">संस्कृत <i class="glyphicon glyphicon-arrow-right"></i> saMskRta</button>
@@ -218,10 +218,10 @@
           </div>
           <input class="ctGroupRd hidden" id="ctGroup_cont" type="radio" name="ctGroupRd">
           <div class="ctGroup">
-            <input class="genre" id="ctset05" type="checkbox" name="genre" checked="checked">
+            <input class="genre" id="ctset_extract" type="checkbox" name="genre" checked="checked">
             <dl class="ct-set">
               <dt class="head">
-                <label for="ctset05">抽出/排除</label>
+                <label for="ctset_extract">抽出/排除</label>
               </dt>
               <dd class="body">
                 <div class="btn-group btn-group-sm" role="group" aria-label="...">
@@ -267,10 +267,10 @@
                 </div>
               </dd>
             </dl>
-            <input class="genre" id="ctset06" type="checkbox" name="genre" checked="checked">
+            <input class="genre" id="ctset_extall" type="checkbox" name="genre" checked="checked">
             <dl class="ct-set">
               <dt class="head">
-                <label for="ctset06">一括排除</label>
+                <label for="ctset_extall">一括排除</label>
               </dt>
               <dd class="body">
                 <button class="btn btn-primary btn-sm bt-control" type="button" value="newline">全ての改行</button>
@@ -282,10 +282,10 @@
                 <button class="btn btn-primary btn-sm bt-control" type="button" value="ex_dup3">重複する単語</button>
               </dd>
             </dl>
-            <input class="genre" id="ctset07" type="checkbox" name="genre" checked="checked">
+            <input class="genre" id="ctset_reverse" type="checkbox" name="genre" checked="checked">
             <dl class="ct-set">
               <dt class="head">
-                <label for="ctset07">反転/ソート</label>
+                <label for="ctset_reverse">反転/ソート</label>
               </dt>
               <dd class="body">
                 <button class="btn btn-primary btn-sm bt-control" type="button" value="rev-chara">文字単位で反転</button>
@@ -298,10 +298,10 @@
                 <button class="btn btn-primary btn-sm bt-control" type="button" value="sort4">文字単位で降順に整列</button>
               </dd>
             </dl>
-            <input class="genre" id="ctset08" type="checkbox" name="genre" checked="checked">
+            <input class="genre" id="ctset_dup" type="checkbox" name="genre" checked="checked">
             <dl class="ct-set">
               <dt class="head">
-                <label for="ctset08">重複文字/行列</label>
+                <label for="ctset_dup">重複文字/行列</label>
               </dt>
               <dd class="body">
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="重複部分のみ削除" value="dup1">ABA <i class="glyphicon glyphicon-arrow-right"></i> AB</button>
@@ -325,10 +325,10 @@
                 </div>
               </dd>
             </dl>
-            <input class="genre" id="ctset12" type="checkbox" name="genre" checked="checked">
+            <input class="genre" id="ctset_grep" type="checkbox" name="genre" checked="checked">
             <dl class="ct-set">
               <dt class="head">
-                <label for="ctset12">正規表現</label>
+                <label for="ctset_grep">正規表現</label>
               </dt>
               <dd class="body">
                 <div class="form-inline">
@@ -347,10 +347,10 @@
                 </div>
               </dd>
             </dl>
-            <input class="genre" id="ctset14" type="checkbox" name="genre" checked="checked">
+            <input class="genre" id="ctset_side" type="checkbox" name="genre" checked="checked">
             <dl class="ct-set">
               <dt class="head">
-                <label for="ctset14">左右連結</label>
+                <label for="ctset_side">左右連結</label>
               </dt>
               <dd class="body">
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="左右を上下結合" value="merge1">上下に結合</button>
@@ -361,10 +361,10 @@
           </div>
           <input class="ctGroupRd hidden" id="ctGroup_unit" type="radio" name="ctGroupRd">
           <div class="ctGroup">
-            <input class="genre" id="ctset13" type="checkbox" name="genre" checked="checked">
+            <input class="genre" id="ctset_numbering" type="checkbox" name="genre" checked="checked">
             <dl class="ct-set">
               <dt class="head">
-                <label for="ctset13">連番生成</label>
+                <label for="ctset_numbering">連番生成</label>
               </dt>
               <dd class="body">
                 <div class="form-inline">
@@ -403,10 +403,10 @@
                 </div>
               </dd>
             </dl>
-            <input class="genre" id="ctset15" type="checkbox" name="genre" checked="checked">
+            <input class="genre" id="ctset_dating" type="checkbox" name="genre" checked="checked">
             <dl class="ct-set">
               <dt class="head">
-                <label for="ctset15">日付連番生成</label>
+                <label for="ctset_dating">日付連番生成</label>
               </dt>
               <dd class="body">
                 <div class="form-inline">
@@ -443,61 +443,34 @@
                 </div>
               </dd>
             </dl>
-            <input class="genre" id="ctset17" type="checkbox" name="genre" checked="checked">
+            <input class="genre" id="ctset_listing" type="checkbox" name="genre" checked="checked">
             <dl class="ct-set">
               <dt class="head">
-                <label for="ctset17">連続データ</label>
+                <label for="ctset_listing">連続データ</label>
               </dt>
               <dd class="body">
-                <div class="btn-group btn-group-sm" role="group" aria-label="...">
-                  <label class="btn btn-primary">
-                    <input class="rz_type" name="rz_type" type="radio" value="hkana" checked="checked"> あ い う
-                  </label>
-                  <label class="btn btn-primary">
-                    <input class="rz_type" name="rz_type" type="radio" value="kkana"> ア イ ウ
-                  </label>
-                  <label class="btn btn-primary">
-                    <input class="rz_type" name="rz_type" type="radio" value="iroha"> い ろ は
-                  </label>
-                  <label class="btn btn-primary">
-                    <input class="rz_type" name="rz_type" type="radio" value="iroha2"> イ ロ ハ
-                  </label>
-                  <label class="btn btn-primary">
-                    <input class="rz_type" name="rz_type" type="radio" value="iroha3"> 以 呂 波
-                  </label>
-                  <label class="btn btn-primary">
-                    <input class="rz_type" name="rz_type" type="radio" value="wcjk"> 日 月 火
-                  </label>
-                  <label class="btn btn-primary">
-                    <input class="rz_type" name="rz_type" type="radio" value="wen"> 曜日（英語）
-                  </label>
-                  <label class="btn btn-primary">
-                    <input class="rz_type" name="rz_type" type="radio" value="wen2"> 曜日（英語略）
-                  </label>
-                  <label class="btn btn-primary">
-                    <input class="rz_type" name="rz_type" type="radio" value="men"> 月（英語）
-                  </label>
-                  <label class="btn btn-primary">
-                    <input class="rz_type" name="rz_type" type="radio" value="men2"> 月（英語略）
-                  </label>
-                  <label class="btn btn-primary">
-                    <input class="rz_type" name="rz_type" type="radio" value="alpha"> ABC
-                  </label>
-                  <label class="btn btn-primary">
-                    <input class="rz_type" name="rz_type" type="radio" value="alpha2"> abc
-                  </label>
-                  <label class="btn btn-primary">
-                    <input class="rz_type" name="rz_type" type="radio" value="eto12"> 十二支
-                  </label>
-                  <label class="btn btn-primary">
-                    <input class="rz_type" name="rz_type" type="radio" value="eto10"> 十干
-                  </label>
-                  <label class="btn btn-primary">
-                    <input class="rz_type" name="rz_type" type="radio" value="eto60"> 干支
-                  </label>
-                </div>
                 <div class="form-inline">
                   <div class="form-group">
+                    <div class="input-group input-group-sm">
+                      <label class="input-group-addon" title="種類">type</label>
+                      <select class="form-control rz-type" name="rz_type">
+                        <option value="hkana" selected>あいう～ん</option>
+                        <option value="kkana">アイウ～ン</option>
+                        <option value="iroha">いろは～ん</option>
+                        <option value="iroha2">イロハ～ン</option>
+                        <option value="iroha3">以呂波～旡</option>
+                        <option value="wcjk">日月火～土</option>
+                        <option value="wen">曜日（英語）</option>
+                        <option value="wen2">曜日（英語略）</option>
+                        <option value="men">月（英語）</option>
+                        <option value="men2">月（英語略）</option>
+                        <option value="alpha">ABC～Z</option>
+                        <option value="alpha2">abc～z</option>
+                        <option value="eto12">十二支</option>
+                        <option value="eto10">十干</option>
+                        <option value="eto60">干支</option>
+                      </select>
+                    </div>
                     <div class="input-group input-group-sm">
                       <label class="input-group-addon" title="～刻みで">step</label>
                       <input class="form-control" id="rz_step" type="number" value="1" placeholder="Step">

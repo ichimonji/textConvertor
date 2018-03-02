@@ -7,12 +7,15 @@ mixin metaAll( arr )
       meta( name = val[1], content = val[2] )
     else if val[0] === 'property'
       meta( property = val[1], content = val[2] )
+
 mixin linkAll( arr )
   each val in arr
     link( rel = 'stylesheet', href = val )
+
 mixin jsAll( arr )
   each val in arr
     script( src = val )
+
 mixin bt( id, title, txt = false )
   if txt
     - txt = txt.replace( '→', ' <i class="glyphicon glyphicon-arrow-right"></i> ' )
@@ -28,6 +31,7 @@ mixin bt( id, title, txt = false )
         block
     else
       button.btn.btn-primary.btn-sm.bt-control( type = 'button', value = id ) !{txt}
+
 mixin lb( group, tp, val, txt, ckd )
   if tp === 'cb'
     - type = 'checkbox'
@@ -38,6 +42,7 @@ mixin lb( group, tp, val, txt, ckd )
     label.btn.btn-primary #[input( class = group, name = group, type = type, value != val, checked = 'checked' )] #{txt}
   else
     label.btn.btn-primary #[input( class = group, name = group, type = type, value != val )] #{txt}
+
 mixin dlBox(id)
   - setBts = btsArr[id].bts
   - setLbs = btsArr[id].lbs
@@ -56,5 +61,10 @@ mixin dlBox(id)
           if setLbs.bt
             each val in setLbs.bt
               +bt( val[0], val[1], val[2] )
+          if setLbs.sl
+            - sl = setLbs.sl
+            select.form-control( class = sl.class, name = sl.class )
+              each val in sl.list
+                option( value = val[0] )= val[1]
       if block
         block
