@@ -71,6 +71,24 @@ html( lang = 'en' )
             +dlBox('ctset_side')
           input.ctGroupRd.hidden#ctGroup_unit( type = 'radio', name = 'ctGroupRd' )
           div.ctGroup
+            +dlBox('ctset_repeat')
+              div.form-inline
+                div.form-group
+                  div.input-group.input-group-sm
+                    label.input-group-addon( title = '文字列' ) str
+                    input.form-control#rp_string( type = 'text', value = '', placeholder = '文字列' )
+                  div.input-group.input-group-sm
+                    label.input-group-addon( title = '回数' ) times
+                    input.form-control#rp_time( type = 'number', value = '100' )
+                  div.input-group.input-group-sm
+                    label.input-group-addon( title = 'ごとに' ) join
+                    input.form-control#rp_join( type = 'text', value = '\\n', placeholder = 'Join' )
+                  div.input-group.input-group-sm
+                    label.input-group-addon( title = '置換' ) Reg
+                    input.form-control#rp_reg( type = 'text', value = '$1: $2', placeholder = 'Reg' )
+                  div.input-group.input-group-sm.input-group-bt
+                    label.input-group-addon #[input#rp_of( type = 'checkbox', checked = 'checked' )] overflow
+                    button.form-control.btn.btn-primary.bt-control( type = 'button', title = 'リピート生成', value = 'repeat' ) 生成
             +dlBox('ctset_numbering')
               div.form-inline
                 div.form-group
@@ -86,42 +104,42 @@ html( lang = 'en' )
                   div.input-group.input-group-sm
                     label.input-group-addon( title = 'ゼロパディング' ) padding
                     input.form-control#mx_padding( type = 'number', value = '3', placeholder = 'Padding' )
-                  div.input-group.input-group-sm
+                  div.input-group.input-group-sm.input-group-corn
                     label.input-group-addon( title = 'ごとに' ) join
                     input.form-control#mx_join( type = 'text', value = '\\n', placeholder = 'Join' )
                   div.input-group.input-group-sm
                     label.input-group-addon( title = '置換' ) Reg
                     input.form-control#mx_reg( type = 'text', value = '$1: $2', placeholder = 'Reg' )
-                  div.input-group.input-group-sm
+                  div.input-group.input-group-sm.input-group-bt
                     label.input-group-addon #[input#mx_of( type = 'checkbox', checked = 'checked' )] overflow
                     button.form-control.btn.btn-primary.bt-control( type = 'button', title = '連番生成', value = 'numbering' ) 生成
             +dlBox('ctset_dating')
               div.form-inline
                 div.form-group
-                  div.input-group.input-group-sm
+                  div.input-group.input-group-sm.input-group-spfull
                     label.input-group-addon( title = '開始日' ) Start
                     input.form-control#dt_start( type = 'date', value = '2017-01-01', placeholder = 'YYYY-MM-DD', pattern = '[0-9\-/]' )
                     label.input-group-addon( title = '終了日' ) End
                     input.form-control#dt_end( type = 'date', value = '2017-12-12', placeholder = 'YYYY-MM-DD', pattern = '[0-9\-/]' )
-                  div.input-group.input-group-sm
+                  div.input-group.input-group-sm.input-group-sp4
                     label.input-group-addon( title = '～刻みで' ) step
                     input.form-control#dt_step( type = 'number', value = '1', placeholder = 'Step' )
+                  div.input-group.input-group-sm.input-group-sp8r.input-group-corn
+                    label.input-group-addon( title = '日付タイプ' ) Type
+                    input.form-control#dt_reg( type = 'text', value = 'YYYY/MM/DD (d2)', placeholder = 'Type' )
                   div.input-group.input-group-sm
                     label.input-group-addon( title = 'ごとに' ) join
                     input.form-control#dt_join( type = 'text', value = '\\n', placeholder = 'Join' )
                   div.input-group.input-group-sm
-                    label.input-group-addon( title = '日付タイプ' ) Type
-                    input.form-control#dt_reg( type = 'text', value = 'YYYY/MM/DD (d2)', placeholder = 'Type' )
-                  div.input-group.input-group-sm
                     label.input-group-addon( title = '置換' ) Reg
                     input.form-control#dt_reg2( type = 'text', value = '$1: $2', placeholder = 'Reg' )
-                  div.input-group.input-group-sm
+                  div.input-group.input-group-sm.input-group-bt
                     label.input-group-addon #[input#dt_of( type = 'checkbox', checked = 'checked' )] overflow
                     button.form-control.btn.btn-primary.bt-control( type = 'button', title = '日付連番生成', value = 'dating' ) 生成
             +dlBox('ctset_listing')
               div.form-inline
                 div.form-group
-                  div.input-group.input-group-sm
+                  div.input-group.input-group-sm.input-group-spfull
                     label.input-group-addon( title = '種類' ) type
                     select.form-control.rz-type( name = 'rz_type' )
                       option( value = 'hkana', selected ) あいう～ん
@@ -148,10 +166,10 @@ html( lang = 'en' )
                   div.input-group.input-group-sm
                     label.input-group-addon( title = 'ごとに' ) join
                     input.form-control#rz_join( type = 'text', value = '\\n', placeholder = 'Join' )
-                  div.input-group.input-group-sm
+                  div.input-group.input-group-sm.input-group-corn
                     label.input-group-addon( title = '置換' ) Reg
                     input.form-control#rz_reg( type = 'text', value = '$1: $2', placeholder = 'Reg' )
-                  div.input-group.input-group-sm
+                  div.input-group.input-group-sm.input-group-bt
                     label.input-group-addon #[input#rz_of( type = 'checkbox', checked = 'checked' )] overflow
                     button.form-control.btn.btn-primary.bt-control( type = 'button', title = '連続データ', value = 'listing' ) 生成
           ul.link-list

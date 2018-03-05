@@ -447,6 +447,14 @@ $(function() {
         instArr = iStr.replace(/\r\n/g, '\n').split('');
         oStr = instArr.sort((a, b) => ((a < b) - (a > b))).join('');
         break;
+      case 'sort5':
+        instArr = iStr.replace(/\r\n/g, '\n').split('\n');
+        oStr = instArr.sort((a, b) => ((a.length > b.length) - (a.length < b.length))).join('\n');
+        break;
+      case 'sort6':
+        instArr = iStr.replace(/\r\n/g, '\n').split('\n');
+        oStr = instArr.sort((a, b) => ((a.length < b.length) - (a.length > b.length))).join('\n');
+        break;
 
     // Duplication/matrix-change
       case 'dup1':
@@ -753,6 +761,36 @@ $(function() {
         oStr = iStr.replace(find, instStr2);
         break;
 
+    // repeat
+      case 'repeat':
+        let
+          rp_str = $('#rp_string').val(),
+          rp_tm = parseInt($('#rp_time').val(), 10),
+          rp_jn = $('#rp_join').val().replace(/\\n/g, '\n'),
+          rp_of = $('#rp_of').prop('checked'),
+          rp_reg = $('#rp_reg').val(),
+          rp_jnReg = new RegExp(rp_jn, 'g');
+        instArr2 = iStr.split(rp_jnReg);
+        rpLength = rp_tm <= instArr2.length ? instArr2.length : rp_tm;
+        rpLength = !rp_of ? instArr2.length : rpLength;
+        for(let i = 0; i < rpLength; i++){
+          instStr2 = '';
+          if(rp_tm > i){
+            instStr2 += '___1___' + rp_str + '___1___';
+          } else {
+            instStr2 += '___1______1___';
+          }
+          if(instArr2.length > i){
+            instStr2 += '___2___' + instArr2[i] + '___2___';
+          } else {
+            instStr2 += '___2______2___';
+          }
+          instStr2 = instStr2.replace(/___1___(.*?)___1______2___(.*?)___2___/g, rp_reg);
+          instStr += instStr2 + rp_jn;
+        }
+        oStr = instStr;
+        break;
+
     // numbering
       case 'numbering':
         let
@@ -766,7 +804,6 @@ $(function() {
           mx_of = $('#mx_of').prop('checked'),
           mx_jnReg = new RegExp(mx_jn, 'g'),
           pd = Array(mx_pd + 1).join('0'),
-          i = 0,
           mop = 10000;
         if(mx_st > mx_ed && mx_sp > 0){
           break;
@@ -1020,5 +1057,5 @@ $(function() {
     $tabBtn.addClass('btn-info').removeClass('btn-primary');
     $tabBtn.filter('[for=' + ival + ']').addClass('btn-primary').removeClass('btn-info');
   });
-  $tabBtn.eq(3).click();
+  $tabBtn.eq(0).click();
 });

@@ -296,6 +296,8 @@
                 <button class="btn btn-primary btn-sm bt-control" type="button" value="sort2">行単位で降順に整列</button>
                 <button class="btn btn-primary btn-sm bt-control" type="button" value="sort3">文字単位で昇順に整列</button>
                 <button class="btn btn-primary btn-sm bt-control" type="button" value="sort4">文字単位で降順に整列</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" value="sort5">行単位で文字数が少ない順</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" value="sort6">行単位で文字数が多い順</button>
               </dd>
             </dl>
             <input class="genre" id="ctset_dup" type="checkbox" name="genre" checked="checked">
@@ -361,6 +363,40 @@
           </div>
           <input class="ctGroupRd hidden" id="ctGroup_unit" type="radio" name="ctGroupRd">
           <div class="ctGroup">
+            <input class="genre" id="ctset_repeat" type="checkbox" name="genre" checked="checked">
+            <dl class="ct-set">
+              <dt class="head">
+                <label for="ctset_repeat">リピート</label>
+              </dt>
+              <dd class="body">
+                <div class="form-inline">
+                  <div class="form-group">
+                    <div class="input-group input-group-sm">
+                      <label class="input-group-addon" title="文字列">str</label>
+                      <input class="form-control" id="rp_string" type="text" value="" placeholder="文字列">
+                    </div>
+                    <div class="input-group input-group-sm">
+                      <label class="input-group-addon" title="回数">times</label>
+                      <input class="form-control" id="rp_time" type="number" value="100">
+                    </div>
+                    <div class="input-group input-group-sm">
+                      <label class="input-group-addon" title="ごとに">join</label>
+                      <input class="form-control" id="rp_join" type="text" value="\n" placeholder="Join">
+                    </div>
+                    <div class="input-group input-group-sm">
+                      <label class="input-group-addon" title="置換">Reg</label>
+                      <input class="form-control" id="rp_reg" type="text" value="$1: $2" placeholder="Reg">
+                    </div>
+                    <div class="input-group input-group-sm input-group-bt">
+                      <label class="input-group-addon">
+                        <input id="rp_of" type="checkbox" checked="checked"> overflow
+                      </label>
+                      <button class="form-control btn btn-primary bt-control" type="button" title="リピート生成" value="repeat">生成</button>
+                    </div>
+                  </div>
+                </div>
+              </dd>
+            </dl>
             <input class="genre" id="ctset_numbering" type="checkbox" name="genre" checked="checked">
             <dl class="ct-set">
               <dt class="head">
@@ -385,7 +421,7 @@
                       <label class="input-group-addon" title="ゼロパディング">padding</label>
                       <input class="form-control" id="mx_padding" type="number" value="3" placeholder="Padding">
                     </div>
-                    <div class="input-group input-group-sm">
+                    <div class="input-group input-group-sm input-group-corn">
                       <label class="input-group-addon" title="ごとに">join</label>
                       <input class="form-control" id="mx_join" type="text" value="\n" placeholder="Join">
                     </div>
@@ -393,7 +429,7 @@
                       <label class="input-group-addon" title="置換">Reg</label>
                       <input class="form-control" id="mx_reg" type="text" value="$1: $2" placeholder="Reg">
                     </div>
-                    <div class="input-group input-group-sm">
+                    <div class="input-group input-group-sm input-group-bt">
                       <label class="input-group-addon">
                         <input id="mx_of" type="checkbox" checked="checked"> overflow
                       </label>
@@ -411,29 +447,29 @@
               <dd class="body">
                 <div class="form-inline">
                   <div class="form-group">
-                    <div class="input-group input-group-sm">
+                    <div class="input-group input-group-sm input-group-spfull">
                       <label class="input-group-addon" title="開始日">Start</label>
                       <input class="form-control" id="dt_start" type="date" value="2017-01-01" placeholder="YYYY-MM-DD" pattern="[0-9-/]">
                       <label class="input-group-addon" title="終了日">End</label>
                       <input class="form-control" id="dt_end" type="date" value="2017-12-12" placeholder="YYYY-MM-DD" pattern="[0-9-/]">
                     </div>
-                    <div class="input-group input-group-sm">
+                    <div class="input-group input-group-sm input-group-sp4">
                       <label class="input-group-addon" title="～刻みで">step</label>
                       <input class="form-control" id="dt_step" type="number" value="1" placeholder="Step">
+                    </div>
+                    <div class="input-group input-group-sm input-group-sp8r input-group-corn">
+                      <label class="input-group-addon" title="日付タイプ">Type</label>
+                      <input class="form-control" id="dt_reg" type="text" value="YYYY/MM/DD (d2)" placeholder="Type">
                     </div>
                     <div class="input-group input-group-sm">
                       <label class="input-group-addon" title="ごとに">join</label>
                       <input class="form-control" id="dt_join" type="text" value="\n" placeholder="Join">
                     </div>
                     <div class="input-group input-group-sm">
-                      <label class="input-group-addon" title="日付タイプ">Type</label>
-                      <input class="form-control" id="dt_reg" type="text" value="YYYY/MM/DD (d2)" placeholder="Type">
-                    </div>
-                    <div class="input-group input-group-sm">
                       <label class="input-group-addon" title="置換">Reg</label>
                       <input class="form-control" id="dt_reg2" type="text" value="$1: $2" placeholder="Reg">
                     </div>
-                    <div class="input-group input-group-sm">
+                    <div class="input-group input-group-sm input-group-bt">
                       <label class="input-group-addon">
                         <input id="dt_of" type="checkbox" checked="checked"> overflow
                       </label>
@@ -451,7 +487,7 @@
               <dd class="body">
                 <div class="form-inline">
                   <div class="form-group">
-                    <div class="input-group input-group-sm">
+                    <div class="input-group input-group-sm input-group-spfull">
                       <label class="input-group-addon" title="種類">type</label>
                       <select class="form-control rz-type" name="rz_type">
                         <option value="hkana" selected>あいう～ん</option>
@@ -483,11 +519,11 @@
                       <label class="input-group-addon" title="ごとに">join</label>
                       <input class="form-control" id="rz_join" type="text" value="\n" placeholder="Join">
                     </div>
-                    <div class="input-group input-group-sm">
+                    <div class="input-group input-group-sm input-group-corn">
                       <label class="input-group-addon" title="置換">Reg</label>
                       <input class="form-control" id="rz_reg" type="text" value="$1: $2" placeholder="Reg">
                     </div>
-                    <div class="input-group input-group-sm">
+                    <div class="input-group input-group-sm input-group-bt">
                       <label class="input-group-addon">
                         <input id="rz_of" type="checkbox" checked="checked"> overflow
                       </label>

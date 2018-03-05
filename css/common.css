@@ -756,15 +756,65 @@ h3 {
   display: block;
   margin-bottom: 0;
 }
-.ct-set .form-group .input-group-sm {
-  float: left;
+.ct-set .form-inline {
+  width: auto;
+  margin-right: auto;
 }
-.ct-set .form-group .input-group-sm .input-group-addon {
+.ct-set .form-inline .form-group {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -o-box-lines: multiple;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: start;
+  -moz-box-pack: start;
+  -o-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
+  -webkit-box-align: start;
+  -moz-box-align: start;
+  -o-box-align: start;
+  -ms-flex-align: start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+  -ms-flex-line-pack: stretch;
+  -webkit-align-content: stretch;
+  align-content: stretch;
+}
+.ct-set .form-inline .form-group .input-group-sm {
+  width: 20%;
+}
+.ct-set .form-inline .form-group .input-group-sm .input-group-addon {
   background-color: #337ab7;
   color: #fff;
   border-radius: 0;
   border: none;
   padding: 5px;
+}
+@media screen and (min-width: 769px) {
+  .ct-set .form-inline .form-group .input-group-sm.input-group-corn {
+    border-bottom-right-radius: 4px;
+    border-top-right-radius: 4px;
+    overflow: hidden;
+  }
+  .ct-set .form-inline .form-group .input-group-sm.input-group-bt {
+    border-bottom-right-radius: 4px;
+    overflow: hidden;
+  }
 }
 .link-list {
   display: block;
@@ -998,6 +1048,31 @@ h3 {
     display: block;
     width: 100%;
   }
+  .ct-set > .body .form-group .input-group-sm {
+    width: 50%;
+  }
+  .ct-set > .body .form-group .input-group-sm.input-group-bt,
+  .ct-set > .body .form-group .input-group-sm.input-group-spfull {
+    width: 100%;
+  }
+  .ct-set > .body .form-group .input-group-sm.input-group-sp3 {
+    width: 25%;
+  }
+  .ct-set > .body .form-group .input-group-sm.input-group-sp4 {
+    width: 33.33%;
+  }
+  .ct-set > .body .form-group .input-group-sm.input-group-sp4r {
+    width: 33.34%;
+  }
+  .ct-set > .body .form-group .input-group-sm.input-group-sp8 {
+    width: 66.66%;
+  }
+  .ct-set > .body .form-group .input-group-sm.input-group-sp8r {
+    width: 66.67%;
+  }
+  .ct-set > .body .form-group .input-group-sm.input-group-sp9 {
+    width: 75%;
+  }
   .ct-set > .head {
     text-align: left;
     width: 100%;
@@ -1093,113 +1168,4 @@ h3 {
 }
 .help .modal-footer {
   padding: 10px;
-}
-#ctset_numbering + .ct-set .form-group .input-group-sm {
-  width: 25%;
-}
-#ctset_numbering + .ct-set .form-group .input-group-sm:nth-of-type(5),
-#ctset_numbering + .ct-set .form-group .input-group-sm:nth-of-type(6) {
-  width: 33.3%;
-}
-#ctset_numbering + .ct-set .form-group .input-group-sm:nth-of-type(7) {
-  width: 33.4%;
-}
-@media only screen and (max-width: 768px) {
-  #ctset_numbering + .ct-set .form-group .input-group-sm {
-    width: 33.3%;
-  }
-  #ctset_numbering + .ct-set .form-group .input-group-sm:nth-of-type(3) {
-    width: 33.4%;
-  }
-  #ctset_numbering + .ct-set .form-group .input-group-sm:nth-of-type(4) {
-    width: 40%;
-  }
-  #ctset_numbering + .ct-set .form-group .input-group-sm:nth-of-type(5) {
-    width: 60%;
-  }
-  #ctset_numbering + .ct-set .form-group .input-group-sm:nth-of-type(6),
-  #ctset_numbering + .ct-set .form-group .input-group-sm:nth-of-type(7) {
-    width: 50%;
-  }
-}
-#ctset_numbering + .ct-set .form-group .input-group-sm .input-group-btn {
-  width: 24%;
-}
-#ctset_numbering + .ct-set .form-group .input-group-sm .input-group-btn > .btn {
-  padding: 5px;
-  width: 100%;
-}
-#ctset_dating + .ct-set .form-group .input-group-sm {
-  width: 25%;
-}
-#ctset_dating + .ct-set .form-group .input-group-sm:nth-of-type(1) {
-  width: 50%;
-}
-#ctset_dating + .ct-set .form-group .input-group-sm:nth-of-type(2),
-#ctset_dating + .ct-set .form-group .input-group-sm:nth-of-type(3) {
-  width: 25%;
-}
-#ctset_dating + .ct-set .form-group .input-group-sm:nth-of-type(4),
-#ctset_dating + .ct-set .form-group .input-group-sm:nth-of-type(5) {
-  width: 33.3%;
-}
-#ctset_dating + .ct-set .form-group .input-group-sm:nth-of-type(6) {
-  width: 33.4%;
-}
-@media only screen and (max-width: 768px) {
-  #ctset_dating + .ct-set .form-group .input-group-sm {
-    width: 50%;
-  }
-  #ctset_dating + .ct-set .form-group .input-group-sm:nth-of-type(1),
-  #ctset_dating + .ct-set .form-group .input-group-sm:nth-of-type(6) {
-    width: 100%;
-  }
-  #ctset_dating + .ct-set .form-group .input-group-sm:nth-of-type(2),
-  #ctset_dating + .ct-set .form-group .input-group-sm:nth-of-type(3) {
-    width: 50%;
-  }
-  #ctset_dating + .ct-set .form-group .input-group-sm:nth-of-type(4) {
-    width: 60%;
-  }
-  #ctset_dating + .ct-set .form-group .input-group-sm:nth-of-type(5) {
-    width: 40%;
-  }
-}
-#ctset_listing + .ct-set .form-group .input-group-sm {
-  width: 25%;
-}
-#ctset_listing + .ct-set .form-group .input-group-sm:nth-of-type(1) {
-  width: 60%;
-}
-#ctset_listing + .ct-set .form-group .input-group-sm:nth-of-type(2),
-#ctset_listing + .ct-set .form-group .input-group-sm:nth-of-type(3) {
-  width: 20%;
-}
-#ctset_listing + .ct-set .form-group .input-group-sm:nth-of-type(4),
-#ctset_listing + .ct-set .form-group .input-group-sm:nth-of-type(5) {
-  width: 33.33%;
-}
-#ctset_listing + .ct-set .form-group .input-group-sm:nth-of-type(6) {
-  width: 33.34%;
-}
-@media only screen and (max-width: 768px) {
-  #ctset_listing + .ct-set .form-group .input-group-sm {
-    width: 50%;
-  }
-  #ctset_listing + .ct-set .form-group .input-group-sm:nth-of-type(1) {
-    width: 100%;
-  }
-  #ctset_listing + .ct-set .form-group .input-group-sm:nth-of-type(2),
-  #ctset_listing + .ct-set .form-group .input-group-sm:nth-of-type(3) {
-    width: 50%;
-  }
-  #ctset_listing + .ct-set .form-group .input-group-sm:nth-of-type(4) {
-    width: 40%;
-  }
-  #ctset_listing + .ct-set .form-group .input-group-sm:nth-of-type(5) {
-    width: 60%;
-  }
-  #ctset_listing + .ct-set .form-group .input-group-sm:nth-of-type(6) {
-    width: 100%;
-  }
 }
