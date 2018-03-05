@@ -13,6 +13,42 @@ body {
   font-family: 'Lato', 'Noto Sans JP', sans-serif;
   background-color: #333;
 }
+body {
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -o-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-lines: single;
+  -moz-box-lines: single;
+  -o-box-lines: single;
+  -webkit-flex-wrap: nowrap;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  -webkit-box-pack: justify;
+  -moz-box-pack: justify;
+  -o-box-pack: justify;
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+  -webkit-box-align: stretch;
+  -moz-box-align: stretch;
+  -o-box-align: stretch;
+  -ms-flex-align: stretch;
+  -webkit-align-items: stretch;
+  align-items: stretch;
+  -ms-flex-line-pack: stretch;
+  -webkit-align-content: stretch;
+  align-content: stretch;
+}
 textarea,
 input[type=text] {
   font-family: inherit;
@@ -171,12 +207,12 @@ h3 {
   -webkit-flex-wrap: nowrap;
   -ms-flex-wrap: nowrap;
   flex-wrap: nowrap;
-  -webkit-box-pack: center;
-  -moz-box-pack: center;
-  -o-box-pack: center;
-  -ms-flex-pack: center;
-  -webkit-justify-content: center;
-  justify-content: center;
+  -webkit-box-pack: start;
+  -moz-box-pack: start;
+  -o-box-pack: start;
+  -ms-flex-pack: start;
+  -webkit-justify-content: flex-start;
+  justify-content: flex-start;
   -webkit-box-align: center;
   -moz-box-align: center;
   -o-box-align: center;
@@ -193,8 +229,12 @@ h3 {
   box-flex: 1;
   -webkit-flex-grow: 1;
   flex-grow: 1;
-  margin: 0;
-  padding: 0;
+  margin: 0 10px;
+}
+@media only screen and (max-width: 768px) {
+  .main {
+    margin: 0;
+  }
 }
 .main-wrap {
   display: -webkit-box;
@@ -234,7 +274,7 @@ h3 {
   padding: 0;
   background-color: #555;
   width: 1200px;
-  min-width: 800px;
+  width: 800px;
   max-width: 100%;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -374,7 +414,40 @@ h3 {
 }
 @media only screen and (max-width: 768px) {
   .area-control {
-    margin: 1px;
+    display: -webkit-box;
+    display: -moz-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: box;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    -o-box-orient: horizontal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-lines: multiple;
+    -moz-box-lines: multiple;
+    -o-box-lines: multiple;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: stretch;
+    -moz-box-pack: stretch;
+    -o-box-pack: stretch;
+    -ms-flex-pack: stretch;
+    -webkit-justify-content: stretch;
+    justify-content: stretch;
+    -webkit-box-align: start;
+    -moz-box-align: start;
+    -o-box-align: start;
+    -ms-flex-align: start;
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
+    -ms-flex-line-pack: stretch;
+    -webkit-align-content: stretch;
+    align-content: stretch;
+    margin: 0;
   }
 }
 .genre {
@@ -386,7 +459,7 @@ h3 {
 }
 @media only screen and (max-width: 768px) {
   .genre:not(:checked) + .ct-set {
-    margin-right: 1px;
+    margin-right: 2px;
   }
 }
 .genre:not(:checked) + .ct-set > .body {
@@ -412,7 +485,7 @@ h3 {
 @media only screen and (max-width: 768px) {
   .ctLabel {
     width: auto;
-    margin-bottom: 3px;
+    margin: 0 -2px 3px;
   }
 }
 .ctGroup {
@@ -422,30 +495,30 @@ h3 {
   display: -ms-flexbox;
   display: box;
   display: flex;
-  -webkit-box-orient: vertical;
-  -moz-box-orient: vertical;
-  -o-box-orient: vertical;
-  -webkit-flex-direction: column;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-lines: single;
-  -moz-box-lines: single;
-  -o-box-lines: single;
-  -webkit-flex-wrap: nowrap;
-  -ms-flex-wrap: nowrap;
-  flex-wrap: nowrap;
-  -webkit-box-pack: start;
-  -moz-box-pack: start;
-  -o-box-pack: start;
-  -ms-flex-pack: start;
-  -webkit-justify-content: flex-start;
-  justify-content: flex-start;
-  -webkit-box-align: stretch;
-  -moz-box-align: stretch;
-  -o-box-align: stretch;
-  -ms-flex-align: stretch;
-  -webkit-align-items: stretch;
-  align-items: stretch;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -o-box-lines: multiple;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: stretch;
+  -moz-box-pack: stretch;
+  -o-box-pack: stretch;
+  -ms-flex-pack: stretch;
+  -webkit-justify-content: stretch;
+  justify-content: stretch;
+  -webkit-box-align: start;
+  -moz-box-align: start;
+  -o-box-align: start;
+  -ms-flex-align: start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
   -ms-flex-line-pack: stretch;
   -webkit-align-content: stretch;
   align-content: stretch;
@@ -454,39 +527,41 @@ h3 {
 }
 @media only screen and (max-width: 768px) {
   .ctGroup {
+    width: 100%;
     display: -webkit-box;
     display: -moz-box;
     display: -webkit-flex;
     display: -ms-flexbox;
     display: box;
     display: flex;
-    -webkit-box-orient: vertical;
-    -moz-box-orient: vertical;
-    -o-box-orient: vertical;
-    -webkit-flex-direction: column;
-    -ms-flex-direction: column;
-    flex-direction: column;
-    -webkit-box-lines: single;
-    -moz-box-lines: single;
-    -o-box-lines: single;
-    -webkit-flex-wrap: nowrap;
-    -ms-flex-wrap: nowrap;
-    flex-wrap: nowrap;
-    -webkit-box-pack: start;
-    -moz-box-pack: start;
-    -o-box-pack: start;
-    -ms-flex-pack: start;
-    -webkit-justify-content: flex-start;
-    justify-content: flex-start;
-    -webkit-box-align: stretch;
-    -moz-box-align: stretch;
-    -o-box-align: stretch;
-    -ms-flex-align: stretch;
-    -webkit-align-items: stretch;
-    align-items: stretch;
+    -webkit-box-orient: horizontal;
+    -moz-box-orient: horizontal;
+    -o-box-orient: horizontal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-lines: multiple;
+    -moz-box-lines: multiple;
+    -o-box-lines: multiple;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: stretch;
+    -moz-box-pack: stretch;
+    -o-box-pack: stretch;
+    -ms-flex-pack: stretch;
+    -webkit-justify-content: stretch;
+    justify-content: stretch;
+    -webkit-box-align: start;
+    -moz-box-align: start;
+    -o-box-align: start;
+    -ms-flex-align: start;
+    -webkit-align-items: flex-start;
+    align-items: flex-start;
     -ms-flex-line-pack: stretch;
     -webkit-align-content: stretch;
     align-content: stretch;
+    margin: 0;
   }
 }
 .ctGroupRd + .ctGroup {
@@ -681,8 +756,19 @@ h3 {
   display: block;
   margin-bottom: 0;
 }
+.ct-set .form-group .input-group-sm {
+  float: left;
+}
+.ct-set .form-group .input-group-sm .input-group-addon {
+  background-color: #337ab7;
+  color: #fff;
+  border-radius: 0;
+  border: none;
+  padding: 5px;
+}
 .link-list {
   display: block;
+  width: 100%;
   margin: 10px auto 10px;
   text-align: center;
 }
@@ -803,7 +889,7 @@ h3 {
     overflow: hidden;
     border-radius: 3px;
     padding: 0;
-    margin: 1px 0 2px;
+    margin: 1px 2px 2px;
     width: 100%;
     -webkit-box-flex: 1;
     -moz-box-flex: 1;
@@ -1008,146 +1094,112 @@ h3 {
 .help .modal-footer {
   padding: 10px;
 }
-#ctset05 + .ct-set > .body label.btn {
-  width: auto;
-  min-width: 13%;
-}
-@media only screen and (max-width: 768px) {
-  #ctset05 + .ct-set > .body label.btn {
-    min-width: auto;
-    width: auto;
-  }
-}
-#ctset13 + .ct-set .form-group .input-group-sm {
-  float: left;
+#ctset_numbering + .ct-set .form-group .input-group-sm {
   width: 25%;
 }
-#ctset13 + .ct-set .form-group .input-group-sm:nth-of-type(5),
-#ctset13 + .ct-set .form-group .input-group-sm:nth-of-type(6) {
+#ctset_numbering + .ct-set .form-group .input-group-sm:nth-of-type(5),
+#ctset_numbering + .ct-set .form-group .input-group-sm:nth-of-type(6) {
   width: 33.3%;
 }
-#ctset13 + .ct-set .form-group .input-group-sm:nth-of-type(7) {
+#ctset_numbering + .ct-set .form-group .input-group-sm:nth-of-type(7) {
   width: 33.4%;
 }
 @media only screen and (max-width: 768px) {
-  #ctset13 + .ct-set .form-group .input-group-sm {
+  #ctset_numbering + .ct-set .form-group .input-group-sm {
     width: 33.3%;
   }
-  #ctset13 + .ct-set .form-group .input-group-sm:nth-of-type(3) {
+  #ctset_numbering + .ct-set .form-group .input-group-sm:nth-of-type(3) {
     width: 33.4%;
   }
-  #ctset13 + .ct-set .form-group .input-group-sm:nth-of-type(4) {
+  #ctset_numbering + .ct-set .form-group .input-group-sm:nth-of-type(4) {
     width: 40%;
   }
-  #ctset13 + .ct-set .form-group .input-group-sm:nth-of-type(5) {
+  #ctset_numbering + .ct-set .form-group .input-group-sm:nth-of-type(5) {
     width: 60%;
   }
-  #ctset13 + .ct-set .form-group .input-group-sm:nth-of-type(6),
-  #ctset13 + .ct-set .form-group .input-group-sm:nth-of-type(7) {
+  #ctset_numbering + .ct-set .form-group .input-group-sm:nth-of-type(6),
+  #ctset_numbering + .ct-set .form-group .input-group-sm:nth-of-type(7) {
     width: 50%;
   }
 }
-#ctset13 + .ct-set .form-group .input-group-sm .input-group-addon {
-  background-color: #337ab7;
-  color: #fff;
-  border-radius: 0;
-  border: none;
-  padding: 5px;
-}
-#ctset13 + .ct-set .form-group .input-group-sm .input-group-btn {
+#ctset_numbering + .ct-set .form-group .input-group-sm .input-group-btn {
   width: 24%;
 }
-#ctset13 + .ct-set .form-group .input-group-sm .input-group-btn > .btn {
+#ctset_numbering + .ct-set .form-group .input-group-sm .input-group-btn > .btn {
   padding: 5px;
   width: 100%;
 }
-#ctset15 + .ct-set .form-group .input-group-sm {
-  float: left;
+#ctset_dating + .ct-set .form-group .input-group-sm {
   width: 25%;
 }
-#ctset15 + .ct-set .form-group .input-group-sm:nth-of-type(1) {
+#ctset_dating + .ct-set .form-group .input-group-sm:nth-of-type(1) {
   width: 50%;
 }
-#ctset15 + .ct-set .form-group .input-group-sm:nth-of-type(2),
-#ctset15 + .ct-set .form-group .input-group-sm:nth-of-type(3) {
+#ctset_dating + .ct-set .form-group .input-group-sm:nth-of-type(2),
+#ctset_dating + .ct-set .form-group .input-group-sm:nth-of-type(3) {
   width: 25%;
 }
-#ctset15 + .ct-set .form-group .input-group-sm:nth-of-type(4),
-#ctset15 + .ct-set .form-group .input-group-sm:nth-of-type(5) {
+#ctset_dating + .ct-set .form-group .input-group-sm:nth-of-type(4),
+#ctset_dating + .ct-set .form-group .input-group-sm:nth-of-type(5) {
   width: 33.3%;
 }
-#ctset15 + .ct-set .form-group .input-group-sm:nth-of-type(6) {
+#ctset_dating + .ct-set .form-group .input-group-sm:nth-of-type(6) {
   width: 33.4%;
 }
 @media only screen and (max-width: 768px) {
-  #ctset15 + .ct-set .form-group .input-group-sm {
+  #ctset_dating + .ct-set .form-group .input-group-sm {
     width: 50%;
   }
-  #ctset15 + .ct-set .form-group .input-group-sm:nth-of-type(1),
-  #ctset15 + .ct-set .form-group .input-group-sm:nth-of-type(6) {
+  #ctset_dating + .ct-set .form-group .input-group-sm:nth-of-type(1),
+  #ctset_dating + .ct-set .form-group .input-group-sm:nth-of-type(6) {
     width: 100%;
   }
-  #ctset15 + .ct-set .form-group .input-group-sm:nth-of-type(2),
-  #ctset15 + .ct-set .form-group .input-group-sm:nth-of-type(3) {
+  #ctset_dating + .ct-set .form-group .input-group-sm:nth-of-type(2),
+  #ctset_dating + .ct-set .form-group .input-group-sm:nth-of-type(3) {
     width: 50%;
   }
-  #ctset15 + .ct-set .form-group .input-group-sm:nth-of-type(4) {
+  #ctset_dating + .ct-set .form-group .input-group-sm:nth-of-type(4) {
     width: 60%;
   }
-  #ctset15 + .ct-set .form-group .input-group-sm:nth-of-type(5) {
+  #ctset_dating + .ct-set .form-group .input-group-sm:nth-of-type(5) {
     width: 40%;
   }
 }
-#ctset15 + .ct-set .form-group .input-group-sm .input-group-addon {
-  background-color: #337ab7;
-  color: #fff;
-  border-radius: 0;
-  border: none;
-  padding: 5px;
-}
-#ctset17 + .ct-set .form-group .input-group-sm {
-  float: left;
+#ctset_listing + .ct-set .form-group .input-group-sm {
   width: 25%;
 }
-#ctset17 + .ct-set .form-group .input-group-sm:nth-of-type(1) {
+#ctset_listing + .ct-set .form-group .input-group-sm:nth-of-type(1) {
   width: 60%;
 }
-#ctset17 + .ct-set .form-group .input-group-sm:nth-of-type(2),
-#ctset17 + .ct-set .form-group .input-group-sm:nth-of-type(3) {
+#ctset_listing + .ct-set .form-group .input-group-sm:nth-of-type(2),
+#ctset_listing + .ct-set .form-group .input-group-sm:nth-of-type(3) {
   width: 20%;
 }
-#ctset17 + .ct-set .form-group .input-group-sm:nth-of-type(4),
-#ctset17 + .ct-set .form-group .input-group-sm:nth-of-type(5) {
+#ctset_listing + .ct-set .form-group .input-group-sm:nth-of-type(4),
+#ctset_listing + .ct-set .form-group .input-group-sm:nth-of-type(5) {
   width: 33.33%;
 }
-#ctset17 + .ct-set .form-group .input-group-sm:nth-of-type(6) {
+#ctset_listing + .ct-set .form-group .input-group-sm:nth-of-type(6) {
   width: 33.34%;
 }
 @media only screen and (max-width: 768px) {
-  #ctset17 + .ct-set .form-group .input-group-sm {
+  #ctset_listing + .ct-set .form-group .input-group-sm {
     width: 50%;
   }
-  #ctset17 + .ct-set .form-group .input-group-sm:nth-of-type(1) {
+  #ctset_listing + .ct-set .form-group .input-group-sm:nth-of-type(1) {
     width: 100%;
   }
-  #ctset17 + .ct-set .form-group .input-group-sm:nth-of-type(2),
-  #ctset17 + .ct-set .form-group .input-group-sm:nth-of-type(3) {
+  #ctset_listing + .ct-set .form-group .input-group-sm:nth-of-type(2),
+  #ctset_listing + .ct-set .form-group .input-group-sm:nth-of-type(3) {
     width: 50%;
   }
-  #ctset17 + .ct-set .form-group .input-group-sm:nth-of-type(4) {
+  #ctset_listing + .ct-set .form-group .input-group-sm:nth-of-type(4) {
     width: 40%;
   }
-  #ctset17 + .ct-set .form-group .input-group-sm:nth-of-type(5) {
+  #ctset_listing + .ct-set .form-group .input-group-sm:nth-of-type(5) {
     width: 60%;
   }
-  #ctset17 + .ct-set .form-group .input-group-sm:nth-of-type(6) {
+  #ctset_listing + .ct-set .form-group .input-group-sm:nth-of-type(6) {
     width: 100%;
   }
-}
-#ctset17 + .ct-set .form-group .input-group-sm .input-group-addon {
-  background-color: #337ab7;
-  color: #fff;
-  border-radius: 0;
-  border: none;
-  padding: 5px;
 }

@@ -38,6 +38,10 @@ html,body
   font-family 'Lato', 'Noto Sans JP', sans-serif
   background-color $col_darkgray
 
+body
+  min-height 100vh
+  flexer( column, nowrap, space-between, stretch )
+
 textarea
 input[type=text]
   font-family inherit
@@ -99,10 +103,11 @@ h1, h2, h3
   padding 0
 
 .main
-  flexer( column, nowrap, center, center )
+  flexer( column, nowrap, flex-start, center )
   flex-grow 1
-  margin 0
-  padding 0
+  margin 0 10px
+  +break(sm)
+    margin 0
 
 .main-wrap
   flexer( column, nowrap, flex-start, stretch )
@@ -110,7 +115,7 @@ h1, h2, h3
   padding 0
   background-color $col_gray
   width lg
-  min-width 800px
+  width 800px
   max-width 100%
   box-sizing border-box
   padding 4px
@@ -157,7 +162,8 @@ h1, h2, h3
 .area-control
   flexer( row, wrap, flex-start, flex-start )
   +break(sm)
-    margin 1px
+    flexer( row, wrap, stretch, flex-start )
+    margin 0
 .genre
   display none
   &:not(:checked)
@@ -165,7 +171,7 @@ h1, h2, h3
       width auto
       margin-right -5px
       +break(sm)
-        margin-right 1px
+        margin-right 2px
       & > .body
         display none
       & > .head
@@ -181,14 +187,16 @@ h1, h2, h3
     border-radius 0 !important
   +break(sm)
     width auto
-    margin-bottom 3px
+    margin 0 -2px 3px
 
 .ctGroup
-  flexer( column, nowrap, flex-start, stretch )
+  flexer( row, wrap, stretch, flex-start )
   width auto
   margin 1px
   +break(sm)
-    flexer( column, nowrap, flex-start, stretch )
+    width 100%
+    flexer( row, wrap, stretch, flex-start )
+    margin 0
   &Rd + &
     display none
   &Rd:checked + &
@@ -259,9 +267,19 @@ h1, h2, h3
     label
       display block
       margin-bottom 0
+  .form-group
+    .input-group-sm
+      float left
+      .input-group-addon
+        background-color $col_primary
+        color $col_white
+        border-radius 0
+        border none
+        padding 5px
 
 .link-list
   display block
+  width 100%
   margin 10px auto 10px
   text-align center
   li
@@ -312,7 +330,7 @@ h1, h2, h3
     overflow hidden
     border-radius 3px
     padding 0
-    margin 1px 0 2px
+    margin 1px 2px 2px
     width 100%
     flex-grow 1
     & > .body
@@ -419,20 +437,9 @@ h1, h2, h3
       padding 10px
 
 // 特殊
-#ctset05 + .ct-set
-  & > .body
-    label.btn
-      width auto
-      min-width 13%
-      +break(sm)
-        min-width auto
-        width auto
-
-
-#ctset13 + .ct-set
+#ctset_numbering + .ct-set
   .form-group
     .input-group-sm
-      float left
       width 25%
       &:nth-of-type(5)
       &:nth-of-type(6)
@@ -450,21 +457,15 @@ h1, h2, h3
         &:nth-of-type(6)
         &:nth-of-type(7)
           width 50%
-      .input-group-addon
-        background-color $col_primary
-        color $col_white
-        border-radius 0
-        border none
-        padding 5px
       .input-group-btn
         width 24%
         & > .btn
           padding 5px
           width 100%
-#ctset15 + .ct-set
+
+#ctset_dating + .ct-set
   .form-group
     .input-group-sm
-      float left
       width 25%
       &:nth-of-type(1)
         width 50%
@@ -488,17 +489,10 @@ h1, h2, h3
           width 60%
         &:nth-of-type(5)
           width 40%
-      .input-group-addon
-        background-color $col_primary
-        color $col_white
-        border-radius 0
-        border none
-        padding 5px
 
-#ctset17 + .ct-set
+#ctset_listing + .ct-set
   .form-group
     .input-group-sm
-      float left
       width 25%
       &:nth-of-type(1)
         width 60%
@@ -523,9 +517,3 @@ h1, h2, h3
           width 60%
         &:nth-of-type(6)
           width 100%
-      .input-group-addon
-        background-color $col_primary
-        color $col_white
-        border-radius 0
-        border none
-        padding 5px
