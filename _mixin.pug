@@ -39,16 +39,18 @@ mixin lb( group, tp, val, txt, ckd )
     - type = 'radio'
   - val = val.replace('&amp;','&')
   if ckd
-    label.btn.btn-primary #[input( class = group, name = group, type = type, value != val, checked = 'checked' )] #{txt}
+    label.btn.btn-info #[input( class = group, name = group, type = type, value != val, checked = 'checked' )] #{txt}
   else
-    label.btn.btn-primary #[input( class = group, name = group, type = type, value != val )] #{txt}
+    label.btn.btn-info #[input( class = group, name = group, type = type, value != val )] #{txt}
 
 mixin dlBox(id)
   - setBts = btsArr[id].bts
   - setLbs = btsArr[id].lbs
   input.genre( id = id type = 'checkbox', name = 'genre', checked = 'checked' )
   dl.ct-set
-    dt.head: label( for = id )= btsArr[id].str
+    dt.head
+      label( for = id )= btsArr[id].str
+      i.fa.fa-question-circle.linkHelp( data-target = btsArr[id].str )
     dd.body
       if setBts
         each val in setBts

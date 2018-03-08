@@ -479,6 +479,24 @@ $(function() {
         oStr = instStr;
         break;
 
+    // Tidy
+      case 'tidy':
+        let
+          td_am = parseInt($('#td_amount').val(), 10),
+          td_reg = new RegExp('(.{' + td_am + ',' + td_am + '})', 'g');
+        instStr = iStr.replace(/[\n\r]/g, '');
+        instStr = instStr.replace(td_reg, '$1\n');
+        oStr = instStr;
+        break;
+      case 'tidy2':
+        let
+          td2_reg = $('#td2_reg').val().replace(/\\\\/g, '\\'),
+          td2_reg2 = new RegExp('(.)(' + td2_reg + ')', 'g');
+        instStr = iStr.replace(/[\n\r]/g, '');
+        instStr = instStr.replace(td2_reg2, '$1\n$2');
+        oStr = instStr;
+        break;
+
     // Jpn Characters
       case 'jpn1':
         oStr = iStr.replace(/[\u3041-\u3096]/g, r => String.fromCharCode(r.charCodeAt(0) + 0x60));
@@ -1057,5 +1075,32 @@ $(function() {
     $tabBtn.addClass('btn-info').removeClass('btn-primary');
     $tabBtn.filter('[for=' + ival + ']').addClass('btn-primary').removeClass('btn-info');
   });
-  $tabBtn.eq(0).click();
+  if($ctGroupRd.filter(':checked').length === 0){
+    $tabBtn.eq(0).click();
+  } else {
+    $ctGroupRd.change();
+  }
+
+  // ヘルプリンク
+  let
+    $helpModal = $('#help'),
+    tex, vid, target, $target;
+  $('.info').find('h4').each(function(r){
+    tex = $(this).text();
+    vid = 'help_' + (r + 1);
+    $(this).attr({
+      'id': vid
+    });
+    $('[data-target="' + tex + '"]').attr('data-href', vid);
+  });
+  $('.linkHelp').on('click', function(){
+    vid = $(this).attr('data-href');
+    $helpModal.modal('show');
+    $helpModal.one('shown.bs.modal', function(){
+      location.hash = vid;
+    });
+  });
+  $helpModal.on('click', function(){
+    $helpModal.modal('hide');
+  });
 });

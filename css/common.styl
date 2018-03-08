@@ -11,6 +11,8 @@ $col_gray = #555
 $col_darkgray = #333
 $col_primary = #337ab7
 $col_primaryHover = #286090
+$col_info = #5bc0de
+$col_infoHover = #31b0d5
 
 // mixins
 // break(media query)
@@ -254,6 +256,7 @@ h1, h2, h3
       border-top-left-radius 0
       border-bottom-left-radius 0
   & > .head
+    flexer( row, nowrap, space-between, center )
     width 8em
     margin-bottom 0
     border none
@@ -271,6 +274,8 @@ h1, h2, h3
     label
       display block
       margin-bottom 0
+    .fa
+      font-size 16px
   .form-inline
     width auto
     margin-right auto
@@ -279,11 +284,15 @@ h1, h2, h3
       .input-group-sm
         width 20%
         .input-group-addon
-          background-color $col_primary
+          background-color $col_info
           color $col_white
           border-radius 0
           border none
           padding 5px
+        input
+        select
+        option
+          background-color lighten( $col_info, 60% )
         @media screen and ( min-width: 769px )
           &.input-group-corn
             border-bottom-right-radius 4px
@@ -393,14 +402,12 @@ h1, h2, h3
             width 75%
 
     & > .head
-      text-align left
       width 100%
       border none
       margin-bottom 0
       border-radius 0
       label
         margin-bottom 0
-        width 100%
     [for=text-i]
       display none
 
@@ -449,12 +456,12 @@ h1, h2, h3
         & + br
           display none
       & > h4
-        display: block
-        margin: 10px 0
-        padding: 10px 10px 4px 0
-        border-bottom: 1px solid #000
-        font-size: 14px
-        line-height: 1
+        display block
+        margin 10px 0
+        padding 10px 10px 4px 0
+        border-bottom 1px solid #000
+        font-size 14px
+        line-height 1
         & + br
           display none
       & > h3 + h4

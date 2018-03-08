@@ -57,6 +57,17 @@ html( lang = 'en' )
             +dlBox('ctset_extall')
             +dlBox('ctset_reverse')
             +dlBox('ctset_dup')
+            +dlBox('ctset_tidy')
+              div.form-inline
+                div.form-group
+                  div.input-group.input-group-sm.input-group-bt
+                    input#td_amount.form-control( value = 20, type = 'number' )
+                    div.input-group-btn
+                      button.btn.btn-primary.bt-control( type = 'button', value = 'tidy' ) 文字ごとに改行
+                  div.input-group.input-group-sm.input-group-bt
+                    input#td2_reg.form-control( value = '\\d{2,2}:', type = 'text' )
+                    div.input-group-btn
+                      button.btn.btn-primary.bt-control( type = 'button', value = 'tidy2' ) ごとに頭出し
             +dlBox('ctset_grep')
               div.form-inline
                 div.form-group
