@@ -68,6 +68,12 @@ html( lang = 'en' )
                     input#td2_reg.form-control( value = '\\d{2,2}:', type = 'text' )
                     div.input-group-btn
                       button.btn.btn-primary.bt-control( type = 'button', value = 'tidy2' ) ごとに頭出し
+                div.btn-group.btn-group-sm( role = 'group', aria-label = '...' )
+                  label.btn.btn-info #[input.tidy3_cb( name = 'tidy3_cb', type = 'checkbox', value='。', checked = checked )] 。
+                  label.btn.btn-info #[input.tidy3_cb( name = 'tidy3_cb', type = 'checkbox', value='、' )] 、
+                  label.btn.btn-info #[input.tidy3_cb( name = 'tidy3_cb', type = 'checkbox', value='\.' )] .
+                  label.btn.btn-info #[input.tidy3_cb( name = 'tidy3_cb', type = 'checkbox', value='\,' )] ,
+                  button.btn.btn-primary.btn-sm.bt-control( type = 'button', value = 'tidy3' ) で改行
             +dlBox('ctset_grep')
               div.form-inline
                 div.form-group

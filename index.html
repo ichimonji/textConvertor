@@ -348,6 +348,21 @@
                       </div>
                     </div>
                   </div>
+                  <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                    <label class="btn btn-info">
+                      <input class="tidy3_cb" name="tidy3_cb" type="checkbox" value="。"> 。
+                    </label>
+                    <label class="btn btn-info">
+                      <input class="tidy3_cb" name="tidy3_cb" type="checkbox" value="、"> 、
+                    </label>
+                    <label class="btn btn-info">
+                      <input class="tidy3_cb" name="tidy3_cb" type="checkbox" value="."> .
+                    </label>
+                    <label class="btn btn-info">
+                      <input class="tidy3_cb" name="tidy3_cb" type="checkbox" value=","> ,
+                    </label>
+                    <button class="btn btn-primary btn-sm bt-control" type="button" value="tidy3">で改行</button>
+                  </div>
                 </div>
               </dd>
             </dl>
@@ -809,6 +824,8 @@ IASTを京都・ハーバード方式に</li>
 変換前テキストから改行をすべて削除した上で、指定された文字数ごとに改行します。</li>
 <li><code>文字の頭出し</code>
 変換前テキストから改行をすべて削除した上で、指定した正規表現に該当する文字列の前で改行します。</li>
+<li><code>文字送り</code>
+変換前テキストから改行をすべて削除した上で、指定した文字記号のあとで改行します。</li>
 </ul>
 <h4>正規表現</h4>
 <p>正規表現置換を行う</p>

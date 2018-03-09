@@ -496,6 +496,14 @@ $(function() {
         instStr = instStr.replace(td2_reg2, '$1\n$2');
         oStr = instStr;
         break;
+      case 'tidy3':
+        let
+          td3_cb = Object.values($('.tidy3_cb').filter(':checked').map((index, elm) => $(elm).val()).get());
+          td3_reg = new RegExp('([' + td3_cb.join('') + '])', 'g');
+        instStr = iStr.replace(/[\n\r]/g, '');
+        instStr = instStr.replace(td3_reg, '$1\n');
+        oStr = instStr;
+        break;
 
     // Jpn Characters
       case 'jpn1':
