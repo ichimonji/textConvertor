@@ -135,6 +135,11 @@
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="16進数を10進数に" value="num-16_10">Hex <i class="glyphicon glyphicon-arrow-right"></i> Dec</button>
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="2進数を16進数に" value="num-2_16">Bin <i class="glyphicon glyphicon-arrow-right"></i> Hex</button>
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="16進数を2進数に" value="num-16_2">Hex <i class="glyphicon glyphicon-arrow-right"></i> Bin</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="絶対値" value="num-abs">Abs</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="整数化" value="num-int">Int</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="四捨五入" value="num-round">Round</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="切り捨て" value="num-floor">Floor</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="切り上げ" value="num-ceil">Ceil</button>
               </dd>
             </dl>
           </div>
@@ -663,60 +668,44 @@ UTF32のオーバーフロー分をサロゲートペアに変換</li>
 サロゲートペアをUTF32表記に</li>
 </ul>
 <h4>数値型</h4>
-<p>数値型に対しての進数変換を行う。</p>
+<p>数値型に対しての数々の変換を行う。</p>
 <ul>
-<li><code>Dec→Bin</code> <code>Bin→Dec</code><br>
-10進数を2進数に、あるいはその逆</li>
-<li><code>Dec→Hex</code> <code>Hex→Dec</code><br>
-10進数を16進数に、あるいはその逆</li>
-<li><code>Bin→Hex</code> <code>Hex→Bin</code><br>
-2進数を16進数に、あるいはその逆</li>
+<li><code>Dec→Bin</code> <code>Bin→Dec</code>： 10進数を2進数に、あるいはその逆に変換します。</li>
+<li><code>Dec→Hex</code> <code>Hex→Dec</code>： 10進数を16進数に、あるいはその逆に変換します。</li>
+<li><code>Bin→Hex</code> <code>Hex→Bin</code>： 2進数を16進数に、あるいはその逆に変換します。</li>
+<li><code>Abs</code>： テキスト中のすべての数値を絶対数化します。</li>
+<li><code>Int</code>： テキスト中のすべての数値を整数化します。</li>
+<li><code>Round</code>： テキスト中のすべての数値を四捨五入します。</li>
+<li><code>Floor</code>： テキスト中のすべての数値を切り捨てます。</li>
+<li><code>Ceil</code>： テキスト中のすべての数値を切り上げます。</li>
 </ul>
+<p>※全角の数字にたいしては無視します。</p>
 <h3>言語処理</h3>
 <h4>数字</h4>
-<p>アラビア数字からほかの数字記号への変換などを行う。</p>
+<p>アラビア数字（算用数字）からほかの数字記号への変換などを行う。</p>
 <ul>
-<li><code>Dec→Bin</code> <code>Bin→Dec</code><br>
-10進数を2進数に、あるいはその逆</li>
-<li><code>Dec→Hex</code> <code>Hex→Dec</code><br>
-10進数を16進数に、あるいはその逆</li>
-<li><code>Bin→Hex</code> <code>Hex→Bin</code><br>
-2進数を16進数に、あるいはその逆</li>
-<li><code>123→百二十三</code><br>
-アラビア数字を漢数字に（桁付き）</li>
-<li><code>123→一二三</code><br>
-アラビア数字を漢数字に（桁なし）</li>
-<li><code>百二十三→123</code><br>
-漢数字をアラビア数字に</li>
+<li><code>123→百二十三</code>： アラビア数字を桁付き漢数字に変換します。</li>
+<li><code>123→一二三</code>： アラビア数字を桁なしの漢数字に変換します。</li>
+<li><code>百二十三→123</code>： 漢数字をアラビア数字に変換します。</li>
 <li><code>Arabic→Roman</code> <code>Roman→Arabic</code><br>
-アラビア数字をローマ数字に或いはその逆に変換<br>
-変換型は「M(1~3999)」型、「ↀ(1~399999)」型、「CIↃ(1~399999)」型の3つから選ぶことができる。</li>
+アラビア数字をローマ数字に或いはその逆に変換に変換します。<br>
+変換型は「M(1~3999)」型、「ↀ(1~399999)」型、「CIↃ(1~399999)」型の3つから選ぶことができます。</li>
 </ul>
 <p>※ アラビア数字をローマ数字に関して、ↀ型の場合の100000である「ↈ（&amp;#x2188;）」はほとんどのフォントで表示が不可能です。<br>
-※ アラビア数字から漢数字の変換（桁付き）に関して、少数の桁（分、厘、毛など）に関しては考慮せず数字のみを列記する方式にしております。</p>
+※ アラビア数字から漢数字の変換（桁付き）に関して、少数の桁（分、厘、毛など）に関しては考慮せず数字のみを列記する方式で変換します。</p>
 <h4>日本語関連</h4>
 <p>日本語テキストに関して様々な変換を行う。</p>
 <ul>
-<li><code>あ→ア</code> <code>ア→あ</code><br>
-全角ひらがなを全角カタカナに、あるいはその逆</li>
-<li><code>ｱ→ア</code> <code>ア→ｱ</code><br>
-半角カタカナを全角カタカナに、あるいはその逆</li>
-<li><code>A1→Ａ１</code> <code>Ａ１→A1</code><br>
-半角英数字を全角英数字に、あるいはその逆</li>
-<li><code>新字→旧字（中）</code><br>
-新字体を旧字体に（異体字セレクタ分を含まない）</li>
-<li><code>新字→旧字（強）</code><br>
-新字体を旧字体に（異体字セレクタ分を含む）</li>
-<li><code>旧字→新字</code><br>
-旧字体を新字体に（異体字セレクタ分を含む）</li>
-<li><code>一二→壱弐</code> <code>壱弐→一二</code><br>
-漢数字を大字に、あるいはその逆</li>
-<li><code>トウキョウ→tôkyô</code><br>
-全角カタカナを訓令式ローマ字表記に</li>
-<li><code>トウキョウ→tokyo</code><br>
-全角カタカナをヘボン式ローマ字表記に</li>
-<li><code>tokyo→トキョ</code><br>
-ヘボン式ローマ字を全角カタカナに</li>
+<li><code>あ→ア</code> <code>ア→あ</code>： 全角ひらがなを全角カタカナに、あるいはその逆に変換します。</li>
+<li><code>ｱ→ア</code> <code>ア→ｱ</code>： 半角カタカナを全角カタカナに、あるいはその逆に変換します。</li>
+<li><code>A1→Ａ１</code> <code>Ａ１→A1</code>： 半角英数字を全角英数字に、あるいはその逆に変換します。</li>
+<li><code>新字→旧字（中）</code>： 新字体を旧字体に（異体字セレクタ分を含まない）に変換します。</li>
+<li><code>新字→旧字（強）</code>： 新字体を旧字体に（異体字セレクタ分を含む）に変換します。</li>
+<li><code>旧字→新字</code>： 旧字体を新字体に（異体字セレクタ分を含む）に変換します。</li>
+<li><code>一二→壱弐</code> <code>壱弐→一二</code>： 漢数字を大字に、あるいはその逆変換します。</li>
+<li><code>トウキョウ→tôkyô</code>： 全角カタカナを訓令式ローマ字表記に変換します。</li>
+<li><code>トウキョウ→tokyo</code>： 全角カタカナをヘボン式ローマ字表記に変換します。</li>
+<li><code>tokyo→トキョ</code>： ヘボン式ローマ字を全角カタカナに変換します。</li>
 </ul>
 <p>※ 全角カタカナからの訓令式・ヘボン式ローマ字変換に関して、特殊な用法や表外の訓に関しては（99式などに倣った）独自の変換をしています。<br>
 ※ 新字体→旧字体の変換において旧字が別字として存在しない、あるいはUTF16範囲にない場合は異体字セレクタによって旧字体を表示します。</p>
@@ -802,7 +791,7 @@ IASTを京都・ハーバード方式に</li>
 <li><code>行単位で文字数が多い</code><br>
 行ごとの文字数を比べ、多い順番に並べなおします。</li>
 </ul>
-<p>※ ソート順位の評価はUnicode順となります。
+<p>※ ソート順位の評価はUnicode順となります。<br>
 ※ ソートの評価値に優劣がつけられない場合、基本的に変換前テキスト先に書かれていたものが先にきます。</p>
 <h4>重複文字/行列</h4>
 <p>重複文字に対して操作や行列に対しての変換を行う。</p>
@@ -842,8 +831,8 @@ IASTを京都・ハーバード方式に</li>
 <h3>文字列生成</h3>
 <h4>リピート</h4>
 <p>入力した文字列を <strong>times</strong> の回数、リピートします。<br>
-リピートされた文字列は <strong>join</strong> の正規表現に従って変換前テキストに挿入されます。
-このとき <strong>Reg</strong> の正規表現によってリピート文字列と変換前文字列の整形ができます。
+リピートされた文字列は <strong>join</strong> の正規表現に従って変換前テキストに挿入されます。<br>
+このとき <strong>Reg</strong> の正規表現によってリピート文字列と変換前文字列の整形ができます。<br>
 <code>$1</code>はリピート文字列、<code>$2</code>は変換前テキストを示します。</p>
 <h4>連番</h4>
 <p>連番を生成します。<br>
