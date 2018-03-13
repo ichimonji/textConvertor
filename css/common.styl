@@ -478,3 +478,54 @@ h1, h2, h3
     &-footer
       padding 10px
 
+.section-ime
+  .modal
+    &-content
+      overflow hidden
+    &-header
+      background-color $col_primary
+      color $col_white
+      border none
+      padding 10px
+      .close
+      .close:focus
+      .close:hover
+        color $col_white
+    &-body
+      padding 10px
+      font-size 12px
+  .alphaDisp
+    padding 5px 10px
+    background-color $col_lightgray
+    color $col_primary
+    font-size 2rem
+    border-radius 5px
+    min-height 1em
+  .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle)
+  .btn-group > .btn:last-child:not(:first-child)
+  .btn-group > .dropdown-toggle:not(:first-child)
+    border-radius 0
+  .btn-group
+    margin-top 10px
+    flexer( row, wrap, stretch, flex-start )
+    overflow hidden
+    border-radius 4px
+    background-color $col_primary
+    .btn
+      border none
+      float none
+      flex-grow 1
+      flex-shrink 1
+  .btn-col13
+    .btn
+      min-width 11.11%
+    .btn-info:last-child
+      border-bottom-right-radius 4px
+  .bt-control
+    display block
+    width 4em
+    margin 10px auto 0
+  #alpha_opt
+    .btn
+      font-size 2rem
+

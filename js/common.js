@@ -67,9 +67,9 @@ $(function() {
   $bt.on('click', e => {
     let ival = $(e.currentTarget).val(),
       iStr = $ipt.val(),
-      instArr = '', instArr2 = '',
-      instStr = '', instStr2 = '', instNum = 0,
-      oStr = '', find = '', flg = 'g', hi, lo,
+      instArr = '', instArr2 = '', instArr3 = '', pathArr = [],
+      instStr = '', instStr2 = '', instStr3 = '', instNum = 0,
+      oStr = '', find = '', flg = 'g', hi, lo, pathStep = 0,
       beforeStr = '', endStr = '',
       int, fract, seisuu = '', shousuu = '', i, j;
     instArr = [];
@@ -199,7 +199,7 @@ $(function() {
           oStr = iStr.replace(/([0-9a-fA-F]+)/g, n => parseInt(n, 16).toString(2));
           break;
         case 'num-abs':
-          oStr = iStr.replace(/([-+]?[0-9]+.[0-9]+|[-+]?[0-9])/g, n => {console.log(n); return Math.abs(parseFloat(n, 10))});
+          oStr = iStr.replace(/([-+]?[0-9]+.[0-9]+|[-+]?[0-9])/g, n => Math.abs(parseFloat(n, 10)));
           break;
         case 'num-int':
           oStr = iStr.replace(/([-+]?[0-9]+.[0-9]+|[-+]?[0-9])/g, n => parseInt(n, 10));
@@ -784,6 +784,58 @@ $(function() {
           instStr = instStr.replace(td3_reg, '$1\n');
           oStr = instStr;
           break;
+        case 'tree':
+          instArr = iStr.replace(/\r/g, '').split(/\n/g).map(n => n.split(/\//g));
+          instArr2 = {};
+          let
+            pathStr = '',
+            inst_i;
+          for(let i = 0; i < instArr.length; i++){
+            inst_i = instArr[i];
+            if(inst_i.join('/').slice(-1) === '/'){
+              continue;
+            }
+            for(let j = 0; j < inst_i.length; j++){
+              if(!j){
+                if(!(inst_i[j] in instArr2)){
+                  instArr2[inst_i[j]] = {};
+                }
+                pathArr = instArr2[inst_i[j]];
+              } else {
+                if(!(inst_i[j] in pathArr)){
+                  pathArr[inst_i[j]] = {};
+                }
+                pathArr = pathArr[inst_i[j]];
+              }
+            }
+          }
+          instStr = JSON.stringify(instArr2, null, '\t');
+          instStr = instStr.replace(/(: [\[\{])$/gm, '/');
+          instStr = instStr.replace(/^(\t+)"(.*?)"([\/]?)([\: \{\}\,\[\]]*?)$/gm, '$1$2$3');
+          instStr = instStr.replace(/^([\t \[\]\{\}\,]+)$/gm, '');
+          instStr = instStr.replace(/\n+/g, '\n').replace(/^\t/gm, '').replace(/^\n/g, '');
+          oStr = instStr;
+          break;
+        case 'path':
+          instArr = iStr.replace(/\r/g, '').split(/\n/g);
+          instArr2 = instArr.map(n => n.split(/\t/g).length - 1);
+          instArr = instArr.map(n => n.replace(/\t/g, ''));
+          for(let i = 0; i < instArr.length; i++){
+            if(instArr[i].slice(-1) === '/'){
+              instStr3 = instArr[i].split('/')[0];
+              if(instArr2[i] > pathStep - 1 || pathStep === 0){
+                pathArr.push(instStr3);
+              } else if(instArr2[i] <= pathStep - 1){
+                pathArr = pathArr.slice(0, instArr2[i]);
+                pathArr.push(instStr3);
+              }
+              pathStep = pathArr.length;
+            } else if( instArr[i] !== '' ){
+              instStr += pathArr.join('/') + '/' + instArr[i] + '\n';
+            }
+          }
+          oStr = instStr;
+          break;
       // replace
         case 'replacement':
           flg = $('#caps').prop('checked') ? 'g' :'gi';
@@ -1031,6 +1083,12 @@ $(function() {
           }
           oStr = instStr;
           break;
+      // accent
+        case 'accent':
+          oStr = iStr + $('#alphaDisp').text();
+          $('#alphaDisp').html('');
+          $('#accent').modal('hide');
+          break;
     // other
         case 'move':
           iStr = $opt.val();
@@ -1113,5 +1171,39 @@ $(function() {
   });
   $helpModal.on('click', function(){
     $helpModal.modal('hide');
+  });
+
+
+  // IME
+  let
+    $btnAlphaGroup = $('.btn-group-alpha'),
+    $btnAlphaControl = $btnAlphaGroup.find('.btn-control'),
+    $btnAlpha = $btnAlphaGroup.find('.btn-alpha'),
+    $alphaOpt = $('#alpha_opt'),
+    $alphaDisp = $('#alphaDisp'),
+    alphaCase = 0,
+    cassArr = ['toUpperCase','toLowerCase'],
+    alphaVal;
+  $btnAlphaControl.on('click', function(){
+    $btnAlpha.each(function(){
+      let
+        str = $(this).val(),
+        str2 = str[cassArr[alphaCase]]();
+      $(this).text(str2);
+      $(this).val(str2);
+    });
+    alphaCase = ~alphaCase & 1;
+  });
+  $btnAlpha.on('click', function(){
+    alphaVal = $(this).val();
+    let alphaArr = latinVariety2[alphaVal.toLowerCase()];
+    alphaArr = alphaArr.map(n => n.charAt(alphaCase));
+    $alphaOpt.html('');
+    for(let i = 0; i < alphaArr.length; i++){
+      $alphaOpt.append('<button class="btn btn-primary" type="button" value="' + alphaArr[i] + '">' + alphaArr[i] + '</button>');
+    }
+  });
+  $alphaOpt.on('click', '.btn', function(){
+    $alphaDisp.append($(this).val());
   });
 });

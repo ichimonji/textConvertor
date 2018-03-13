@@ -74,6 +74,8 @@ html( lang = 'en' )
                   label.btn.btn-info #[input.tidy3_cb( name = 'tidy3_cb', type = 'checkbox', value='\.' )] .
                   label.btn.btn-info #[input.tidy3_cb( name = 'tidy3_cb', type = 'checkbox', value='\,' )] ,
                   button.btn.btn-primary.btn-sm.bt-control( type = 'button', value = 'tidy3' ) で改行
+              button.btn.btn-primary.bt-control( type = 'button', value = 'tree' )= '列挙パスをツリー化'
+              button.btn.btn-primary.bt-control( type = 'button', value = 'path' )= 'ツリーを列挙パス化'
             +dlBox('ctset_grep')
               div.form-inline
                 div.form-group
@@ -189,9 +191,51 @@ html( lang = 'en' )
                   div.input-group.input-group-sm.input-group-bt
                     label.input-group-addon #[input#rz_of( type = 'checkbox', checked = 'checked' )] overflow
                     button.form-control.btn.btn-primary.bt-control( type = 'button', title = '連続データ', value = 'listing' ) 生成
+            +dlBox('ctset_ime')
+              button.btn.btn-primary.btn-sm( type = 'button', data-toggle = 'modal', data-target = '#accent')= '符号付き英字入力'
           ul.link-list
             li: a.btn.btn-primary( data-toggle = 'modal', data-target = '#help' )= 'help'
             li: a.btn.btn-primary( target='_blank', href='https://github.com/ichimonji/textConvertor' )= 'github'
+      section.section-ime
+        div.modal.fade#accent( tabindex = '-1', role = 'dialog' )
+          div.modal-dialog( role = 'document' )
+            div.modal-content
+              div.modal-header
+                button.close( type = 'button', data-dismiss = 'modal', aria-label = 'Close' )
+                  span( aria-hidden = 'true' ) &times;
+                h4.modal-title 符号付き英字入力
+              div.modal-body
+                div.alphaDisp#alphaDisp
+                div.btn-group.btn-group-sm.btn-col13.btn-group-alpha( role = 'group', aria-label = '...' )
+                  button.btn.btn-info.btn-control( type = 'button', value = 'case')= 'Aa'
+                  button.btn.btn-primary.btn-alpha( type = 'button', value = 'a')= 'a'
+                  button.btn.btn-primary.btn-alpha( type = 'button', value = 'b')= 'b'
+                  button.btn.btn-primary.btn-alpha( type = 'button', value = 'c')= 'c'
+                  button.btn.btn-primary.btn-alpha( type = 'button', value = 'd')= 'd'
+                  button.btn.btn-primary.btn-alpha( type = 'button', value = 'e')= 'e'
+                  button.btn.btn-primary.btn-alpha( type = 'button', value = 'f')= 'f'
+                  button.btn.btn-primary.btn-alpha( type = 'button', value = 'g')= 'g'
+                  button.btn.btn-primary.btn-alpha( type = 'button', value = 'h')= 'h'
+                  button.btn.btn-primary.btn-alpha( type = 'button', value = 'i')= 'i'
+                  button.btn.btn-primary.btn-alpha( type = 'button', value = 'j')= 'j'
+                  button.btn.btn-primary.btn-alpha( type = 'button', value = 'k')= 'k'
+                  button.btn.btn-primary.btn-alpha( type = 'button', value = 'l')= 'l'
+                  button.btn.btn-primary.btn-alpha( type = 'button', value = 'm')= 'm'
+                  button.btn.btn-primary.btn-alpha( type = 'button', value = 'n')= 'n'
+                  button.btn.btn-primary.btn-alpha( type = 'button', value = 'o')= 'o'
+                  button.btn.btn-primary.btn-alpha( type = 'button', value = 'p')= 'p'
+                  button.btn.btn-primary.btn-alpha( type = 'button', value = 'q')= 'q'
+                  button.btn.btn-primary.btn-alpha( type = 'button', value = 'r')= 'r'
+                  button.btn.btn-primary.btn-alpha( type = 'button', value = 's')= 's'
+                  button.btn.btn-primary.btn-alpha( type = 'button', value = 't')= 't'
+                  button.btn.btn-primary.btn-alpha( type = 'button', value = 'u')= 'u'
+                  button.btn.btn-primary.btn-alpha( type = 'button', value = 'v')= 'v'
+                  button.btn.btn-primary.btn-alpha( type = 'button', value = 'w')= 'w'
+                  button.btn.btn-primary.btn-alpha( type = 'button', value = 'x')= 'x'
+                  button.btn.btn-primary.btn-alpha( type = 'button', value = 'y')= 'y'
+                  button.btn.btn-primary.btn-alpha( type = 'button', value = 'z')= 'z'
+                div.btn-group.btn-group-sm.btn-col13#alpha_opt
+                button.btn.btn-primary.bt-control( type = 'button', value = 'accent' )= '決定'
       section.info
         div.modal.help.fade#help( tabindex = '-1', role = 'dialog' )
           div.modal-dialog( role = 'document' )

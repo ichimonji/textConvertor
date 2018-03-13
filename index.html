@@ -369,6 +369,8 @@
                     <button class="btn btn-primary btn-sm bt-control" type="button" value="tidy3">で改行</button>
                   </div>
                 </div>
+                <button class="btn btn-primary bt-control" type="button" value="tree">列挙パスをツリー化</button>
+                <button class="btn btn-primary bt-control" type="button" value="path">ツリーを列挙パス化</button>
               </dd>
             </dl>
             <input class="genre" id="ctset_grep" type="checkbox" name="genre" checked="checked">
@@ -577,6 +579,15 @@
                 </div>
               </dd>
             </dl>
+            <input class="genre" id="ctset_ime" type="checkbox" name="genre" checked="checked">
+            <dl class="ct-set">
+              <dt class="head">
+                <label for="ctset_ime">入力支援</label><i class="fa fa-question-circle linkHelp" data-target="入力支援"></i>
+              </dt>
+              <dd class="body">
+                <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#accent">符号付き英字入力</button>
+              </dd>
+            </dl>
           </div>
           <ul class="link-list">
             <li><a class="btn btn-primary" data-toggle="modal" data-target="#help">help</a></li>
@@ -584,6 +595,52 @@
           </ul>
         </section>
       </div>
+      <section class="section-ime">
+        <div class="modal fade" id="accent" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">符号付き英字入力</h4>
+              </div>
+              <div class="modal-body">
+                <div class="alphaDisp" id="alphaDisp"></div>
+                <div class="btn-group btn-group-sm btn-col13 btn-group-alpha" role="group" aria-label="...">
+                  <button class="btn btn-info btn-control" type="button" value="case">Aa</button>
+                  <button class="btn btn-primary btn-alpha" type="button" value="a">a</button>
+                  <button class="btn btn-primary btn-alpha" type="button" value="b">b</button>
+                  <button class="btn btn-primary btn-alpha" type="button" value="c">c</button>
+                  <button class="btn btn-primary btn-alpha" type="button" value="d">d</button>
+                  <button class="btn btn-primary btn-alpha" type="button" value="e">e</button>
+                  <button class="btn btn-primary btn-alpha" type="button" value="f">f</button>
+                  <button class="btn btn-primary btn-alpha" type="button" value="g">g</button>
+                  <button class="btn btn-primary btn-alpha" type="button" value="h">h</button>
+                  <button class="btn btn-primary btn-alpha" type="button" value="i">i</button>
+                  <button class="btn btn-primary btn-alpha" type="button" value="j">j</button>
+                  <button class="btn btn-primary btn-alpha" type="button" value="k">k</button>
+                  <button class="btn btn-primary btn-alpha" type="button" value="l">l</button>
+                  <button class="btn btn-primary btn-alpha" type="button" value="m">m</button>
+                  <button class="btn btn-primary btn-alpha" type="button" value="n">n</button>
+                  <button class="btn btn-primary btn-alpha" type="button" value="o">o</button>
+                  <button class="btn btn-primary btn-alpha" type="button" value="p">p</button>
+                  <button class="btn btn-primary btn-alpha" type="button" value="q">q</button>
+                  <button class="btn btn-primary btn-alpha" type="button" value="r">r</button>
+                  <button class="btn btn-primary btn-alpha" type="button" value="s">s</button>
+                  <button class="btn btn-primary btn-alpha" type="button" value="t">t</button>
+                  <button class="btn btn-primary btn-alpha" type="button" value="u">u</button>
+                  <button class="btn btn-primary btn-alpha" type="button" value="v">v</button>
+                  <button class="btn btn-primary btn-alpha" type="button" value="w">w</button>
+                  <button class="btn btn-primary btn-alpha" type="button" value="x">x</button>
+                  <button class="btn btn-primary btn-alpha" type="button" value="y">y</button>
+                  <button class="btn btn-primary btn-alpha" type="button" value="z">z</button>
+                </div>
+                <div class="btn-group btn-group-sm btn-col13" id="alpha_opt"></div>
+                <button class="btn btn-primary bt-control" type="button" value="accent">決定</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       <section class="info">
         <div class="modal help fade" id="help" tabindex="-1" role="dialog">
           <div class="modal-dialog" role="document">
@@ -815,7 +872,13 @@ IASTを京都・ハーバード方式に</li>
 変換前テキストから改行をすべて削除した上で、指定した正規表現に該当する文字列の前で改行します。</li>
 <li><code>文字送り</code>
 変換前テキストから改行をすべて削除した上で、指定した文字記号のあとで改行します。</li>
+<li><code>列挙パスをツリー化</code>
+フルパスで書かれたパスをディレクトリごとにツリー化整形します。</li>
+<li><code>ツリーを列挙パス化</code>
+ディレクトリごとにツリー表記されたパスをフルパスの列挙型に変換します。</li>
 </ul>
+<p>※「列挙パスをツリー化」ではディレクトリを「/（スラッシュ）」で判断します。<br>
+※「ツリーを列挙パス化」では、行末に「/（スラッシュ）」がついた文字列をディレクトリ名と判断し、行頭のタブ文字の数でディレクトリの改装を判断します。</p>
 <h4>正規表現</h4>
 <p>正規表現置換を行う</p>
 <h4>左右連結</h4>
@@ -965,6 +1028,13 @@ stepが小数点の場合、小数点パディングは自動で行われます�
 <h4>連続データ</h4>
 <p>五十音やいろは順など、数字ではない連続データを生成する。<br>
 生成される連続データは <strong>amount</strong> の数値だけ、 <strong>step</strong> 刻みの数で生成します。</p>
+<h4>入力支援</h4>
+<p>キーボードで入力しにくい文字を入力するための機能です。</p>
+<ul>
+<li><code>符号付英字入力</code><br>
+アルファベットから符号付アルファベットを検索し入力できます。<br>
+__ Aa __ ボタンを押すと大文字と小文字が切り替わります。</li>
+</ul>
 <h2>その他</h2>
 <h3>変換用マップ</h3>
 <p>CJKなど変換には配列を使ったマッピングによって対応しています。</p>
