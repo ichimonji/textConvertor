@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans");
+@import url("http://fonts.googleapis.com/earlyaccess/notosansjp.css");
 :root {
   font-size: 14px;
 }
@@ -10,7 +12,8 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: 'Lato', 'Noto Sans JP', sans-serif;
+  font-family: 'Lato', 'Noto Sans', 'Noto Sans JP', sans-serif;
+  font-family: 'Lucida Sans Unicode';
   background-color: #333;
 }
 body {
@@ -1226,7 +1229,8 @@ h3 {
   padding: 10px;
   font-size: 12px;
 }
-.section-ime .alphaDisp {
+.section-ime .alphaDisp,
+.section-ime .ligatDisp {
   padding: 5px 10px;
   background-color: #aaa;
   color: #337ab7;
@@ -1303,6 +1307,7 @@ h3 {
   width: 4em;
   margin: 10px auto 0;
 }
-.section-ime #alpha_opt .btn {
+.section-ime #alpha_opt .btn,
+.section-ime #ligat_opt .btn {
   font-size: 2rem;
 }

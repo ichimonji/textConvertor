@@ -11,7 +11,7 @@ html( lang = 'en' )
     link( rel = 'image_src', href = 'http://myth.maji.asia/figure/aloes.jpg' )
     +linkAll( links )
   body
-    header.header
+    header.header#header
       h1.head= $title
       button.btn.btn-primary( data-toggle = 'modal', data-target = '#help' )= 'help'
     main.main
@@ -192,7 +192,8 @@ html( lang = 'en' )
                     label.input-group-addon #[input#rz_of( type = 'checkbox', checked = 'checked' )] overflow
                     button.form-control.btn.btn-primary.bt-control( type = 'button', title = '連続データ', value = 'listing' ) 生成
             +dlBox('ctset_ime')
-              button.btn.btn-primary.btn-sm( type = 'button', data-toggle = 'modal', data-target = '#accent')= '符号付き英字入力'
+              button.btn.btn-primary.btn-sm( type = 'button', data-toggle = 'modal', data-target = '#accent')= '符号付き英字'
+              button.btn.btn-primary.btn-sm( type = 'button', data-toggle = 'modal', data-target = '#ligat')= '英合字'
           ul.link-list
             li: a.btn.btn-primary( data-toggle = 'modal', data-target = '#help' )= 'help'
             li: a.btn.btn-primary( target='_blank', href='https://github.com/ichimonji/textConvertor' )= 'github'
@@ -203,7 +204,7 @@ html( lang = 'en' )
               div.modal-header
                 button.close( type = 'button', data-dismiss = 'modal', aria-label = 'Close' )
                   span( aria-hidden = 'true' ) &times;
-                h4.modal-title 符号付き英字入力
+                h4.modal-title 符号付き英字
               div.modal-body
                 div.alphaDisp#alphaDisp
                 div.btn-group.btn-group-sm.btn-col13.btn-group-alpha( role = 'group', aria-label = '...' )
@@ -236,6 +237,45 @@ html( lang = 'en' )
                   button.btn.btn-primary.btn-alpha( type = 'button', value = 'z')= 'z'
                 div.btn-group.btn-group-sm.btn-col13#alpha_opt
                 button.btn.btn-primary.bt-control( type = 'button', value = 'accent' )= '決定'
+      section.section-ime
+        div.modal.fade#ligat( tabindex = '-1', role = 'dialog' )
+          div.modal-dialog( role = 'document' )
+            div.modal-content
+              div.modal-header
+                button.close( type = 'button', data-dismiss = 'modal', aria-label = 'Close' )
+                  span( aria-hidden = 'true' ) &times;
+                h4.modal-title 英合字
+              div.modal-body
+                div.ligatDisp#ligatDisp
+                div.btn-group.btn-group-sm.btn-col13.btn-group-ligat( role = 'group', aria-label = '...' )
+                  button.btn.btn-primary.btn-ligat( type = 'button', value = 'ae')= 'ae'
+                  button.btn.btn-primary.btn-ligat( type = 'button', value = 'ao')= 'ao'
+                  button.btn.btn-primary.btn-ligat( type = 'button', value = 'au')= 'au'
+                  button.btn.btn-primary.btn-ligat( type = 'button', value = 'av')= 'av'
+                  button.btn.btn-primary.btn-ligat( type = 'button', value = 'ay')= 'ay'
+                  button.btn.btn-primary.btn-ligat( type = 'button', value = 'db')= 'db'
+                  button.btn.btn-primary.btn-ligat( type = 'button', value = 'dz')= 'dz'
+                  button.btn.btn-primary.btn-ligat( type = 'button', value = 'ff')= 'ff'
+                  button.btn.btn-primary.btn-ligat( type = 'button', value = 'ffi')= 'ffi'
+                  button.btn.btn-primary.btn-ligat( type = 'button', value = 'ffl')= 'ffl'
+                  button.btn.btn-primary.btn-ligat( type = 'button', value = 'fi')= 'fi'
+                  button.btn.btn-primary.btn-ligat( type = 'button', value = 'fl')= 'fl'
+                  button.btn.btn-primary.btn-ligat( type = 'button', value = 'ft')= 'ft'
+                  button.btn.btn-primary.btn-ligat( type = 'button', value = 'ij')= 'ij'
+                  button.btn.btn-primary.btn-ligat( type = 'button', value = 'lb')= 'lb'
+                  button.btn.btn-primary.btn-ligat( type = 'button', value = 'lj')= 'lj'
+                  button.btn.btn-primary.btn-ligat( type = 'button', value = 'ng')= 'ng'
+                  button.btn.btn-primary.btn-ligat( type = 'button', value = 'nj')= 'nj'
+                  button.btn.btn-primary.btn-ligat( type = 'button', value = 'oe')= 'oe'
+                  button.btn.btn-primary.btn-ligat( type = 'button', value = 'oo')= 'oo'
+                  button.btn.btn-primary.btn-ligat( type = 'button', value = 'ou')= 'ou'
+                  button.btn.btn-primary.btn-ligat( type = 'button', value = 'qp')= 'qp'
+                  button.btn.btn-primary.btn-ligat( type = 'button', value = 'st')= 'st'
+                  button.btn.btn-primary.btn-ligat( type = 'button', value = 'sz')= 'sz'
+                  button.btn.btn-primary.btn-ligat( type = 'button', value = 'ue')= 'ue'
+                  button.btn.btn-primary.btn-ligat( type = 'button', value = 'vy')= 'vy'
+                div.btn-group.btn-group-sm.btn-col13#ligat_opt
+                button.btn.btn-primary.bt-control( type = 'button', value = 'ligature' )= '決定'
       section.info
         div.modal.help.fade#help( tabindex = '-1', role = 'dialog' )
           div.modal-dialog( role = 'document' )

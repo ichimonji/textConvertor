@@ -198,6 +198,12 @@ $(function() {
         case 'num-16_2':
           oStr = iStr.replace(/([0-9a-fA-F]+)/g, n => parseInt(n, 16).toString(2));
           break;
+        case 'num-comma':
+          oStr = iStr.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+          break;
+        case 'num-comma2':
+          oStr = iStr.replace(/([\d,]+)/g, n => n.replace(/\,/g, ''));
+          break;
         case 'num-abs':
           oStr = iStr.replace(/([-+]?[0-9]+.[0-9]+|[-+]?[0-9])/g, n => Math.abs(parseFloat(n, 10)));
           break;
@@ -1089,6 +1095,12 @@ $(function() {
           $('#alphaDisp').html('');
           $('#accent').modal('hide');
           break;
+      // ligature
+        case 'ligature':
+          oStr = iStr + $('#ligatDisp').text();
+          $('#ligatDisp').html('');
+          $('#ligat').modal('hide');
+          break;
     // other
         case 'move':
           iStr = $opt.val();
@@ -1171,6 +1183,8 @@ $(function() {
   });
   $helpModal.on('click', function(){
     $helpModal.modal('hide');
+  }).on('hidden.bs.modal', function(){
+    location.hash = "header";
   });
 
 
@@ -1206,4 +1220,22 @@ $(function() {
   $alphaOpt.on('click', '.btn', function(){
     $alphaDisp.append($(this).val());
   });
+
+  let
+    $btnLigatGroup = $('.btn-group-ligat'),
+    $btnLigatControl = $btnLigatGroup.find('.btn-control'),
+    $btnLigat = $btnLigatGroup.find('.btn-ligat'),
+    $ligatOpt = $('#ligat_opt'),
+    $ligatDisp = $('#ligatDisp');
+  $btnLigat.on('click', function(){
+    let ligatVal = $(this).val();
+    $ligatOpt.html('');
+    for(let i = 0; i < latinVariety3[ligatVal].length; i++){
+      $ligatOpt.append('<button class="btn btn-primary" type="button" value="' + latinVariety3[ligatVal][i] + '">' + latinVariety3[ligatVal][i] + '</button>');
+    }
+  });
+  $ligatOpt.on('click', '.btn', function(){
+    $ligatDisp.append($(this).val());
+  });
+
 });
