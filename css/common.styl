@@ -258,8 +258,8 @@ h1, h2, h3
       border-top-left-radius 0
       border-bottom-left-radius 0
   & > .head
-    flexer( row, nowrap, space-between, center )
-    width 8em
+    flexer( row, nowrap, stretch, center )
+    width 110px
     margin-bottom 0
     border none
     color $col_primary
@@ -268,14 +268,16 @@ h1, h2, h3
     flex-shrink 0
     border-radius 3px
     background-color $col_white
-    padding 4px 6px
+    padding 4px 4px
     font-size 12px
     line-height 1.5
     margin-right 10px
     border 1px solid $col_white
     label
+      flex-grow 1
       display block
       margin-bottom 0
+      text-align left
     .fa
       font-size 16px
   .form-inline

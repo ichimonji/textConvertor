@@ -13,7 +13,7 @@ html( lang = 'en' )
   body
     header.header#header
       h1.head= $title
-      button.btn.btn-primary( data-toggle = 'modal', data-target = '#help' )= 'help'
+      button.btn.btn-primary( data-toggle = 'modal', data-target = '#help' ) #[i.fa.fa-question-circle( aria-hidden = 'true' )] help
     main.main
       div.main-wrap
         section.area-input
@@ -35,7 +35,7 @@ html( lang = 'en' )
               label.btn.btn-sm.btn-primary #[input.automove( name = 'automove', type = 'checkbox' )] AUTO MOVE
         section.area-control
           div.ctLabel.btn-group.btn-group-sm.btn-group-justified
-            label.btn.btn-info( for = 'ctGroup_code' ) コード/数値型
+            label.btn.btn-info( for = 'ctGroup_code' ) コード/数値
             label.btn.btn-info( for = 'ctGroup_lang' ) 言語
             label.btn.btn-info( for = 'ctGroup_cont' ) 文字列操作
             label.btn.btn-info( for = 'ctGroup_unit' ) 文字列生成
@@ -173,6 +173,8 @@ html( lang = 'en' )
                       option( value = 'men2' ) 月（英語略）
                       option( value = 'alpha' ) ABC～Z
                       option( value = 'alpha2' ) abc～z
+                      option( value = 'greek' ) ΑΒΓ～Ω
+                      option( value = 'greek2' ) αβγ～ω
                       option( value = 'eto12' ) 十二支
                       option( value = 'eto10' ) 十干
                       option( value = 'eto60' ) 干支
@@ -195,8 +197,8 @@ html( lang = 'en' )
               button.btn.btn-primary.btn-sm( type = 'button', data-toggle = 'modal', data-target = '#accent')= '符号付き英字'
               button.btn.btn-primary.btn-sm( type = 'button', data-toggle = 'modal', data-target = '#ligat')= '英合字'
           ul.link-list
-            li: a.btn.btn-primary( data-toggle = 'modal', data-target = '#help' )= 'help'
-            li: a.btn.btn-primary( target='_blank', href='https://github.com/ichimonji/textConvertor' )= 'github'
+            li: a.btn.btn-primary( data-toggle = 'modal', data-target = '#help' ) #[i.fa.fa-question-circle( aria-hidden = 'true' )] help
+            li: a.btn.btn-primary( target='_blank', href='https://github.com/ichimonji/textConvertor' ) #[i.fa.fa-github( aria-hidden = 'true' )] github
       section.section-ime
         div.modal.fade#accent( tabindex = '-1', role = 'dialog' )
           div.modal-dialog( role = 'document' )

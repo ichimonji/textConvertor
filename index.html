@@ -31,7 +31,7 @@
   <body>
     <header class="header" id="header">
       <h1 class="head">汎用テキストコンバータ</h1>
-      <button class="btn btn-primary" data-toggle="modal" data-target="#help">help</button>
+      <button class="btn btn-primary" data-toggle="modal" data-target="#help"><i class="fa fa-question-circle" aria-hidden="true"></i> help</button>
     </header>
     <main class="main">
       <div class="main-wrap">
@@ -67,7 +67,7 @@
         </section>
         <section class="area-control">
           <div class="ctLabel btn-group btn-group-sm btn-group-justified">
-            <label class="btn btn-info" for="ctGroup_code">コード/数値型</label>
+            <label class="btn btn-info" for="ctGroup_code">コード/数値</label>
             <label class="btn btn-info" for="ctGroup_lang">言語</label>
             <label class="btn btn-info" for="ctGroup_cont">文字列操作</label>
             <label class="btn btn-info" for="ctGroup_unit">文字列生成</label>
@@ -550,6 +550,8 @@
                         <option value="men2">月（英語略）</option>
                         <option value="alpha">ABC～Z</option>
                         <option value="alpha2">abc～z</option>
+                        <option value="greek">ΑΒΓ～Ω</option>
+                        <option value="greek2">αβγ～ω</option>
                         <option value="eto12">十二支</option>
                         <option value="eto10">十干</option>
                         <option value="eto60">干支</option>
@@ -593,8 +595,8 @@
             </dl>
           </div>
           <ul class="link-list">
-            <li><a class="btn btn-primary" data-toggle="modal" data-target="#help">help</a></li>
-            <li><a class="btn btn-primary" target="_blank" href="https://github.com/ichimonji/textConvertor">github</a></li>
+            <li><a class="btn btn-primary" data-toggle="modal" data-target="#help"><i class="fa fa-question-circle" aria-hidden="true"></i> help</a></li>
+            <li><a class="btn btn-primary" target="_blank" href="https://github.com/ichimonji/textConvertor"><i class="fa fa-github" aria-hidden="true"></i> github</a></li>
           </ul>
         </section>
       </div>
@@ -708,7 +710,7 @@
 <p>項目が多すぎて扱いづらい場合は「ケース」、「Url/Base64」といったグループ名の部分を押すとそのグループが折りたたまれます。<br>
 折りたたまれたグループはもう一回押すと元に戻ります。</p>
 <h2>各項目の説明</h2>
-<h3>コード/数値型処理</h3>
+<h3>コード/数値型</h3>
 <h4>ケース</h4>
 <p>半角英単語のケース操作を行う。またケース変換の他にクォーテーションの変更や符号付ラテン文字の符号解除なども行う。</p>
 <ul>
@@ -786,7 +788,7 @@ UTF32のオーバーフロー分をサロゲートペアに変換</li>
 <li><code>Ceil</code>： テキスト中のすべての数値を切り上げます。</li>
 </ul>
 <p>※全角の数字にたいしては無視します。</p>
-<h3>言語処理</h3>
+<h3>言語</h3>
 <h4>数字</h4>
 <p>アラビア数字（算用数字）からほかの数字記号への変換などを行う。</p>
 <ul>
