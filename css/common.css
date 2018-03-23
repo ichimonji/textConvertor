@@ -710,21 +710,13 @@ h3 {
   align-content: stretch;
   width: 100%;
 }
-.ct-set > .body > .btn {
-  margin-top: -1px;
-  margin-left: -1px;
-  border-top: 1px solid rgba(0,0,0,0.1) !important;
-  border-left: 1px solid rgba(0,0,0,0.1) !important;
+.ct-set > .body .btn {
+  margin: 0 !important;
+  border: none !important;
 }
-.ct-set > .body > .btn-group {
-  margin-top: -1px;
-  border-top: 1px solid rgba(0,0,0,0.1) !important;
-}
-.ct-set > .body > .btn-group > .btn {
-  margin-top: -1px;
-  margin-left: -1px;
-  border-top: 1px solid rgba(0,0,0,0.1) !important;
-  border-left: 1px solid rgba(0,0,0,0.1) !important;
+.ct-set > .body .btn-group {
+  margin: 0 !important;
+  border: none !important;
 }
 .ct-set > .body .btn:not(:last-of-type),
 .ct-set > .body .input-group:not(:last-of-type) .form-control:last-child {
@@ -825,12 +817,12 @@ h3 {
   -webkit-flex-wrap: wrap;
   -ms-flex-wrap: wrap;
   flex-wrap: wrap;
-  -webkit-box-pack: start;
-  -moz-box-pack: start;
-  -o-box-pack: start;
-  -ms-flex-pack: start;
-  -webkit-justify-content: flex-start;
-  justify-content: flex-start;
+  -webkit-box-pack: stretch;
+  -moz-box-pack: stretch;
+  -o-box-pack: stretch;
+  -ms-flex-pack: stretch;
+  -webkit-justify-content: stretch;
+  justify-content: stretch;
   -webkit-box-align: start;
   -moz-box-align: start;
   -o-box-align: start;
@@ -1136,6 +1128,207 @@ h3 {
   .ct-set [for=text-i] {
     display: none;
   }
+}
+#ctset_tidy + .ct-set > .body > .form-inline > .form-group {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -o-box-lines: multiple;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: stretch;
+  -moz-box-pack: stretch;
+  -o-box-pack: stretch;
+  -ms-flex-pack: stretch;
+  -webkit-justify-content: stretch;
+  justify-content: stretch;
+  -webkit-box-align: start;
+  -moz-box-align: start;
+  -o-box-align: start;
+  -ms-flex-align: start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+  -ms-flex-line-pack: stretch;
+  -webkit-align-content: stretch;
+  align-content: stretch;
+}
+#ctset_tidy + .ct-set > .body > .form-inline > .form-group > .input-group-sm {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -o-box-lines: multiple;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: stretch;
+  -moz-box-pack: stretch;
+  -o-box-pack: stretch;
+  -ms-flex-pack: stretch;
+  -webkit-justify-content: stretch;
+  justify-content: stretch;
+  -webkit-box-align: start;
+  -moz-box-align: start;
+  -o-box-align: start;
+  -ms-flex-align: start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+  -ms-flex-line-pack: stretch;
+  -webkit-align-content: stretch;
+  align-content: stretch;
+  border-radius: 0;
+  width: 50%;
+}
+@media only screen and (max-width: 768px) {
+  #ctset_tidy + .ct-set > .body > .form-inline > .form-group > .input-group-sm {
+    width: 100%;
+  }
+}
+#ctset_tidy + .ct-set > .body > .form-inline > .form-group > .input-group-sm > .form-control {
+  width: 60%;
+  border: none;
+  border-radius: 0;
+}
+#ctset_tidy + .ct-set > .body > .form-inline > .form-group > .input-group-sm > .input-group-btn {
+  width: auto;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  -ms-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  -webkit-flex-shrink: 1;
+  flex-shrink: 1;
+}
+#ctset_tidy + .ct-set > .body > .form-inline > .form-group > .input-group-sm > .input-group-btn > .btn {
+  border-radius: 0;
+  width: 100%;
+}
+#ctset_tidy + .ct-set > .body > .btn {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+#ctset_grep + .ct-set > .body > .form-inline > .form-group {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -o-box-lines: multiple;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: stretch;
+  -moz-box-pack: stretch;
+  -o-box-pack: stretch;
+  -ms-flex-pack: stretch;
+  -webkit-justify-content: stretch;
+  justify-content: stretch;
+  -webkit-box-align: start;
+  -moz-box-align: start;
+  -o-box-align: start;
+  -ms-flex-align: start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+  -ms-flex-line-pack: stretch;
+  -webkit-align-content: stretch;
+  align-content: stretch;
+}
+#ctset_grep + .ct-set > .body > .form-inline > .form-group > .input-group-sm {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -o-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-lines: multiple;
+  -moz-box-lines: multiple;
+  -o-box-lines: multiple;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-pack: stretch;
+  -moz-box-pack: stretch;
+  -o-box-pack: stretch;
+  -ms-flex-pack: stretch;
+  -webkit-justify-content: stretch;
+  justify-content: stretch;
+  -webkit-box-align: start;
+  -moz-box-align: start;
+  -o-box-align: start;
+  -ms-flex-align: start;
+  -webkit-align-items: flex-start;
+  align-items: flex-start;
+  -ms-flex-line-pack: stretch;
+  -webkit-align-content: stretch;
+  align-content: stretch;
+  border-radius: 0;
+  width: 50%;
+}
+@media only screen and (max-width: 768px) {
+  #ctset_grep + .ct-set > .body > .form-inline > .form-group > .input-group-sm {
+    width: 100%;
+  }
+}
+#ctset_grep + .ct-set > .body > .form-inline > .form-group > .input-group-sm > .form-control {
+  width: 80%;
+  border: none;
+  border-radius: 0;
+}
+#ctset_grep + .ct-set > .body > .form-inline > .form-group > .input-group-sm > .input-group-btn {
+  width: auto;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -o-box-flex: 1;
+  -ms-box-flex: 1;
+  box-flex: 1;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+  -webkit-flex-shrink: 1;
+  flex-shrink: 1;
+}
+#ctset_grep + .ct-set > .body > .form-inline > .form-group > .input-group-sm > .input-group-btn > .btn {
+  border-radius: 0;
+  width: 100%;
 }
 .help .modal-content {
   overflow: hidden;
