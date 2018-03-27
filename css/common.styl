@@ -64,6 +64,15 @@ input[type=checkbox]
   position relative
   top -2px
 
+input[type=number]
+  // for FF, IE
+  -moz-appearance textfield
+  &::-webkit-outer-spin-button
+  &::-webkit-inner-spin-button
+    // for Chrome, Safari
+    -webkit-appearance: none
+    margin: 0
+
 
 
 h1, h2, h3
@@ -240,6 +249,9 @@ h1, h2, h3
     & .btn-group
       margin 0 !important
       border none !important
+    & .form-control
+      border none !important
+      box-shadow none !important
     .btn:not(:last-of-type)
     .input-group:not(:last-of-type) .form-control:last-child
       border-top-right-radius 0
@@ -538,6 +550,7 @@ h1, h2, h3
       font-size 12px
   .alphaDisp
   .ligatDisp
+  .pyinDisp
     padding 5px 10px
     background-color $col_lightgray
     color $col_primary
@@ -545,6 +558,8 @@ h1, h2, h3
     border-radius 5px
     min-height 1em
     word-wrap break-word
+  .pyinDisp + .pyinDisp
+    margin-top 5px
   .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle)
   .btn-group > .btn:last-child:not(:first-child)
   .btn-group > .dropdown-toggle:not(:first-child)
@@ -563,6 +578,11 @@ h1, h2, h3
   .btn-col13
     .btn
       min-width 11.11%
+    .btn-info:last-child
+      border-bottom-right-radius 4px
+  .btn-col10
+    .btn
+      min-width 10%
     .btn-info:last-child
       border-bottom-right-radius 4px
   .bt-control

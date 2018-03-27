@@ -69,6 +69,14 @@ input[type=checkbox] {
   position: relative;
   top: -2px;
 }
+input[type=number] {
+  -moz-appearance: textfield;
+}
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
 h1,
 h2,
 h3 {
@@ -717,6 +725,11 @@ h3 {
 .ct-set > .body .btn-group {
   margin: 0 !important;
   border: none !important;
+}
+.ct-set > .body .form-control {
+  border: none !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
 }
 .ct-set > .body .btn:not(:last-of-type),
 .ct-set > .body .input-group:not(:last-of-type) .form-control:last-child {
@@ -1430,7 +1443,8 @@ h3 {
   font-size: 12px;
 }
 .section-ime .alphaDisp,
-.section-ime .ligatDisp {
+.section-ime .ligatDisp,
+.section-ime .pyinDisp {
   padding: 5px 10px;
   background-color: #aaa;
   color: #337ab7;
@@ -1438,6 +1452,9 @@ h3 {
   border-radius: 5px;
   min-height: 1em;
   word-wrap: break-word;
+}
+.section-ime .pyinDisp + .pyinDisp {
+  margin-top: 5px;
 }
 .section-ime .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle),
 .section-ime .btn-group > .btn:last-child:not(:first-child),
@@ -1500,6 +1517,12 @@ h3 {
   min-width: 11.11%;
 }
 .section-ime .btn-col13 .btn-info:last-child {
+  border-bottom-right-radius: 4px;
+}
+.section-ime .btn-col10 .btn {
+  min-width: 10%;
+}
+.section-ime .btn-col10 .btn-info:last-child {
   border-bottom-right-radius: 4px;
 }
 .section-ime .bt-control {

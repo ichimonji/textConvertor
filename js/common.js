@@ -784,10 +784,19 @@ $(function() {
           break;
         case 'tidy3':
           let
-            td3_cb = Object.values($('.tidy3_cb').filter(':checked').map((index, elm) => $(elm).val()).get());
-            td3_reg = new RegExp('([' + td3_cb.join('') + '])', 'g');
+            td3_cb = Object.values($('.tidy3_cb').filter(':checked').map((index, elm) => $(elm).val()).get()).join('');
+            td3_cb_1 = td3_cb.replace(/[「（]/g, '');
+            td3_cb_2 = td3_cb.replace(/[^「（]/g, '');
+            td3_reg_1 = new RegExp('([' + td3_cb_1 + '])', 'g');
           instStr = iStr.replace(/[\n\r]/g, '');
-          instStr = instStr.replace(td3_reg, '$1\n');
+          instStr = instStr.replace(td3_reg_1, '$1\n');
+          if(td3_cb_2 !== ''){
+            let
+              td3_reg_2 = new RegExp('([' + td3_cb_2 + '])', 'g');
+            instStr = instStr.replace(td3_reg_2, '\n$1');
+            instStr = instStr.replace(/([。、.,])(\n)([」）])/g, '$1$3');
+            instStr = instStr.replace(/([。、.,])(\n\n)([「（])/g, '$1\n$3');
+          }
           oStr = instStr;
           break;
         case 'tree':
@@ -1101,6 +1110,12 @@ $(function() {
           $('#ligatDisp').html('');
           $('#ligat').modal('hide');
           break;
+      // pinyin
+        case 'pinyin2':
+          oStr = iStr + $('#pyinDisp').text();
+          $('#pyinDisp').html('');
+          $('#pyin').modal('hide');
+          break;
     // other
         case 'move':
           iStr = $opt.val();
@@ -1236,6 +1251,35 @@ $(function() {
   });
   $ligatOpt.on('click', '.btn', function(){
     $ligatDisp.append($(this).val());
+  });
+
+  let
+    $btnPyinGroup = $('.btn-group-pyin'),
+    $btnPyinControl = $btnPyinGroup.find('.btn-control'),
+    $btnPyin = $btnPyinGroup.find('.btn-pyin'),
+    $pyinOpt = $('#pyin_opt'),
+    $pyinOpt2 = $('#pyin_opt2'),
+    $pyinDisp = $('#pyinDisp');
+    $pyinDisp2 = $('#pyinDisp2');
+  $btnPyin.on('click', function(){
+    let pyinVal = $(this).val();
+    $pyinOpt.html('');
+    for(let i = 0; i < pinyin3[pyinVal].length; i++){
+      $pyinOpt.append('<button class="btn btn-primary" type="button" value="' + pinyin3[pyinVal][i] + '">' + pinyin3[pyinVal][i] + '</button>');
+    }
+  });
+  $pyinOpt.on('click', '.btn', function(){
+    let
+      pyinVal2 = $(this).val(),
+      pyinStr = '';
+    $pyinOpt2.html('');
+    for(let i = 0; i < pinyin2[pyinVal2].length; i++){
+      pyinStr = '&#x' + pinyin2[pyinVal2][i] + ';'
+      $pyinOpt2.append('<button class="btn btn-primary" type="button" value="' + pyinStr + '">' + pyinStr + '</button>');
+    }
+  });
+  $pyinOpt2.on('click', '.btn', function(){
+    $pyinDisp.append($(this).val());
   });
 
 });

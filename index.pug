@@ -69,10 +69,12 @@ html( lang = 'en' )
                     div.input-group-btn
                       button.btn.btn-primary.bt-control( type = 'button', value = 'tidy2' ) ごとに頭出し
                   div.btn-group.btn-group-sm( role = 'group', aria-label = '...' )
-                    label.btn.btn-info #[input.tidy3_cb( name = 'tidy3_cb', type = 'checkbox', value='。', checked = checked )] 。
+                    label.btn.btn-info #[input.tidy3_cb( name = 'tidy3_cb', type = 'checkbox', value='。', checked = 'checked' )] 。
                     label.btn.btn-info #[input.tidy3_cb( name = 'tidy3_cb', type = 'checkbox', value='、' )] 、
                     label.btn.btn-info #[input.tidy3_cb( name = 'tidy3_cb', type = 'checkbox', value='\.' )] .
                     label.btn.btn-info #[input.tidy3_cb( name = 'tidy3_cb', type = 'checkbox', value='\,' )] ,
+                    label.btn.btn-info #[input.tidy3_cb( name = 'tidy3_cb', type = 'checkbox', value='「」', checked = 'checked' )] 「」
+                    label.btn.btn-info #[input.tidy3_cb( name = 'tidy3_cb', type = 'checkbox', value='（）' )] （）
                     button.btn.btn-primary.btn-sm.bt-control( type = 'button', value = 'tidy3' ) で改行
               button.btn.btn-primary.bt-control( type = 'button', value = 'tree' )= '列挙パスをツリー化'
               button.btn.btn-primary.bt-control( type = 'button', value = 'path' )= 'ツリーを列挙パス化'
@@ -196,6 +198,7 @@ html( lang = 'en' )
             +dlBox('ctset_ime')
               button.btn.btn-primary.btn-sm( type = 'button', data-toggle = 'modal', data-target = '#accent')= '符号付き英字'
               button.btn.btn-primary.btn-sm( type = 'button', data-toggle = 'modal', data-target = '#ligat')= '英合字'
+              button.btn.btn-primary.btn-sm( type = 'button', data-toggle = 'modal', data-target = '#pyin')= 'ピンイン入力'
           ul.link-list
             li: a.btn.btn-primary( data-toggle = 'modal', data-target = '#help' ) #[i.fa.fa-question-circle( aria-hidden = 'true' )] help
             li: a.btn.btn-primary( target='_blank', href='https://github.com/ichimonji/textConvertor' ) #[i.fa.fa-github( aria-hidden = 'true' )] github
@@ -278,6 +281,58 @@ html( lang = 'en' )
                   button.btn.btn-primary.btn-ligat( type = 'button', value = 'vy')= 'vy'
                 div.btn-group.btn-group-sm.btn-col13#ligat_opt
                 button.btn.btn-primary.bt-control( type = 'button', value = 'ligature' )= '決定'
+      section.section-ime
+        div.modal.fade#pyin( tabindex = '-1', role = 'dialog' )
+          div.modal-dialog( role = 'document' )
+            div.modal-content
+              div.modal-header
+                button.close( type = 'button', data-dismiss = 'modal', aria-label = 'Close' )
+                  span( aria-hidden = 'true' ) &times;
+                h4.modal-title ピンイン入力
+              div.modal-body
+                div.pyinDisp#pyinDisp
+                div.btn-group.btn-group-sm.btn-col10.btn-group-pyin( role = 'group', aria-label = '...' )
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'a' )= 'a'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'b' )= 'b'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'ch' )= 'ch'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'c' )= 'c'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'd' )= 'd'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'e' )= 'e'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'f' )= 'f'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'g' )= 'g'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'h' )= 'h'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'j' )= 'j'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'k' )= 'k'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'l' )= 'l'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'm' )= 'm'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'n' )= 'n'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'o' )= 'o'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'p' )= 'p'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'q' )= 'q'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'r' )= 'r'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 's' )= 's'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'sh' )= 'sh'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 't' )= 't'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'w' )= 'w'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'x' )= 'x'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'y' )= 'y'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'z' )= 'z'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'zh' )= 'zh'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'à' )= 'à'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'á' )= 'á'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'è' )= 'è'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'é' )= 'é'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'ò' )= 'ò'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'ó' )= 'ó'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'ā' )= 'ā'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'ē' )= 'ē'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'ĕ' )= 'ĕ'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'ō' )= 'ō'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'ǎ' )= 'ǎ'
+                  button.btn.btn-primary.btn-pyin( type = 'button', value = 'ǒ' )= 'ǒ'
+                div.btn-group.btn-group-sm.btn-col13#pyin_opt
+                div.btn-group.btn-group-sm.btn-col13#pyin_opt2
+                button.btn.btn-primary.bt-control( type = 'button', value = 'pinyin2' )= '決定'
       section.info
         div.modal.help.fade#help( tabindex = '-1', role = 'dialog' )
           div.modal-dialog( role = 'document' )

@@ -356,7 +356,7 @@
                     </div>
                     <div class="btn-group btn-group-sm" role="group" aria-label="...">
                       <label class="btn btn-info">
-                        <input class="tidy3_cb" name="tidy3_cb" type="checkbox" value="。"> 。
+                        <input class="tidy3_cb" name="tidy3_cb" type="checkbox" value="。" checked="checked"> 。
                       </label>
                       <label class="btn btn-info">
                         <input class="tidy3_cb" name="tidy3_cb" type="checkbox" value="、"> 、
@@ -366,6 +366,12 @@
                       </label>
                       <label class="btn btn-info">
                         <input class="tidy3_cb" name="tidy3_cb" type="checkbox" value=","> ,
+                      </label>
+                      <label class="btn btn-info">
+                        <input class="tidy3_cb" name="tidy3_cb" type="checkbox" value="「」" checked="checked"> 「」
+                      </label>
+                      <label class="btn btn-info">
+                        <input class="tidy3_cb" name="tidy3_cb" type="checkbox" value="（）"> （）
                       </label>
                       <button class="btn btn-primary btn-sm bt-control" type="button" value="tidy3">で改行</button>
                     </div>
@@ -591,6 +597,7 @@
               <dd class="body">
                 <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#accent">符号付き英字</button>
                 <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#ligat">英合字</button>
+                <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#pyin">ピンイン入力</button>
               </dd>
             </dl>
           </div>
@@ -686,6 +693,64 @@
                 </div>
                 <div class="btn-group btn-group-sm btn-col13" id="ligat_opt"></div>
                 <button class="btn btn-primary bt-control" type="button" value="ligature">決定</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section-ime">
+        <div class="modal fade" id="pyin" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">ピンイン入力</h4>
+              </div>
+              <div class="modal-body">
+                <div class="pyinDisp" id="pyinDisp"></div>
+                <div class="btn-group btn-group-sm btn-col10 btn-group-pyin" role="group" aria-label="...">
+                  <button class="btn btn-primary btn-pyin" type="button" value="a">a</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="b">b</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="ch">ch</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="c">c</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="d">d</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="e">e</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="f">f</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="g">g</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="h">h</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="j">j</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="k">k</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="l">l</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="m">m</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="n">n</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="o">o</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="p">p</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="q">q</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="r">r</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="s">s</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="sh">sh</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="t">t</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="w">w</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="x">x</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="y">y</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="z">z</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="zh">zh</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="à">à</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="á">á</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="è">è</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="é">é</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="ò">ò</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="ó">ó</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="ā">ā</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="ē">ē</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="ĕ">ĕ</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="ō">ō</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="ǎ">ǎ</button>
+                  <button class="btn btn-primary btn-pyin" type="button" value="ǒ">ǒ</button>
+                </div>
+                <div class="btn-group btn-group-sm btn-col13" id="pyin_opt"></div>
+                <div class="btn-group btn-group-sm btn-col13" id="pyin_opt2"></div>
+                <button class="btn btn-primary bt-control" type="button" value="pinyin2">決定</button>
               </div>
             </div>
           </div>
@@ -919,13 +984,14 @@ IASTを京都・ハーバード方式に</li>
 <ul>
 <li><code>文字数による改行</code><br>
 変換前テキストから改行をすべて削除した上で、指定された文字数ごとに改行します。</li>
-<li><code>文字の頭出し</code>
+<li><code>文字の頭出し</code><br>
 変換前テキストから改行をすべて削除した上で、指定した正規表現に該当する文字列の前で改行します。</li>
-<li><code>文字送り</code>
-変換前テキストから改行をすべて削除した上で、指定した文字記号のあとで改行します。</li>
-<li><code>列挙パスをツリー化</code>
+<li><code>文字送り</code><br>
+変換前テキストから改行をすべて削除した上で、指定した文字記号のあとで改行します。<br>
+<strong>「」</strong> 、 <strong>（）</strong> については、それぞれの括弧に挟まれた文を一行とみなして前後で改行します。</li>
+<li><code>列挙パスをツリー化</code><br>
 フルパスで書かれたパスをディレクトリごとにツリー化整形します。</li>
-<li><code>ツリーを列挙パス化</code>
+<li><code>ツリーを列挙パス化</code><br>
 ディレクトリごとにツリー表記されたパスをフルパスの列挙型に変換します。</li>
 </ul>
 <p>※「列挙パスをツリー化」ではディレクトリを「/（スラッシュ）」で判断します。<br>
@@ -1087,6 +1153,8 @@ stepが小数点の場合、小数点パディングは自動で行われます�
 <strong>Aa</strong> ボタンを押すと大文字と小文字が切り替わります。</li>
 <li><code>英合字</code><br>
 アルファベットから英字の各種合字を検索し入力できます。</li>
+<li><code>ピンイン入力</code><br>
+アルファベットによりピンインを検索します。</li>
 </ul>
 <h2>その他</h2>
 <h3>変換用マップ</h3>
