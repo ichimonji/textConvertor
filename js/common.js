@@ -720,6 +720,22 @@ $(function() {
           oStr = instStr;
           break;
         case 'sort1':
+          /*
+          let diffArr = 'aāáǎàbcdeēéěèfghiīíǐìjklmnoōóǒòpqrstuūúǔùǖǘǚǜvwxyz';
+          diff = r => {
+            ff = r.split('');
+            ff = ff.map(t=>{
+              return t.replace(/([āáǎàēéěèīíǐìōóǒòūúǔùǖǘǚǜa-z])/g,u=>{
+                if(u==='y') document.title=('0'+diffArr.indexOf(u)).slice(-2);
+                return ('0'+diffArr.indexOf(u)).slice(-2)
+              });
+            });
+            ff = ff.join('');
+            return ff;
+          };
+          instArr = iStr.replace(/\r\n/g, '\n').split('\n');
+          oStr = instArr.sort((a, b) => ((diff(a) > diff(b)) - (diff(a) < diff(b)))).join('\n');
+          */
           instArr = iStr.replace(/\r\n/g, '\n').split('\n');
           oStr = instArr.sort((a, b) => ((a > b) - (a < b))).join('\n');
           break;
