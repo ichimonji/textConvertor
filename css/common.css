@@ -77,6 +77,12 @@ input[type=number]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+#forCopy {
+  position: fixed;
+  z-index: -100;
+  top: 0;
+  font-size: 0;
+}
 h1,
 h2,
 h3 {
@@ -1342,6 +1348,36 @@ h3 {
 #ctset_grep + .ct-set > .body > .form-inline > .form-group > .input-group-sm > .input-group-btn > .btn {
   border-radius: 0;
   width: 100%;
+}
+@media only screen and (min-width: 769px) {
+  #ctset_numbering + .ct-set > .body > .form-inline > .form-group > .input-group-sm:nth-of-type(5) {
+    border-bottom-right-radius: 3px;
+    overflow: hidden;
+  }
+}
+@media only screen and (min-width: 769px) {
+  #ctset_dating + .ct-set > .body > .form-inline > .form-group > .input-group-sm:nth-of-type(4) {
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    overflow: hidden;
+  }
+}
+@media only screen and (max-width: 768px) {
+  #ctset_listing + .ct-set > .body > .form-inline > .form-group > .input-group-sm:nth-of-type(3),
+  #ctset_listing + .ct-set > .body > .form-inline > .form-group > .input-group-sm:nth-of-type(4) {
+    width: 33.33%;
+  }
+}
+@media only screen and (max-width: 768px) {
+  #ctset_listing + .ct-set > .body > .form-inline > .form-group > .input-group-sm:nth-of-type(5) {
+    width: 33.34%;
+  }
+}
+@media only screen and (min-width: 769px) {
+  #ctset_listing + .ct-set > .body > .form-inline > .form-group > .input-group-sm:nth-of-type(5) {
+    border-bottom-right-radius: 3px;
+    overflow: hidden;
+  }
 }
 .help .modal-content {
   overflow: hidden;

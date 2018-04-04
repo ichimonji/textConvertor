@@ -43,14 +43,15 @@ mixin lb( group, tp, val, txt, ckd )
   else
     label.btn.btn-info #[input( class = group, name = group, type = type, value != val )] #{txt}
 
-mixin dlBox(id)
-  - setBts = btsArr[id].bts
-  - setLbs = btsArr[id].lbs
+mixin dlBox(id, arr)
+  - setBts = arr.bts
+  - setLbs = arr.lbs
+  - setIts = arr.its
   input.genre( id = id type = 'checkbox', name = 'genre', checked = 'checked' )
   dl.ct-set
     dt.head
-      label( for = id )= btsArr[id].str
-      i.fa.fa-question-circle.linkHelp( data-target = btsArr[id].str )
+      label( for = id )= arr.str
+      i.fa.fa-question-circle.linkHelp( data-target = arr.str )
     dd.body
       if setBts
         each val in setBts
@@ -68,5 +69,23 @@ mixin dlBox(id)
             select.form-control( class = sl.class, name = sl.class )
               each val in sl.list
                 option( value = val[0] )= val[1]
+      if setIts
+        div.form-inline
+          div.form-group
+            each val in setIts.arr
+              div.input-group.input-group-sm
+                label.input-group-addon( title = val[0] ) !{val[1]}
+                if val[3] === 'select'
+                  select.form-control( class =  val[2], name =  val[2] )
+                    each val2, key2 in val[4]
+                      if val[5] === key2
+                        option( value = key2, selected ) !{val2}
+                      else
+                        option( value = key2 ) !{val2}
+                else
+                  input.form-control( id = val[2], type = val[3], value = val[4], placeholder = val[5] )
+            div.input-group.input-group-sm.input-group-bt
+              label.input-group-addon #[input( id = setIts.overflow, type = 'checkbox', checked = 'checked' )] overflow
+              button.form-control.btn.btn-primary.bt-control( type = 'button', title = setIts.title, value = setIts.value ) !{setIts.text}
       if block
         block

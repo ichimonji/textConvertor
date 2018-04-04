@@ -28,6 +28,7 @@ html( lang = 'en' )
           div.area-input-button
             div#lengthDisp
             div.btn-group-vertical
+              +bt( 'copy', '変換後テキストをクリップボードのコピー' ) #[i.fa.fa-clipboard] COPY
               +bt( 'move', '変換後テキストを変換前テキストエリアへ移動' ) #[i.glyphicon.glyphicon-chevron-left] MOVE
               +bt( 'delete', 'テキストを一括削除' ) #[i.glyphicon.glyphicon-remove] DELETE
               +bt( 'undo', '一段階前に戻す' ) #[i.glyphicon.glyphicon-undo] UNDO
@@ -39,166 +40,47 @@ html( lang = 'en' )
             label.btn.btn-info( for = 'ctGroup_lang' ) 言語
             label.btn.btn-info( for = 'ctGroup_cont' ) 文字列操作
             label.btn.btn-info( for = 'ctGroup_unit' ) 文字列生成
-          input.ctGroupRd.hidden#ctGroup_code( type = 'radio', name = 'ctGroupRd', checked = 'checked' )
-          div.ctGroup
-            +dlBox('ctset_case')
-            +dlBox('ctset_encode')
-            +dlBox('ctset_unicode')
-            +dlBox('ctset_numeral')
-          input.ctGroupRd.hidden#ctGroup_lang( type = 'radio', name = 'ctGroupRd' )
-          div.ctGroup
-            +dlBox('ctset_number')
-            +dlBox('ctset_japan')
-            +dlBox('ctset_cjk')
-            +dlBox('ctset_skt')
-          input.ctGroupRd.hidden#ctGroup_cont( type = 'radio', name = 'ctGroupRd' )
-          div.ctGroup
-            +dlBox('ctset_extract')
-            +dlBox('ctset_extall')
-            +dlBox('ctset_reverse')
-            +dlBox('ctset_dup')
-            +dlBox('ctset_tidy')
-              div.form-inline
-                div.form-group
-                  div.input-group.input-group-sm.input-group-bt
-                    input#td_amount.form-control( value = 20, type = 'number' )
-                    div.input-group-btn
-                      button.btn.btn-primary.bt-control( type = 'button', value = 'tidy' ) 文字ごとに改行
-                  div.input-group.input-group-sm.input-group-bt
-                    input#td2_reg.form-control( value = '\\d{2,2}:', type = 'text' )
-                    div.input-group-btn
-                      button.btn.btn-primary.bt-control( type = 'button', value = 'tidy2' ) ごとに頭出し
-                  div.btn-group.btn-group-sm( role = 'group', aria-label = '...' )
-                    label.btn.btn-info #[input.tidy3_cb( name = 'tidy3_cb', type = 'checkbox', value='。', checked = 'checked' )] 。
-                    label.btn.btn-info #[input.tidy3_cb( name = 'tidy3_cb', type = 'checkbox', value='、' )] 、
-                    label.btn.btn-info #[input.tidy3_cb( name = 'tidy3_cb', type = 'checkbox', value='\.' )] .
-                    label.btn.btn-info #[input.tidy3_cb( name = 'tidy3_cb', type = 'checkbox', value='\,' )] ,
-                    label.btn.btn-info #[input.tidy3_cb( name = 'tidy3_cb', type = 'checkbox', value='「」', checked = 'checked' )] 「」
-                    label.btn.btn-info #[input.tidy3_cb( name = 'tidy3_cb', type = 'checkbox', value='（）' )] （）
-                    button.btn.btn-primary.btn-sm.bt-control( type = 'button', value = 'tidy3' ) で改行
-              button.btn.btn-primary.bt-control( type = 'button', value = 'tree' )= '列挙パスをツリー化'
-              button.btn.btn-primary.bt-control( type = 'button', value = 'path' )= 'ツリーを列挙パス化'
-            +dlBox('ctset_grep')
-              div.form-inline
-                div.form-group
-                  div.input-group.input-group-sm
-                    span.input-group-btn
-                      label.btn.btn-primary #[input#caps(type = 'checkbox' )] Aa
-                    input.form-control( type = 'text', id = 'rep_find', value = '', placeholder = 'Find What' )
-                  div.input-group.input-group-sm
-                    input.form-control( type = 'text', id = 'rep_rep', value = '', placeholder = 'Replace With' )
-                    span.input-group-btn
-                      button.btn.btn-primary.bt-control( type = 'button', title = '置換' , value = 'replacement' ) 置換
-            +dlBox('ctset_side')
-          input.ctGroupRd.hidden#ctGroup_unit( type = 'radio', name = 'ctGroupRd' )
-          div.ctGroup
-            +dlBox('ctset_repeat')
-              div.form-inline
-                div.form-group
-                  div.input-group.input-group-sm
-                    label.input-group-addon( title = '文字列' ) str
-                    input.form-control#rp_string( type = 'text', value = '', placeholder = '文字列' )
-                  div.input-group.input-group-sm
-                    label.input-group-addon( title = '回数' ) times
-                    input.form-control#rp_time( type = 'number', value = '100' )
-                  div.input-group.input-group-sm
-                    label.input-group-addon( title = 'ごとに' ) join
-                    input.form-control#rp_join( type = 'text', value = '\\n', placeholder = 'Join' )
-                  div.input-group.input-group-sm
-                    label.input-group-addon( title = '置換' ) Reg
-                    input.form-control#rp_reg( type = 'text', value = '$1: $2', placeholder = 'Reg' )
-                  div.input-group.input-group-sm.input-group-bt
-                    label.input-group-addon #[input#rp_of( type = 'checkbox', checked = 'checked' )] overflow
-                    button.form-control.btn.btn-primary.bt-control( type = 'button', title = 'リピート生成', value = 'repeat' ) 生成
-            +dlBox('ctset_numbering')
-              div.form-inline
-                div.form-group
-                  div.input-group.input-group-sm
-                    label.input-group-addon( title = '～から' ) from
-                    input.form-control#mx_start( type = 'number', value = '0', placeholder = 'Start' )
-                  div.input-group.input-group-sm
-                    label.input-group-addon( title = '～まで' ) to
-                    input.form-control#mx_end( type = 'number', value = '100', placeholder = 'End' )
-                  div.input-group.input-group-sm
-                    label.input-group-addon( title = '～刻みで' ) step
-                    input.form-control#mx_step( type = 'number', value = '1', placeholder = 'Step' )
-                  div.input-group.input-group-sm
-                    label.input-group-addon( title = 'ゼロパディング' ) padding
-                    input.form-control#mx_padding( type = 'number', value = '3', placeholder = 'Padding' )
-                  div.input-group.input-group-sm.input-group-corn
-                    label.input-group-addon( title = 'ごとに' ) join
-                    input.form-control#mx_join( type = 'text', value = '\\n', placeholder = 'Join' )
-                  div.input-group.input-group-sm
-                    label.input-group-addon( title = '置換' ) Reg
-                    input.form-control#mx_reg( type = 'text', value = '$1: $2', placeholder = 'Reg' )
-                  div.input-group.input-group-sm.input-group-bt
-                    label.input-group-addon #[input#mx_of( type = 'checkbox', checked = 'checked' )] overflow
-                    button.form-control.btn.btn-primary.bt-control( type = 'button', title = '連番生成', value = 'numbering' ) 生成
-            +dlBox('ctset_dating')
-              div.form-inline
-                div.form-group
-                  div.input-group.input-group-sm.input-group-spfull
-                    label.input-group-addon( title = '開始日' ) Start
-                    input.form-control#dt_start( type = 'date', value = '2017-01-01', placeholder = 'YYYY-MM-DD', pattern = '[0-9\-/]' )
-                    label.input-group-addon( title = '終了日' ) End
-                    input.form-control#dt_end( type = 'date', value = '2017-12-12', placeholder = 'YYYY-MM-DD', pattern = '[0-9\-/]' )
-                  div.input-group.input-group-sm.input-group-sp4
-                    label.input-group-addon( title = '～刻みで' ) step
-                    input.form-control#dt_step( type = 'number', value = '1', placeholder = 'Step' )
-                  div.input-group.input-group-sm.input-group-sp8r.input-group-corn
-                    label.input-group-addon( title = '日付タイプ' ) Type
-                    input.form-control#dt_reg( type = 'text', value = 'YYYY/MM/DD (d2)', placeholder = 'Type' )
-                  div.input-group.input-group-sm
-                    label.input-group-addon( title = 'ごとに' ) join
-                    input.form-control#dt_join( type = 'text', value = '\\n', placeholder = 'Join' )
-                  div.input-group.input-group-sm
-                    label.input-group-addon( title = '置換' ) Reg
-                    input.form-control#dt_reg2( type = 'text', value = '$1: $2', placeholder = 'Reg' )
-                  div.input-group.input-group-sm.input-group-bt
-                    label.input-group-addon #[input#dt_of( type = 'checkbox', checked = 'checked' )] overflow
-                    button.form-control.btn.btn-primary.bt-control( type = 'button', title = '日付連番生成', value = 'dating' ) 生成
-            +dlBox('ctset_listing')
-              div.form-inline
-                div.form-group
-                  div.input-group.input-group-sm.input-group-spfull
-                    label.input-group-addon( title = '種類' ) type
-                    select.form-control.rz-type( name = 'rz_type' )
-                      option( value = 'hkana', selected ) あいう～ん
-                      option( value = 'kkana' ) アイウ～ン
-                      option( value = 'iroha' ) いろは～ん
-                      option( value = 'iroha2' ) イロハ～ン
-                      option( value = 'iroha3' ) 以呂波～旡
-                      option( value = 'wcjk' ) 日月火～土
-                      option( value = 'wen' ) 曜日（英語）
-                      option( value = 'wen2' ) 曜日（英語略）
-                      option( value = 'men' ) 月（英語）
-                      option( value = 'men2' ) 月（英語略）
-                      option( value = 'alpha' ) ABC～Z
-                      option( value = 'alpha2' ) abc～z
-                      option( value = 'greek' ) ΑΒΓ～Ω
-                      option( value = 'greek2' ) αβγ～ω
-                      option( value = 'eto12' ) 十二支
-                      option( value = 'eto10' ) 十干
-                      option( value = 'eto60' ) 干支
-                  div.input-group.input-group-sm
-                    label.input-group-addon( title = '～刻みで' ) step
-                    input.form-control#rz_step( type = 'number', value = '1', placeholder = 'Step' )
-                  div.input-group.input-group-sm
-                    label.input-group-addon( title = '～回' ) amount
-                    input.form-control#rz_amount( type = 'number', value = '10', placeholder = 'Amount' )
-                  div.input-group.input-group-sm
-                    label.input-group-addon( title = 'ごとに' ) join
-                    input.form-control#rz_join( type = 'text', value = '\\n', placeholder = 'Join' )
-                  div.input-group.input-group-sm.input-group-corn
-                    label.input-group-addon( title = '置換' ) Reg
-                    input.form-control#rz_reg( type = 'text', value = '$1: $2', placeholder = 'Reg' )
-                  div.input-group.input-group-sm.input-group-bt
-                    label.input-group-addon #[input#rz_of( type = 'checkbox', checked = 'checked' )] overflow
-                    button.form-control.btn.btn-primary.bt-control( type = 'button', title = '連続データ', value = 'listing' ) 生成
-            +dlBox('ctset_ime')
-              button.btn.btn-primary.btn-sm( type = 'button', data-toggle = 'modal', data-target = '#accent')= '符号付き英字'
-              button.btn.btn-primary.btn-sm( type = 'button', data-toggle = 'modal', data-target = '#ligat')= '英合字'
-              button.btn.btn-primary.btn-sm( type = 'button', data-toggle = 'modal', data-target = '#pyin')= 'ピンイン入力'
+          each val, key in btsArr
+            input.ctGroupRd.hidden( id = key, type = 'radio', name = 'ctGroupRd', checked = 'checked' )
+            div.ctGroup
+              each val2, key2 in val
+                +dlBox(key2, val2)
+                  if key2 === 'ctset_tidy'
+                    div.form-inline
+                      div.form-group
+                        div.input-group.input-group-sm.input-group-bt
+                          input#td_amount.form-control( value = 20, type = 'number' )
+                          div.input-group-btn
+                            button.btn.btn-primary.bt-control( type = 'button', value = 'tidy' ) 文字ごとに改行
+                        div.input-group.input-group-sm.input-group-bt
+                          input#td2_reg.form-control( value = '\\d{2,2}:', type = 'text' )
+                          div.input-group-btn
+                            button.btn.btn-primary.bt-control( type = 'button', value = 'tidy2' ) ごとに頭出し
+                        div.btn-group.btn-group-sm( role = 'group', aria-label = '...' )
+                          label.btn.btn-info #[input.tidy3_cb( name = 'tidy3_cb', type = 'checkbox', value='。', checked = 'checked' )] 。
+                          label.btn.btn-info #[input.tidy3_cb( name = 'tidy3_cb', type = 'checkbox', value='、' )] 、
+                          label.btn.btn-info #[input.tidy3_cb( name = 'tidy3_cb', type = 'checkbox', value='\.' )] .
+                          label.btn.btn-info #[input.tidy3_cb( name = 'tidy3_cb', type = 'checkbox', value='\,' )] ,
+                          label.btn.btn-info #[input.tidy3_cb( name = 'tidy3_cb', type = 'checkbox', value='「」', checked = 'checked' )] 「」
+                          label.btn.btn-info #[input.tidy3_cb( name = 'tidy3_cb', type = 'checkbox', value='（）' )] （）
+                          button.btn.btn-primary.btn-sm.bt-control( type = 'button', value = 'tidy3' ) で改行
+                    button.btn.btn-primary.bt-control( type = 'button', value = 'tree' )= '列挙パスをツリー化'
+                    button.btn.btn-primary.bt-control( type = 'button', value = 'path' )= 'ツリーを列挙パス化'
+                  else if key2 === 'ctset_grep'
+                    div.form-inline
+                      div.form-group
+                        div.input-group.input-group-sm
+                          span.input-group-btn
+                            label.btn.btn-primary #[input#caps(type = 'checkbox' )] Aa
+                          input.form-control( type = 'text', id = 'rep_find', value = '', placeholder = 'Find What' )
+                        div.input-group.input-group-sm
+                          input.form-control( type = 'text', id = 'rep_rep', value = '', placeholder = 'Replace With' )
+                          span.input-group-btn
+                            button.btn.btn-primary.bt-control( type = 'button', title = '置換' , value = 'replacement' ) 置換
+                  else if key2 === 'ctset_ime'
+                    button.btn.btn-primary.btn-sm( type = 'button', data-toggle = 'modal', data-target = '#accent')= '符号付き英字'
+                    button.btn.btn-primary.btn-sm( type = 'button', data-toggle = 'modal', data-target = '#ligat')= '英合字'
+                    button.btn.btn-primary.btn-sm( type = 'button', data-toggle = 'modal', data-target = '#pyin')= 'ピンイン入力'
           ul.link-list
             li: a.btn.btn-primary( data-toggle = 'modal', data-target = '#help' ) #[i.fa.fa-question-circle( aria-hidden = 'true' )] help
             li: a.btn.btn-primary( target='_blank', href='https://github.com/ichimonji/textConvertor' ) #[i.fa.fa-github( aria-hidden = 'true' )] github
@@ -261,6 +143,7 @@ html( lang = 'en' )
                 include:markdown-it readme.md
               div.modal-footer
                 button.btn.btn-default( type = 'button', data-dismiss = 'modal' ) Close
+      textarea#forCopy
     footer.footer
       a( href = 'https://twitter.com/ichimonji_haji' ) #[i.fa.fa-twitter] @ichimonji_haji
     +jsAll( scripts )

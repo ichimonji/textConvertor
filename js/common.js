@@ -48,6 +48,13 @@ $(function() {
     },
     dupDelete = function(str){
       return str.split('').filter((x, i, self) => self.indexOf(x) === i).join('');
+    },
+    // クリップボードコピー用
+    $forCopyElm = $('#forCopy'),
+    copyClip = str => {
+      $forCopyElm.val(str);
+      $forCopyElm.select();
+      return document.execCommand('copy');
     };
 
   // 部分選択用
@@ -1133,6 +1140,10 @@ $(function() {
           $('#pyin').modal('hide');
           break;
     // other
+        case 'copy':
+          instStr = $opt.val();
+          copyClip(instStr);
+          break;
         case 'move':
           iStr = $opt.val();
           oStr = '';
@@ -1166,7 +1177,7 @@ $(function() {
         default:
           break;
     }
-    if(ival !== 'undo' && ival !== 'delete' && ival !== 'change'){
+    if(ival !== 'undo' && ival !== 'copy' && ival !== 'delete' && ival !== 'change'){
       if(tmpFlg){
         iStr = beforeStr + iStr + endStr;
         oStr = beforeStr + oStr + endStr;

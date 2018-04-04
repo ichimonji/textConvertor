@@ -414,8 +414,11 @@ CJKなど変換には配列を使ったマッピングによって対応して�
     半角カタカナ用
   - kanaAlpha  
     全角英数字→半角英数字変換用
++ `pinyin.js`
   - pinyin  
-    ピンイン検索用
+    ピンイン検索
+  - pinyin2, pinyin3  
+    ピンイン入力
 + `other.js`
   - charaMap  
     文字参照用

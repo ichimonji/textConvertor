@@ -51,6 +51,8 @@
           <div class="area-input-button">
             <div id="lengthDisp"></div>
             <div class="btn-group-vertical">
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="変換後テキストをクリップボードのコピー" value="copy"><i class="fa fa-clipboard"></i> COPY
+              </button>
               <button class="btn btn-primary btn-sm bt-control" type="button" title="変換後テキストを変換前テキストエリアへ移動" value="move"><i class="glyphicon glyphicon-chevron-left"></i> MOVE
               </button>
               <button class="btn btn-primary btn-sm bt-control" type="button" title="テキストを一括削除" value="delete"><i class="glyphicon glyphicon-remove"></i> DELETE
@@ -145,7 +147,7 @@
               </dd>
             </dl>
           </div>
-          <input class="ctGroupRd hidden" id="ctGroup_lang" type="radio" name="ctGroupRd">
+          <input class="ctGroupRd hidden" id="ctGroup_lang" type="radio" name="ctGroupRd" checked="checked">
           <div class="ctGroup">
             <input class="genre" id="ctset_number" type="checkbox" name="genre" checked="checked">
             <dl class="ct-set">
@@ -223,7 +225,7 @@
               </dd>
             </dl>
           </div>
-          <input class="ctGroupRd hidden" id="ctGroup_cont" type="radio" name="ctGroupRd">
+          <input class="ctGroupRd hidden" id="ctGroup_cont" type="radio" name="ctGroupRd" checked="checked">
           <div class="ctGroup">
             <input class="genre" id="ctset_extract" type="checkbox" name="genre" checked="checked">
             <dl class="ct-set">
@@ -415,7 +417,7 @@
               </dd>
             </dl>
           </div>
-          <input class="ctGroupRd hidden" id="ctGroup_unit" type="radio" name="ctGroupRd">
+          <input class="ctGroupRd hidden" id="ctGroup_unit" type="radio" name="ctGroupRd" checked="checked">
           <div class="ctGroup">
             <input class="genre" id="ctset_repeat" type="checkbox" name="genre" checked="checked">
             <dl class="ct-set">
@@ -431,7 +433,7 @@
                     </div>
                     <div class="input-group input-group-sm">
                       <label class="input-group-addon" title="回数">times</label>
-                      <input class="form-control" id="rp_time" type="number" value="100">
+                      <input class="form-control" id="rp_time" type="number" value="100" placeholder="">
                     </div>
                     <div class="input-group input-group-sm">
                       <label class="input-group-addon" title="ごとに">join</label>
@@ -475,7 +477,7 @@
                       <label class="input-group-addon" title="ゼロパディング">padding</label>
                       <input class="form-control" id="mx_padding" type="number" value="3" placeholder="Padding">
                     </div>
-                    <div class="input-group input-group-sm input-group-corn">
+                    <div class="input-group input-group-sm">
                       <label class="input-group-addon" title="ごとに">join</label>
                       <input class="form-control" id="mx_join" type="text" value="\n" placeholder="Join">
                     </div>
@@ -501,17 +503,19 @@
               <dd class="body">
                 <div class="form-inline">
                   <div class="form-group">
-                    <div class="input-group input-group-sm input-group-spfull">
+                    <div class="input-group input-group-sm">
                       <label class="input-group-addon" title="開始日">Start</label>
-                      <input class="form-control" id="dt_start" type="date" value="2017-01-01" placeholder="YYYY-MM-DD" pattern="[0-9-/]">
-                      <label class="input-group-addon" title="終了日">End</label>
-                      <input class="form-control" id="dt_end" type="date" value="2017-12-12" placeholder="YYYY-MM-DD" pattern="[0-9-/]">
+                      <input class="form-control" id="dt_start" type="date" value="2017-01-01" placeholder="YYYY-MM-DD">
                     </div>
-                    <div class="input-group input-group-sm input-group-sp4">
+                    <div class="input-group input-group-sm">
+                      <label class="input-group-addon" title="終了日">End</label>
+                      <input class="form-control" id="dt_end" type="date" value="2017-12-12" placeholder="YYYY-MM-DD">
+                    </div>
+                    <div class="input-group input-group-sm">
                       <label class="input-group-addon" title="～刻みで">step</label>
                       <input class="form-control" id="dt_step" type="number" value="1" placeholder="Step">
                     </div>
-                    <div class="input-group input-group-sm input-group-sp8r input-group-corn">
+                    <div class="input-group input-group-sm">
                       <label class="input-group-addon" title="日付タイプ">Type</label>
                       <input class="form-control" id="dt_reg" type="text" value="YYYY/MM/DD (d2)" placeholder="Type">
                     </div>
@@ -541,9 +545,9 @@
               <dd class="body">
                 <div class="form-inline">
                   <div class="form-group">
-                    <div class="input-group input-group-sm input-group-spfull">
+                    <div class="input-group input-group-sm">
                       <label class="input-group-addon" title="種類">type</label>
-                      <select class="form-control rz-type" name="rz_type">
+                      <select class="form-control rz_type" name="rz_type">
                         <option value="hkana" selected>あいう～ん</option>
                         <option value="kkana">アイウ～ン</option>
                         <option value="iroha">いろは～ん</option>
@@ -575,7 +579,7 @@
                       <label class="input-group-addon" title="ごとに">join</label>
                       <input class="form-control" id="rz_join" type="text" value="\n" placeholder="Join">
                     </div>
-                    <div class="input-group input-group-sm input-group-corn">
+                    <div class="input-group input-group-sm">
                       <label class="input-group-addon" title="置換">Reg</label>
                       <input class="form-control" id="rz_reg" type="text" value="$1: $2" placeholder="Reg">
                     </div>
@@ -1174,8 +1178,14 @@ stepが小数点の場合、小数点パディングは自動で行われます�
 半角カタカナ用</li>
 <li>kanaAlpha<br>
 全角英数字→半角英数字変換用</li>
+</ul>
+</li>
+<li><code>pinyin.js</code>
+<ul>
 <li>pinyin<br>
-ピンイン検索用</li>
+ピンイン検索</li>
+<li>pinyin2, pinyin3<br>
+ピンイン入力</li>
 </ul>
 </li>
 <li><code>other.js</code>
@@ -1202,6 +1212,7 @@ stepが小数点の場合、小数点パディングは自動で行われます�
           </div>
         </div>
       </section>
+      <textarea id="forCopy"></textarea>
     </main>
     <footer class="footer"><a href="https://twitter.com/ichimonji_haji"><i class="fa fa-twitter"></i> @ichimonji_haji</a></footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
