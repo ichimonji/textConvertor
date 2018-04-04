@@ -57,7 +57,7 @@
           ]
         },
         'ctset_encode': {
-          'str': 'Url/Base64',
+          'str': 'エンコード',
           'bts': [
             ['url-encode', 'パーセントエンコード（;/?:@& = +$-_!~*.,()a#\'以外）', 'URL エンコード(軽)'],
             ['url-encode2', 'パーセントエンコード（-_!~*.()a\'以外）', 'URL エンコード(中)'],
@@ -68,7 +68,7 @@
           ]
         },
         'ctset_unicode': {
-          'str': 'Unicode関連',
+          'str': 'エスケープ',
           'bts': [
             ['uni-escape', 'Unicode値でのパーセントエンコード（%u～）', 'エスケープ'],
             ['uni-unescape', 'Unicode値でのパーセントデコード', 'アンエスケープ'],
@@ -77,7 +77,9 @@
             ['uniH-unescape', '文字参照、実体参照を復号', 'HTMLアンエスケープ'],
             ['uni-escape3', 'HTMLタグ用文字を実体参照化', '[<>\&]の実体参照化'],
             ['uni-escape4', 'UTF32のオーバーフロー分をサロゲートペアに変換', 'UTF-32→UTF-16'],
-            ['uni-escape5', 'サロゲートペアをUTF32表記に', 'UTF-16→UTF-32']
+            ['uni-escape5', 'サロゲートペアをUTF32表記に', 'UTF-16→UTF-32'],
+            ['js-escape', 'JS用のエスケープ', 'JSエスケープ'],
+            ['js-unescape', 'JS用のアンエスケープ', 'JSアンエスケープ']
           ]
         },
         'ctset_numeral': {

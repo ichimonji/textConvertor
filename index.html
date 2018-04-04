@@ -98,7 +98,7 @@
             <input class="genre" id="ctset_encode" type="checkbox" name="genre" checked="checked">
             <dl class="ct-set">
               <dt class="head">
-                <label for="ctset_encode">Url/Base64</label><i class="fa fa-question-circle linkHelp" data-target="Url/Base64"></i>
+                <label for="ctset_encode">エンコード</label><i class="fa fa-question-circle linkHelp" data-target="エンコード"></i>
               </dt>
               <dd class="body">
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="パーセントエンコード（;/?:@&amp; = +$-_!~*.,()a#'以外）" value="url-encode">URL エンコード(軽)</button>
@@ -112,7 +112,7 @@
             <input class="genre" id="ctset_unicode" type="checkbox" name="genre" checked="checked">
             <dl class="ct-set">
               <dt class="head">
-                <label for="ctset_unicode">Unicode関連</label><i class="fa fa-question-circle linkHelp" data-target="Unicode関連"></i>
+                <label for="ctset_unicode">エスケープ</label><i class="fa fa-question-circle linkHelp" data-target="エスケープ"></i>
               </dt>
               <dd class="body">
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="Unicode値でのパーセントエンコード（%u～）" value="uni-escape">エスケープ</button>
@@ -123,6 +123,8 @@
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="HTMLタグ用文字を実体参照化" value="uni-escape3">[<>&]の実体参照化</button>
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="UTF32のオーバーフロー分をサロゲートペアに変換" value="uni-escape4">UTF-32 <i class="glyphicon glyphicon-arrow-right"></i> UTF-16</button>
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="サロゲートペアをUTF32表記に" value="uni-escape5">UTF-16 <i class="glyphicon glyphicon-arrow-right"></i> UTF-32</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="JS用のエスケープ" value="js-escape">JSエスケープ</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="JS用のアンエスケープ" value="js-unescape">JSアンエスケープ</button>
               </dd>
             </dl>
             <input class="genre" id="ctset_numeral" type="checkbox" name="genre" checked="checked">
@@ -795,7 +797,7 @@
 符号付きラテン文字の符号を解除、また合字も非合字化</li>
 </ul>
 <p>※ 「符号付きラテン文字を標準化」では結合分音記号も削除します。</p>
-<h4>Url/Base64</h4>
+<h4>エンコード</h4>
 <p>各種エンコード／デコードを行う。</p>
 <ul>
 <li><code>URL エンコード(軽)</code><br>
@@ -811,7 +813,7 @@ BASE64エンコードを実行</li>
 <li><code>BASE64 デコード</code><br>
 BASE64エンコードをすべてデコード</li>
 </ul>
-<h4>Unicode関連</h4>
+<h4>エスケープ</h4>
 <p>Unicode関連の変換を行う。</p>
 <ul>
 <li><code>エスケープ</code><br>

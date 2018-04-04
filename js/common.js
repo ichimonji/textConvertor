@@ -86,7 +86,7 @@ $(function() {
       endStr = iStr.slice(tmp.end);
       iStr = iStr.slice(tmp.start, tmp.end);
     }
-
+console.log(ival);
     switch(ival){
     // Code/Numerals
       // Convert Case
@@ -185,6 +185,22 @@ $(function() {
             instNum = 0x10000 + (hi - 0xD800) * 0x400 + (lo - 0xDC00);
             return r1 + instNum.toString(16) + r3;
           });
+          break;
+        case 'js-escape':
+          instStr = iStr;
+          instStr = instStr.replace(/\\/g, '\\\\');
+          instStr = instStr.replace(/\n/g, '\\n').replace(/\r/g, '\\r');
+          instStr = instStr.replace(/\f/g, '\\f').replace(/\v/g, '\\v');
+          instStr = instStr.replace(/\t/g, '\\t');
+          oStr = instStr;
+          break;
+        case 'js-unescape':
+          instStr = iStr;
+          instStr = instStr.replace(/\\t/g, '\t');
+          instStr = instStr.replace(/\\f/g, '\f').replace(/\\v/g, '\v');
+          instStr = instStr.replace(/\\n/g, '\n').replace(/\\r/g, '\r');
+          instStr = instStr.replace(/\\\\/g, '\\');
+          oStr = instStr;
           break;
       // Numeric 1
         case 'num-10_2':
