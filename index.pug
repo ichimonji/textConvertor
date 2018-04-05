@@ -140,7 +140,7 @@ html( lang = 'en' )
                   span( aria-hidden = 'true' ) &times;
                 h4.modal-title #{$title} help
               div.modal-body
-                include:markdown-it readme.md
+                include:markdown-it:html-beautify readme.md
               div.modal-footer
                 button.btn.btn-default( type = 'button', data-dismiss = 'modal' ) Close
       textarea#forCopy

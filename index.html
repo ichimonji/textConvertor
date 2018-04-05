@@ -497,6 +497,48 @@
                 </div>
               </dd>
             </dl>
+            <input class="genre" id="ctset_numbering16" type="checkbox" name="genre" checked="checked">
+            <dl class="ct-set">
+              <dt class="head">
+                <label for="ctset_numbering16">連番（16進数）</label><i class="fa fa-question-circle linkHelp" data-target="連番（16進数）"></i>
+              </dt>
+              <dd class="body">
+                <div class="form-inline">
+                  <div class="form-group">
+                    <div class="input-group input-group-sm">
+                      <label class="input-group-addon" title="～から">from</label>
+                      <input class="form-control" id="mx16_start" type="number" value="0" placeholder="Start">
+                    </div>
+                    <div class="input-group input-group-sm">
+                      <label class="input-group-addon" title="～まで">to</label>
+                      <input class="form-control" id="mx16_end" type="number" value="100" placeholder="End">
+                    </div>
+                    <div class="input-group input-group-sm">
+                      <label class="input-group-addon" title="～刻みで">step</label>
+                      <input class="form-control" id="mx16_step" type="number" value="1" placeholder="Step">
+                    </div>
+                    <div class="input-group input-group-sm">
+                      <label class="input-group-addon" title="ゼロパディング">padding</label>
+                      <input class="form-control" id="mx16_padding" type="number" value="3" placeholder="Padding">
+                    </div>
+                    <div class="input-group input-group-sm">
+                      <label class="input-group-addon" title="ごとに">join</label>
+                      <input class="form-control" id="mx16_join" type="text" value="\n" placeholder="Join">
+                    </div>
+                    <div class="input-group input-group-sm">
+                      <label class="input-group-addon" title="置換">Reg</label>
+                      <input class="form-control" id="mx16_reg" type="text" value="$1: $2" placeholder="Reg">
+                    </div>
+                    <div class="input-group input-group-sm input-group-bt">
+                      <label class="input-group-addon">
+                        <input id="mx16_of" type="checkbox" checked="checked"> overflow
+                      </label>
+                      <button class="form-control btn btn-primary bt-control" type="button" title="連番生成" value="numbering16">生成</button>
+                    </div>
+                  </div>
+                </div>
+              </dd>
+            </dl>
             <input class="genre" id="ctset_dating" type="checkbox" name="genre" checked="checked">
             <dl class="ct-set">
               <dt class="head">
@@ -759,158 +801,153 @@
                 <h4 class="modal-title">汎用テキストコンバータ help</h4>
               </div>
               <div class="modal-body"><h1>汎用テキストコンバータ</h1>
-<p>「Original Text」欄に変換したいテキストを入れ各種の変換ボタンを押してください。「Converted Text」欄に変換後のテキストが出力されます。<br>
-変換後のテキストをさらに変換したい場合は「MOVE」ボタンを押して変換後テキストを「Original Text」欄に移動させてください。<br>
-「AUTO MOVE」にチェックを入れると自動で変換後のテキストが「Original Text」欄に移動します。</p>
-<p>「Original Text」欄でテキストを選択したまま各種変換ボタンを押すと、その選択範囲にのみ変換が適用されます。<br>
-「DELETE」でテキストがすべて削除されます。<br>
-「UNDO」を押す度に変換前の状態に一つずつ戻ります。<br>
-「REPLACE」を押すとテキストエリアの左右を入れ替えることができます。</p>
-<p>項目が多すぎて扱いづらい場合は「ケース」、「Url/Base64」といったグループ名の部分を押すとそのグループが折りたたまれます。<br>
-折りたたまれたグループはもう一回押すと元に戻ります。</p>
+<p>「Original Text」欄に変換したいテキストを入れ各種の変換ボタンを押してください。「Converted Text」欄に変換後のテキストが出力されます。<br> 変換後のテキストをさらに変換したい場合は「MOVE」ボタンを押して変換後テキストを「Original Text」欄に移動させてください。<br> 「AUTO MOVE」にチェックを入れると自動で変換後のテキストが「Original Text」欄に移動します。</p>
+<p>「Original Text」欄でテキストを選択したまま各種変換ボタンを押すと、その選択範囲にのみ変換が適用されます。<br> 「DELETE」でテキストがすべて削除されます。
+    <br> 「UNDO」を押す度に変換前の状態に一つずつ戻ります。
+    <br> 「REPLACE」を押すとテキストエリアの左右を入れ替えることができます。
+</p>
+<p>項目が多すぎて扱いづらい場合は「ケース」、「Url/Base64」といったグループ名の部分を押すとそのグループが折りたたまれます。<br> 折りたたまれたグループはもう一回押すと元に戻ります。
+</p>
 <h2>各項目の説明</h2>
 <h3>コード/数値型</h3>
 <h4>ケース</h4>
 <p>半角英単語のケース操作を行う。またケース変換の他にクォーテーションの変更や符号付ラテン文字の符号解除なども行う。</p>
 <ul>
-<li><code>TITLE</code><br>
-「タイトルケース」 頭文字のみ大文字に</li>
-<li><code>UPPER</code><br>
-「アッパーケース」 全て大文字に</li>
-<li><code>LOWER</code><br>
-「ロウアーケース」 全て小文字に</li>
-<li><code>SWAP</code><br>
-「ケーススワップ」 大文字小文字を逆転</li>
-<li><code>\'\'→\&quot;\&quot;</code><br>
-シングルクォーテーションをダブルクーテーションに</li>
-<li><code>\&quot;\&quot;→\'\'</code><br>
-ダブルクーテーションをシングルクォーテーションに</li>
-<li><code>abc-def→abc_def</code><br>
-文字間のハイフンをアンダーバーに</li>
-<li><code>abc_def→abc-def</code><br>
-文字間のアンダーバーをハイフンに</li>
-<li><code>abcDef→abc-def</code><br>
-キャメルケースをハイフンに</li>
-<li><code>abc-def→abcDef</code><br>
-文字間のハイフンをキャメルケースに</li>
-<li><code>Àóṫœ→Aoto</code><br>
-符号付きラテン文字の符号を解除、また合字も非合字化</li>
+    <li><code>TITLE</code><br> 「タイトルケース」 頭文字のみ大文字に</li>
+    <li><code>UPPER</code><br> 「アッパーケース」 全て大文字に</li>
+    <li><code>LOWER</code><br> 「ロウアーケース」 全て小文字に</li>
+    <li><code>SWAP</code><br> 「ケーススワップ」 大文字小文字を逆転</li>
+    <li><code>\'\'→\&quot;\&quot;</code><br> シングルクォーテーションをダブルクーテーションに
+    </li>
+    <li><code>\&quot;\&quot;→\'\'</code><br> ダブルクーテーションをシングルクォーテーションに
+    </li>
+    <li><code>abc-def→abc_def</code><br> 文字間のハイフンをアンダーバーに
+    </li>
+    <li><code>abc_def→abc-def</code><br> 文字間のアンダーバーをハイフンに
+    </li>
+    <li><code>abcDef→abc-def</code><br> キャメルケースをハイフンに
+    </li>
+    <li><code>abc-def→abcDef</code><br> 文字間のハイフンをキャメルケースに
+    </li>
+    <li><code>Àóṫœ→Aoto</code><br> 符号付きラテン文字の符号を解除、また合字も非合字化
+    </li>
 </ul>
 <p>※ 「符号付きラテン文字を標準化」では結合分音記号も削除します。</p>
 <h4>エンコード</h4>
 <p>各種エンコード／デコードを行う。</p>
 <ul>
-<li><code>URL エンコード(軽)</code><br>
-パーセントエンコード（;/?:@&amp; = +$-_!~*.,()a#'以外）を実行</li>
-<li><code>URL エンコード(中)</code><br>
-パーセントエンコード（-_!~*.()a'以外）を実行</li>
-<li><code>URL エンコード(強)</code><br>
-パーセントエンコード（*+-_./以外）を実行</li>
-<li><code>URL デコード</code><br>
-パーセントエンコードをすべてデコード</li>
-<li><code>BASE64 エンコード</code><br>
-BASE64エンコードを実行</li>
-<li><code>BASE64 デコード</code><br>
-BASE64エンコードをすべてデコード</li>
+    <li><code>URL エンコード(軽)</code><br> パーセントエンコード（;/?:@&amp; = +$-_!~*.,()a#'以外）を実行</li>
+    <li><code>URL エンコード(中)</code><br> パーセントエンコード（-_!~*.()a'以外）を実行
+    </li>
+    <li><code>URL エンコード(強)</code><br> パーセントエンコード（*+-_./以外）を実行
+    </li>
+    <li><code>URL デコード</code><br> パーセントエンコードをすべてデコード
+    </li>
+    <li><code>BASE64 エンコード</code><br> BASE64エンコードを実行
+    </li>
+    <li><code>BASE64 デコード</code><br> BASE64エンコードをすべてデコード
+    </li>
 </ul>
 <h4>エスケープ</h4>
 <p>Unicode関連の変換を行う。</p>
 <ul>
-<li><code>エスケープ</code><br>
-Unicode値でのパーセントエンコード（%u～）</li>
-<li><code>アンエスケープ</code><br>
-Unicode値でのパーセントデコード</li>
-<li><code>HTMLエスケープ(中)</code><br>
-HTML数値文字参照（&amp;#x～;）</li>
-<li><code>HTMLエスケープ(強)</code><br>
-全文字をHTML数値文字参照（&amp;#x～;）</li>
-<li><code>HTMLアンエスケープ</code><br>
-文字参照、実体参照を復号</li>
-<li><code>[&lt;&gt;\&amp;]の実体参照化</code><br>
-HTMLタグ用文字を実体参照化</li>
-<li><code>UTF-32→UTF-16</code><br>
-UTF32のオーバーフロー分をサロゲートペアに変換</li>
-<li><code>UTF-16→UTF-32</code><br>
-サロゲートペアをUTF32表記に</li>
+    <li><code>エスケープ</code><br> Unicode値でのパーセントエンコード（%u～）
+    </li>
+    <li><code>アンエスケープ</code><br> Unicode値でのパーセントデコード
+    </li>
+    <li><code>HTMLエスケープ(中)</code><br> HTML数値文字参照（&amp;#x～;）
+    </li>
+    <li><code>HTMLエスケープ(強)</code><br> 全文字をHTML数値文字参照（&amp;#x～;）
+    </li>
+    <li><code>HTMLアンエスケープ</code><br> 文字参照、実体参照を復号
+    </li>
+    <li><code>[&lt;&gt;\&amp;]の実体参照化</code><br> HTMLタグ用文字を実体参照化
+    </li>
+    <li><code>UTF-32→UTF-16</code><br> UTF32のオーバーフロー分をサロゲートペアに変換
+    </li>
+    <li><code>UTF-16→UTF-32</code><br> サロゲートペアをUTF32表記に
+    </li>
+    <li><code>JSエスケープ</code><br> Javascript用に特殊文字をエスケープします。
+        <br> エスケープされるのは改行（\n,\r）、タブ（\t）、垂直タブ（\v）、改ページ（\f）、およびバックスラッシュ（\）です。
+    </li>
+    <li><code>JSアンエスケープ</code><br> 上記のエスケープ文字をすべて元に戻します。
+    </li>
 </ul>
 <h4>数値型</h4>
 <p>数値型に対しての数々の変換を行う。</p>
 <ul>
-<li><code>Dec→Bin</code> <code>Bin→Dec</code>： 10進数を2進数に、あるいはその逆に変換します。</li>
-<li><code>Dec→Hex</code> <code>Hex→Dec</code>： 10進数を16進数に、あるいはその逆に変換します。</li>
-<li><code>Bin→Hex</code> <code>Hex→Bin</code>： 2進数を16進数に、あるいはその逆に変換します。</li>
-<li><code>1000→1,000</code> <code>1,000→1000</code>： 数字を3桁カンマ区切りに、あるいはその逆に変換します。</li>
-<li><code>Abs</code>： テキスト中のすべての数値を絶対数化します。</li>
-<li><code>Int</code>： テキスト中のすべての数値を整数化します。</li>
-<li><code>Round</code>： テキスト中のすべての数値を四捨五入します。</li>
-<li><code>Floor</code>： テキスト中のすべての数値を切り捨てます。</li>
-<li><code>Ceil</code>： テキスト中のすべての数値を切り上げます。</li>
+    <li><code>Dec→Bin</code> <code>Bin→Dec</code>： 10進数を2進数に、あるいはその逆に変換します。</li>
+    <li><code>Dec→Hex</code> <code>Hex→Dec</code>： 10進数を16進数に、あるいはその逆に変換します。</li>
+    <li><code>Bin→Hex</code> <code>Hex→Bin</code>： 2進数を16進数に、あるいはその逆に変換します。</li>
+    <li><code>1000→1,000</code> <code>1,000→1000</code>： 数字を3桁カンマ区切りに、あるいはその逆に変換します。</li>
+    <li><code>Abs</code>： テキスト中のすべての数値を絶対数化します。</li>
+    <li><code>Int</code>： テキスト中のすべての数値を整数化します。</li>
+    <li><code>Round</code>： テキスト中のすべての数値を四捨五入します。</li>
+    <li><code>Floor</code>： テキスト中のすべての数値を切り捨てます。</li>
+    <li><code>Ceil</code>： テキスト中のすべての数値を切り上げます。</li>
 </ul>
 <p>※全角の数字にたいしては無視します。</p>
 <h3>言語</h3>
 <h4>数字</h4>
 <p>アラビア数字（算用数字）からほかの数字記号への変換などを行う。</p>
 <ul>
-<li><code>123→百二十三</code>： アラビア数字を桁付き漢数字に変換します。</li>
-<li><code>123→一二三</code>： アラビア数字を桁なしの漢数字に変換します。</li>
-<li><code>百二十三→123</code>： 漢数字をアラビア数字に変換します。</li>
-<li><code>Arabic→Roman</code> <code>Roman→Arabic</code><br>
-アラビア数字をローマ数字に或いはその逆に変換に変換します。<br>
-変換型は「M(1~3999)」型、「ↀ(1~399999)」型、「CIↃ(1~399999)」型の3つから選ぶことができます。</li>
+    <li><code>123→百二十三</code>： アラビア数字を桁付き漢数字に変換します。</li>
+    <li><code>123→一二三</code>： アラビア数字を桁なしの漢数字に変換します。</li>
+    <li><code>百二十三→123</code>： 漢数字をアラビア数字に変換します。</li>
+    <li><code>Arabic→Roman</code> <code>Roman→Arabic</code><br> アラビア数字をローマ数字に或いはその逆に変換に変換します。
+        <br> 変換型は「M(1~3999)」型、「ↀ(1~399999)」型、「CIↃ(1~399999)」型の3つから選ぶことができます。
+    </li>
 </ul>
-<p>※ アラビア数字をローマ数字に関して、ↀ型の場合の100000である「ↈ（&amp;#x2188;）」はほとんどのフォントで表示が不可能です。<br>
-※ アラビア数字から漢数字の変換（桁付き）に関して、少数の桁（分、厘、毛など）に関しては考慮せず数字のみを列記する方式で変換します。</p>
+<p>※ アラビア数字をローマ数字に関して、ↀ型の場合の100000である「ↈ（&amp;#x2188;）」はほとんどのフォントで表示が不可能です。<br> ※ アラビア数字から漢数字の変換（桁付き）に関して、少数の桁（分、厘、毛など）に関しては考慮せず数字のみを列記する方式で変換します。</p>
 <h4>日本語関連</h4>
 <p>日本語テキストに関して様々な変換を行う。</p>
 <ul>
-<li><code>あ→ア</code> <code>ア→あ</code>： 全角ひらがなを全角カタカナに、あるいはその逆に変換します。</li>
-<li><code>ｱ→ア</code> <code>ア→ｱ</code>： 半角カタカナを全角カタカナに、あるいはその逆に変換します。</li>
-<li><code>A1→Ａ１</code> <code>Ａ１→A1</code>： 半角英数字を全角英数字に、あるいはその逆に変換します。</li>
-<li><code>新字→旧字（中）</code>： 新字体を旧字体に（異体字セレクタ分を含まない）に変換します。</li>
-<li><code>新字→旧字（強）</code>： 新字体を旧字体に（異体字セレクタ分を含む）に変換します。</li>
-<li><code>旧字→新字</code>： 旧字体を新字体に（異体字セレクタ分を含む）に変換します。</li>
-<li><code>一二→壱弐</code> <code>壱弐→一二</code>： 漢数字を大字に、あるいはその逆変換します。</li>
-<li><code>トウキョウ→tôkyô</code>： 全角カタカナを訓令式ローマ字表記に変換します。</li>
-<li><code>トウキョウ→tokyo</code>： 全角カタカナをヘボン式ローマ字表記に変換します。</li>
-<li><code>tokyo→トキョ</code>： ヘボン式ローマ字を全角カタカナに変換します。</li>
+    <li><code>あ→ア</code> <code>ア→あ</code>： 全角ひらがなを全角カタカナに、あるいはその逆に変換します。</li>
+    <li><code>ｱ→ア</code> <code>ア→ｱ</code>： 半角カタカナを全角カタカナに、あるいはその逆に変換します。</li>
+    <li><code>A1→Ａ１</code> <code>Ａ１→A1</code>： 半角英数字を全角英数字に、あるいはその逆に変換します。</li>
+    <li><code>新字→旧字（中）</code>： 新字体を旧字体に（異体字セレクタ分を含まない）に変換します。</li>
+    <li><code>新字→旧字（強）</code>： 新字体を旧字体に（異体字セレクタ分を含む）に変換します。</li>
+    <li><code>旧字→新字</code>： 旧字体を新字体に（異体字セレクタ分を含む）に変換します。</li>
+    <li><code>一二→壱弐</code> <code>壱弐→一二</code>： 漢数字を大字に、あるいはその逆変換します。</li>
+    <li><code>トウキョウ→tôkyô</code>： 全角カタカナを訓令式ローマ字表記に変換します。</li>
+    <li><code>トウキョウ→tokyo</code>： 全角カタカナをヘボン式ローマ字表記に変換します。</li>
+    <li><code>tokyo→トキョ</code>： ヘボン式ローマ字を全角カタカナに変換します。</li>
 </ul>
-<p>※ 全角カタカナからの訓令式・ヘボン式ローマ字変換に関して、特殊な用法や表外の訓に関しては（99式などに倣った）独自の変換をしています。<br>
-※ 新字体→旧字体の変換において旧字が別字として存在しない、あるいはUTF16範囲にない場合は異体字セレクタによって旧字体を表示します。</p>
+<p>※ 全角カタカナからの訓令式・ヘボン式ローマ字変換に関して、特殊な用法や表外の訓に関しては（99式などに倣った）独自の変換をしています。<br> ※ 新字体→旧字体の変換において旧字が別字として存在しない、あるいはUTF16範囲にない場合は異体字セレクタによって旧字体を表示します。</p>
 <h4>CJK関連</h4>
 <p>漢字に対して様々な変換を行う。</p>
 <ul>
-<li><code>日→簡体</code><br>
-日本字体を簡体字に</li>
-<li><code>日→繁体</code><br>
-日本字体を繁体字に</li>
-<li><code>簡体→日</code><br>
-簡体字を日本字体に</li>
-<li><code>繁体→日</code><br>
-繁体字を日本字体に</li>
-<li><code>簡体→繁体</code><br>
-簡体字を繁体字に</li>
-<li><code>繁体→簡体</code><br>
-繁体字を簡体字に</li>
-<li><code>ピンイン</code><br>
-漢字の直後にピンインを追加</li>
+    <li><code>日→簡体</code><br> 日本字体を簡体字に
+    </li>
+    <li><code>日→繁体</code><br> 日本字体を繁体字に
+    </li>
+    <li><code>簡体→日</code><br> 簡体字を日本字体に
+    </li>
+    <li><code>繁体→日</code><br> 繁体字を日本字体に
+    </li>
+    <li><code>簡体→繁体</code><br> 簡体字を繁体字に
+    </li>
+    <li><code>繁体→簡体</code><br> 繁体字を簡体字に
+    </li>
+    <li><code>ピンイン</code><br> 漢字の直後にピンインを追加
+    </li>
 </ul>
-<p>※ CJK変換全般に関して、一部の文字の変換が不可逆変換であるため正しく変換されない恐れがあります。<br>
-※ ピンイン表記追加に関して、ピンインは「[A/B/C]」といった形式で表示します。</p>
+<p>※ CJK変換全般に関して、一部の文字の変換が不可逆変換であるため正しく変換されない恐れがあります。<br> ※ ピンイン表記追加に関して、ピンインは「[A/B/C]」といった形式で表示します。</p>
 <h4>Sanskrit</h4>
 <p>サンスクリットの各種変換を行う。</p>
 <ul>
-<li><code>संस्कृत→saMskRta</code><br>
-デーヴァナガリーを京都・ハーバード方式に</li>
-<li><code>संस्कृत→saṃskṛta</code><br>
-デーヴァナガリーをIASTに</li>
-<li><code>saMskRta→संस्कृत</code><br>
-京都・ハーバード方式をデーヴァナガリーに</li>
-<li><code>saMskRta→saṃskṛta</code><br>
-京都・ハーバード方式をIASTに</li>
-<li><code>saṃskṛta→संस्कृत</code><br>
-IASTをデーヴァナガリーに</li>
-<li><code>saṃskṛta→saMskRta</code><br>
-IASTを京都・ハーバード方式に</li>
+    <li><code>संस्कृत→saMskRta</code><br> デーヴァナガリーを京都・ハーバード方式に
+    </li>
+    <li><code>संस्कृत→saṃskṛta</code><br> デーヴァナガリーをIASTに
+    </li>
+    <li><code>saMskRta→संस्कृत</code><br> 京都・ハーバード方式をデーヴァナガリーに
+    </li>
+    <li><code>saMskRta→saṃskṛta</code><br> 京都・ハーバード方式をIASTに
+    </li>
+    <li><code>saṃskṛta→संस्कृत</code><br> IASTをデーヴァナガリーに
+    </li>
+    <li><code>saṃskṛta→saMskRta</code><br> IASTを京都・ハーバード方式に
+    </li>
 </ul>
 <p>※ 「サンスクリット変換」のIAST方式、HK方式の変換では拡張IAST（ISO-15919方式）ではなく元来の方式のためISO-15919方式を正しく変換できません。</p>
 <h3>文字列操作</h3>
@@ -919,107 +956,102 @@ IASTを京都・ハーバード方式に</li>
 <h4>一括排除</h4>
 <p>該当の対象文字を文字列から排除する</p>
 <ul>
-<li><code>全ての改行</code><br>
-すべての改行、改頁コードを削除</li>
-<li><code>ＨＴＭＬタグ</code><br>
-開始タグ、終了タグ、独立タグをすべて削除</li>
-<li><code>余分なスペース</code><br>
-行頭のスペースを削除し、単語間の複数スペースを単独スペースに変換</li>
-<li><code>余分な改行</code><br>
-連続する改行コードを単独に変換、文頭文末の改行も削除</li>
-<li><code>重複する文字</code><br>
-重複する文字をすべて削除</li>
-<li><code>重複する行</code><br>
-まったく同じ行を削除</li>
-<li><code>重複する単語</code><br>
-まったく同じ単語を削除（スペース区切り評価）</li>
+    <li><code>全ての改行</code><br> すべての改行、改頁コードを削除
+    </li>
+    <li><code>ＨＴＭＬタグ</code><br> 開始タグ、終了タグ、独立タグをすべて削除
+    </li>
+    <li><code>余分なスペース</code><br> 行頭のスペースを削除し、単語間の複数スペースを単独スペースに変換
+    </li>
+    <li><code>余分な改行</code><br> 連続する改行コードを単独に変換、文頭文末の改行も削除
+    </li>
+    <li><code>重複する文字</code><br> 重複する文字をすべて削除
+    </li>
+    <li><code>重複する行</code><br> まったく同じ行を削除
+    </li>
+    <li><code>重複する単語</code><br> まったく同じ単語を削除（スペース区切り評価）
+    </li>
 </ul>
 <h4>反転/ソート</h4>
 <p>文字列全体に対して反転やソートを行う。</p>
 <ul>
-<li><code>文字単位で反転</code><br>
-文字単位でテキスト全体を反転</li>
-<li><code>行単位で反転</code><br>
-行単位でテキスト全体を反転</li>
-<li><code>行ごとに文字単位で反転</code><br>
-一行ずつ文字を反転する</li>
-<li><code>単語単位で反転</code><br>
-単語（スペース区切り評価）でテキスト全体を反転</li>
-<li><code>行単位で昇順に整列</code><br>
-行単位でテキスト全体を昇順ソート</li>
-<li><code>行単位で降順に整列</code><br>
-行単位でテキスト全体を降順ソート</li>
-<li><code>文字単位で昇順に整列</code><br>
-文字単位でテキスト全体を昇順ソート</li>
-<li><code>文字単位で降順に整列</code><br>
-文字単位でテキスト全体を降順ソート</li>
-<li><code>行単位で文字数が少ない順</code><br>
-行ごとの文字数を比べ、少ない順番に並べなおします。</li>
-<li><code>行単位で文字数が多い</code><br>
-行ごとの文字数を比べ、多い順番に並べなおします。</li>
+    <li><code>文字単位で反転</code><br> 文字単位でテキスト全体を反転
+    </li>
+    <li><code>行単位で反転</code><br> 行単位でテキスト全体を反転
+    </li>
+    <li><code>行ごとに文字単位で反転</code><br> 一行ずつ文字を反転する
+    </li>
+    <li><code>単語単位で反転</code><br> 単語（スペース区切り評価）でテキスト全体を反転
+    </li>
+    <li><code>行単位で昇順に整列</code><br> 行単位でテキスト全体を昇順ソート
+    </li>
+    <li><code>行単位で降順に整列</code><br> 行単位でテキスト全体を降順ソート
+    </li>
+    <li><code>文字単位で昇順に整列</code><br> 文字単位でテキスト全体を昇順ソート
+    </li>
+    <li><code>文字単位で降順に整列</code><br> 文字単位でテキスト全体を降順ソート
+    </li>
+    <li><code>行単位で文字数が少ない順</code><br> 行ごとの文字数を比べ、少ない順番に並べなおします。
+    </li>
+    <li><code>行単位で文字数が多い</code><br> 行ごとの文字数を比べ、多い順番に並べなおします。
+    </li>
 </ul>
-<p>※ ソート順位の評価はUnicode順となります。<br>
-※ ソートの評価値に優劣がつけられない場合、基本的に変換前テキスト先に書かれていたものが先にきます。</p>
+<p>※ ソート順位の評価はUnicode順となります。<br> ※ ソートの評価値に優劣がつけられない場合、基本的に変換前テキスト先に書かれていたものが先にきます。</p>
 <h4>重複文字/行列</h4>
 <p>重複文字に対して操作や行列に対しての変換を行う。</p>
 <ul>
-<li><code>ABA→AB</code><br>
-重複部分のみ削除</li>
-<li><code>ABA→AA</code><br>
-重複部分を重複したまま抽出</li>
-<li><code>ABA→B</code><br>
-重複した文字以外を抽出</li>
-<li><code>ABA→A</code><br>
-重複部分を重複させないで抽出</li>
-<li><code>行と列を入れ替え</code><br>
-チェックされた文字を列区切りに使って行と列を入れ替えます</li>
+    <li><code>ABA→AB</code><br> 重複部分のみ削除
+    </li>
+    <li><code>ABA→AA</code><br> 重複部分を重複したまま抽出
+    </li>
+    <li><code>ABA→B</code><br> 重複した文字以外を抽出
+    </li>
+    <li><code>ABA→A</code><br> 重複部分を重複させないで抽出
+    </li>
+    <li><code>行と列を入れ替え</code><br> チェックされた文字を列区切りに使って行と列を入れ替えます
+    </li>
 </ul>
 <h4>整形</h4>
 <ul>
-<li><code>文字数による改行</code><br>
-変換前テキストから改行をすべて削除した上で、指定された文字数ごとに改行します。</li>
-<li><code>文字の頭出し</code><br>
-変換前テキストから改行をすべて削除した上で、指定した正規表現に該当する文字列の前で改行します。</li>
-<li><code>文字送り</code><br>
-変換前テキストから改行をすべて削除した上で、指定した文字記号のあとで改行します。<br>
-<strong>「」</strong> 、 <strong>（）</strong> については、それぞれの括弧に挟まれた文を一行とみなして前後で改行します。</li>
-<li><code>列挙パスをツリー化</code><br>
-フルパスで書かれたパスをディレクトリごとにツリー化整形します。</li>
-<li><code>ツリーを列挙パス化</code><br>
-ディレクトリごとにツリー表記されたパスをフルパスの列挙型に変換します。</li>
+    <li><code>文字数による改行</code><br> 変換前テキストから改行をすべて削除した上で、指定された文字数ごとに改行します。
+    </li>
+    <li><code>文字の頭出し</code><br> 変換前テキストから改行をすべて削除した上で、指定した正規表現に該当する文字列の前で改行します。
+    </li>
+    <li><code>文字送り</code><br> 変換前テキストから改行をすべて削除した上で、指定した文字記号のあとで改行します。
+        <br>
+        <strong>「」</strong> 、 <strong>（）</strong> については、それぞれの括弧に挟まれた文を一行とみなして前後で改行します。</li>
+    <li><code>列挙パスをツリー化</code><br> フルパスで書かれたパスをディレクトリごとにツリー化整形します。
+    </li>
+    <li><code>ツリーを列挙パス化</code><br> ディレクトリごとにツリー表記されたパスをフルパスの列挙型に変換します。
+    </li>
 </ul>
-<p>※「列挙パスをツリー化」ではディレクトリを「/（スラッシュ）」で判断します。<br>
-※「ツリーを列挙パス化」では、行末に「/（スラッシュ）」がついた文字列をディレクトリ名と判断し、行頭のタブ文字の数でディレクトリの改装を判断します。</p>
+<p>※「列挙パスをツリー化」ではディレクトリを「/（スラッシュ）」で判断します。<br> ※「ツリーを列挙パス化」では、行末に「/（スラッシュ）」がついた文字列をディレクトリ名と判断し、行頭のタブ文字の数でディレクトリの改装を判断します。
+</p>
 <h4>正規表現</h4>
 <p>正規表現置換を行う</p>
 <h4>左右連結</h4>
 <p>左右のテキストエリアを使った連結を行います。</p>
 <ul>
-<li><code>上下に結合</code><br>
-左右のテキストエリアを上下結合した結果を出力</li>
-<li><code>行ごとに結合</code><br>
-左右のテキストエリアを行ごとに結合した結果を出力</li>
-<li><code>文字ごとに結合</code><br>
-左右のテキストエリアを文字ごとに結合した結果を出力</li>
+    <li><code>上下に結合</code><br> 左右のテキストエリアを上下結合した結果を出力
+    </li>
+    <li><code>行ごとに結合</code><br> 左右のテキストエリアを行ごとに結合した結果を出力
+    </li>
+    <li><code>文字ごとに結合</code><br> 左右のテキストエリアを文字ごとに結合した結果を出力
+    </li>
 </ul>
 <h3>文字列生成</h3>
 <h4>リピート</h4>
-<p>入力した文字列を <strong>times</strong> の回数、リピートします。<br>
-リピートされた文字列は <strong>join</strong> の正規表現に従って変換前テキストに挿入されます。<br>
-このとき <strong>Reg</strong> の正規表現によってリピート文字列と変換前文字列の整形ができます。<br>
-<code>$1</code>はリピート文字列、<code>$2</code>は変換前テキストを示します。</p>
+<p>入力した文字列を <strong>times</strong> の回数、リピートします。<br> リピートされた文字列は <strong>join</strong> の正規表現に従って変換前テキストに挿入されます。<br> このとき <strong>Reg</strong> の正規表現によってリピート文字列と変換前文字列の整形ができます。<br>
+    <code>$1</code>はリピート文字列、<code>$2</code>は変換前テキストを示します。</p>
 <h4>連番</h4>
-<p>連番を生成します。<br>
-生成される連番は <strong>from</strong> から <strong>to</strong> までの間、 <strong>step</strong> 刻みの数字で、<br>
-<strong>padding</strong> によってゼロパディングを行います。<br>
-stepが小数点の場合、小数点パディングは自動で行われます。<br>
-生成された連番は <strong>join</strong> に従って変換前テキストに挿入されます。例えばjoinが</p>
+<p>連番を生成します。<br> 生成される連番は <strong>from</strong> から <strong>to</strong> までの間、 <strong>step</strong> 刻みの数字で、<br>
+    <strong>padding</strong> によってゼロパディングを行います。<br> stepが小数点の場合、小数点パディングは自動で行われます。
+    <br> 生成された連番は <strong>join</strong> に従って変換前テキストに挿入されます。例えばjoinが</p>
 <pre><code>\n
 </code></pre>
 <p>のとき、連番は行ごとに挿入されます。</p>
 <p><strong>Reg</strong> の正規表現に従って連番と変換前テキストが成形されます。<br>
-<strong>overflow</strong> にチェックがついていると、連番の数が変換前テキストより勝っていても最後まで連番を出力します。<br>
-<code>$1</code>は連番、<code>$2</code>は変換前テキストを示します。</p>
+    <strong>overflow</strong> にチェックがついていると、連番の数が変換前テキストより勝っていても最後まで連番を出力します。<br>
+    <code>$1</code>は連番、<code>$2</code>は変換前テキストを示します。</p>
 <p>例えばJoinが <code>\n</code> Regが</p>
 <pre><code>$1: $2
 </code></pre>
@@ -1029,99 +1061,100 @@ stepが小数点の場合、小数点パディングは自動で行われます�
 003: 変換前のテキスト3行目
 </code></pre>
 <p>といったテキストになります。</p>
-<p>※ 計算できないような数値を各値に入れた場合、処理がエラーとなりハングアップする可能性があります。<br>
-※ 小数点第3ケタまで計算します。それ以上の値を入れると小数点に誤差が出る恐れがあります。</p>
+<p>※ 計算できないような数値を各値に入れた場合、処理がエラーとなりハングアップする可能性があります。<br> ※ 小数点第3ケタまで計算します。それ以上の値を入れると小数点に誤差が出る恐れがあります。</p>
+<h4>連番（16進数）</h4>
+<p>16進数による連番を生成します。<br> 基本的な使用は「連番」と同様です。
+</p>
+<p>※ 小数点は使えません。</p>
 <h4>日付</h4>
-<p>日付を基にした連番を生成します。<br>
-生成される連番は <strong>Start</strong> から <strong>End</strong> までの間、 <strong>step</strong> 刻みの日数で、<br>
-<strong>Type</strong> によって日付パターンを生成します。<br>
-stepが小数点の場合、小数点パディングは自動で行われます。<br>
-生成された日付連番は <strong>join</strong> に従って変換前テキストに挿入されます。</p>
+<p>日付を基にした連番を生成します。<br> 生成される連番は <strong>Start</strong> から <strong>End</strong> までの間、 <strong>step</strong> 刻みの日数で、<br>
+    <strong>Type</strong> によって日付パターンを生成します。<br> stepが小数点の場合、小数点パディングは自動で行われます。
+    <br> 生成された日付連番は <strong>join</strong> に従って変換前テキストに挿入されます。</p>
 <table>
-<thead>
-<tr>
-<th style="text-align:left">パターン</th>
-<th style="text-align:left">説明</th>
-<th style="text-align:left">結果（例）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">YYYY</td>
-<td style="text-align:left">西暦（4ケタ）</td>
-<td style="text-align:left">2018</td>
-</tr>
-<tr>
-<td style="text-align:left">YY</td>
-<td style="text-align:left">西暦（2ケタ）</td>
-<td style="text-align:left">18</td>
-</tr>
-<tr>
-<td style="text-align:left">MM</td>
-<td style="text-align:left">月（ゼロパディング）</td>
-<td style="text-align:left">01</td>
-</tr>
-<tr>
-<td style="text-align:left">M</td>
-<td style="text-align:left">月</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:left">DD</td>
-<td style="text-align:left">日（ゼロパディング）</td>
-<td style="text-align:left">01</td>
-</tr>
-<tr>
-<td style="text-align:left">D</td>
-<td style="text-align:left">日</td>
-<td style="text-align:left">1</td>
-</tr>
-<tr>
-<td style="text-align:left">d1</td>
-<td style="text-align:left">曜日（英語）</td>
-<td style="text-align:left">Monday</td>
-</tr>
-<tr>
-<td style="text-align:left">d2</td>
-<td style="text-align:left">曜日（英語略）</td>
-<td style="text-align:left">Mon</td>
-</tr>
-<tr>
-<td style="text-align:left">d3</td>
-<td style="text-align:left">曜日（英語1文字）</td>
-<td style="text-align:left">M</td>
-</tr>
-<tr>
-<td style="text-align:left">d4</td>
-<td style="text-align:left">曜日（日本語）</td>
-<td style="text-align:left">月曜日</td>
-</tr>
-<tr>
-<td style="text-align:left">d5</td>
-<td style="text-align:left">曜日（日本語1文字）</td>
-<td style="text-align:left">月</td>
-</tr>
-<tr>
-<td style="text-align:left">m1</td>
-<td style="text-align:left">月（英語）</td>
-<td style="text-align:left">January</td>
-</tr>
-<tr>
-<td style="text-align:left">m2</td>
-<td style="text-align:left">月（英語略）</td>
-<td style="text-align:left">Jan</td>
-</tr>
-<tr>
-<td style="text-align:left">m3</td>
-<td style="text-align:left">月（日本語）</td>
-<td style="text-align:left">一月</td>
-</tr>
-<tr>
-<td style="text-align:left">m4</td>
-<td style="text-align:left">月（日本語異名）</td>
-<td style="text-align:left">睦月</td>
-</tr>
-</tbody>
+    <thead>
+        <tr>
+            <th style="text-align:left">パターン</th>
+            <th style="text-align:left">説明</th>
+            <th style="text-align:left">結果（例）</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td style="text-align:left">YYYY</td>
+            <td style="text-align:left">西暦（4ケタ）</td>
+            <td style="text-align:left">2018</td>
+        </tr>
+        <tr>
+            <td style="text-align:left">YY</td>
+            <td style="text-align:left">西暦（2ケタ）</td>
+            <td style="text-align:left">18</td>
+        </tr>
+        <tr>
+            <td style="text-align:left">MM</td>
+            <td style="text-align:left">月（ゼロパディング）</td>
+            <td style="text-align:left">01</td>
+        </tr>
+        <tr>
+            <td style="text-align:left">M</td>
+            <td style="text-align:left">月</td>
+            <td style="text-align:left">1</td>
+        </tr>
+        <tr>
+            <td style="text-align:left">DD</td>
+            <td style="text-align:left">日（ゼロパディング）</td>
+            <td style="text-align:left">01</td>
+        </tr>
+        <tr>
+            <td style="text-align:left">D</td>
+            <td style="text-align:left">日</td>
+            <td style="text-align:left">1</td>
+        </tr>
+        <tr>
+            <td style="text-align:left">d1</td>
+            <td style="text-align:left">曜日（英語）</td>
+            <td style="text-align:left">Monday</td>
+        </tr>
+        <tr>
+            <td style="text-align:left">d2</td>
+            <td style="text-align:left">曜日（英語略）</td>
+            <td style="text-align:left">Mon</td>
+        </tr>
+        <tr>
+            <td style="text-align:left">d3</td>
+            <td style="text-align:left">曜日（英語1文字）</td>
+            <td style="text-align:left">M</td>
+        </tr>
+        <tr>
+            <td style="text-align:left">d4</td>
+            <td style="text-align:left">曜日（日本語）</td>
+            <td style="text-align:left">月曜日</td>
+        </tr>
+        <tr>
+            <td style="text-align:left">d5</td>
+            <td style="text-align:left">曜日（日本語1文字）</td>
+            <td style="text-align:left">月</td>
+        </tr>
+        <tr>
+            <td style="text-align:left">m1</td>
+            <td style="text-align:left">月（英語）</td>
+            <td style="text-align:left">January</td>
+        </tr>
+        <tr>
+            <td style="text-align:left">m2</td>
+            <td style="text-align:left">月（英語略）</td>
+            <td style="text-align:left">Jan</td>
+        </tr>
+        <tr>
+            <td style="text-align:left">m3</td>
+            <td style="text-align:left">月（日本語）</td>
+            <td style="text-align:left">一月</td>
+        </tr>
+        <tr>
+            <td style="text-align:left">m4</td>
+            <td style="text-align:left">月（日本語異名）</td>
+            <td style="text-align:left">睦月</td>
+        </tr>
+    </tbody>
 </table>
 <p>例えば、Joinが <code>\n</code> で、Typeが</p>
 <pre><code>YYYY/MM/DD (d2)
@@ -1137,75 +1170,80 @@ stepが小数点の場合、小数点パディングは自動で行われます�
 </code></pre>
 <p>といった感じになります。</p>
 <h4>連続データ</h4>
-<p>五十音やいろは順など、数字ではない連続データを生成する。<br>
-生成される連続データは <strong>amount</strong> の数値だけ、 <strong>step</strong> 刻みの数で生成します。</p>
+<p>五十音やいろは順など、数字ではない連続データを生成する。<br> 生成される連続データは <strong>amount</strong> の数値だけ、 <strong>step</strong> 刻みの数で生成します。</p>
 <h4>入力支援</h4>
 <p>キーボードで入力しにくい文字を入力するための機能です。</p>
 <ul>
-<li><code>符号付英字</code><br>
-アルファベットから符号付アルファベットを検索し入力できます。<br>
-<strong>Aa</strong> ボタンを押すと大文字と小文字が切り替わります。</li>
-<li><code>英合字</code><br>
-アルファベットから英字の各種合字を検索し入力できます。</li>
-<li><code>ピンイン入力</code><br>
-アルファベットによりピンインを検索します。</li>
+    <li><code>符号付英字</code><br> アルファベットから符号付アルファベットを検索し入力できます。
+        <br>
+        <strong>Aa</strong> ボタンを押すと大文字と小文字が切り替わります。</li>
+    <li><code>英合字</code><br> アルファベットから英字の各種合字を検索し入力できます。
+    </li>
+    <li><code>ピンイン入力</code><br> アルファベットによりピンインを検索します。
+    </li>
 </ul>
 <h2>その他</h2>
 <h3>変換用マップ</h3>
 <p>CJKなど変換には配列を使ったマッピングによって対応しています。</p>
 <ul>
-<li><code>cjk.js</code>
+    <li><code>cjk.js</code>
+        <ul>
+            <li>cjk_all<br> 簡体字、繁体字、日本漢字の単語
+            </li>
+            <li>cjk_word<br> 簡体字、繁体字、日本漢字の熟語
+            </li>
+        </ul>
+    </li>
+    <li><code>japanese.js</code>
+        <ul>
+            <li>shin2kyu<br> 新字体、旧字体の対応（基本）
+            </li>
+            <li>kyu2shinAdd<br> 新字体、旧字体の対応（不可逆変換対応）
+            </li>
+            <li>shinSpBase<br> 新字体、旧字体の対応（異体字セレクタ対応）
+            </li>
+            <li>kunre<br> 訓令式ローマ字用
+            </li>
+            <li>hebon<br> ヘボン式ローマ字用
+            </li>
+            <li>kanaroma<br> ローマ字→カナ変換用
+            </li>
+            <li>kanaMap<br> 半角カタカナ用
+            </li>
+            <li>kanaAlpha<br> 全角英数字→半角英数字変換用
+            </li>
+        </ul>
+    </li>
+    <li><code>pinyin.js</code>
+        <ul>
+            <li>pinyin<br> ピンイン検索
+            </li>
+            <li>pinyin2, pinyin3<br> ピンイン入力
+            </li>
+        </ul>
+    </li>
+    <li><code>other.js</code>
+        <ul>
+            <li>charaMap<br> 文字参照用
+            </li>
+            <li>latinVariety<br> ラテン符号付文字検索用
+            </li>
+            <li>daizi, zero2nine, ten2thou, suffices<br> 漢数字→大字用
+            </li>
+            <li>roman, romanTh, romanStr, romanStr1, romanStr2, romanUni<br> アラビア数字→ローマ数字用
+            </li>
+            <li>sanskrit<br> サンスクリット用
+            </li>
+        </ul>
+    </li>
+</ul>
+<h3>参照</h3>
+<p>ピンインについては以下のページを参照した。</p>
 <ul>
-<li>cjk_all<br>
-簡体字、繁体字、日本漢字の単語</li>
-<li>cjk_word<br>
-簡体字、繁体字、日本漢字の熟語</li>
+    <li><a href="http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/CJK.html">Character Tables by Koichi Yasuoka</a></li>
+    <li><a href="http://www.zdic.net/">汉典 zdic.net</a></li>
+    <li><a href="http://hanzidb.org/character-list">List of Chinese characters</a></li>
 </ul>
-</li>
-<li><code>japanese.js</code>
-<ul>
-<li>shin2kyu<br>
-新字体、旧字体の対応（基本）</li>
-<li>kyu2shinAdd<br>
-新字体、旧字体の対応（不可逆変換対応）</li>
-<li>shinSpBase<br>
-新字体、旧字体の対応（異体字セレクタ対応）</li>
-<li>kunre<br>
-訓令式ローマ字用</li>
-<li>hebon<br>
-ヘボン式ローマ字用</li>
-<li>kanaroma<br>
-ローマ字→カナ変換用</li>
-<li>kanaMap<br>
-半角カタカナ用</li>
-<li>kanaAlpha<br>
-全角英数字→半角英数字変換用</li>
-</ul>
-</li>
-<li><code>pinyin.js</code>
-<ul>
-<li>pinyin<br>
-ピンイン検索</li>
-<li>pinyin2, pinyin3<br>
-ピンイン入力</li>
-</ul>
-</li>
-<li><code>other.js</code>
-<ul>
-<li>charaMap<br>
-文字参照用</li>
-<li>latinVariety<br>
-ラテン符号付文字検索用</li>
-<li>daizi, zero2nine, ten2thou, suffices<br>
-漢数字→大字用</li>
-<li>roman, romanTh, romanStr, romanStr1, romanStr2, romanUni<br>
-アラビア数字→ローマ数字用</li>
-<li>sanskrit<br>
-サンスクリット用</li>
-</ul>
-</li>
-</ul>
-
               </div>
               <div class="modal-footer">
                 <button class="btn btn-default" type="button" data-dismiss="modal">Close</button>

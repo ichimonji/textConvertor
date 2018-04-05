@@ -325,6 +325,13 @@ $1: $2
 ※ 計算できないような数値を各値に入れた場合、処理がエラーとなりハングアップする可能性があります。  
 ※ 小数点第3ケタまで計算します。それ以上の値を入れると小数点に誤差が出る恐れがあります。
 
+#### 連番（16進数）
+
+16進数による連番を生成します。  
+基本的な使用は「連番」と同様です。
+
+※ 小数点は使えません。
+
 #### 日付
 
 日付を基にした連番を生成します。  
@@ -436,5 +443,9 @@ CJKなど変換には配列を使ったマッピングによって対応して�
   - sanskrit  
     サンスクリット用
 
+### 参照
 
-
+ピンインについては以下のページを参照した。
++ [Character Tables by Koichi Yasuoka](http://kanji.zinbun.kyoto-u.ac.jp/~yasuoka/CJK.html)
++ [汉典 zdic.net](http://www.zdic.net/)
++ [List of Chinese characters](http://hanzidb.org/character-list)

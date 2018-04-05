@@ -743,6 +743,7 @@ console.log(ival);
           oStr = instStr;
           break;
         case 'sort1':
+          /*
           let diffArr = 'aāáǎàbcdeēéěèếễểềfghiīíǐìjklmnoōóǒòpqrstuūúǔùǖǘǚǜvwxyz';
           diff = r => {
             ff = r.split('');
@@ -757,10 +758,9 @@ console.log(ival);
           };
           instArr = iStr.replace(/\r\n/g, '\n').split('\n');
           oStr = instArr.sort((a, b) => ((diff(a) > diff(b)) - (diff(a) < diff(b)))).join('\n');
-          /*
+          */
           instArr = iStr.replace(/\r\n/g, '\n').split('\n');
           oStr = instArr.sort((a, b) => ((a > b) - (a < b))).join('\n');
-          */
           break;
         case 'sort2':
           instArr = iStr.replace(/\r\n/g, '\n').split('\n');
@@ -1032,6 +1032,68 @@ console.log(ival);
             }
             instStr2 = instStr2.replace(/___1___(.*?)___1______2___(.*?)___2___/g, mx_reg);
             instStr += instStr2 + mx_jn;
+          }
+          oStr = instStr;
+          break;
+      // numbering16
+        case 'numbering16':
+          let
+            mx16_st = parseInt($('#mx16_start').val(), 16),
+            mx16_ed = parseInt($('#mx16_end').val(), 16),
+            mx16_sp = parseInt($('#mx16_step').val(), 16),
+            mx16_pd = parseInt($('#mx16_padding').val(), 16),
+            mx16_jn = $('#mx16_join').val().replace(/\\n/g, '\n'),
+            mx16_reg = $('#mx16_reg').val(),
+            mx16_reg2 = $('#mx16_reg2').val(),
+            mx16_of = $('#mx16_of').prop('checked'),
+            mx16_jnReg = new RegExp(mx16_jn, 'g'),
+            pd16 = Array(mx16_pd + 1).join('0');
+          if(mx16_st > mx16_ed && mx16_sp > 0){
+            break;
+          } else if(mx16_sp === 0 || mx16_st === mx16_ed){
+            break;
+          } else if(mx16_st < mx16_ed && mx16_sp < 0){
+            break;
+          }
+          instArr = [];
+          instStr = '';
+          instStr2 = '';
+
+          if(mx16_st < mx16_ed){
+            for(let i = mx16_st; i <= mx16_ed; i += mx16_sp) {
+              instArr.push(i);
+            }
+          } else {
+            for(let i = mx16_st; i >= mx16_ed; i += mx16_sp) {
+              instArr.push(i);
+            }
+          }
+          instArr2 = iStr.split(mx16_jnReg);
+          mxLength = instArr.length <= instArr2.length ? instArr2.length : instArr.length;
+          mxLength = !mx16_of ? instArr2.length : mxLength;
+          for(let j = 0; j < mxLength; j++){
+            instStr2 = '';
+            if(instArr.length > j){
+              instStr3 = Math.abs(instArr[j]) | 0;
+              if(instStr3.toString(16).length <= mx16_pd){
+                instStr3 = (pd16 + instStr3.toString(16)).slice(-mx16_pd);
+              } else {
+                instStr3 = instStr3.toString(16);
+              }
+              if(instArr[j] < 0){
+                instStr3 = '-' + instStr3;
+              }
+              instStr2 += '___1___' + instStr3 + '___1___';
+            } else {
+              instStr2 += '___1______1___';
+            }
+            if(instArr2.length > j){
+              instStr2 += '___2___' + instArr2[j] + '___2___';
+            } else {
+              instStr2 += '___2______2___';
+            }
+            instStr2 = instStr2.replace(/___1___(.*?)___1______2___(.*?)___2___/g, mx16_reg);
+            instStr += instStr2 + mx16_jn;
           }
           oStr = instStr;
           break;
