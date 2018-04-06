@@ -352,19 +352,22 @@ h1, h2, h3
     &-button
       width 100%
       .btn-group-vertical
-        flexer( row, wrap, stretch, flex-start )
-        width 80%
+        flexer( row, wrap, stretch, stretch )
+        width 96%
+        height 28px
         text-align center
         font-size 0
-        margin 0 auto
+        margin 0 auto 4px
         border-radius 4px
         overflow hidden
         .btn
           flex 1 1
-          min-width 33%
           display inline-block
           text-align center
           border-radius 0!important
+          & > i + span
+            display none
+
   .btn-group-sm > .btn, .btn-sm
     padding 5px
   .ct-set

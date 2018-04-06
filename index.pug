@@ -28,11 +28,11 @@ html( lang = 'en' )
           div.area-input-button
             div#lengthDisp
             div.btn-group-vertical
-              +bt( 'copy', '変換後テキストをクリップボードのコピー' ) #[i.fa.fa-clipboard] COPY
-              +bt( 'move', '変換後テキストを変換前テキストエリアへ移動' ) #[i.glyphicon.glyphicon-chevron-left] MOVE
-              +bt( 'delete', 'テキストを一括削除' ) #[i.glyphicon.glyphicon-remove] DELETE
-              +bt( 'undo', '一段階前に戻す' ) #[i.glyphicon.glyphicon-undo] UNDO
-              +bt( 'change', '左右を入れ替え' ) #[i.fa.fa-exchange] REPLACE
+              +bt( 'copy', '変換後テキストをクリップボードのコピー' ) #[i.fa.fa-clipboard] <span>COPY</span>
+              +bt( 'move', '変換後テキストを変換前テキストエリアへ移動' ) #[i.glyphicon.glyphicon-chevron-left] <span>MOVE</span>
+              +bt( 'delete', 'テキストを一括削除' ) #[i.glyphicon.glyphicon-remove] <span>DELETE</span>
+              +bt( 'undo', '一段階前に戻す' ) #[i.glyphicon.glyphicon-undo] <span>UNDO</span>
+              +bt( 'change', '左右を入れ替え' ) #[i.fa.fa-exchange] <span>REPLACE</span>
               label.btn.btn-sm.btn-primary #[input.automove( name = 'automove', type = 'checkbox' )] AUTO MOVE
         section.area-control
           div.ctLabel.btn-group.btn-group-sm.btn-group-justified

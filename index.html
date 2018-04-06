@@ -51,15 +51,15 @@
           <div class="area-input-button">
             <div id="lengthDisp"></div>
             <div class="btn-group-vertical">
-              <button class="btn btn-primary btn-sm bt-control" type="button" title="変換後テキストをクリップボードのコピー" value="copy"><i class="fa fa-clipboard"></i> COPY
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="変換後テキストをクリップボードのコピー" value="copy"><i class="fa fa-clipboard"></i> <span>COPY</span>
               </button>
-              <button class="btn btn-primary btn-sm bt-control" type="button" title="変換後テキストを変換前テキストエリアへ移動" value="move"><i class="glyphicon glyphicon-chevron-left"></i> MOVE
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="変換後テキストを変換前テキストエリアへ移動" value="move"><i class="glyphicon glyphicon-chevron-left"></i> <span>MOVE</span>
               </button>
-              <button class="btn btn-primary btn-sm bt-control" type="button" title="テキストを一括削除" value="delete"><i class="glyphicon glyphicon-remove"></i> DELETE
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="テキストを一括削除" value="delete"><i class="glyphicon glyphicon-remove"></i> <span>DELETE</span>
               </button>
-              <button class="btn btn-primary btn-sm bt-control" type="button" title="一段階前に戻す" value="undo"><i class="glyphicon glyphicon-undo"></i> UNDO
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="一段階前に戻す" value="undo"><i class="glyphicon glyphicon-undo"></i> <span>UNDO</span>
               </button>
-              <button class="btn btn-primary btn-sm bt-control" type="button" title="左右を入れ替え" value="change"><i class="fa fa-exchange"></i> REPLACE
+              <button class="btn btn-primary btn-sm bt-control" type="button" title="左右を入れ替え" value="change"><i class="fa fa-exchange"></i> <span>REPLACE</span>
               </button>
               <label class="btn btn-sm btn-primary">
                 <input class="automove" name="automove" type="checkbox"> AUTO MOVE
@@ -168,6 +168,9 @@
                     <input class="extract_reg" name="extract_reg" type="checkbox" value="0-9"> 123
                   </label>
                   <label class="btn btn-info">
+                    <input class="extract_reg" name="extract_reg" type="checkbox" value="0-9A-Fa-f"> 16進数
+                  </label>
+                  <label class="btn btn-info">
                     <input class="extract_reg" name="extract_reg" type="checkbox" value=" 　 -‏‏ 	  ​᠎    ​　﻿"> スペース
                   </label>
                   <label class="btn btn-info">
@@ -187,7 +190,7 @@
                     <input class="extract_reg" name="extract_reg" type="checkbox" value="぀-ゖ"> あ
                   </label>
                   <label class="btn btn-info">
-                    <input class="extract_reg" name="extract_reg" type="checkbox" value="゠-ヿㇰ-ㇿ"> ア
+                    <input class="extract_reg" name="extract_reg" type="checkbox" value="゠-ヺㇰ-ㇿ"> ア
                   </label>
                   <label class="btn btn-info">
                     <input class="extract_reg" name="extract_reg" type="checkbox" value="々〇〻⺀-⿟㐀-䶿一-鿿豈-﫿𠀀-𪛟"> 漢
@@ -332,12 +335,12 @@
             <input class="genre" id="ctset_side" type="checkbox" name="genre" checked="checked">
             <dl class="ct-set">
               <dt class="head">
-                <label for="ctset_side">左右連結</label><i class="fa fa-question-circle linkHelp" data-target="左右連結"></i>
+                <label for="ctset_side">エリア連結</label><i class="fa fa-question-circle linkHelp" data-target="エリア連結"></i>
               </dt>
               <dd class="body">
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="左右を上下結合" value="merge1">上下に結合</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="左右を行ごとに結合" value="merge2">行ごとに結合</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="左右を文字ごとに結合" value="merge3">文字ごとに結合</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="エリアを上下に連結" value="merge1">単純結合</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="エリアを行ごとに結合" value="merge2">行ごとに結合</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="エリアを文字ごとに結合" value="merge3">文字ごとに結合</button>
               </dd>
             </dl>
           </div>
@@ -801,11 +804,13 @@
                 <h4 class="modal-title">汎用テキストコンバータ help</h4>
               </div>
               <div class="modal-body"><h1>汎用テキストコンバータ</h1>
-<p>「Original Text」欄に変換したいテキストを入れ各種の変換ボタンを押してください。「Converted Text」欄に変換後のテキストが出力されます。<br> 変換後のテキストをさらに変換したい場合は「MOVE」ボタンを押して変換後テキストを「Original Text」欄に移動させてください。<br> 「AUTO MOVE」にチェックを入れると自動で変換後のテキストが「Original Text」欄に移動します。</p>
-<p>「Original Text」欄でテキストを選択したまま各種変換ボタンを押すと、その選択範囲にのみ変換が適用されます。<br> 「DELETE」でテキストがすべて削除されます。
-    <br> 「UNDO」を押す度に変換前の状態に一つずつ戻ります。
-    <br> 「REPLACE」を押すとテキストエリアの左右を入れ替えることができます。
-</p>
+<p>「Original Text」欄に変換したいテキストを入れ各種の変換ボタンを押してください。「Converted Text」欄に変換後のテキストが出力されます。<br> 変換後のテキストをさらに変換したい場合は「
+    <strong>MOVE</strong>」ボタンを押して変換後テキストを「Original Text」欄に移動させてください。<br> 「AUTO MOVE」にチェックを入れると自動で変換後のテキストが「Original Text」欄に移動します。</p>
+<p>「Original Text」欄でテキストを選択したまま各種変換ボタンを押すと、その選択範囲にのみ変換が適用されます。<br> 「
+    <strong>DELETE</strong>」でテキストがすべて削除されます。<br> 「
+    <strong>UNDO</strong>」を押す度に変換前の状態に一つずつ戻ります。<br> 「
+    <strong>REPLACE</strong>」を押すとテキストエリアの左右を入れ替えることができます。<br> 「
+    <strong>COPY</strong>」を押すと変換後テキストエリアからクリップボードにコピーします。</p>
 <p>項目が多すぎて扱いづらい場合は「ケース」、「Url/Base64」といったグループ名の部分を押すとそのグループが折りたたまれます。<br> 折りたたまれたグループはもう一回押すと元に戻ります。
 </p>
 <h2>各項目の説明</h2>
@@ -1028,14 +1033,14 @@
 </p>
 <h4>正規表現</h4>
 <p>正規表現置換を行う</p>
-<h4>左右連結</h4>
-<p>左右のテキストエリアを使った連結を行います。</p>
+<h4>エリア連結</h4>
+<p>左右（SPでは上下）のテキストエリアを使った連結を行います。</p>
 <ul>
-    <li><code>上下に結合</code><br> 左右のテキストエリアを上下結合した結果を出力
+    <li><code>単純結合</code><br> テキストエリアを上下結合した結果を出力
     </li>
-    <li><code>行ごとに結合</code><br> 左右のテキストエリアを行ごとに結合した結果を出力
+    <li><code>行ごとに結合</code><br> テキストエリアを行ごとに結合した結果を出力
     </li>
-    <li><code>文字ごとに結合</code><br> 左右のテキストエリアを文字ごとに結合した結果を出力
+    <li><code>文字ごとに結合</code><br> テキストエリアを文字ごとに結合した結果を出力
     </li>
 </ul>
 <h3>文字列生成</h3>

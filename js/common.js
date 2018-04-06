@@ -1268,6 +1268,13 @@ $(function() {
   // ヘルプリンク
   let
     $helpModal = $('#help'),
+    iconArr = {
+      'COPY': '<i class="fa fa-clipboard"></i>',
+      'DELETE': '<i class="glyphicon glyphicon-remove"></i>',
+      'UNDO': '<i class="glyphicon glyphicon-undo"></i>',
+      'MOVE': '<i class="glyphicon glyphicon-chevron-left"></i>',
+      'REPLACE': '<i class="fa fa-exchange"></i>'
+    },
     tex, vid, target, $target;
   $('.info').find('h4').each(function(r){
     tex = $(this).text();
@@ -1276,6 +1283,12 @@ $(function() {
       'id': vid
     });
     $('[data-target="' + tex + '"]').attr('data-href', vid);
+  });
+  $('.info').find('strong').each(function(r){
+    let keyText = $(this).text();
+    if( keyText in iconArr ){
+      $(this).html(iconArr[keyText] + ' ' + keyText);
+    }
   });
   $('.linkHelp').on('click', function(){
     vid = $(this).attr('data-href');
