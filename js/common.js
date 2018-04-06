@@ -86,7 +86,6 @@ $(function() {
       endStr = iStr.slice(tmp.end);
       iStr = iStr.slice(tmp.start, tmp.end);
     }
-console.log(ival);
     switch(ival){
     // Code/Numerals
       // Convert Case
@@ -589,7 +588,7 @@ console.log(ival);
           oStr = unescape(oStr);
           break;
         case 'tocjk7':
-          instStr = escape(iStr).replace(pin,(r, r1) => r + '\[' + pinyin[r1] + '\]');
+          instStr = escape(iStr).replace(pin, (r, r1) => (r1 in pinyin) ? ( r + '\[' + pinyin[r1] + '\]') : r);
           oStr = unescape(instStr);
           break;
       // skt
@@ -743,22 +742,6 @@ console.log(ival);
           oStr = instStr;
           break;
         case 'sort1':
-          /*
-          let diffArr = 'aāáǎàbcdeēéěèếễểềfghiīíǐìjklmnoōóǒòpqrstuūúǔùǖǘǚǜvwxyz';
-          diff = r => {
-            ff = r.split('');
-            ff = ff.map(t=>{
-              return t.replace(/([āáǎàēéěèếễểềīíǐìōóǒòūúǔùǖǘǚǜa-z])/g,u=>{
-                if(u==='y') document.title=('0'+diffArr.indexOf(u)).slice(-2);
-                return ('0'+diffArr.indexOf(u)).slice(-2)
-              });
-            });
-            ff = ff.join('');
-            return ff;
-          };
-          instArr = iStr.replace(/\r\n/g, '\n').split('\n');
-          oStr = instArr.sort((a, b) => ((diff(a) > diff(b)) - (diff(a) < diff(b)))).join('\n');
-          */
           instArr = iStr.replace(/\r\n/g, '\n').split('\n');
           oStr = instArr.sort((a, b) => ((a > b) - (a < b))).join('\n');
           break;
@@ -1038,10 +1021,10 @@ console.log(ival);
       // numbering16
         case 'numbering16':
           let
-            mx16_st = parseInt($('#mx16_start').val(), 16),
-            mx16_ed = parseInt($('#mx16_end').val(), 16),
-            mx16_sp = parseInt($('#mx16_step').val(), 16),
-            mx16_pd = parseInt($('#mx16_padding').val(), 16),
+            mx16_st = parseInt('0x' + $('#mx16_start').val(), 16),
+            mx16_ed = parseInt('0x' + $('#mx16_end').val(), 16),
+            mx16_sp = parseInt('0x' + $('#mx16_step').val(), 16),
+            mx16_pd = parseInt($('#mx16_padding').val(), 10),
             mx16_jn = $('#mx16_join').val().replace(/\\n/g, '\n'),
             mx16_reg = $('#mx16_reg').val(),
             mx16_reg2 = $('#mx16_reg2').val(),
@@ -1364,13 +1347,15 @@ console.log(ival);
     $btnPyin = $btnPyinGroup.find('.btn-pyin'),
     $pyinOpt = $('#pyin_opt'),
     $pyinOpt2 = $('#pyin_opt2'),
-    $pyinDisp = $('#pyinDisp');
-    $pyinDisp2 = $('#pyinDisp2');
+    $pyinDisp = $('#pyinDisp'),
+    $pyinDisp2 = $('#pyinDisp2'),
+    nowParentAlpha = '';
   $btnPyin.on('click', function(){
     let pyinVal = $(this).val();
     $pyinOpt.html('');
-    for(let i = 0; i < pinyin3[pyinVal].length; i++){
-      $pyinOpt.append('<button class="btn btn-primary" type="button" value="' + pinyin3[pyinVal][i] + '">' + pinyin3[pyinVal][i] + '</button>');
+    nowParentAlpha = pyinVal;
+    for(let key in pinyin2[pyinVal]){
+      $pyinOpt.append('<button class="btn btn-primary" type="button" value="' + key + '">' + key + '</button>');
     }
   });
   $pyinOpt.on('click', '.btn', function(){
@@ -1378,8 +1363,8 @@ console.log(ival);
       pyinVal2 = $(this).val(),
       pyinStr = '';
     $pyinOpt2.html('');
-    for(let i = 0; i < pinyin2[pyinVal2].length; i++){
-      pyinStr = '&#x' + pinyin2[pyinVal2][i] + ';'
+    for(let i = 0; i < pinyin2[nowParentAlpha][pyinVal2].length; i++){
+      pyinStr = '&#x' + pinyin2[nowParentAlpha][pyinVal2][i] + ';';
       $pyinOpt2.append('<button class="btn btn-primary" type="button" value="' + pyinStr + '">' + pyinStr + '</button>');
     }
   });

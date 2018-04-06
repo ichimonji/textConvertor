@@ -37,9 +37,9 @@ html( lang = 'en' )
         section.area-control
           div.ctLabel.btn-group.btn-group-sm.btn-group-justified
             label.btn.btn-info( for = 'ctGroup_code' ) コード/数値
-            label.btn.btn-info( for = 'ctGroup_lang' ) 言語
             label.btn.btn-info( for = 'ctGroup_cont' ) 文字列操作
             label.btn.btn-info( for = 'ctGroup_unit' ) 文字列生成
+            label.btn.btn-info( for = 'ctGroup_lang' ) 言語
           each val, key in btsArr
             input.ctGroupRd.hidden( id = key, type = 'radio', name = 'ctGroupRd', checked = 'checked' )
             div.ctGroup

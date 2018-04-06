@@ -101,69 +101,6 @@
           ]
         }
       },
-      'ctGroup_lang': {
-        'ctset_number': {
-          'str': '数字',
-          'bts': [
-            ['num-a_j', 'アラビア数字を漢数字に（桁付き）', '123→百二十三'],
-            ['num-a_j2', 'アラビア数字を漢数字に（桁なし）', '123→一二三'],
-            ['num-j_a', '漢数字をアラビア数字に', '百二十三→123']
-          ],
-          'lbs': {
-            'lb': [
-              ['roman_class', 'rd', 'M', 'M(1~3999)', true],
-              ['roman_class', 'rd', 'C1', 'ↀ(1~399999)'],
-              ['roman_class', 'rd', 'C2', 'CIↃ(1~399999)']
-            ],
-            'bt': [
-              ['num-a_r', 'アラビア数字をローマ数字に', 'Arabic→Roman'],
-              ['num-r_a', 'ローマ数字をアラビア数字に', 'Roman→Arabic']
-            ]
-          }
-        },
-        'ctset_japan': {
-          'str': '日本語関連',
-          'bts': [
-            ['jpn1', '全角ひらがなを全角カタカナに', 'あ→ア'],
-            ['jpn2', '全角カタカナを全角ひらがなに', 'ア→あ'],
-            ['jpn3', '半角カタカナを全角カタカナに', 'ｱ→ア'],
-            ['jpn4', '全角カタカナを半角カタカナに', 'ア→ｱ'],
-            ['jpn5', '半角英数字を全角英数字に', 'A1→Ａ１'],
-            ['jpn6', '全角英数字を半角英数字に', 'Ａ１→A1'],
-            ['jpn7', '新字体を旧字体に（異体字セレクタ分を含まない）', '新字→旧字（中）'],
-            ['jpn7b', '新字体を旧字体に（異体字セレクタ分を含む）', '新字→旧字（強）'],
-            ['jpn8', '旧字体を新字体に（異体字セレクタ分を含む）', '旧字→新字'],
-            ['jpn9', '漢数字を大字に', '一二→壱弐'],
-            ['jpna', '大字を漢数字に', '壱弐→一二'],
-            ['jpnb', '全角カタカナを訓令式ローマ字表記に', 'トウキョウ→tôkyô'],
-            ['jpnc', '全角カタカナをヘボン式ローマ字表記に', 'トウキョウ→tokyo'],
-            ['jpnd', 'ヘボン式ローマ字を全角カタカナに', 'tokyo→トキョ']
-          ]
-        },
-        'ctset_cjk': {
-          'str': 'CJK関連',
-          'bts': [
-            ['tocjk1', '日本字体を簡体字に', '日→簡体'],
-            ['tocjk2', '日本字体を繁体字に', '日→繁体'],
-            ['tocjk3', '簡体字を日本字体に', '簡体→日'],
-            ['tocjk4', '繁体字を日本字体に', '繁体→日'],
-            ['tocjk5', '簡体字を繁体字に', '簡体→繁体'],
-            ['tocjk6', '繁体字を簡体字に', '繁体→簡体'],
-            ['tocjk7', '漢字の直後にピンインを追加', 'ピンイン']
-          ]
-        },
-        'ctset_skt': {
-          'str': 'Sanskrit',
-          'bts': [
-            ['skt1', 'デーヴァナガリーを京都・ハーバード方式に', 'संस्कृत→saMskRta'],
-            ['skt2', 'デーヴァナガリーをIASTに', 'संस्कृत→saṃskṛta'],
-            ['skt3', '京都・ハーバード方式をデーヴァナガリーに', 'saMskRta→संस्कृत'],
-            ['skt4', '京都・ハーバード方式をIASTに', 'saMskRta→saṃskṛta'],
-            ['skt5', 'IASTをデーヴァナガリーに', 'saṃskṛta→संस्कृत'],
-            ['skt6', 'IASTを京都・ハーバード方式に', 'saṃskṛta→saMskRta']
-          ]
-        }
-      },
       'ctGroup_cont': {
         'ctset_extract': {
           'str': '抽出/排除',
@@ -255,10 +192,10 @@
           'str': 'リピート',
           'its': {
             'arr': [
-              ['文字列', 'str', 'rp_string', 'text', '', '文字列'],
-              ['回数', 'times', 'rp_time', 'number', '100', ''],
-              ['ごとに', 'join', 'rp_join', 'text', '\\n', 'Join'],
-              ['置換', 'Reg', 'rp_reg', 'text', '$1: $2', 'Reg']
+              ['文字列', 'str', 'rp_string', 'text', '', {'placeholder':'文字列'}],
+              ['回数', 'times', 'rp_time', 'number', '100'],
+              ['ごとに', 'join', 'rp_join', 'text', '\\n', {'placeholder':'Join'}],
+              ['置換', 'Reg', 'rp_reg', 'text', '$1: $2', {'placeholder':'Reg'}]
             ],
             'overflow': 'rp_of',
             'title': 'リピート生成',
@@ -270,12 +207,12 @@
           'str': '連番',
           'its': {
             'arr': [
-              ['～から', 'from', 'mx_start', 'number', '0', 'Start'],
-              ['～まで', 'to', 'mx_end', 'number', '100', 'End'],
-              ['～刻みで', 'step', 'mx_step', 'number', '1', 'Step'],
-              ['ゼロパディング', 'padding', 'mx_padding', 'number', '3', 'Padding'],
-              ['ごとに', 'join', 'mx_join', 'text', '\\n', 'Join'],
-              ['置換', 'Reg', 'mx_reg', 'text', '$1: $2', 'Reg']
+              ['～から', 'from', 'mx_start', 'number', '0', {'placeholder':'Start'}],
+              ['～まで', 'to', 'mx_end', 'number', '100', {'placeholder':'End'}],
+              ['～刻みで', 'step', 'mx_step', 'number', '1', {'placeholder':'Step'}],
+              ['ゼロパディング', 'padding', 'mx_padding', 'number', '3', {'placeholder':'Padding'}],
+              ['ごとに', 'join', 'mx_join', 'text', '\\n', {'placeholder':'Join'}],
+              ['置換', 'Reg', 'mx_reg', 'text', '$1: $2', {'placeholder':'Reg'}]
             ],
             'overflow': 'mx_of',
             'title': '連番生成',
@@ -287,12 +224,12 @@
           'str': '連番（16進数）',
           'its': {
             'arr': [
-              ['～から', 'from', 'mx16_start', 'number', '0', 'Start'],
-              ['～まで', 'to', 'mx16_end', 'number', '100', 'End'],
-              ['～刻みで', 'step', 'mx16_step', 'number', '1', 'Step'],
-              ['ゼロパディング', 'padding', 'mx16_padding', 'number', '3', 'Padding'],
-              ['ごとに', 'join', 'mx16_join', 'text', '\\n', 'Join'],
-              ['置換', 'Reg', 'mx16_reg', 'text', '$1: $2', 'Reg']
+              ['～から', 'from', 'mx16_start', 'text', '0', {'placeholder':'Start','pattern':'^-{0,1}[0-9a-fA-F]+$'}],
+              ['～まで', 'to', 'mx16_end', 'text', '100', {'placeholder':'End','pattern':'^-{0,1}[0-9a-fA-F]+$'}],
+              ['～刻みで', 'step', 'mx16_step', 'text', '1', {'placeholder':'Step','pattern':'^-{0,1}[0-9a-fA-F]+$'}],
+              ['ゼロパディング', 'padding', 'mx16_padding', 'number', '3', {'placeholder':'Padding'}],
+              ['ごとに', 'join', 'mx16_join', 'text', '\\n', {'placeholder':'Join'}],
+              ['置換', 'Reg', 'mx16_reg', 'text', '$1: $2', {'placeholder':'Reg'}]
             ],
             'overflow': 'mx16_of',
             'title': '連番生成',
@@ -304,12 +241,12 @@
           'str': '日付',
           'its': {
             'arr': [
-              ['開始日', 'Start', 'dt_start', 'date', '2017-01-01', 'YYYY-MM-DD'],
-              ['終了日', 'End', 'dt_end', 'date', '2017-12-12', 'YYYY-MM-DD'],
-              ['～刻みで', 'step', 'dt_step', 'number', '1', 'Step'],
-              ['日付タイプ', 'Type', 'dt_reg', 'text', 'YYYY/MM/DD (d2)', 'Type'],
-              ['ごとに', 'join', 'dt_join', 'text', '\\n', 'Join'],
-              ['置換', 'Reg', 'dt_reg2', 'text', '$1: $2', 'Reg']
+              ['開始日', 'Start', 'dt_start', 'date', '2017-01-01', {'placeholder':'YYYY-MM-DD'}],
+              ['終了日', 'End', 'dt_end', 'date', '2017-12-12', {'placeholder':'YYYY-MM-DD'}],
+              ['～刻みで', 'step', 'dt_step', 'number', '1', {'placeholder':'Step'}],
+              ['日付タイプ', 'Type', 'dt_reg', 'text', 'YYYY/MM/DD (d2)', {'placeholder':'Type'}],
+              ['ごとに', 'join', 'dt_join', 'text', '\\n', {'placeholder':'Join'}],
+              ['置換', 'Reg', 'dt_reg2', 'text', '$1: $2', {'placeholder':'Reg'}]
             ],
             'overflow': 'dt_of',
             'title': '日付連番生成',
@@ -322,10 +259,10 @@
           'its': {
             'arr': [
               ['種類', 'type', 'rz_type', 'select', {'hkana': 'あいう～ん','kkana': 'アイウ～ン','iroha': 'いろは～ん','iroha2': 'イロハ～ン','iroha3': '以呂波～旡','wcjk': '日月火～土','wen': '曜日（英語）','wen2': '曜日（英語略）','men': '月（英語）','men2': '月（英語略）','alpha': 'ABC～Z','alpha2': 'abc～z','greek': 'ΑΒΓ～Ω','greek2': 'αβγ～ω','eto12': '十二支','eto10': '十干','eto60': '干支'}, 'hkana'],
-              ['～刻みで', 'step', 'rz_step', 'number', '1', 'Step'],
-              ['～回', 'amount', 'rz_amount', 'number', '10', 'Amount'],
-              ['ごとに', 'join', 'rz_join', 'text', '\\n', 'Join'],
-              ['置換', 'Reg', 'rz_reg', 'text', '$1: $2', 'Reg']
+              ['～刻みで', 'step', 'rz_step', 'number', '1', {'placeholder':'Step'}],
+              ['～回', 'amount', 'rz_amount', 'number', '10', {'placeholder':'Amount'}],
+              ['ごとに', 'join', 'rz_join', 'text', '\\n', {'placeholder':'Join'}],
+              ['置換', 'Reg', 'rz_reg', 'text', '$1: $2', {'placeholder':'Reg'}]
             ],
             'overflow': 'rz_of',
             'title': '連続データ',
@@ -335,6 +272,69 @@
         },
         'ctset_ime': {
           'str': '入力支援'
+        }
+      },
+      'ctGroup_lang': {
+        'ctset_number': {
+          'str': '数字',
+          'bts': [
+            ['num-a_j', 'アラビア数字を漢数字に（桁付き）', '123→百二十三'],
+            ['num-a_j2', 'アラビア数字を漢数字に（桁なし）', '123→一二三'],
+            ['num-j_a', '漢数字をアラビア数字に', '百二十三→123']
+          ],
+          'lbs': {
+            'lb': [
+              ['roman_class', 'rd', 'M', 'M(1~3999)', true],
+              ['roman_class', 'rd', 'C1', 'ↀ(1~399999)'],
+              ['roman_class', 'rd', 'C2', 'CIↃ(1~399999)']
+            ],
+            'bt': [
+              ['num-a_r', 'アラビア数字をローマ数字に', 'Arabic→Roman'],
+              ['num-r_a', 'ローマ数字をアラビア数字に', 'Roman→Arabic']
+            ]
+          }
+        },
+        'ctset_japan': {
+          'str': '日本語関連',
+          'bts': [
+            ['jpn1', '全角ひらがなを全角カタカナに', 'あ→ア'],
+            ['jpn2', '全角カタカナを全角ひらがなに', 'ア→あ'],
+            ['jpn3', '半角カタカナを全角カタカナに', 'ｱ→ア'],
+            ['jpn4', '全角カタカナを半角カタカナに', 'ア→ｱ'],
+            ['jpn5', '半角英数字を全角英数字に', 'A1→Ａ１'],
+            ['jpn6', '全角英数字を半角英数字に', 'Ａ１→A1'],
+            ['jpn7', '新字体を旧字体に（異体字セレクタ分を含まない）', '新字→旧字（中）'],
+            ['jpn7b', '新字体を旧字体に（異体字セレクタ分を含む）', '新字→旧字（強）'],
+            ['jpn8', '旧字体を新字体に（異体字セレクタ分を含む）', '旧字→新字'],
+            ['jpn9', '漢数字を大字に', '一二→壱弐'],
+            ['jpna', '大字を漢数字に', '壱弐→一二'],
+            ['jpnb', '全角カタカナを訓令式ローマ字表記に', 'トウキョウ→tôkyô'],
+            ['jpnc', '全角カタカナをヘボン式ローマ字表記に', 'トウキョウ→tokyo'],
+            ['jpnd', 'ヘボン式ローマ字を全角カタカナに', 'tokyo→トキョ']
+          ]
+        },
+        'ctset_cjk': {
+          'str': 'CJK関連',
+          'bts': [
+            ['tocjk1', '日本字体を簡体字に', '日→簡体'],
+            ['tocjk2', '日本字体を繁体字に', '日→繁体'],
+            ['tocjk3', '簡体字を日本字体に', '簡体→日'],
+            ['tocjk4', '繁体字を日本字体に', '繁体→日'],
+            ['tocjk5', '簡体字を繁体字に', '簡体→繁体'],
+            ['tocjk6', '繁体字を簡体字に', '繁体→簡体'],
+            ['tocjk7', '漢字の直後にピンインを追加', 'ピンイン']
+          ]
+        },
+        'ctset_skt': {
+          'str': 'Sanskrit',
+          'bts': [
+            ['skt1', 'デーヴァナガリーを京都・ハーバード方式に', 'संस्कृत→saMskRta'],
+            ['skt2', 'デーヴァナガリーをIASTに', 'संस्कृत→saṃskṛta'],
+            ['skt3', '京都・ハーバード方式をデーヴァナガリーに', 'saMskRta→संस्कृत'],
+            ['skt4', '京都・ハーバード方式をIASTに', 'saMskRta→saṃskṛta'],
+            ['skt5', 'IASTをデーヴァナガリーに', 'saṃskṛta→संस्कृत'],
+            ['skt6', 'IASTを京都・ハーバード方式に', 'saṃskṛta→saMskRta']
+          ]
         }
       }
     }

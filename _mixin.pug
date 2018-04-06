@@ -83,7 +83,7 @@ mixin dlBox(id, arr)
                       else
                         option( value = key2 ) !{val2}
                 else
-                  input.form-control( id = val[2], type = val[3], value = val[4], placeholder = val[5] )
+                  input.form-control( id = val[2], type = val[3], value = val[4] )&attributes(val[5])
             div.input-group.input-group-sm.input-group-bt
               label.input-group-addon #[input( id = setIts.overflow, type = 'checkbox', checked = 'checked' )] overflow
               button.form-control.btn.btn-primary.bt-control( type = 'button', title = setIts.title, value = setIts.value ) !{setIts.text}

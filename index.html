@@ -70,9 +70,9 @@
         <section class="area-control">
           <div class="ctLabel btn-group btn-group-sm btn-group-justified">
             <label class="btn btn-info" for="ctGroup_code">コード/数値</label>
-            <label class="btn btn-info" for="ctGroup_lang">言語</label>
             <label class="btn btn-info" for="ctGroup_cont">文字列操作</label>
             <label class="btn btn-info" for="ctGroup_unit">文字列生成</label>
+            <label class="btn btn-info" for="ctGroup_lang">言語</label>
           </div>
           <input class="ctGroupRd hidden" id="ctGroup_code" type="radio" name="ctGroupRd" checked="checked">
           <div class="ctGroup">
@@ -146,84 +146,6 @@
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="四捨五入" value="num-round">Round</button>
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="切り捨て" value="num-floor">Floor</button>
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="切り上げ" value="num-ceil">Ceil</button>
-              </dd>
-            </dl>
-          </div>
-          <input class="ctGroupRd hidden" id="ctGroup_lang" type="radio" name="ctGroupRd" checked="checked">
-          <div class="ctGroup">
-            <input class="genre" id="ctset_number" type="checkbox" name="genre" checked="checked">
-            <dl class="ct-set">
-              <dt class="head">
-                <label for="ctset_number">数字</label><i class="fa fa-question-circle linkHelp" data-target="数字"></i>
-              </dt>
-              <dd class="body">
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="アラビア数字を漢数字に（桁付き）" value="num-a_j">123 <i class="glyphicon glyphicon-arrow-right"></i> 百二十三</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="アラビア数字を漢数字に（桁なし）" value="num-a_j2">123 <i class="glyphicon glyphicon-arrow-right"></i> 一二三</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="漢数字をアラビア数字に" value="num-j_a">百二十三 <i class="glyphicon glyphicon-arrow-right"></i> 123</button>
-                <div class="btn-group btn-group-sm" role="group" aria-label="...">
-                  <label class="btn btn-info">
-                    <input class="roman_class" name="roman_class" type="radio" value="M" checked="checked"> M(1~3999)
-                  </label>
-                  <label class="btn btn-info">
-                    <input class="roman_class" name="roman_class" type="radio" value="C1"> ↀ(1~399999)
-                  </label>
-                  <label class="btn btn-info">
-                    <input class="roman_class" name="roman_class" type="radio" value="C2"> CIↃ(1~399999)
-                  </label>
-                  <button class="btn btn-primary btn-sm bt-control" type="button" title="アラビア数字をローマ数字に" value="num-a_r">Arabic <i class="glyphicon glyphicon-arrow-right"></i> Roman</button>
-                  <button class="btn btn-primary btn-sm bt-control" type="button" title="ローマ数字をアラビア数字に" value="num-r_a">Roman <i class="glyphicon glyphicon-arrow-right"></i> Arabic</button>
-                </div>
-              </dd>
-            </dl>
-            <input class="genre" id="ctset_japan" type="checkbox" name="genre" checked="checked">
-            <dl class="ct-set">
-              <dt class="head">
-                <label for="ctset_japan">日本語関連</label><i class="fa fa-question-circle linkHelp" data-target="日本語関連"></i>
-              </dt>
-              <dd class="body">
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="全角ひらがなを全角カタカナに" value="jpn1">あ <i class="glyphicon glyphicon-arrow-right"></i> ア</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="全角カタカナを全角ひらがなに" value="jpn2">ア <i class="glyphicon glyphicon-arrow-right"></i> あ</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="半角カタカナを全角カタカナに" value="jpn3">ｱ <i class="glyphicon glyphicon-arrow-right"></i> ア</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="全角カタカナを半角カタカナに" value="jpn4">ア <i class="glyphicon glyphicon-arrow-right"></i> ｱ</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="半角英数字を全角英数字に" value="jpn5">A1 <i class="glyphicon glyphicon-arrow-right"></i> Ａ１</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="全角英数字を半角英数字に" value="jpn6">Ａ１ <i class="glyphicon glyphicon-arrow-right"></i> A1</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="新字体を旧字体に（異体字セレクタ分を含まない）" value="jpn7">新字 <i class="glyphicon glyphicon-arrow-right"></i> 旧字（中）</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="新字体を旧字体に（異体字セレクタ分を含む）" value="jpn7b">新字 <i class="glyphicon glyphicon-arrow-right"></i> 旧字（強）</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="旧字体を新字体に（異体字セレクタ分を含む）" value="jpn8">旧字 <i class="glyphicon glyphicon-arrow-right"></i> 新字</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="漢数字を大字に" value="jpn9">一二 <i class="glyphicon glyphicon-arrow-right"></i> 壱弐</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="大字を漢数字に" value="jpna">壱弐 <i class="glyphicon glyphicon-arrow-right"></i> 一二</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="全角カタカナを訓令式ローマ字表記に" value="jpnb">トウキョウ <i class="glyphicon glyphicon-arrow-right"></i> tôkyô</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="全角カタカナをヘボン式ローマ字表記に" value="jpnc">トウキョウ <i class="glyphicon glyphicon-arrow-right"></i> tokyo</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="ヘボン式ローマ字を全角カタカナに" value="jpnd">tokyo <i class="glyphicon glyphicon-arrow-right"></i> トキョ</button>
-              </dd>
-            </dl>
-            <input class="genre" id="ctset_cjk" type="checkbox" name="genre" checked="checked">
-            <dl class="ct-set">
-              <dt class="head">
-                <label for="ctset_cjk">CJK関連</label><i class="fa fa-question-circle linkHelp" data-target="CJK関連"></i>
-              </dt>
-              <dd class="body">
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="日本字体を簡体字に" value="tocjk1">日 <i class="glyphicon glyphicon-arrow-right"></i> 簡体</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="日本字体を繁体字に" value="tocjk2">日 <i class="glyphicon glyphicon-arrow-right"></i> 繁体</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="簡体字を日本字体に" value="tocjk3">簡体 <i class="glyphicon glyphicon-arrow-right"></i> 日</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="繁体字を日本字体に" value="tocjk4">繁体 <i class="glyphicon glyphicon-arrow-right"></i> 日</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="簡体字を繁体字に" value="tocjk5">簡体 <i class="glyphicon glyphicon-arrow-right"></i> 繁体</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="繁体字を簡体字に" value="tocjk6">繁体 <i class="glyphicon glyphicon-arrow-right"></i> 簡体</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="漢字の直後にピンインを追加" value="tocjk7">ピンイン</button>
-              </dd>
-            </dl>
-            <input class="genre" id="ctset_skt" type="checkbox" name="genre" checked="checked">
-            <dl class="ct-set">
-              <dt class="head">
-                <label for="ctset_skt">Sanskrit</label><i class="fa fa-question-circle linkHelp" data-target="Sanskrit"></i>
-              </dt>
-              <dd class="body">
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="デーヴァナガリーを京都・ハーバード方式に" value="skt1">संस्कृत <i class="glyphicon glyphicon-arrow-right"></i> saMskRta</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="デーヴァナガリーをIASTに" value="skt2">संस्कृत <i class="glyphicon glyphicon-arrow-right"></i> saṃskṛta</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="京都・ハーバード方式をデーヴァナガリーに" value="skt3">saMskRta <i class="glyphicon glyphicon-arrow-right"></i> संस्कृत</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="京都・ハーバード方式をIASTに" value="skt4">saMskRta <i class="glyphicon glyphicon-arrow-right"></i> saṃskṛta</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="IASTをデーヴァナガリーに" value="skt5">saṃskṛta <i class="glyphicon glyphicon-arrow-right"></i> संस्कृत</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="IASTを京都・ハーバード方式に" value="skt6">saṃskṛta <i class="glyphicon glyphicon-arrow-right"></i> saMskRta</button>
               </dd>
             </dl>
           </div>
@@ -435,7 +357,7 @@
                     </div>
                     <div class="input-group input-group-sm">
                       <label class="input-group-addon" title="回数">times</label>
-                      <input class="form-control" id="rp_time" type="number" value="100" placeholder="">
+                      <input class="form-control" id="rp_time" type="number" value="100">
                     </div>
                     <div class="input-group input-group-sm">
                       <label class="input-group-addon" title="ごとに">join</label>
@@ -507,15 +429,15 @@
                   <div class="form-group">
                     <div class="input-group input-group-sm">
                       <label class="input-group-addon" title="～から">from</label>
-                      <input class="form-control" id="mx16_start" type="number" value="0" placeholder="Start">
+                      <input class="form-control" id="mx16_start" type="text" value="0" placeholder="Start" pattern="^-{0,1}[0-9a-fA-F]+$">
                     </div>
                     <div class="input-group input-group-sm">
                       <label class="input-group-addon" title="～まで">to</label>
-                      <input class="form-control" id="mx16_end" type="number" value="100" placeholder="End">
+                      <input class="form-control" id="mx16_end" type="text" value="100" placeholder="End" pattern="^-{0,1}[0-9a-fA-F]+$">
                     </div>
                     <div class="input-group input-group-sm">
                       <label class="input-group-addon" title="～刻みで">step</label>
-                      <input class="form-control" id="mx16_step" type="number" value="1" placeholder="Step">
+                      <input class="form-control" id="mx16_step" type="text" value="1" placeholder="Step" pattern="^-{0,1}[0-9a-fA-F]+$">
                     </div>
                     <div class="input-group input-group-sm">
                       <label class="input-group-addon" title="ゼロパディング">padding</label>
@@ -646,6 +568,84 @@
                 <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#accent">符号付き英字</button>
                 <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#ligat">英合字</button>
                 <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#pyin">ピンイン入力</button>
+              </dd>
+            </dl>
+          </div>
+          <input class="ctGroupRd hidden" id="ctGroup_lang" type="radio" name="ctGroupRd" checked="checked">
+          <div class="ctGroup">
+            <input class="genre" id="ctset_number" type="checkbox" name="genre" checked="checked">
+            <dl class="ct-set">
+              <dt class="head">
+                <label for="ctset_number">数字</label><i class="fa fa-question-circle linkHelp" data-target="数字"></i>
+              </dt>
+              <dd class="body">
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="アラビア数字を漢数字に（桁付き）" value="num-a_j">123 <i class="glyphicon glyphicon-arrow-right"></i> 百二十三</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="アラビア数字を漢数字に（桁なし）" value="num-a_j2">123 <i class="glyphicon glyphicon-arrow-right"></i> 一二三</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="漢数字をアラビア数字に" value="num-j_a">百二十三 <i class="glyphicon glyphicon-arrow-right"></i> 123</button>
+                <div class="btn-group btn-group-sm" role="group" aria-label="...">
+                  <label class="btn btn-info">
+                    <input class="roman_class" name="roman_class" type="radio" value="M" checked="checked"> M(1~3999)
+                  </label>
+                  <label class="btn btn-info">
+                    <input class="roman_class" name="roman_class" type="radio" value="C1"> ↀ(1~399999)
+                  </label>
+                  <label class="btn btn-info">
+                    <input class="roman_class" name="roman_class" type="radio" value="C2"> CIↃ(1~399999)
+                  </label>
+                  <button class="btn btn-primary btn-sm bt-control" type="button" title="アラビア数字をローマ数字に" value="num-a_r">Arabic <i class="glyphicon glyphicon-arrow-right"></i> Roman</button>
+                  <button class="btn btn-primary btn-sm bt-control" type="button" title="ローマ数字をアラビア数字に" value="num-r_a">Roman <i class="glyphicon glyphicon-arrow-right"></i> Arabic</button>
+                </div>
+              </dd>
+            </dl>
+            <input class="genre" id="ctset_japan" type="checkbox" name="genre" checked="checked">
+            <dl class="ct-set">
+              <dt class="head">
+                <label for="ctset_japan">日本語関連</label><i class="fa fa-question-circle linkHelp" data-target="日本語関連"></i>
+              </dt>
+              <dd class="body">
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="全角ひらがなを全角カタカナに" value="jpn1">あ <i class="glyphicon glyphicon-arrow-right"></i> ア</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="全角カタカナを全角ひらがなに" value="jpn2">ア <i class="glyphicon glyphicon-arrow-right"></i> あ</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="半角カタカナを全角カタカナに" value="jpn3">ｱ <i class="glyphicon glyphicon-arrow-right"></i> ア</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="全角カタカナを半角カタカナに" value="jpn4">ア <i class="glyphicon glyphicon-arrow-right"></i> ｱ</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="半角英数字を全角英数字に" value="jpn5">A1 <i class="glyphicon glyphicon-arrow-right"></i> Ａ１</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="全角英数字を半角英数字に" value="jpn6">Ａ１ <i class="glyphicon glyphicon-arrow-right"></i> A1</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="新字体を旧字体に（異体字セレクタ分を含まない）" value="jpn7">新字 <i class="glyphicon glyphicon-arrow-right"></i> 旧字（中）</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="新字体を旧字体に（異体字セレクタ分を含む）" value="jpn7b">新字 <i class="glyphicon glyphicon-arrow-right"></i> 旧字（強）</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="旧字体を新字体に（異体字セレクタ分を含む）" value="jpn8">旧字 <i class="glyphicon glyphicon-arrow-right"></i> 新字</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="漢数字を大字に" value="jpn9">一二 <i class="glyphicon glyphicon-arrow-right"></i> 壱弐</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="大字を漢数字に" value="jpna">壱弐 <i class="glyphicon glyphicon-arrow-right"></i> 一二</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="全角カタカナを訓令式ローマ字表記に" value="jpnb">トウキョウ <i class="glyphicon glyphicon-arrow-right"></i> tôkyô</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="全角カタカナをヘボン式ローマ字表記に" value="jpnc">トウキョウ <i class="glyphicon glyphicon-arrow-right"></i> tokyo</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="ヘボン式ローマ字を全角カタカナに" value="jpnd">tokyo <i class="glyphicon glyphicon-arrow-right"></i> トキョ</button>
+              </dd>
+            </dl>
+            <input class="genre" id="ctset_cjk" type="checkbox" name="genre" checked="checked">
+            <dl class="ct-set">
+              <dt class="head">
+                <label for="ctset_cjk">CJK関連</label><i class="fa fa-question-circle linkHelp" data-target="CJK関連"></i>
+              </dt>
+              <dd class="body">
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="日本字体を簡体字に" value="tocjk1">日 <i class="glyphicon glyphicon-arrow-right"></i> 簡体</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="日本字体を繁体字に" value="tocjk2">日 <i class="glyphicon glyphicon-arrow-right"></i> 繁体</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="簡体字を日本字体に" value="tocjk3">簡体 <i class="glyphicon glyphicon-arrow-right"></i> 日</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="繁体字を日本字体に" value="tocjk4">繁体 <i class="glyphicon glyphicon-arrow-right"></i> 日</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="簡体字を繁体字に" value="tocjk5">簡体 <i class="glyphicon glyphicon-arrow-right"></i> 繁体</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="繁体字を簡体字に" value="tocjk6">繁体 <i class="glyphicon glyphicon-arrow-right"></i> 簡体</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="漢字の直後にピンインを追加" value="tocjk7">ピンイン</button>
+              </dd>
+            </dl>
+            <input class="genre" id="ctset_skt" type="checkbox" name="genre" checked="checked">
+            <dl class="ct-set">
+              <dt class="head">
+                <label for="ctset_skt">Sanskrit</label><i class="fa fa-question-circle linkHelp" data-target="Sanskrit"></i>
+              </dt>
+              <dd class="body">
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="デーヴァナガリーを京都・ハーバード方式に" value="skt1">संस्कृत <i class="glyphicon glyphicon-arrow-right"></i> saMskRta</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="デーヴァナガリーをIASTに" value="skt2">संस्कृत <i class="glyphicon glyphicon-arrow-right"></i> saṃskṛta</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="京都・ハーバード方式をデーヴァナガリーに" value="skt3">saMskRta <i class="glyphicon glyphicon-arrow-right"></i> संस्कृत</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="京都・ハーバード方式をIASTに" value="skt4">saMskRta <i class="glyphicon glyphicon-arrow-right"></i> saṃskṛta</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="IASTをデーヴァナガリーに" value="skt5">saṃskṛta <i class="glyphicon glyphicon-arrow-right"></i> संस्कृत</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="IASTを京都・ハーバード方式に" value="skt6">saṃskṛta <i class="glyphicon glyphicon-arrow-right"></i> saMskRta</button>
               </dd>
             </dl>
           </div>
@@ -1064,7 +1064,8 @@
 <p>※ 計算できないような数値を各値に入れた場合、処理がエラーとなりハングアップする可能性があります。<br> ※ 小数点第3ケタまで計算します。それ以上の値を入れると小数点に誤差が出る恐れがあります。</p>
 <h4>連番（16進数）</h4>
 <p>16進数による連番を生成します。<br> 基本的な使用は「連番」と同様です。
-</p>
+    <br>
+    <strong>from</strong> 、 <strong>to</strong> 、 <strong>step</strong> は16進数で、 <strong>padding</strong> は10進数で指定してください。</p>
 <p>※ 小数点は使えません。</p>
 <h4>日付</h4>
 <p>日付を基にした連番を生成します。<br> 生成される連番は <strong>Start</strong> から <strong>End</strong> までの間、 <strong>step</strong> 刻みの日数で、<br>
@@ -1218,7 +1219,7 @@
         <ul>
             <li>pinyin<br> ピンイン検索
             </li>
-            <li>pinyin2, pinyin3<br> ピンイン入力
+            <li>pinyin2<br> ピンイン入力
             </li>
         </ul>
     </li>
