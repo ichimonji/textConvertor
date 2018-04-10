@@ -37,7 +37,7 @@ $(function() {
           $opt.val('');
           histArr.push(instArr);
         }
-        $('#lengthDisp').html('length:' + $ipt.val().length + ' &gt;&gt; ' + $opt.val().length + ' characters');
+        $('#lengthDisp').html('char/line: ' + $ipt.val().length + '/' + $ipt.val().split(/\n/).length + '&gt;' + $opt.val().length + '/' + $opt.val().split(/\n/).length);
       } else {
         $opt.val(oStr);
       }
@@ -914,6 +914,23 @@ $(function() {
           }
           oStr = instStr;
           break;
+        case 'merge4':
+          instArr = $ipt.val().split('');
+          instArr2 = $opt.val().split('');
+          instArr3 = [];
+          for(let i = 0; i < instArr.length; i++){
+            for(let j = 0; j < instArr2.length; j++){
+              if(instArr[i] == instArr2[j]){
+                instArr3.push(instArr[i]);
+                break;
+              }
+            }
+          }
+          instArr = instArr.filter(r=>(instArr3.indexOf(r) === -1));
+          instArr2 = instArr2.filter(r=>(instArr3.indexOf(r) === -1));
+          iStr = instArr.join('');
+          oStr = instArr2.join('');
+          break;
     // StrMakeing
       // repeat
         case 'repeat':
@@ -1200,6 +1217,12 @@ $(function() {
           $('#pyinDisp').html('');
           $('#pyin').modal('hide');
           break;
+      // uni2
+        case 'uni2':
+          oStr = iStr + $('#uniDisp').text();
+          $('#uniDisp').html('');
+          $('#uni').modal('hide');
+          break;
     // other
         case 'copy':
           instStr = $opt.val();
@@ -1273,7 +1296,9 @@ $(function() {
       'DELETE': '<i class="glyphicon glyphicon-remove"></i>',
       'UNDO': '<i class="glyphicon glyphicon-undo"></i>',
       'MOVE': '<i class="glyphicon glyphicon-chevron-left"></i>',
-      'REPLACE': '<i class="fa fa-exchange"></i>'
+      'REPLACE': '<i class="fa fa-exchange"></i>',
+      'help': '<i class="fa fa-question-circle"></i>',
+      'settings': '<i class="glyphicon glyphicon-cog" aria-hidden="true"></i>'
     },
     tex, vid, target, $target;
   $('.info').find('h4').each(function(r){
@@ -1303,6 +1328,18 @@ $(function() {
     location.hash = "header";
   });
 
+  // settings
+  let
+    $settings = $('#settings');
+  $settings.find('input').on('change', function(){
+    let
+      tName = $(this).attr('name'),
+      tVal = $(this).val().replace(/\"/g, "\'");
+    $ipt.css(tName, tVal);
+    $opt.css(tName, tVal);
+  });
+  $settings.find('[name=font-size]').trigger('change');
+  $settings.find('[name=font-family]').trigger('change');
 
   // IME
   let
@@ -1383,6 +1420,33 @@ $(function() {
   });
   $pyinOpt2.on('click', '.btn', function(){
     $pyinDisp.append($(this).val());
+  });
+
+  let
+    $uniSelect = $('#uniSelect'),
+    $uniDisp = $('#uniDisp'),
+    $uniOpt = $('#uni_opt');
+  $uniSelect.on('change', function(){
+    iVal = $(this).val();
+    if(iVal !==''){
+      $uniOpt.html('');
+      let
+        uni_st = parseInt('0x' + iVal.split('-')[0], 16),
+        uni_ed = parseInt('0x' + iVal.split('-')[1], 16),
+        uni_hex = '0000',
+        uni_str = '';
+      for (let i = uni_st; i <= uni_ed; i++) {
+        uni_hex = ('000' + i.toString(16)).slice(-4).toUpperCase();
+        if( i === 0 || i % 16 === 0 ){
+          $uniOpt.append('<label class="btn btn-default">' + uni_hex.slice(0,2) + '<br>' + uni_hex.slice(-2) + '</label>');
+        }
+        uni_str = '&#x' + uni_hex + ';';
+        $uniOpt.append('<button class="btn btn-primary" type="button" value="' + uni_str + '">' + uni_str + '</button>');
+      }
+    }
+  });
+  $uniOpt.on('click', '.btn', function(){
+    $uniDisp.append($(this).val());
   });
 
 });

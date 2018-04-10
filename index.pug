@@ -13,7 +13,9 @@ html( lang = 'en' )
   body
     header.header#header
       h1.head= $title
-      button.btn.btn-primary( data-toggle = 'modal', data-target = '#help' ) #[i.fa.fa-question-circle( aria-hidden = 'true' )] help
+      div
+        button.btn.btn-primary( data-toggle = 'modal', data-target = '#settings' ) #[i.glyphicon.glyphicon-cog( aria-hidden = 'true' )] #[span.hidden-xs  settings]
+        button.btn.btn-primary( data-toggle = 'modal', data-target = '#help' ) #[i.fa.fa-question-circle( aria-hidden = 'true' )] #[span.hidden-xs  help]
     main.main
       div.main-wrap
         section.area-input
@@ -28,12 +30,12 @@ html( lang = 'en' )
           div.area-input-button
             div#lengthDisp
             div.btn-group-vertical
-              +bt( 'copy', '変換後テキストをクリップボードのコピー' ) #[i.fa.fa-clipboard] <span>COPY</span>
-              +bt( 'move', '変換後テキストを変換前テキストエリアへ移動' ) #[i.glyphicon.glyphicon-chevron-left] <span>MOVE</span>
-              +bt( 'delete', 'テキストを一括削除' ) #[i.glyphicon.glyphicon-remove] <span>DELETE</span>
-              +bt( 'undo', '一段階前に戻す' ) #[i.glyphicon.glyphicon-undo] <span>UNDO</span>
-              +bt( 'change', '左右を入れ替え' ) #[i.fa.fa-exchange] <span>REPLACE</span>
-              label.btn.btn-sm.btn-primary #[input.automove( name = 'automove', type = 'checkbox' )] AUTO MOVE
+              +bt( 'copy', '変換後テキストをクリップボードのコピー' ) #[i.fa.fa-clipboard] #[span COPY]
+              +bt( 'move', '変換後テキストを変換前テキストエリアへ移動' ) #[i.glyphicon.glyphicon-chevron-left] #[span MOVE]
+              +bt( 'delete', 'テキストを一括削除' ) #[i.glyphicon.glyphicon-remove] #[span DELETE]
+              +bt( 'undo', '一段階前に戻す' ) #[i.glyphicon.glyphicon-undo] #[span UNDO]
+              +bt( 'change', '左右を入れ替え' ) #[i.fa.fa-exchange] #[span REPLACE]
+              label.btn.btn-sm.btn-primary #[input.automove( name = 'automove', type = 'checkbox' )] AUTO#[span.hidden-xs  MOVE]
         section.area-control
           div.ctLabel.btn-group.btn-group-sm.btn-group-justified
             label.btn.btn-info( for = 'ctGroup_code' ) コード/数値
@@ -81,6 +83,7 @@ html( lang = 'en' )
                     button.btn.btn-primary.btn-sm( type = 'button', data-toggle = 'modal', data-target = '#accent')= '符号付き英字'
                     button.btn.btn-primary.btn-sm( type = 'button', data-toggle = 'modal', data-target = '#ligat')= '英合字'
                     button.btn.btn-primary.btn-sm( type = 'button', data-toggle = 'modal', data-target = '#pyin')= 'ピンイン入力'
+                    button.btn.btn-primary.btn-sm( type = 'button', data-toggle = 'modal', data-target = '#uni')= 'Unicode'
           ul.link-list
             li: a.btn.btn-primary( data-toggle = 'modal', data-target = '#help' ) #[i.fa.fa-question-circle( aria-hidden = 'true' )] help
             li: a.btn.btn-primary( target='_blank', href='https://github.com/ichimonji/textConvertor' ) #[i.fa.fa-github( aria-hidden = 'true' )] github
@@ -131,6 +134,48 @@ html( lang = 'en' )
                 div.btn-group.btn-group-sm.btn-col13#pyin_opt
                 div.btn-group.btn-group-sm.btn-col13#pyin_opt2
                 button.btn.btn-primary.bt-control( type = 'button', value = 'pinyin2' )= '決定'
+      section.section-ime
+        div.modal.fade#uni( tabindex = '-1', role = 'dialog' )
+          div.modal-dialog( role = 'document' )
+            div.modal-content
+              div.modal-header
+                button.close( type = 'button', data-dismiss = 'modal', aria-label = 'Close' )
+                  span( aria-hidden = 'true' ) &times;
+                h4.modal-title Unicode入力
+              div.modal-body
+                div.uniDisp#uniDisp
+                div.btn-group.btn-group-sm.btn-col10.btn-group-uni( role = 'group', aria-label = '...' )
+                  select.form-control#uniSelect
+                    each val, key in uniGroup
+                      option( value = val )= key
+                div.btn-group.btn-group-sm.btn-col13#uni_opt
+                button.btn.btn-primary.bt-control( type = 'button', value = 'uni2' )= '決定'
+      section.info
+        div.modal.help.fade#settings( tabindex = '-1', role = 'dialog' )
+          div.modal-dialog( role = 'document' )
+            div.modal-content
+              div.modal-header
+                button.close( type = 'button', data-dismiss = 'modal', aria-label = 'Close' )
+                  span( aria-hidden = 'true' ) &times;
+                h4.modal-title settings
+              div.modal-body
+                div.form-group
+                  label( for = 'font-size' ) Font size
+                  div.btn-group.btn-group-justified( data-toggle = 'buttons', role = 'group', aria-label = 'setting: font-size' )
+                    label.btn.btn-primary #[input( type = 'radio', name = 'font-size', value = '10px' )] XS
+                    label.btn.btn-primary #[input( type = 'radio', name = 'font-size', value = '12px' )] S
+                    label.btn.btn-primary.active #[input( type = 'radio', name = 'font-size', value = '14px', checked )] M
+                    label.btn.btn-primary #[input( type = 'radio', name = 'font-size', value = '16px' )] L
+                    label.btn.btn-primary #[input( type = 'radio', name = 'font-size', value = '18px' )] XL
+                div.form-group
+                  label( for = 'font-family' ) Font Family
+                  div.btn-group.btn-group-justified.btn-2rows( data-toggle = 'buttons', role = 'group', aria-label = 'setting: font-family' )
+                    label.btn.btn-primary #[input( type = 'radio', name = 'font-family', value = 'sans-serif' )] sans-serif
+                    label.btn.btn-primary #[input( type = 'radio', name = 'font-family', value = 'serif' )] serif
+                    label.btn.btn-primary.active #[input( type = 'radio', name = 'font-family', value = 'monospace', checked )] monospace
+                    label.btn.btn-primary #[input( type = 'radio', name = 'font-family', value != "'Noto Sans'" )] 'Noto Sans'
+              div.modal-footer
+                button.btn.btn-default.btn-sm( type = 'button', data-dismiss = 'modal' ) Close
       section.info
         div.modal.help.fade#help( tabindex = '-1', role = 'dialog' )
           div.modal-dialog( role = 'document' )

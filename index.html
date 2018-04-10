@@ -31,7 +31,10 @@
   <body>
     <header class="header" id="header">
       <h1 class="head">汎用テキストコンバータ</h1>
-      <button class="btn btn-primary" data-toggle="modal" data-target="#help"><i class="fa fa-question-circle" aria-hidden="true"></i> help</button>
+      <div>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#settings"><i class="glyphicon glyphicon-cog" aria-hidden="true"></i> <span class="hidden-xs"> settings</span></button>
+        <button class="btn btn-primary" data-toggle="modal" data-target="#help"><i class="fa fa-question-circle" aria-hidden="true"></i> <span class="hidden-xs"> help</span></button>
+      </div>
     </header>
     <main class="main">
       <div class="main-wrap">
@@ -62,7 +65,7 @@
               <button class="btn btn-primary btn-sm bt-control" type="button" title="左右を入れ替え" value="change"><i class="fa fa-exchange"></i> <span>REPLACE</span>
               </button>
               <label class="btn btn-sm btn-primary">
-                <input class="automove" name="automove" type="checkbox"> AUTO MOVE
+                <input class="automove" name="automove" type="checkbox"> AUTO<span class="hidden-xs"> MOVE</span>
               </label>
             </div>
           </div>
@@ -341,6 +344,7 @@
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="エリアを上下に連結" value="merge1">単純結合</button>
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="エリアを行ごとに結合" value="merge2">行ごとに結合</button>
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="エリアを文字ごとに結合" value="merge3">文字ごとに結合</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="両エリアに重複する文字を除外" value="merge4">文字の重複削除</button>
               </dd>
             </dl>
           </div>
@@ -571,6 +575,7 @@
                 <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#accent">符号付き英字</button>
                 <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#ligat">英合字</button>
                 <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#pyin">ピンイン入力</button>
+                <button class="btn btn-primary btn-sm" type="button" data-toggle="modal" data-target="#uni">Unicode</button>
               </dd>
             </dl>
           </div>
@@ -795,6 +800,225 @@
           </div>
         </div>
       </section>
+      <section class="section-ime">
+        <div class="modal fade" id="uni" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Unicode入力</h4>
+              </div>
+              <div class="modal-body">
+                <div class="uniDisp" id="uniDisp"></div>
+                <div class="btn-group btn-group-sm btn-col10 btn-group-uni" role="group" aria-label="...">
+                  <select class="form-control" id="uniSelect">
+                    <option value="">select</option>
+                    <option value="0000-007F">基本ラテン文字</option>
+                    <option value="0080-00FF">ラテン文字-1補助</option>
+                    <option value="0100-017F">ラテン文字拡張-A</option>
+                    <option value="0180-024F">ラテン文字拡張-B</option>
+                    <option value="0250-02AF">IPA拡張</option>
+                    <option value="02B0-02FF">スペース調整文字</option>
+                    <option value="0300-036F">結合分音記号</option>
+                    <option value="0370-03FF">ギリシャ文字とコプト文字</option>
+                    <option value="0400-04FF">キリル文字</option>
+                    <option value="0500-052F">キリル文字補助</option>
+                    <option value="0530-058F">アルメニア文字</option>
+                    <option value="0590-05FF">ヘブライ文字</option>
+                    <option value="0600-06FF">アラビア文字</option>
+                    <option value="0700-074F">シリア文字</option>
+                    <option value="0750-077F">アラビア文字補助</option>
+                    <option value="0780-07BF">ターナ文字</option>
+                    <option value="07C0-07FF">マネンカ文字</option>
+                    <option value="0900-097F">デーヴァナーガリー文字</option>
+                    <option value="0980-09FF">ベンガル文字</option>
+                    <option value="0A00-0A7F">グルムキー文字</option>
+                    <option value="0A80-0AFF">グジャラート文字</option>
+                    <option value="0B00-0B7F">オリヤー文字</option>
+                    <option value="0B80-0BFF">タミル文字</option>
+                    <option value="0C00-0C7F">テルグ文字</option>
+                    <option value="0C80-0CFF">カンナダ文字</option>
+                    <option value="0D00-0D7F">マラヤーラム文字</option>
+                    <option value="0D80-0DFF">シンハラ文字</option>
+                    <option value="0E00-0E7F">タイ文字</option>
+                    <option value="0E80-0EFF">ラオ文字</option>
+                    <option value="0F00-0FFF">チベット文字</option>
+                    <option value="1000-109F">ミャンマー文字</option>
+                    <option value="10A0-10FF">グルジア文字</option>
+                    <option value="1100-11FF">ハングル字母</option>
+                    <option value="1200-137F">エチオピア文字</option>
+                    <option value="1380-139F">エチオピア文字補助</option>
+                    <option value="13A0-13FF">チェロキー文字</option>
+                    <option value="1400-167F">統合カナダ原住民音節文字</option>
+                    <option value="1680-169F">オガム文字</option>
+                    <option value="16A0-16FF">ルーン文字</option>
+                    <option value="1700-171F">タガログ文字</option>
+                    <option value="1720-173F">ハヌノオ文字</option>
+                    <option value="1740-175F">ブヒッド文字</option>
+                    <option value="1760-177F">タグバンワ文字</option>
+                    <option value="1780-17FF">クメール文字</option>
+                    <option value="1800-18AF">モンゴル文字</option>
+                    <option value="1900-194F">リンブ文字</option>
+                    <option value="1950-197F">タイ・レ文字</option>
+                    <option value="1980-19DF">新タイ・ルー文字</option>
+                    <option value="19E0-19FF">クメール記号</option>
+                    <option value="1A00-1A1F">ブギ文字</option>
+                    <option value="1B00-1B7F">バリ文字</option>
+                    <option value="1D00-1D7F">発音拡張</option>
+                    <option value="1D80-1DBF">発音拡張補助</option>
+                    <option value="1DC0-1DFF">結合分音記号補助</option>
+                    <option value="1E00-1EFF">ラテン文字拡張追加</option>
+                    <option value="1F00-1FFF">ギリシャ文字拡張</option>
+                    <option value="2000-206F">一般句読点</option>
+                    <option value="2070-209F">上付き文字と下付き文字</option>
+                    <option value="20A0-20CF">通貨記号</option>
+                    <option value="20D0-20FF">記号用結合分音記号</option>
+                    <option value="2100-214F">文字種記号</option>
+                    <option value="2150-218F">数字の形</option>
+                    <option value="2190-21FF">矢印</option>
+                    <option value="2200-22FF">数学記号</option>
+                    <option value="2300-23FF">各種技術用記号</option>
+                    <option value="2400-243F">制御用記号</option>
+                    <option value="2440-245F">光学式文字認識</option>
+                    <option value="2460-24FF">囲み英数字</option>
+                    <option value="2500-257F">罫線素片</option>
+                    <option value="2580-259F">ブロック要素</option>
+                    <option value="25A0-25FF">幾何学図形</option>
+                    <option value="2600-26FF">各種記号</option>
+                    <option value="2700-27BF">装飾記号</option>
+                    <option value="27C0-27EF">各種数学記号-A</option>
+                    <option value="27F0-27FF">補助矢印-A</option>
+                    <option value="2800-28FF">ブライユ点字法パターン</option>
+                    <option value="2900-297F">補助矢印-B</option>
+                    <option value="2980-29FF">各種数学記号-B</option>
+                    <option value="2A00-2AFF">補助数学演算記号</option>
+                    <option value="2B00-2BFF">各種記号と矢印</option>
+                    <option value="2C00-2C5F">グラゴール文字</option>
+                    <option value="2C60-2C7F">ラテン文字拡張-C</option>
+                    <option value="2C80-2CFF">コプト文字</option>
+                    <option value="2D00-2D2F">グルジア文字補助</option>
+                    <option value="2D30-2D7F">ティフナグ文字</option>
+                    <option value="2D80-2DDF">エチオピア文字拡張</option>
+                    <option value="2E00-2E7F">補助句読点</option>
+                    <option value="2E80-2EFF">CJK部首補助</option>
+                    <option value="2F00-2FDF">康熙部首</option>
+                    <option value="2FF0-2FFF">漢字構成記述文字</option>
+                    <option value="3000-303F">CJK記号と句読点</option>
+                    <option value="3040-309F">ひらがな</option>
+                    <option value="30A0-30FF">カタカナ</option>
+                    <option value="3100-312F">注音字母</option>
+                    <option value="3130-318F">ハングル互換字母</option>
+                    <option value="3190-319F">漢文</option>
+                    <option value="31A0-31BF">注音字母拡張</option>
+                    <option value="31C0-31EF">CJK字画</option>
+                    <option value="31F0-31FF">カタカナ発音拡張</option>
+                    <option value="3200-32FF">囲みCJK文字と月</option>
+                    <option value="3300-33FF">CJK互換文字</option>
+                    <option value="3400-3BFF">CJK統合漢字拡張A1</option>
+                    <option value="3C00-43FF">CJK統合漢字拡張A2</option>
+                    <option value="4400-4BFF">CJK統合漢字拡張A3</option>
+                    <option value="4C00-4DBF">CJK統合漢字拡張A4</option>
+                    <option value="4DC0-4DFF">易経記号</option>
+                    <option value="4E00-55FF">CJK統合漢字1</option>
+                    <option value="5600-5DFF">CJK統合漢字2</option>
+                    <option value="5E00-65FF">CJK統合漢字3</option>
+                    <option value="6600-6DFF">CJK統合漢字4</option>
+                    <option value="6E00-75FF">CJK統合漢字5</option>
+                    <option value="7600-7DFF">CJK統合漢字6</option>
+                    <option value="7E00-85FF">CJK統合漢字7</option>
+                    <option value="8600-8DFF">CJK統合漢字8</option>
+                    <option value="8E00-95FF">CJK統合漢字9</option>
+                    <option value="9600-9DFF">CJK統合漢字10</option>
+                    <option value="9E00-9FBF">CJK統合漢字11</option>
+                    <option value="A000-A48F">イ文字音節</option>
+                    <option value="A490-A4CF">イ文字部首</option>
+                    <option value="A700-A71F">声調記号</option>
+                    <option value="A720-A7FF">ラテン文字拡張-D</option>
+                    <option value="A800-A82F">シロティ・ナグリ文字</option>
+                    <option value="A840-A87F">パスパ文字</option>
+                    <option value="AC00-B3FF">ハングル音節1</option>
+                    <option value="B400-BBFF">ハングル音節2</option>
+                    <option value="BC00-C3FF">ハングル音節3</option>
+                    <option value="C400-CBFF">ハングル音節4</option>
+                    <option value="CC00-D3FF">ハングル音節5</option>
+                    <option value="D400-D7AF">ハングル音節6</option>
+                    <option value="D800-DBFF">上位サロゲート領域</option>
+                    <option value="DC00-DFFF">下位サロゲート領域</option>
+                    <option value="E000-F8FF">私用領域</option>
+                    <option value="F900-FAFF">CJK互換漢字</option>
+                    <option value="FB00-FB4F">アルファベット表示形</option>
+                    <option value="FB50-FDFF">アラビア文字表示形-A</option>
+                    <option value="FE00-FE0F">異体字セレクタ</option>
+                    <option value="FE10-FE1F">縦書き用句読点</option>
+                    <option value="FE20-FE2F">結合半角記号</option>
+                    <option value="FE30-FE4F">CJK互換形</option>
+                    <option value="FE50-FE6F">小字形変種</option>
+                    <option value="FE70-FEFF">アラビア文字表示形-B</option>
+                    <option value="FF00-FFEF">半角形と全角形</option>
+                    <option value="FFF0-FFFF">特殊文字</option>
+                  </select>
+                </div>
+                <div class="btn-group btn-group-sm btn-col13" id="uni_opt"></div>
+                <button class="btn btn-primary bt-control" type="button" value="uni2">決定</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="info">
+        <div class="modal help fade" id="settings" tabindex="-1" role="dialog">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">settings</h4>
+              </div>
+              <div class="modal-body">
+                <div class="form-group">
+                  <label for="font-size">Font size</label>
+                  <div class="btn-group btn-group-justified" data-toggle="buttons" role="group" aria-label="setting: font-size">
+                    <label class="btn btn-primary">
+                      <input type="radio" name="font-size" value="10px"> XS
+                    </label>
+                    <label class="btn btn-primary">
+                      <input type="radio" name="font-size" value="12px"> S
+                    </label>
+                    <label class="btn btn-primary active">
+                      <input type="radio" name="font-size" value="14px" checked> M
+                    </label>
+                    <label class="btn btn-primary">
+                      <input type="radio" name="font-size" value="16px"> L
+                    </label>
+                    <label class="btn btn-primary">
+                      <input type="radio" name="font-size" value="18px"> XL
+                    </label>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="font-family">Font Family</label>
+                  <div class="btn-group btn-group-justified btn-2rows" data-toggle="buttons" role="group" aria-label="setting: font-family">
+                    <label class="btn btn-primary">
+                      <input type="radio" name="font-family" value="sans-serif"> sans-serif
+                    </label>
+                    <label class="btn btn-primary">
+                      <input type="radio" name="font-family" value="serif"> serif
+                    </label>
+                    <label class="btn btn-primary active">
+                      <input type="radio" name="font-family" value="monospace" checked> monospace
+                    </label>
+                    <label class="btn btn-primary">
+                      <input type="radio" name="font-family" value="'Noto Sans'"> 'Noto Sans'
+                    </label>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-footer">
+                <button class="btn btn-default btn-sm" type="button" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
       <section class="info">
         <div class="modal help fade" id="help" tabindex="-1" role="dialog">
           <div class="modal-dialog" role="document">
@@ -811,8 +1035,9 @@
     <strong>UNDO</strong>」を押す度に変換前の状態に一つずつ戻ります。<br> 「
     <strong>REPLACE</strong>」を押すとテキストエリアの左右を入れ替えることができます。<br> 「
     <strong>COPY</strong>」を押すと変換後テキストエリアからクリップボードにコピーします。</p>
-<p>項目が多すぎて扱いづらい場合は「ケース」、「Url/Base64」といったグループ名の部分を押すとそのグループが折りたたまれます。<br> 折りたたまれたグループはもう一回押すと元に戻ります。
-</p>
+<p>項目が多すぎて扱いづらい場合は「ケース」、「Url/Base64」といったグループ名の部分を押すとそのグループが折りたたまれます。折りたたまれたグループはもう一回押すと元に戻ります。<br> 「
+    <strong>help</strong>」ボタンを押すとヘルプが参照できます。<br> 「
+    <strong>settings</strong>」でテキスト入力エリアのフォントサイズ、およびフォントファミリーを変更することができます。</p>
 <h2>各項目の説明</h2>
 <h3>コード/数値型</h3>
 <h4>ケース</h4>
@@ -1036,11 +1261,14 @@
 <h4>エリア連結</h4>
 <p>左右（SPでは上下）のテキストエリアを使った連結を行います。</p>
 <ul>
-    <li><code>単純結合</code><br> テキストエリアを上下結合した結果を出力
+    <li><code>単純結合</code><br> テキストエリアを上下結合した結果を出力します。
     </li>
-    <li><code>行ごとに結合</code><br> テキストエリアを行ごとに結合した結果を出力
+    <li><code>行ごとに結合</code><br> テキストエリアを行ごとに結合した結果を出力します。
     </li>
-    <li><code>文字ごとに結合</code><br> テキストエリアを文字ごとに結合した結果を出力
+    <li><code>文字ごとに結合</code><br> テキストエリアを文字ごとに結合した結果を出力します。
+    </li>
+    <li><code>文字の重複削除</code><br> テキストエリアを比較し、重複する文字を両方のテキストエリアから全て除外します。
+        <br> 同じテキストエリアの重複文字は削除しません。
     </li>
 </ul>
 <h3>文字列生成</h3>
@@ -1178,14 +1406,17 @@
 <h4>連続データ</h4>
 <p>五十音やいろは順など、数字ではない連続データを生成する。<br> 生成される連続データは <strong>amount</strong> の数値だけ、 <strong>step</strong> 刻みの数で生成します。</p>
 <h4>入力支援</h4>
-<p>キーボードで入力しにくい文字を入力するための機能です。</p>
+<p>キーボードで入力しにくい文字を入力するための機能です。<br> 入力した文字は変換後テキストの末尾に挿入されます。
+</p>
 <ul>
     <li><code>符号付英字</code><br> アルファベットから符号付アルファベットを検索し入力できます。
         <br>
         <strong>Aa</strong> ボタンを押すと大文字と小文字が切り替わります。</li>
     <li><code>英合字</code><br> アルファベットから英字の各種合字を検索し入力できます。
     </li>
-    <li><code>ピンイン入力</code><br> アルファベットによりピンインを検索します。
+    <li><code>ピンイン入力</code><br> ピンインにより漢字を検索します。
+    </li>
+    <li><code>Unicode入力</code><br> Unicodeグループから目的の文字を検索できます。
     </li>
 </ul>
 <h2>その他</h2>
