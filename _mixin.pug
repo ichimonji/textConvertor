@@ -2,11 +2,11 @@
 mixin metaAll( arr )
   each val in arr
     if val[0] === 'http-equiv'
-      meta( http-equiv = val[1], content = val[2] )
+      meta( http-equiv = val[1], content != val[2] )
     else if val[0] === 'name'
-      meta( name = val[1], content = val[2] )
+      meta( name = val[1], content != val[2] )
     else if val[0] === 'property'
-      meta( property = val[1], content = val[2] )
+      meta( property = val[1], content != val[2] )
 
 mixin linkAll( arr )
   each val in arr
