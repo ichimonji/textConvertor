@@ -12,11 +12,11 @@ for (let key in pinyin) {
     pinyinRe1.push([arr[i], key]);
   }
 }
-let diffArr = 'aāáǎàbcdeēéěèếễểềfghiīíǐìjklmnoōóǒòpqrstuūúǔùǖǘǚǜvwxyz';
+let diffArr = 'aāáǎàbcdeēéěèếễểềfghiīíǐìjklmḿnňoōóǒòpqrstuūúǔùüǖǘǚǜvwxyz';
 diff = r => {
   ff = r.split('');
   ff = ff.map(t=>{
-    return t.replace(/([āáǎàēéěèếễểềīíǐìōóǒòūúǔùǖǘǚǜa-z])/g,u=>{
+    return t.replace(/([āáǎàēéěèếễểềīíǐìōóǒòūúǔùüǖǘǚǜḿňa-z])/g,u=>{
       if(u==='y') document.title=('0'+diffArr.indexOf(u)).slice(-2);
       return ('0'+diffArr.indexOf(u)).slice(-2)
     });
@@ -33,7 +33,7 @@ for(let i = 0; i < pinyinRe1.length; i++){
   } else {
     str2 = str1.charAt(0);
   }
-  str2 = str2.replace(/[āáǎà]/g,'a').replace(/[ēéěèếễểề]/g,'e').replace(/[īíǐì]/g,'i').replace(/[ōóǒò]/g,'o').replace(/[ūúǔùǖǘǚǜ]/g,'u');
+  str2 = str2.replace(/[āáǎà]/g,'a').replace(/[ēéěèếễểề]/g,'e').replace(/[īíǐì]/g,'i').replace(/[ōóǒò]/g,'o').replace(/[ūúǔùǖǘǚǜ]/g,'u').replace(/ň/g,'n').replace(/ḿ/g, 'm');
   if(str1 !== '*'){
     if( !(str2 in pinyinRe2) ){
       pinyinRe2[str2] = {};
