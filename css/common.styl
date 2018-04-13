@@ -168,7 +168,12 @@ h1, h2, h3
   &-text
     flex-grow 45
     textarea
-      height 240px
+      &.s
+        height 160px
+      &.m
+        height 240px
+      &.l
+        height 320px
   &-button
     .btn-group-vertical
       width 100%
@@ -348,8 +353,13 @@ h1, h2, h3
     align-items stretch
     &-text textarea
       width 100%
-      height 120px
       padding 5px
+      &.s
+        height 120px
+      &.m
+        height 160px
+      &.l
+        height 200px
     &-button
       width 100%
       .btn-group-vertical

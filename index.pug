@@ -159,21 +159,22 @@ html( lang = 'en' )
                   span( aria-hidden = 'true' ) &times;
                 h4.modal-title settings
               div.modal-body
-                div.form-group
-                  label( for = 'font-size' ) Font size
-                  div.btn-group.btn-group-justified( data-toggle = 'buttons', role = 'group', aria-label = 'setting: font-size' )
-                    label.btn.btn-primary #[input( type = 'radio', name = 'font-size', value = '10px' )] XS
-                    label.btn.btn-primary #[input( type = 'radio', name = 'font-size', value = '12px' )] S
-                    label.btn.btn-primary.active #[input( type = 'radio', name = 'font-size', value = '14px', checked )] M
-                    label.btn.btn-primary #[input( type = 'radio', name = 'font-size', value = '16px' )] L
-                    label.btn.btn-primary #[input( type = 'radio', name = 'font-size', value = '18px' )] XL
-                div.form-group
-                  label( for = 'font-family' ) Font Family
-                  div.btn-group.btn-group-justified.btn-2rows( data-toggle = 'buttons', role = 'group', aria-label = 'setting: font-family' )
-                    label.btn.btn-primary #[input( type = 'radio', name = 'font-family', value = 'sans-serif' )] sans-serif
-                    label.btn.btn-primary #[input( type = 'radio', name = 'font-family', value = 'serif' )] serif
-                    label.btn.btn-primary.active #[input( type = 'radio', name = 'font-family', value = 'monospace', checked )] monospace
-                    label.btn.btn-primary #[input( type = 'radio', name = 'font-family', value != "'Noto Sans'" )] 'Noto Sans'
+                each val, key in settings
+                  div.form-group
+                    label( for = key ) !{val.title}
+                    mixin inblock
+                      each val2, key2 in val.arr
+                        if key2 === val.checked
+                          label.btn.btn-primary.active #[input( type = 'radio', name = key, value = val2, checked )] !{key2}
+                        else
+                          label.btn.btn-primary #[input( type = 'radio', name = key, value = val2 )] !{key2}
+
+                    if key === 'font-family'
+                      div.btn-group.btn-group-justified.btn-2rows( data-toggle = 'buttons', role = 'group', aria-label = 'setting: ' + key )
+                        +inblock
+                    else
+                      div.btn-group.btn-group-justified( data-toggle = 'buttons', role = 'group', aria-label = 'setting: ' + key )
+                        +inblock
               div.modal-footer
                 button.btn.btn-default.btn-sm( type = 'button', data-dismiss = 'modal' ) Close
       section.info

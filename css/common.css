@@ -370,8 +370,14 @@ h3 {
   -webkit-flex-grow: 45;
   flex-grow: 45;
 }
-.area-input-text textarea {
+.area-input-text textarea.s {
+  height: 160px;
+}
+.area-input-text textarea.m {
   height: 240px;
+}
+.area-input-text textarea.l {
+  height: 320px;
 }
 .area-input-button .btn-group-vertical {
   width: 100%;
@@ -931,8 +937,16 @@ h3 {
   }
   .area-input-text textarea {
     width: 100%;
-    height: 120px;
     padding: 5px;
+  }
+  .area-input-text textarea.s {
+    height: 120px;
+  }
+  .area-input-text textarea.m {
+    height: 160px;
+  }
+  .area-input-text textarea.l {
+    height: 200px;
   }
   .area-input-button {
     width: 100%;

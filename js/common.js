@@ -2,14 +2,11 @@ $(function() {
   const
     $ipt = $('#text-i'),
     $opt = $('#text-o'),
-    $bt = $('.bt-control'),
-    $genre = $('.ct-set'),
-    $genreHead = $genre.find('.head label'),
-    $genreBody = $genre.find('.body');
+    $bt = $('.bt-control');
 
   let
     histArr = [{'ipt':'', 'opt':''}],
-    instArr, lastArr, i = 0, j = 0, check,
+    instArr, lastArr,
     tmp, tmpFlg = false;
 
   Array.prototype.getArrLast = function(){ return this[this.length -1];};
@@ -37,7 +34,7 @@ $(function() {
           $opt.val('');
           histArr.push(instArr);
         }
-        $('#lengthDisp').html('char/line: ' + $ipt.val().length + '/' + $ipt.val().split(/\n/).length + '&gt;' + $opt.val().length + '/' + $opt.val().split(/\n/).length);
+        $('#lengthDisp').html('ch/li: ' + $ipt.val().length + '/' + $ipt.val().split(/\n/).length + '&gt;' + $opt.val().length + '/' + $opt.val().split(/\n/).length);
       } else {
         $opt.val(oStr);
       }
@@ -59,26 +56,29 @@ $(function() {
 
   // 部分選択用
   $ipt.on('mouseup touchend keyup', e => {
-    let elm = e.currentTarget;
+    let
+      elm = e.currentTarget,
+      $selDisp = $('#selDisp');
     if(elm.selectionStart === elm.selectionEnd){
       tmpFlg = false;
-      $('#selDisp').text('');
+      $selDisp.text('');
     } else {
       tmpFlg = true;
       tmp = { 'start':elm.selectionStart, 'end':elm.selectionEnd };
-      $('#selDisp').text('(select:' + (tmp.end - tmp.start) + ' characters)');
+      $selDisp.text('(select:' + (tmp.end - tmp.start) + ' characters)');
     }
   });
 
   // 変換処理
   $bt.on('click', e => {
-    let ival = $(e.currentTarget).val(),
+    let
+      ival = $(e.currentTarget).val(),
       iStr = $ipt.val(),
       instArr = '', instArr2 = '', instArr3 = '', pathArr = [],
       instStr = '', instStr2 = '', instStr3 = '', instNum = 0,
       oStr = '', find = '', flg = 'g', hi, lo, pathStep = 0,
       beforeStr = '', endStr = '',
-      int, fract, seisuu = '', shousuu = '', i, j;
+      int, fract, seisuu = '', shousuu = '';
     instArr = [];
 
     if(tmpFlg){
@@ -102,19 +102,19 @@ $(function() {
           oStr = iStr.replace(/[a-zA-Z]/g, r => r[(/[a-z]/g).test(r) ? 'toUpperCase' : 'toLowerCase']());
           break;
         case 'case1':
-          oStr = iStr.replace(/\"/g, '\'');
+          oStr = iStr.replace(/"/g, '\'');
           break;
         case 'case2':
-          oStr = iStr.replace(/\'/g, '\"');
+          oStr = iStr.replace(/'/g, '"');
           break;
         case 'case3':
-          oStr = iStr.replace(/(\w+)\-(?=(\w+))/g, '$1_');
+          oStr = iStr.replace(/(\w+)-(?=(\w+))/g, '$1_');
           break;
         case 'case4':
-          oStr = iStr.replace(/([A-Za-z0-9]+)\_(?=([A-Za-z0-9]+))/g, '$1\-');
+          oStr = iStr.replace(/(\w+)_(?=(\w+))/g, '$1-');
           break;
         case 'case5':
-          oStr = iStr.replace(/([a-z0-9]+)([A-Z])(?=(\w+))/g, (r, r1, r2) => r1 + '-' + r2.toLowerCase());
+          oStr = iStr.replace(/(\w+)([A-Z])(?=(\w+))/g, (r, r1, r2) => r1 + '-' + r2.toLowerCase());
           break;
         case 'case6':
           oStr = iStr.replace(/(\w+)\-(\w)(?=(\w+))/g, (r, r1, r2) => r1 + r2.toUpperCase());
@@ -149,7 +149,7 @@ $(function() {
           oStr = escape(iStr);
           break;
         case 'uniH-escape':
-          oStr = escape(iStr).replace(/%([0-9a-f]{2,2})/gi,'&#x00$1;').replace(/%u([0-9a-f]{4,5})/gi,'&#x$1;');
+          oStr = escape(iStr).replace(/%(\w{2,2})/gi,'&#x00$1;').replace(/%u(\w{4,5})/gi,'&#x$1;');
           break;
         case 'uniH-escape2':
           oStr = iStr.replace(/(.)/g, r => '&#x' + (String(r)).charCodeAt(0).toString(16) + ';');
@@ -159,17 +159,17 @@ $(function() {
           break;
         case 'uniH-unescape':
           instStr = iStr.replace(chara, (r, r1) => charaMap[r1]);
-          instStr = instStr.replace(/\&\#([0-9]{4,5})\;/gi, (r, r1) => '%u' + (parseInt(r1, 10)).toString(16));
-          instStr = instStr.replace(/(\&\#\x)([0-9a-f]{2,2}\;)/gi, '$1' +'00' +'$2');
-          instStr = instStr.replace(/(\&\#\x)([0-9a-f]{3,3}\;)/gi, '$1' +'0' +'$2');
-          instStr = instStr.replace(/\&\#\x([0-9a-f]{4,5})\;/gi, '%u$1');
+          instStr = instStr.replace(/&#(\d{4,5});/g, (r, r1) => '%u' + (parseInt(r1, 10)).toString(16));
+          instStr = instStr.replace(/(&#\x)([\da-f]{2,2};)/g, '$1' +'00' +'$2');
+          instStr = instStr.replace(/(&#\x)([\da-f]{3,3};)/g, '$1' +'0' +'$2');
+          instStr = instStr.replace(/&#\x([\da-f]{4,5});/g, '%u$1');
           oStr = unescape(instStr);
           break;
         case 'uni-escape3':
-          oStr = iStr.replace(/\&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+          oStr = iStr.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
           break;
         case 'uni-escape4':
-          oStr = iStr.replace(/(&#x|%u)([12][0-9a-f]{4,4})(;{0,1})/gi, (r, r1, r2, r3) => {
+          oStr = iStr.replace(/(&#x|%u)([12][\da-f]{4,4})(;{0,1})/gi, (r, r1, r2, r3) => {
             instNum = parseInt(r2, 16);
             hi = ((instNum - 0x10000) / 0x400)|0 + 0xD800;
             lo = (instNum - 0x10000) % 0x400 + 0xDC00;
@@ -177,7 +177,7 @@ $(function() {
           });
           break;
         case 'uni-escape5':
-          instReg = new RegExp('(&#x|%u)(d[89a-f][0-9a-f]{2,2})(;{0,1})(&#x|%u)(d[c-f][0-9a-f]{2,2})(;{0,1})', 'gi');
+          instReg = new RegExp('(&#x|%u)(d[89a-f][\da-f]{2,2})(;{0,1})(&#x|%u)(d[c-f][\da-f]{2,2})(;{0,1})', 'gi');
           oStr = iStr.replace(instReg, (r, r1, r2, r3, r4, r5, r6) => {
             hi = parseInt(r2, 16);
             lo = parseInt(r5, 16);
@@ -203,48 +203,48 @@ $(function() {
           break;
       // Numeric 1
         case 'num-10_2':
-          oStr = iStr.replace(/([0-9.]+)/g, n => parseInt(n, 10).toString(2));
+          oStr = iStr.replace(/([\d.]+)/g, n => parseInt(n, 10).toString(2));
           break;
         case 'num-2_10':
           oStr = iStr.replace(/([01]+)/g, n => parseInt(n, 2).toString(10));
           break;
         case 'num-10_16':
-          oStr = iStr.replace(/([0-9.]+)/g, n => parseInt(n, 10).toString(16));
+          oStr = iStr.replace(/([\d.]+)/g, n => parseInt(n, 10).toString(16));
           break;
         case 'num-16_10':
-          oStr = iStr.replace(/([0-9a-fA-F]+)/g, n => parseInt(n, 16).toString(10));
+          oStr = iStr.replace(/([\da-f]+)/g, n => parseInt(n, 16).toString(10));
           break;
         case 'num-2_16':
           oStr = iStr.replace(/([01]+)/g, n => parseInt(n, 2).toString(16));
           break;
         case 'num-16_2':
-          oStr = iStr.replace(/([0-9a-fA-F]+)/g, n => parseInt(n, 16).toString(2));
+          oStr = iStr.replace(/([\da-f]+)/g, n => parseInt(n, 16).toString(2));
           break;
         case 'num-comma':
           oStr = iStr.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
           break;
         case 'num-comma2':
-          oStr = iStr.replace(/([\d,]+)/g, n => n.replace(/\,/g, ''));
+          oStr = iStr.replace(/([\d,]+)/g, n => n.replace(/,/g, ''));
           break;
         case 'num-abs':
-          oStr = iStr.replace(/([-+]?[0-9]+.[0-9]+|[-+]?[0-9])/g, n => Math.abs(parseFloat(n, 10)));
+          oStr = iStr.replace(/([-+]?\d+.\d+|[-+]?\d)/g, n => Math.abs(parseFloat(n, 10)));
           break;
         case 'num-int':
-          oStr = iStr.replace(/([-+]?[0-9]+.[0-9]+|[-+]?[0-9])/g, n => parseInt(n, 10));
+          oStr = iStr.replace(/([-+]?\d+.\d+|[-+]?\d)/g, n => parseInt(n, 10));
           break;
         case 'num-round':
-          oStr = iStr.replace(/([-+]?[0-9]+.[0-9]+|[-+]?[0-9])/g, n => Math.round(parseFloat(n, 10)));
+          oStr = iStr.replace(/([-+]?\d+.\d+|[-+]?\d)/g, n => Math.round(parseFloat(n, 10)));
           break;
         case 'num-floor':
-          oStr = iStr.replace(/([-+]?[0-9]+.[0-9]+|[-+]?[0-9])/g, n => Math.floor(parseFloat(n, 10)));
+          oStr = iStr.replace(/([-+]?\d+.\d+|[-+]?\d)/g, n => Math.floor(parseFloat(n, 10)));
           break;
         case 'num-ceil':
-          oStr = iStr.replace(/([-+]?[0-9]+.[0-9]+|[-+]?[0-9])/g, n => Math.ceil(parseFloat(n, 10)));
+          oStr = iStr.replace(/([-+]?\d+.\d+|[-+]?\d)/g, n => Math.ceil(parseFloat(n, 10)));
           break;
     // Language
       // Numeric 2
         case 'num-a_j':
-          oStr = iStr.replace(/([0-9\,\.]+)/g, n => {
+          oStr = iStr.replace(/([\d,.]+)/g, n => {
             instNum = n.replace(/,/g, '');
             instNum.match(/(\d+)(?:\.(\d+))?/i);
             int = RegExp.$1;
@@ -270,8 +270,8 @@ $(function() {
           });
           break;
         case 'num-a_j2':
-          oStr = iStr.replace(/([0-9\,\.]+)/g, n => {
-            instStr = n.replace(/([0-9])/g, r => zero2nine[parseInt(r, 10)]);
+          oStr = iStr.replace(/([\d,.]+)/g, n => {
+            instStr = n.replace(/(\d)/g, r => zero2nine[parseInt(r, 10)]);
             return instStr.replace(',', '').replace('\.', '点');
           });
           break;
@@ -303,12 +303,12 @@ $(function() {
               seisuu = seisuu.replace(/(.)/g, n => zero2nine.indexOf(n));
               seisuu = seisuu.replace(/^0+/g, '');
             }
-            if(fract) shousuu += '\.' + fract.replace(/(.)/g, n => zero2nine.indexOf(n));
+            if(fract) shousuu += '.' + fract.replace(/(.)/g, n => zero2nine.indexOf(n));
             return seisuu + shousuu;
           });
           break;
         case 'num-a_r':
-          oStr = iStr.replace(/([0-9][0-9.,]+|[0-9]+)/g, n => {
+          oStr = iStr.replace(/(\d[\d.,]+|\d+)/g, n => {
             instNum = parseInt(n.replace(/,/g, '').split('.')[0]);
             rom = '';
             if(instNum < 1 || instNum > 399999) {
@@ -970,7 +970,6 @@ $(function() {
             mx_pd = parseInt($('#mx_padding').val()),
             mx_jn = $('#mx_join').val().replace(/\\n/g, '\n'),
             mx_reg = $('#mx_reg').val(),
-            mx_reg2 = $('#mx_reg2').val(),
             mx_of = $('#mx_of').prop('checked'),
             mx_jnReg = new RegExp(mx_jn, 'g'),
             pd = Array(mx_pd + 1).join('0'),
@@ -1044,7 +1043,6 @@ $(function() {
             mx16_pd = parseInt($('#mx16_padding').val(), 10),
             mx16_jn = $('#mx16_join').val().replace(/\\n/g, '\n'),
             mx16_reg = $('#mx16_reg').val(),
-            mx16_reg2 = $('#mx16_reg2').val(),
             mx16_of = $('#mx16_of').prop('checked'),
             mx16_jnReg = new RegExp(mx16_jn, 'g'),
             pd16 = Array(mx16_pd + 1).join('0');
@@ -1300,7 +1298,7 @@ $(function() {
       'help': '<i class="fa fa-question-circle"></i>',
       'settings': '<i class="glyphicon glyphicon-cog" aria-hidden="true"></i>'
     },
-    tex, vid, target, $target;
+    tex, vid;
   $('.info').find('h4').each(function(r){
     tex = $(this).text();
     vid = 'help_' + (r + 1);
@@ -1309,7 +1307,7 @@ $(function() {
     });
     $('[data-target="' + tex + '"]').attr('data-href', vid);
   });
-  $('.info').find('strong').each(function(r){
+  $('.info').find('strong').each(function(){
     let keyText = $(this).text();
     if( keyText in iconArr ){
       $(this).html(iconArr[keyText] + ' ' + keyText);
@@ -1325,21 +1323,28 @@ $(function() {
   $helpModal.on('click', function(){
     $helpModal.modal('hide');
   }).on('hidden.bs.modal', function(){
-    location.hash = "header";
+    location.hash = 'header';
   });
 
   // settings
   let
-    $settings = $('#settings');
+    $settings = $('#settings'),
+    $pts = $('#text-i,#text-o');
   $settings.find('input').on('change', function(){
     let
       tName = $(this).attr('name'),
-      tVal = $(this).val().replace(/\"/g, "\'");
-    $ipt.css(tName, tVal);
-    $opt.css(tName, tVal);
+      $target = $('[name=' + tName + ']:checked'),
+      tVal = $target.val();
+    if(tName === 'areaHeight'){
+      $pts.removeClass('s m l');
+      $pts.addClass(tVal);
+    } else {
+      $pts.css(tName, tVal);
+    }
   });
   $settings.find('[name=font-size]').trigger('change');
   $settings.find('[name=font-family]').trigger('change');
+  $settings.find('[name=areaHeight]').trigger('change');
 
   // IME
   let
@@ -1376,7 +1381,6 @@ $(function() {
 
   let
     $btnLigatGroup = $('.btn-group-ligat'),
-    $btnLigatControl = $btnLigatGroup.find('.btn-control'),
     $btnLigat = $btnLigatGroup.find('.btn-ligat'),
     $ligatOpt = $('#ligat_opt'),
     $ligatDisp = $('#ligatDisp');
@@ -1393,12 +1397,10 @@ $(function() {
 
   let
     $btnPyinGroup = $('.btn-group-pyin'),
-    $btnPyinControl = $btnPyinGroup.find('.btn-control'),
     $btnPyin = $btnPyinGroup.find('.btn-pyin'),
     $pyinOpt = $('#pyin_opt'),
     $pyinOpt2 = $('#pyin_opt2'),
     $pyinDisp = $('#pyinDisp'),
-    $pyinDisp2 = $('#pyinDisp2'),
     nowParentAlpha = '';
   $btnPyin.on('click', function(){
     let pyinVal = $(this).val();
@@ -1427,7 +1429,7 @@ $(function() {
     $uniDisp = $('#uniDisp'),
     $uniOpt = $('#uni_opt');
   $uniSelect.on('change', function(){
-    iVal = $(this).val();
+    let iVal = $(this).val();
     if(iVal !==''){
       $uniOpt.html('');
       let
