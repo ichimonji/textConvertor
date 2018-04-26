@@ -1,8 +1,16 @@
 doctype html
 html( lang = 'en' )
-	head
-		meta( charset = 'utf-8' )
-		title= 'pinyin output'
-	body
-		script( src = 'js/pinyin.js' )
-		script( src = 'js/pinyin_output.js' )
+  head
+    meta( charset = 'utf-8' )
+    title pinyin output
+    style
+      :stylus
+        body
+          background-color #333
+          color #eee
+          font-size 10px
+          font-family monospace
+  body
+    pre#opt
+    script( src = 'js/pinyin_default.js' )
+    script( src = 'js/pinyin_output.js' )

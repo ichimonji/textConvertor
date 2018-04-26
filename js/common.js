@@ -117,7 +117,7 @@ $(function() {
           oStr = iStr.replace(/(\w+)([A-Z])(?=(\w+))/g, (r, r1, r2) => r1 + '-' + r2.toLowerCase());
           break;
         case 'case6':
-          oStr = iStr.replace(/(\w+)\-(\w)(?=(\w+))/g, (r, r1, r2) => r1 + r2.toUpperCase());
+          oStr = iStr.replace(/(\w+)-(\w)(?=(\w+))/g, (r, r1, r2) => r1 + r2.toUpperCase());
           break;
         case 'case7':
           oStr = iStr.replace(latin, r => {

@@ -17,31 +17,18 @@ mixin jsAll( arr )
     script( src = val )
 
 mixin bt( id, title, txt = false )
+  - title = (title !== '') ? title : false
   if txt
-    - txt = txt.replace( '→', ' <i class="glyphicon glyphicon-arrow-right"></i> ' )
-  if title !== ''
-    if block && !txt
-      button.btn.btn-primary.btn-sm.bt-control( type = 'button', title = title, value = id )
-        block
-    else
-      button.btn.btn-primary.btn-sm.bt-control( type = 'button', title = title, value = id ) !{txt}
+    - txt = txt.replace('→', ' <i class="glyphicon glyphicon-arrow-right"></i> ')
+  if block && !txt
+    button.btn.btn-primary.btn-sm.bt-control( type = 'button', title = title, value = id ): block
   else
-    if block && !txt
-      button.btn.btn-primary.btn-sm.bt-control( type = 'button', value = id )
-        block
-    else
-      button.btn.btn-primary.btn-sm.bt-control( type = 'button', value = id ) !{txt}
+    button.btn.btn-primary.btn-sm.bt-control( type = 'button', title = title, value = id ) !{txt}
 
 mixin lb( group, tp, val, txt, ckd )
-  if tp === 'cb'
-    - type = 'checkbox'
-  else
-    - type = 'radio'
+  - typeArr = {cb: 'checkbox', rd: 'radio'}
   - val = val.replace('&amp;','&')
-  if ckd
-    label.btn.btn-info #[input( class = group, name = group, type = type, value != val, checked = 'checked' )] #{txt}
-  else
-    label.btn.btn-info #[input( class = group, name = group, type = type, value != val )] #{txt}
+  label.btn.btn-info #[input( class = group, name = group, type = typeArr[tp], value != val, checked = ckd )] #{txt}
 
 mixin dlBox(id, arr)
   - setBts = arr.bts
@@ -63,7 +50,7 @@ mixin dlBox(id, arr)
               +lb( ...val )
           if setLbs.bt
             each val in setLbs.bt
-              +bt( val[0], val[1], val[2] )
+              +bt( ...val )
           if setLbs.sl
             - sl = setLbs.sl
             select.form-control( class = sl.class, name = sl.class )
@@ -78,10 +65,7 @@ mixin dlBox(id, arr)
                 if val[3] === 'select'
                   select.form-control( class =  val[2], name =  val[2] )
                     each val2, key2 in val[4]
-                      if val[5] === key2
-                        option( value = key2, selected ) !{val2}
-                      else
-                        option( value = key2 ) !{val2}
+                      option( value = key2, selected = (val[5] === key2) ) !{val2}
                 else
                   input.form-control( id = val[2], type = val[3], value = val[4] )&attributes(val[5])
             div.input-group.input-group-sm.input-group-bt
