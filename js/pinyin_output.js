@@ -1,5 +1,9 @@
+/* eslint
+    no-unused-vars: 0,
+    no-undef: 0
+ */
 /*
- * pinyinを更新したとき、pinyin2を出力するためのjs
+ * pinyin.js 生成用
  */
 let
   pinyinRe0 = '',
@@ -15,7 +19,7 @@ pinyinRe0 = 'const\n  pinyin = ' + pinyinRe0;
 pinyinRe0 = pinyinRe0.replace(/("[^,]*?","[^,]*?","[^,]*?","[^,]*?","[^,]*?","[^,]*?","[^,]*?","[^,]*?","[^,]*?","[^,]*?","[^,]*?","[^,]*?","[^,]*?","[^,]*?","[^,]*?","[^,]*?",)/g, '$1\n');
 pinyinRe0 = pinyinRe0.replace(/\n"/g, '\n    "');
 pinyinRe0 = pinyinRe0.replace(/"/g, '\'');
-pinyinRe0 = pinyinRe0 + '  pin = new RegExp(\'\%u(3[4-9a-fA-F][0-9a-fA-F]{2}|[4-9][0-9a-fA-F]{3})\',\'g\'),\n'
+pinyinRe0 = pinyinRe0 + '  pin = new RegExp(\'%u(3[4-9a-fA-F][0-9a-fA-F]{2}|[4-9][0-9a-fA-F]{3})\',\'g\'),\n';
 
 //$opt.innerText = pinyinRe0;
 
@@ -31,7 +35,7 @@ diff = r => {
   ff = ff.map(t=>{
     return t.replace(/([āáǎàēéěèếễểềīíǐìōóǒòūúǔùüǖǘǚǜḿňa-z])/g,u=>{
       if(u==='y') document.title=('0'+diffArr.indexOf(u)).slice(-2);
-      return ('0'+diffArr.indexOf(u)).slice(-2)
+      return ('0'+diffArr.indexOf(u)).slice(-2);
     });
   });
   ff = ff.join('');

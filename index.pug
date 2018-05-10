@@ -5,14 +5,14 @@ include _data
 
 html( lang = 'en' )
   head
-    title= $title
+    title #{$title}
     meta( charset = 'utf-8' )
     +metaAll( metas )
     link( rel = 'image_src', href = 'http://myth.maji.asia/figure/aloes.jpg' )
     +linkAll( links )
   body
     header.header#header
-      h1.head= $title
+      h1.head #{$title}
       div
         button.btn.btn-primary( data-toggle = 'modal', data-target = '#settings' ) #[i.glyphicon.glyphicon-cog( aria-hidden = 'true' )] #[span.hidden-xs  settings]
         button.btn.btn-primary( data-toggle = 'modal', data-target = '#help' ) #[i.fa.fa-question-circle( aria-hidden = 'true' )] #[span.hidden-xs  help]
@@ -62,8 +62,9 @@ html( lang = 'en' )
                           each val in [{value: '。',checked: true},{value: '、'},{value: '\.'},{value: '\,'},{value: '「」',checked: true},{value: '（）'}]
                             label.btn.btn-info #[input.tidy3_cb( name = 'tidy3_cb', type = 'checkbox', value!=val.value, checked = val.checked )] !{val.value}
                           button.btn.btn-primary.btn-sm.bt-control( type = 'button', value = 'tidy3' ) で改行
-                    button.btn.btn-primary.bt-control( type = 'button', value = 'tree' )= '列挙パスをツリー化'
-                    button.btn.btn-primary.bt-control( type = 'button', value = 'path' )= 'ツリーを列挙パス化'
+                    button.btn.btn-primary.bt-control( type = 'button', value = 'tree' ) 列挙パスをツリー化
+                    button.btn.btn-primary.bt-control( type = 'button', value = 'path' ) ツリーを列挙パス化
+                    button.btn.btn-primary.bt-control( type = 'button', value = 'jsonTidy' ) JSON整形
                   else if key2 === 'ctset_grep'
                     div.form-inline
                       div.form-group
@@ -92,11 +93,11 @@ html( lang = 'en' )
               div.modal-body
                 div.alphaDisp#alphaDisp
                 div.btn-group.btn-group-sm.btn-col13.btn-group-alpha( role = 'group', aria-label = '...' )
-                  button.btn.btn-info.btn-control( type = 'button', value = 'case')= 'Aa'
+                  button.btn.btn-info.btn-control( type = 'button', value = 'case') Aa
                   each val in ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
-                    button.btn.btn-primary.btn-alpha( type = 'button', value = val)= val
+                    button.btn.btn-primary.btn-alpha( type = 'button', value = val) #{val}
                 div.btn-group.btn-group-sm.btn-col13#alpha_opt
-                button.btn.btn-primary.bt-control( type = 'button', value = 'accent' )= '決定'
+                button.btn.btn-primary.bt-control( type = 'button', value = 'accent' ) 決定
       section.section-ime
         div.modal.fade#ligat( tabindex = '-1', role = 'dialog' )
           div.modal-dialog( role = 'document' )
@@ -109,9 +110,9 @@ html( lang = 'en' )
                 div.ligatDisp#ligatDisp
                 div.btn-group.btn-group-sm.btn-col13.btn-group-ligat( role = 'group', aria-label = '...' )
                   each val in ['ae','ao','au','av','ay','db','dz','ff','ffi','ffl','fi','fl','ft','ij','lb','lj','ng','nj','oe','oo','ou','qp','st','sz','ue','vy']
-                    button.btn.btn-primary.btn-ligat( type = 'button', value = val)= val
+                    button.btn.btn-primary.btn-ligat( type = 'button', value = val) #{val}
                 div.btn-group.btn-group-sm.btn-col13#ligat_opt
-                button.btn.btn-primary.bt-control( type = 'button', value = 'ligature' )= '決定'
+                button.btn.btn-primary.bt-control( type = 'button', value = 'ligature' ) 決定
       section.section-ime
         div.modal.fade#pyin( tabindex = '-1', role = 'dialog' )
           div.modal-dialog( role = 'document' )
@@ -124,10 +125,10 @@ html( lang = 'en' )
                 div.pyinDisp#pyinDisp
                 div.btn-group.btn-group-sm.btn-col10.btn-group-pyin( role = 'group', aria-label = '...' )
                   each val in ['a','b','c','ch','d','e','f','g','h','j','k','l','m','n','o','p','q','r','s','sh','t','w','x','y','z','zh']
-                    button.btn.btn-primary.btn-pyin( type = 'button', value = val )= val
+                    button.btn.btn-primary.btn-pyin( type = 'button', value = val ) #{val}
                 div.btn-group.btn-group-sm.btn-col13#pyin_opt
                 div.btn-group.btn-group-sm.btn-col13#pyin_opt2
-                button.btn.btn-primary.bt-control( type = 'button', value = 'pinyin2' )= '決定'
+                button.btn.btn-primary.bt-control( type = 'button', value = 'pinyin2' ) 決定
       section.section-ime
         div.modal.fade#uni( tabindex = '-1', role = 'dialog' )
           div.modal-dialog( role = 'document' )
@@ -141,12 +142,12 @@ html( lang = 'en' )
                 div.btn-group.btn-group-sm.btn-col10.btn-group-uni( role = 'group', aria-label = '...' )
                   select.form-control#uniSelect
                     each val, key in uniGroup
-                      option( value = val )= key
+                      option( value = val ) #{key}
                 div.btn-group.btn-group-sm.btn-col13#uni_opt
-                button.btn.btn-primary.bt-control( type = 'button', value = 'uni2' )= '決定'
+                button.btn.btn-primary.bt-control( type = 'button', value = 'uni2' ) 決定
       section.info
         div.modal.help.fade#settings( tabindex = '-1', role = 'dialog' )
-          div.modal-dialog( role = 'document' )
+          div.modal-dialog.modal-sm( role = 'document' )
             div.modal-content
               div.modal-header
                 button.close( type = 'button', data-dismiss = 'modal', aria-label = 'Close' )
@@ -156,21 +157,12 @@ html( lang = 'en' )
                 each val, key in settings
                   div.form-group
                     label( for = key ) !{val.title}
-                    mixin inblock
+                    div.btn-group( class = 'col' + Object.keys(val.arr).length, data-toggle = 'buttons', role = 'group', aria-label = 'setting: ' + key )
                       each val2, key2 in val.arr
-                        if key2 === val.checked
-                          label.btn.btn-primary.active #[input( type = 'radio', name = key, value = val2, checked )] !{key2}
-                        else
-                          label.btn.btn-primary #[input( type = 'radio', name = key, value = val2 )] !{key2}
-
-                    if key === 'font-family'
-                      div.btn-group.btn-group-justified.btn-2rows( data-toggle = 'buttons', role = 'group', aria-label = 'setting: ' + key )
-                        +inblock
-                    else
-                      div.btn-group.btn-group-justified( data-toggle = 'buttons', role = 'group', aria-label = 'setting: ' + key )
-                        +inblock
+                        - var checkedflg = (key2 === val.checked);
+                        label.btn.btn-primary(class = checkedflg ? 'active' : '') #[input( type = 'radio', name = key, value = val2, checked = checkedflg )] !{key2}
               div.modal-footer
-                button.btn.btn-default.btn-sm( type = 'button', data-dismiss = 'modal' ) Close
+                button.btn.btn-default.btn-sm(type = 'button', data-dismiss = 'modal') Close
       section.info
         div.modal.help.fade#help( tabindex = '-1', role = 'dialog' )
           div.modal-dialog( role = 'document' )

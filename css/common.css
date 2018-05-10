@@ -1647,6 +1647,8 @@ h3 {
   overflow: hidden;
 }
 #settings .btn-group .btn {
+  margin: 0;
+  border: 0;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -o-box-flex: 1;
@@ -1656,6 +1658,19 @@ h3 {
   flex-grow: 1;
   border-radius: 0;
 }
-#settings .btn-2rows .btn {
+#settings .btn-group.col3 .btn,
+#settings .btn-group.col6 .btn {
+  width: 33.3%;
+}
+#settings .btn-group.col4 .btn {
   width: 50%;
+}
+#settings .btn-group.col5 .btn:nth-of-type(1),
+#settings .btn-group.col5 .btn:nth-of-type(2),
+#settings .btn-group.col5 .btn:nth-of-type(3) {
+  width: 33.3%;
+}
+#settings .btn-group.col5 .btn:nth-of-type(4),
+#settings .btn-group.col5 .btn:nth-of-type(5) {
+  width: 50px;
 }

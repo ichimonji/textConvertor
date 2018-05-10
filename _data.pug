@@ -1,7 +1,7 @@
 //- vars, arrays
 -
   const
-    $title = '汎用テキストコンバータ'
+    $title = '汎用テキストコンバータ',
     metas = [
       [ 'http-equiv', 'X-UA-Compatible', 'IE=edge' ],
       [ 'name', 'viewport', 'width=device-width,initial-scale=1' ],
@@ -19,7 +19,7 @@
       [ 'property', 'og:description', 'テキストに対して色々な変換を行うためのツールです。' ],
       [ 'property', 'og:image', 'http://myth.maji.asia/figure/aloes.jpg' ],
       [ 'name', 'twitter:image', 'http://myth.maji.asia/figure/aloes.jpg' ],
-    ]
+    ],
     links = [
       'https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css',
       'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css',
@@ -27,7 +27,7 @@
       'https://fonts.googleapis.com/css?family=Lato:400,700,900',
       'http://fonts.googleapis.com/earlyaccess/notosansjp.css',
       'css/common.css'
-    ]
+    ],
     scripts = [
       'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js',
       'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js',
@@ -36,7 +36,7 @@
       'js/japanese.js',
       'js/other.js',
       'js/common.js'
-    ]
+    ],
     settings = {
       'font-size': {
         'title': 'Font size',
@@ -58,7 +58,7 @@
         'checked': 'M',
         'arr': {'S':'s','M':'m','L':'l'}
       }
-    }
+    },
     btsArr = {
       'ctGroup_code': {
         'ctset_case': {
@@ -68,21 +68,21 @@
             ['case-upper', '全て大文字に', 'UPPER'],
             ['case-lower', '全て小文字に', 'LOWER'],
             ['case-swap', '大文字小文字を反転', 'SWAP'],
-            ['case1', 'シングルクォーテーションをダブルクーテーションに', '\'\'→\"\"'],
-            ['case2', 'ダブルクーテーションをシングルクォーテーションに', '\"\"→\'\''],
-            ['case3', '文字間のハイフンをアンダーバーに', 'abc-def→abc_def'],
-            ['case4', '文字間のアンダーバーをハイフンに', 'abc_def→abc-def'],
-            ['case5', 'キャメルケースをハイフンに', 'abcDef→abc-def'],
-            ['case6', '文字間のハイフンをキャメルケースに', 'abc-def→abcDef'],
-            ['case7', '符号付きラテン文字を標準化', 'Àóṫœ→Aotoe']
+            ['case-toDouble', 'シングルクォーテーションをダブルクーテーションに', '\'\'→\"\"'],
+            ['case-toSingle', 'ダブルクーテーションをシングルクォーテーションに', '\"\"→\'\''],
+            ['case-hyphenToUnder', '文字間のハイフンをアンダーバーに', 'abc-def→abc_def'],
+            ['case-underToHyphen', '文字間のアンダーバーをハイフンに', 'abc_def→abc-def'],
+            ['case-camelToHyphen', 'キャメルケースをハイフンに', 'abcDef→abc-def'],
+            ['case-hyphenToCamel', '文字間のハイフンをキャメルケースに', 'abc-def→abcDef'],
+            ['case-latinNomalize', '符号付きラテン文字を標準化', 'Àóṫœ→Aotoe']
           ]
         },
         'ctset_encode': {
           'str': 'エンコード',
           'bts': [
-            ['url-encode', 'パーセントエンコード（;/?:@& = +$-_!~*.,()a#\'以外）', 'URL エンコード(軽)'],
-            ['url-encode2', 'パーセントエンコード（-_!~*.()a\'以外）', 'URL エンコード(中)'],
-            ['url-encode3', 'パーセントエンコード（*+-_./以外）', 'URL エンコード(強)'],
+            ['url-encodeS', 'パーセントエンコード（;/?:@& = +$-_!~*.,()a#\'以外）', 'URL エンコード(軽)'],
+            ['url-encodeM', 'パーセントエンコード（-_!~*.()a\'以外）', 'URL エンコード(中)'],
+            ['url-encodeL', 'パーセントエンコード（*+-_./以外）', 'URL エンコード(強)'],
             ['url-decode', 'パーセントでコード（全て）', 'URL デコード'],
             ['b64-encode', 'BASE64 エンコード', 'BASE64 エンコード'],
             ['b64-decode', 'BASE64 デコード', 'BASE64 デコード']
@@ -93,12 +93,12 @@
           'bts': [
             ['uni-escape', 'Unicode値でのパーセントエンコード（%u～）', 'エスケープ'],
             ['uni-unescape', 'Unicode値でのパーセントデコード', 'アンエスケープ'],
-            ['uniH-escape', 'HTML数値文字参照（\&#x～;）', 'HTMLエスケープ(中)'],
-            ['uniH-escape2', '全文字をHTML数値文字参照（\&#x～;）', 'HTMLエスケープ(強)'],
+            ['uniH-escapeM', 'HTML数値文字参照（\&#x～;）', 'HTMLエスケープ(中)'],
+            ['uniH-escapeL', '全文字をHTML数値文字参照（\&#x～;）', 'HTMLエスケープ(強)'],
             ['uniH-unescape', '文字参照、実体参照を復号', 'HTMLアンエスケープ'],
-            ['uni-escape3', 'HTMLタグ用文字を実体参照化', '[<>\&]の実体参照化'],
-            ['uni-escape4', 'UTF32のオーバーフロー分をサロゲートペアに変換', 'UTF-32→UTF-16'],
-            ['uni-escape5', 'サロゲートペアをUTF32表記に', 'UTF-16→UTF-32'],
+            ['uni-escapeForHtml', 'HTMLタグ用文字を実体参照化', '[<>\&]の実体参照化'],
+            ['uni-utf32to16', 'UTF32のオーバーフロー分をサロゲートペアに変換', 'UTF-32→UTF-16'],
+            ['uni-utf16to32', 'サロゲートペアをUTF32表記に', 'UTF-16→UTF-32'],
             ['js-escape', 'JS用のエスケープ', 'JSエスケープ'],
             ['js-unescape', 'JS用のアンエスケープ', 'JSアンエスケープ']
           ]
@@ -113,7 +113,7 @@
             ['num-2_16', '2進数を16進数に', 'Bin→Hex'],
             ['num-16_2', '16進数を2進数に', 'Hex→Bin'],
             ['num-comma', '3桁カンマを挿入', '1000→1,000'],
-            ['num-comma2', '3桁カンマを削除', '1,000→1000'],
+            ['num-decomma', '3桁カンマを削除', '1,000→1000'],
             ['num-abs', '絶対値', 'Abs'],
             ['num-int', '整数化', 'Int'],
             ['num-round', '四捨五入', 'Round'],
@@ -360,7 +360,7 @@
           ]
         }
       }
-    }
+    },
     uniGroup = {
       'select': '',
       '基本ラテン文字': '0000-007F',
@@ -506,4 +506,4 @@
       'アラビア文字表示形-B': 'FE70-FEFF',
       '半角形と全角形': 'FF00-FFEF',
       '特殊文字': 'FFF0-FFFF'
-    }
+    };

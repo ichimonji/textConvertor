@@ -1,3 +1,5 @@
+/* eslint no-unused-vars: 0 */
+
 const
   // 新字体、旧字体の対応（基本）
   shin2kyu = [

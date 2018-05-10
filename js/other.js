@@ -1,3 +1,5 @@
+/* eslint no-unused-vars: 0 */
+
 const
   // 文字参照用
   charaMap = {

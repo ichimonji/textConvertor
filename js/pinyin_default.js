@@ -1,3 +1,5 @@
+/* eslint no-unused-vars: 0 */
+
 const pinyin_default = {
 '3007':'líng',
 '3400':'qiū',

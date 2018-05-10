@@ -88,13 +88,13 @@
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="全て大文字に" value="case-upper">UPPER</button>
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="全て小文字に" value="case-lower">LOWER</button>
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="大文字小文字を反転" value="case-swap">SWAP</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="シングルクォーテーションをダブルクーテーションに" value="case1">'' <i class="glyphicon glyphicon-arrow-right"></i> ""</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="ダブルクーテーションをシングルクォーテーションに" value="case2">"" <i class="glyphicon glyphicon-arrow-right"></i> ''</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="文字間のハイフンをアンダーバーに" value="case3">abc-def <i class="glyphicon glyphicon-arrow-right"></i> abc_def</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="文字間のアンダーバーをハイフンに" value="case4">abc_def <i class="glyphicon glyphicon-arrow-right"></i> abc-def</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="キャメルケースをハイフンに" value="case5">abcDef <i class="glyphicon glyphicon-arrow-right"></i> abc-def</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="文字間のハイフンをキャメルケースに" value="case6">abc-def <i class="glyphicon glyphicon-arrow-right"></i> abcDef</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="符号付きラテン文字を標準化" value="case7">Àóṫœ <i class="glyphicon glyphicon-arrow-right"></i> Aotoe</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="シングルクォーテーションをダブルクーテーションに" value="case-toDouble">'' <i class="glyphicon glyphicon-arrow-right"></i> ""</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="ダブルクーテーションをシングルクォーテーションに" value="case-toSingle">"" <i class="glyphicon glyphicon-arrow-right"></i> ''</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="文字間のハイフンをアンダーバーに" value="case-hyphenToUnder">abc-def <i class="glyphicon glyphicon-arrow-right"></i> abc_def</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="文字間のアンダーバーをハイフンに" value="case-underToHyphen">abc_def <i class="glyphicon glyphicon-arrow-right"></i> abc-def</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="キャメルケースをハイフンに" value="case-camelToHyphen">abcDef <i class="glyphicon glyphicon-arrow-right"></i> abc-def</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="文字間のハイフンをキャメルケースに" value="case-hyphenToCamel">abc-def <i class="glyphicon glyphicon-arrow-right"></i> abcDef</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="符号付きラテン文字を標準化" value="case-latinNomalize">Àóṫœ <i class="glyphicon glyphicon-arrow-right"></i> Aotoe</button>
               </dd>
             </dl>
             <input class="genre" id="ctset_encode" type="checkbox" name="genre" checked="checked">
@@ -103,9 +103,9 @@
                 <label for="ctset_encode">エンコード</label><i class="fa fa-question-circle linkHelp" data-target="エンコード"></i>
               </dt>
               <dd class="body">
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="パーセントエンコード（;/?:@&amp; = +$-_!~*.,()a#'以外）" value="url-encode">URL エンコード(軽)</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="パーセントエンコード（-_!~*.()a'以外）" value="url-encode2">URL エンコード(中)</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="パーセントエンコード（*+-_./以外）" value="url-encode3">URL エンコード(強)</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="パーセントエンコード（;/?:@&amp; = +$-_!~*.,()a#'以外）" value="url-encodeS">URL エンコード(軽)</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="パーセントエンコード（-_!~*.()a'以外）" value="url-encodeM">URL エンコード(中)</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="パーセントエンコード（*+-_./以外）" value="url-encodeL">URL エンコード(強)</button>
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="パーセントでコード（全て）" value="url-decode">URL デコード</button>
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="BASE64 エンコード" value="b64-encode">BASE64 エンコード</button>
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="BASE64 デコード" value="b64-decode">BASE64 デコード</button>
@@ -119,12 +119,12 @@
               <dd class="body">
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="Unicode値でのパーセントエンコード（%u～）" value="uni-escape">エスケープ</button>
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="Unicode値でのパーセントデコード" value="uni-unescape">アンエスケープ</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="HTML数値文字参照（&amp;#x～;）" value="uniH-escape">HTMLエスケープ(中)</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="全文字をHTML数値文字参照（&amp;#x～;）" value="uniH-escape2">HTMLエスケープ(強)</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="HTML数値文字参照（&amp;#x～;）" value="uniH-escapeM">HTMLエスケープ(中)</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="全文字をHTML数値文字参照（&amp;#x～;）" value="uniH-escapeL">HTMLエスケープ(強)</button>
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="文字参照、実体参照を復号" value="uniH-unescape">HTMLアンエスケープ</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="HTMLタグ用文字を実体参照化" value="uni-escape3">[<>&]の実体参照化</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="UTF32のオーバーフロー分をサロゲートペアに変換" value="uni-escape4">UTF-32 <i class="glyphicon glyphicon-arrow-right"></i> UTF-16</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="サロゲートペアをUTF32表記に" value="uni-escape5">UTF-16 <i class="glyphicon glyphicon-arrow-right"></i> UTF-32</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="HTMLタグ用文字を実体参照化" value="uni-escapeForHtml">[<>&]の実体参照化</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="UTF32のオーバーフロー分をサロゲートペアに変換" value="uni-utf32to16">UTF-32 <i class="glyphicon glyphicon-arrow-right"></i> UTF-16</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="サロゲートペアをUTF32表記に" value="uni-utf16to32">UTF-16 <i class="glyphicon glyphicon-arrow-right"></i> UTF-32</button>
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="JS用のエスケープ" value="js-escape">JSエスケープ</button>
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="JS用のアンエスケープ" value="js-unescape">JSアンエスケープ</button>
               </dd>
@@ -142,7 +142,7 @@
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="2進数を16進数に" value="num-2_16">Bin <i class="glyphicon glyphicon-arrow-right"></i> Hex</button>
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="16進数を2進数に" value="num-16_2">Hex <i class="glyphicon glyphicon-arrow-right"></i> Bin</button>
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="3桁カンマを挿入" value="num-comma">1000 <i class="glyphicon glyphicon-arrow-right"></i> 1,000</button>
-                <button class="btn btn-primary btn-sm bt-control" type="button" title="3桁カンマを削除" value="num-comma2">1,000 <i class="glyphicon glyphicon-arrow-right"></i> 1000</button>
+                <button class="btn btn-primary btn-sm bt-control" type="button" title="3桁カンマを削除" value="num-decomma">1,000 <i class="glyphicon glyphicon-arrow-right"></i> 1000</button>
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="絶対値" value="num-abs">Abs</button>
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="整数化" value="num-int">Int</button>
                 <button class="btn btn-primary btn-sm bt-control" type="button" title="四捨五入" value="num-round">Round</button>
@@ -310,6 +310,7 @@
                 </div>
                 <button class="btn btn-primary bt-control" type="button" value="tree">列挙パスをツリー化</button>
                 <button class="btn btn-primary bt-control" type="button" value="path">ツリーを列挙パス化</button>
+                <button class="btn btn-primary bt-control" type="button" value="jsonTidy">JSON整形</button>
               </dd>
             </dl>
             <input class="genre" id="ctset_grep" type="checkbox" name="genre" checked="checked">
@@ -966,7 +967,7 @@
       </section>
       <section class="info">
         <div class="modal help fade" id="settings" tabindex="-1" role="dialog">
-          <div class="modal-dialog" role="document">
+          <div class="modal-dialog modal-sm" role="document">
             <div class="modal-content">
               <div class="modal-header">
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -975,53 +976,53 @@
               <div class="modal-body">
                 <div class="form-group">
                   <label for="font-size">Font size</label>
-                  <div class="btn-group btn-group-justified" data-toggle="buttons" role="group" aria-label="setting: font-size">
-                                      <label class="btn btn-primary">
-                                        <input type="radio" name="font-size" value="10px"> XS
-                                      </label>
-                                      <label class="btn btn-primary">
-                                        <input type="radio" name="font-size" value="12px"> S
-                                      </label>
-                                      <label class="btn btn-primary active">
-                                        <input type="radio" name="font-size" value="14px" checked> M
-                                      </label>
-                                      <label class="btn btn-primary">
-                                        <input type="radio" name="font-size" value="16px"> L
-                                      </label>
-                                      <label class="btn btn-primary">
-                                        <input type="radio" name="font-size" value="18px"> XL
-                                      </label>
+                  <div class="btn-group col5" data-toggle="buttons" role="group" aria-label="setting: font-size">
+                    <label class="btn btn-primary">
+                      <input type="radio" name="font-size" value="10px"> XS
+                    </label>
+                    <label class="btn btn-primary">
+                      <input type="radio" name="font-size" value="12px"> S
+                    </label>
+                    <label class="btn btn-primary active">
+                      <input type="radio" name="font-size" value="14px" checked> M
+                    </label>
+                    <label class="btn btn-primary">
+                      <input type="radio" name="font-size" value="16px"> L
+                    </label>
+                    <label class="btn btn-primary">
+                      <input type="radio" name="font-size" value="18px"> XL
+                    </label>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="font-family">Font Family</label>
-                  <div class="btn-group btn-group-justified btn-2rows" data-toggle="buttons" role="group" aria-label="setting: font-family">
-                                      <label class="btn btn-primary">
-                                        <input type="radio" name="font-family" value="sans-serif"> sans-serif
-                                      </label>
-                                      <label class="btn btn-primary">
-                                        <input type="radio" name="font-family" value="serif"> serif
-                                      </label>
-                                      <label class="btn btn-primary active">
-                                        <input type="radio" name="font-family" value="monospace" checked> monospace
-                                      </label>
-                                      <label class="btn btn-primary">
-                                        <input type="radio" name="font-family" value="'Noto Sans'"> Noto Sans
-                                      </label>
+                  <div class="btn-group col4" data-toggle="buttons" role="group" aria-label="setting: font-family">
+                    <label class="btn btn-primary">
+                      <input type="radio" name="font-family" value="sans-serif"> sans-serif
+                    </label>
+                    <label class="btn btn-primary">
+                      <input type="radio" name="font-family" value="serif"> serif
+                    </label>
+                    <label class="btn btn-primary active">
+                      <input type="radio" name="font-family" value="monospace" checked> monospace
+                    </label>
+                    <label class="btn btn-primary">
+                      <input type="radio" name="font-family" value="'Noto Sans'"> Noto Sans
+                    </label>
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="areaHeight">Textarea Height</label>
-                  <div class="btn-group btn-group-justified" data-toggle="buttons" role="group" aria-label="setting: areaHeight">
-                                      <label class="btn btn-primary">
-                                        <input type="radio" name="areaHeight" value="s"> S
-                                      </label>
-                                      <label class="btn btn-primary active">
-                                        <input type="radio" name="areaHeight" value="m" checked> M
-                                      </label>
-                                      <label class="btn btn-primary">
-                                        <input type="radio" name="areaHeight" value="l"> L
-                                      </label>
+                  <div class="btn-group col3" data-toggle="buttons" role="group" aria-label="setting: areaHeight">
+                    <label class="btn btn-primary">
+                      <input type="radio" name="areaHeight" value="s"> S
+                    </label>
+                    <label class="btn btn-primary active">
+                      <input type="radio" name="areaHeight" value="m" checked> M
+                    </label>
+                    <label class="btn btn-primary">
+                      <input type="radio" name="areaHeight" value="l"> L
+                    </label>
                   </div>
                 </div>
               </div>
