@@ -1,6 +1,6 @@
-/* eslint no-unused-vars: 0 */
+/* eslint no-unused-vars: 0, quote-props: 0, object-property-newline: 0 */
 
-const pinyin_default = {
+const pinyinDefault = {
 '3007':'líng',
 '3400':'qiū',
 '3401':'tiàn',

@@ -414,9 +414,9 @@ $1: $2
 CJKなど変換には配列を使ったマッピングによって対応しています。
 
 + `cjk.js`
-  - cjk_all  
+  - cjkAll  
     簡体字、繁体字、日本漢字の単語
-  - cjk_word  
+  - cjkWord  
     簡体字、繁体字、日本漢字の熟語
 + `japanese.js`
   - shin2kyu  
