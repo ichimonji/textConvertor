@@ -1,6 +1,6 @@
 /* eslint no-unused-vars: 0, quote-props: 0, object-property-newline: 0 */
 
-const
+export const
   // export const
   pinyin = {
     '3007': 'líng', '3400': 'qiū', '3401': 'tiàn', '3402': '*', '3403': '*', '3404': 'kuà', '3405': 'wǔ', '3406': 'yǐn', '3407': '*', '3408': '*', '3409': '*', '3410': '*', '3411': '*', '3412': '*', '3413': '*', '3414': '*',

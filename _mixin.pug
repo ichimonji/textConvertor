@@ -1,75 +1,75 @@
 //- mixins
-mixin metaAll( arr )
+mixin metaAll(arr)
   each val in arr
     if val[0] === 'http-equiv'
-      meta( http-equiv = val[1], content != val[2] )
+      meta(http-equiv = val[1], content != val[2])
     else if val[0] === 'name'
-      meta( name = val[1], content != val[2] )
+      meta(name = val[1], content != val[2])
     else if val[0] === 'property'
-      meta( property = val[1], content != val[2] )
+      meta(property = val[1], content != val[2])
 
-mixin linkAll( arr )
+mixin linkAll(arr)
   each val in arr
-    link( rel = 'stylesheet', href = val )
+    link(rel = 'stylesheet', href = val)
 
-mixin jsAll( arr )
+mixin jsAll(arr)
   each val in arr
-    script( src = val )
+    script(src = val)
 
-mixin bt( id, title, txt = false )
+mixin bt(id, title, txt = false)
   - title = (title !== '') ? title : false
   if txt
     - txt = txt.replace('→', ' <i class="glyphicon glyphicon-arrow-right"></i> ')
   if block && !txt
-    button.btn.btn-primary.btn-sm.bt-control( type = 'button', title = title, value = id ): block
+    button.btn.btn-primary.btn-sm.bt-control(type = 'button', title = title, value = id): block
   else
-    button.btn.btn-primary.btn-sm.bt-control( type = 'button', title = title, value = id ) !{txt}
+    button.btn.btn-primary.btn-sm.bt-control(type = 'button', title = title, value = id) !{txt}
 
-mixin lb( group, tp, val, txt, ckd )
+mixin lb(group, tp, val, txt, ckd)
   - typeArr = {cb: 'checkbox', rd: 'radio'}
   - val = val.replace('&amp;','&')
-  label.btn.btn-info #[input( class = group, name = group, type = typeArr[tp], value != val, checked = ckd )] #{txt}
+  label.btn.btn-info #[input(class = group, name = group, type = typeArr[tp], value != val, checked = ckd)] #{txt}
 
 mixin dlBox(id, arr)
   - setBts = arr.bts
   - setLbs = arr.lbs
   - setIts = arr.its
-  input.genre( id = id type = 'checkbox', name = 'genre', checked = 'checked' )
+  input.genre(id = id type = 'checkbox', name = 'genre', checked = 'checked')
   dl.ct-set
     dt.head
-      label( for = id )= arr.str
-      i.fa.fa-question-circle.linkHelp( data-target = arr.str )
+      label(for = id)= arr.str
+      i.fa.fa-question-circle.linkHelp(data-target = arr.str)
     dd.body
       if setBts
         each val in setBts
-          +bt( val[0], val[1], val[2] )
+          +bt(val[0], val[1], val[2])
       if setLbs
-        div.btn-group.btn-group-sm( role = 'group', aria-label = '...' )
+        div.btn-group.btn-group-sm(role = 'group', aria-label = '...')
           if setLbs.lb
             each val in setLbs.lb
-              +lb( ...val )
+              +lb(...val)
           if setLbs.bt
             each val in setLbs.bt
-              +bt( ...val )
+              +bt(...val)
           if setLbs.sl
             - sl = setLbs.sl
-            select.form-control( class = sl.class, name = sl.class )
+            select.form-control(class = sl.class, name = sl.class)
               each val in sl.list
-                option( value = val[0] )= val[1]
+                option(value = val[0])= val[1]
       if setIts
         div.form-inline
           div.form-group
             each val in setIts.arr
               div.input-group.input-group-sm
-                label.input-group-addon( title = val[0] ) !{val[1]}
+                label.input-group-addon(title = val[0]) !{val[1]}
                 if val[3] === 'select'
-                  select.form-control( class =  val[2], name =  val[2] )
+                  select.form-control(class =  val[2], name =  val[2])
                     each val2, key2 in val[4]
-                      option( value = key2, selected = (val[5] === key2) ) !{val2}
+                      option(value = key2, selected = (val[5] === key2)) !{val2}
                 else
-                  input.form-control( id = val[2], type = val[3], value = val[4] )&attributes(val[5])
+                  input.form-control(id = val[2], type = val[3], value = val[4])&attributes(val[5])
             div.input-group.input-group-sm.input-group-bt
-              label.input-group-addon #[input( id = setIts.overflow, type = 'checkbox', checked = 'checked' )] overflow
-              button.form-control.btn.btn-primary.bt-control( type = 'button', title = setIts.title, value = setIts.value ) !{setIts.text}
+              label.input-group-addon #[input(id = setIts.overflow, type = 'checkbox', checked = 'checked')] overflow
+              button.form-control.btn.btn-primary.bt-control(type = 'button', title = setIts.title, value = setIts.value) !{setIts.text}
       if block
         block

@@ -3,47 +3,45 @@ doctype html
 include _mixin
 include _data
 
-html( lang = 'en' )
+html(lang = 'en')
   head
     title #{$title}
-    meta( charset = 'utf-8' )
-    +metaAll( metas )
-    link( rel = 'image_src', href = 'http://myth.maji.asia/figure/aloes.jpg' )
-    +linkAll( links )
+    meta(charset = 'utf-8')
+    +metaAll(metas)
+    link(rel = 'image_src', href = 'http://myth.maji.asia/figure/aloes.jpg')
+    +linkAll(links)
   body
     header.header#header
       h1.head #{$title}
       div
-        button.btn.btn-primary( data-toggle = 'modal', data-target = '#settings' ) #[i.glyphicon.glyphicon-cog( aria-hidden = 'true' )] #[span.hidden-xs  settings]
-        button.btn.btn-primary( data-toggle = 'modal', data-target = '#help' ) #[i.fa.fa-question-circle( aria-hidden = 'true' )] #[span.hidden-xs  help]
+        button.btn.btn-primary(data-toggle = 'modal', data-target = '#settings') #[i.glyphicon.glyphicon-cog(aria-hidden = 'true')] #[span.hidden-xs  settings]
+        button.btn.btn-primary(data-toggle = 'modal', data-target = '#help') #[i.fa.fa-question-circle(aria-hidden = 'true')] #[span.hidden-xs  help]
     main.main
       div.main-wrap
         section.area-input
           div.area-input-text
             div.form-group
-              label( for = 'text-i' ) Original Text #[span#selDisp]
-              textarea.form-control#text-i( placeholder = 'Original Text' )
+              label(for = 'text-i') Original Text #[span#selDisp]
+              textarea.form-control#text-i(placeholder = 'Original Text')
           div.area-input-text
             div.form-group
-              label( for= 'text-o' ) Converted Text
-              textarea.form-control#text-o( placeholder = 'Converted Text' )
+              label(for= 'text-o') Converted Text
+              textarea.form-control#text-o(placeholder = 'Converted Text')
           div.area-input-button
             div#lengthDisp
             div.btn-group-vertical
-              +bt( 'copy', '変換後テキストをクリップボードのコピー' ) #[i.fa.fa-clipboard] #[span COPY]
-              +bt( 'move', '変換後テキストを変換前テキストエリアへ移動' ) #[i.glyphicon.glyphicon-chevron-left] #[span MOVE]
-              +bt( 'delete', 'テキストを一括削除' ) #[i.glyphicon.glyphicon-remove] #[span DELETE]
-              +bt( 'undo', '一段階前に戻す' ) #[i.glyphicon.glyphicon-undo] #[span UNDO]
-              +bt( 'change', '左右を入れ替え' ) #[i.fa.fa-exchange] #[span REPLACE]
-              label.btn.btn-sm.btn-primary #[input.automove( name = 'automove', type = 'checkbox' )] AUTO#[span.hidden-xs  MOVE]
+              +bt('copy', '変換後テキストをクリップボードのコピー') #[i.fa.fa-clipboard] #[span COPY]
+              +bt('move', '変換後テキストを変換前テキストエリアへ移動') #[i.glyphicon.glyphicon-chevron-left] #[span MOVE]
+              +bt('delete', 'テキストを一括削除') #[i.glyphicon.glyphicon-remove] #[span DELETE]
+              +bt('undo', '一段階前に戻す') #[i.glyphicon.glyphicon-undo] #[span UNDO]
+              +bt('change', '左右を入れ替え') #[i.fa.fa-exchange] #[span REPLACE]
+              label.btn.btn-sm.btn-primary #[input.automove(name = 'automove', type = 'checkbox')] AUTO#[span.hidden-xs  MOVE]
         section.area-control
           div.ctLabel.btn-group.btn-group-sm.btn-group-justified
-            label.btn.btn-info( for = 'ctGroup_code' ) コード/数値
-            label.btn.btn-info( for = 'ctGroup_cont' ) 文字列操作
-            label.btn.btn-info( for = 'ctGroup_unit' ) 文字列生成
-            label.btn.btn-info( for = 'ctGroup_lang' ) 言語
+            each val, key in {'code': 'コード/数値', 'cont':'文字列操作', 'unit': '文字列生成', 'lang': '言語'}
+              label.btn.btn-info(for = 'ctGroup_' + key) #{val}
           each val, key in btsArr
-            input.ctGroupRd.hidden( id = key, type = 'radio', name = 'ctGroupRd', checked = 'checked' )
+            input.ctGroupRd.hidden(id = key, type = 'radio', name = 'ctGroupRd', checked = 'checked')
             div.ctGroup
               each val2, key2 in val
                 +dlBox(key2, val2)
@@ -51,131 +49,131 @@ html( lang = 'en' )
                     div.form-inline
                       div.form-group
                         div.input-group.input-group-sm.input-group-bt
-                          input#td_amount.form-control( value = 20, type = 'number' )
+                          input#td_amount.form-control(value = 20, type = 'number')
                           div.input-group-btn
-                            button.btn.btn-primary.bt-control( type = 'button', value = 'tidy' ) 文字ごとに改行
+                            button.btn.btn-primary.bt-control(type = 'button', value = 'tidy') 文字ごとに改行
                         div.input-group.input-group-sm.input-group-bt
-                          input#td2_reg.form-control( value = '\\d{2,2}:', type = 'text' )
+                          input#td2_reg.form-control(value = '\\d{2,2}:', type = 'text')
                           div.input-group-btn
-                            button.btn.btn-primary.bt-control( type = 'button', value = 'tidy2' ) ごとに頭出し
-                        div.btn-group.btn-group-sm( role = 'group', aria-label = '...' )
+                            button.btn.btn-primary.bt-control(type = 'button', value = 'tidy2') ごとに頭出し
+                        div.btn-group.btn-group-sm(role = 'group', aria-label = '...')
                           each val in [{value: '。',checked: true},{value: '、'},{value: '\.'},{value: '\,'},{value: '「」',checked: true},{value: '（）'}]
-                            label.btn.btn-info #[input.tidy3_cb( name = 'tidy3_cb', type = 'checkbox', value!=val.value, checked = val.checked )] !{val.value}
-                          button.btn.btn-primary.btn-sm.bt-control( type = 'button', value = 'tidy3' ) で改行
-                    button.btn.btn-primary.bt-control( type = 'button', value = 'tree' ) 列挙パスをツリー化
-                    button.btn.btn-primary.bt-control( type = 'button', value = 'path' ) ツリーを列挙パス化
-                    button.btn.btn-primary.bt-control( type = 'button', value = 'jsonTidy' ) JSON整形
+                            label.btn.btn-info #[input.tidy3_cb(name = 'tidy3_cb', type = 'checkbox', value!=val.value, checked = val.checked)] !{val.value}
+                          button.btn.btn-primary.btn-sm.bt-control(type = 'button', value = 'tidy3') で改行
+                    button.btn.btn-primary.bt-control(type = 'button', value = 'tree') 列挙パスをツリー化
+                    button.btn.btn-primary.bt-control(type = 'button', value = 'path') ツリーを列挙パス化
+                    button.btn.btn-primary.bt-control(type = 'button', value = 'jsonTidy') JSON整形
                   else if key2 === 'ctset_grep'
                     div.form-inline
                       div.form-group
                         div.input-group.input-group-sm
                           span.input-group-btn
                             label.btn.btn-primary #[input#caps(type = 'checkbox' )] Aa
-                          input.form-control( type = 'text', id = 'rep_find', value = '', placeholder = 'Find What' )
+                          input.form-control(type = 'text', id = 'rep_find', value = '', placeholder = 'Find What')
                         div.input-group.input-group-sm
-                          input.form-control( type = 'text', id = 'rep_rep', value = '', placeholder = 'Replace With' )
+                          input.form-control(type = 'text', id = 'rep_rep', value = '', placeholder = 'Replace With')
                           span.input-group-btn
-                            button.btn.btn-primary.bt-control( type = 'button', title = '置換' , value = 'replacement' ) 置換
+                            button.btn.btn-primary.bt-control(type = 'button', title = '置換' , value = 'replacement') 置換
                   else if key2 === 'ctset_ime'
                     each val, key in {accent: '符号付き英字', ligat: '英合字', pyin: 'ピンイン入力', uni: 'Unicode'}
                       button.btn.btn-primary.btn-sm( type = 'button', data-toggle = 'modal', data-target = '#' + key) #{val}
           ul.link-list
-            li: a.btn.btn-primary( data-toggle = 'modal', data-target = '#help' ) #[i.fa.fa-question-circle( aria-hidden = 'true' )] help
-            li: a.btn.btn-primary( target='_blank', href='https://github.com/ichimonji/textConvertor' ) #[i.fa.fa-github( aria-hidden = 'true' )] github
+            li: a.btn.btn-primary(data-toggle = 'modal', data-target = '#help') #[i.fa.fa-question-circle(aria-hidden = 'true')] help
+            li: a.btn.btn-primary(target='_blank', href='https://github.com/ichimonji/textConvertor') #[i.fa.fa-github(aria-hidden = 'true')] github
       section.section-ime
-        div.modal.fade#accent( tabindex = '-1', role = 'dialog' )
-          div.modal-dialog( role = 'document' )
+        div.modal.fade#accent(tabindex = '-1', role = 'dialog')
+          div.modal-dialog(role = 'document')
             div.modal-content
               div.modal-header
-                button.close( type = 'button', data-dismiss = 'modal', aria-label = 'Close' )
-                  span( aria-hidden = 'true' ) &times;
+                button.close(type = 'button', data-dismiss = 'modal', aria-label = 'Close')
+                  span(aria-hidden = 'true') &times;
                 h4.modal-title 符号付き英字
               div.modal-body
                 div.alphaDisp#alphaDisp
-                div.btn-group.btn-group-sm.btn-col13.btn-group-alpha( role = 'group', aria-label = '...' )
+                div.btn-group.btn-group-sm.btn-col13.btn-group-alpha(role = 'group', aria-label = '...')
                   button.btn.btn-info.btn-control( type = 'button', value = 'case') Aa
                   each val in ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
                     button.btn.btn-primary.btn-alpha( type = 'button', value = val) #{val}
                 div.btn-group.btn-group-sm.btn-col13#alpha_opt
-                button.btn.btn-primary.bt-control( type = 'button', value = 'accent' ) 決定
+                button.btn.btn-primary.bt-control(type = 'button', value = 'accent') 決定
       section.section-ime
-        div.modal.fade#ligat( tabindex = '-1', role = 'dialog' )
-          div.modal-dialog( role = 'document' )
+        div.modal.fade#ligat(tabindex = '-1', role = 'dialog')
+          div.modal-dialog(role = 'document')
             div.modal-content
               div.modal-header
-                button.close( type = 'button', data-dismiss = 'modal', aria-label = 'Close' )
-                  span( aria-hidden = 'true' ) &times;
+                button.close(type = 'button', data-dismiss = 'modal', aria-label = 'Close')
+                  span(aria-hidden = 'true') &times;
                 h4.modal-title 英合字
               div.modal-body
                 div.ligatDisp#ligatDisp
-                div.btn-group.btn-group-sm.btn-col13.btn-group-ligat( role = 'group', aria-label = '...' )
+                div.btn-group.btn-group-sm.btn-col13.btn-group-ligat(role = 'group', aria-label = '...')
                   each val in ['ae','ao','au','av','ay','db','dz','ff','ffi','ffl','fi','fl','ft','ij','lb','lj','ng','nj','oe','oo','ou','qp','st','sz','ue','vy']
                     button.btn.btn-primary.btn-ligat( type = 'button', value = val) #{val}
                 div.btn-group.btn-group-sm.btn-col13#ligat_opt
-                button.btn.btn-primary.bt-control( type = 'button', value = 'ligature' ) 決定
+                button.btn.btn-primary.bt-control(type = 'button', value = 'ligature') 決定
       section.section-ime
-        div.modal.fade#pyin( tabindex = '-1', role = 'dialog' )
-          div.modal-dialog( role = 'document' )
+        div.modal.fade#pyin(tabindex = '-1', role = 'dialog')
+          div.modal-dialog(role = 'document')
             div.modal-content
               div.modal-header
-                button.close( type = 'button', data-dismiss = 'modal', aria-label = 'Close' )
-                  span( aria-hidden = 'true' ) &times;
+                button.close(type = 'button', data-dismiss = 'modal', aria-label = 'Close')
+                  span(aria-hidden = 'true') &times;
                 h4.modal-title ピンイン入力
               div.modal-body
                 div.pyinDisp#pyinDisp
-                div.btn-group.btn-group-sm.btn-col10.btn-group-pyin( role = 'group', aria-label = '...' )
+                div.btn-group.btn-group-sm.btn-col10.btn-group-pyin(role = 'group', aria-label = '...')
                   each val in ['a','b','c','ch','d','e','f','g','h','j','k','l','m','n','o','p','q','r','s','sh','t','w','x','y','z','zh']
-                    button.btn.btn-primary.btn-pyin( type = 'button', value = val ) #{val}
+                    button.btn.btn-primary.btn-pyin(type = 'button', value = val) #{val}
                 div.btn-group.btn-group-sm.btn-col13#pyin_opt
                 div.btn-group.btn-group-sm.btn-col13#pyin_opt2
-                button.btn.btn-primary.bt-control( type = 'button', value = 'pinyin2' ) 決定
+                button.btn.btn-primary.bt-control(type = 'button', value = 'pinyin2') 決定
       section.section-ime
-        div.modal.fade#uni( tabindex = '-1', role = 'dialog' )
-          div.modal-dialog( role = 'document' )
+        div.modal.fade#uni(tabindex = '-1', role = 'dialog')
+          div.modal-dialog(role = 'document')
             div.modal-content
               div.modal-header
-                button.close( type = 'button', data-dismiss = 'modal', aria-label = 'Close' )
-                  span( aria-hidden = 'true' ) &times;
+                button.close(type = 'button', data-dismiss = 'modal', aria-label = 'Close')
+                  span(aria-hidden = 'true') &times;
                 h4.modal-title Unicode入力
               div.modal-body
                 div.uniDisp#uniDisp
-                div.btn-group.btn-group-sm.btn-col10.btn-group-uni( role = 'group', aria-label = '...' )
+                div.btn-group.btn-group-sm.btn-col10.btn-group-uni(role = 'group', aria-label = '...')
                   select.form-control#uniSelect
                     each val, key in uniGroup
-                      option( value = val ) #{key}
+                      option(value = val) #{key}
                 div.btn-group.btn-group-sm.btn-col13#uni_opt
-                button.btn.btn-primary.bt-control( type = 'button', value = 'uni2' ) 決定
+                button.btn.btn-primary.bt-control(type = 'button', value = 'uni2') 決定
       section.info
-        div.modal.help.fade#settings( tabindex = '-1', role = 'dialog' )
-          div.modal-dialog.modal-sm( role = 'document' )
+        div.modal.help.fade#settings(tabindex = '-1', role = 'dialog')
+          div.modal-dialog.modal-sm(role = 'document')
             div.modal-content
               div.modal-header
-                button.close( type = 'button', data-dismiss = 'modal', aria-label = 'Close' )
-                  span( aria-hidden = 'true' ) &times;
+                button.close(type = 'button', data-dismiss = 'modal', aria-label = 'Close')
+                  span(aria-hidden = 'true') &times;
                 h4.modal-title settings
               div.modal-body
                 each val, key in settings
                   div.form-group
-                    label( for = key ) !{val.title}
-                    div.btn-group( class = 'col' + Object.keys(val.arr).length, data-toggle = 'buttons', role = 'group', aria-label = 'setting: ' + key )
+                    label(for = key) !{val.title}
+                    div.btn-group(class = 'col' + Object.keys(val.arr).length, data-toggle = 'buttons', role = 'group', aria-label = 'setting: ' + key)
                       each val2, key2 in val.arr
                         - var checkedflg = (key2 === val.checked);
-                        label.btn.btn-primary(class = checkedflg ? 'active' : '') #[input( type = 'radio', name = key, value = val2, checked = checkedflg )] !{key2}
+                        label.btn.btn-primary(class = checkedflg ? 'active' : '') #[input(type = 'radio', name = key, value = val2, checked = checkedflg)] !{key2}
               div.modal-footer
                 button.btn.btn-default.btn-sm(type = 'button', data-dismiss = 'modal') Close
       section.info
-        div.modal.help.fade#help( tabindex = '-1', role = 'dialog' )
-          div.modal-dialog( role = 'document' )
+        div.modal.help.fade#help(tabindex = '-1', role = 'dialog')
+          div.modal-dialog(role = 'document')
             div.modal-content
               div.modal-header
-                button.close( type = 'button', data-dismiss = 'modal', aria-label = 'Close' )
-                  span( aria-hidden = 'true' ) &times;
+                button.close(type = 'button', data-dismiss = 'modal', aria-label = 'Close')
+                  span(aria-hidden = 'true') &times;
                 h4.modal-title #{$title} help
               div.modal-body
-                include:markdown-it:html-beautify readme.md
+                include:markdown-it:html-beautify help.md
               div.modal-footer
-                button.btn.btn-default( type = 'button', data-dismiss = 'modal' ) Close
+                button.btn.btn-default(type = 'button', data-dismiss = 'modal') Close
       textarea#forCopy
     footer.footer
-      a( href = 'https://twitter.com/ichimonji_haji' ) #[i.fa.fa-twitter] @ichimonji_haji
-    +jsAll( scripts )
+      a(href = 'https://twitter.com/ichimonji_haji') #[i.fa.fa-twitter] @ichimonji_haji
+    +jsAll(scripts)

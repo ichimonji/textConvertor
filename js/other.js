@@ -1,6 +1,6 @@
 /* eslint no-unused-vars: 0 */
 
-const
+export const
   // export const
   // 文字参照用
   charaMap = {

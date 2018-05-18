@@ -18,7 +18,7 @@ const
   $opt = document.getElementById('opt'),
   diffArr = 'aāáǎàbcdeēéěèếễểềfghiīíǐìjklmḿnňoōóǒòpqrstuūúǔùüǖǘǚǜvwxyz';
 
-pinyinRe0 = JSON.stringify(pinyin_default);
+pinyinRe0 = JSON.stringify(pinyinDefault);
 pinyinRe0 = pinyinRe0.replace(/\{/g, '{\n').replace(/\}/g, '\n  },\n');
 pinyinRe0 = `const\n  pinyin = ${pinyinRe0}`;
 pinyinRe0 = pinyinRe0.replace(/("[^,]*?","[^,]*?","[^,]*?","[^,]*?","[^,]*?","[^,]*?","[^,]*?","[^,]*?","[^,]*?","[^,]*?","[^,]*?","[^,]*?","[^,]*?","[^,]*?","[^,]*?","[^,]*?",)/g, '$1\n');
@@ -29,7 +29,7 @@ pinyinRe0 = `${pinyinRe0}  pin = new RegExp('%u(3[4-9a-fA-F][0-9a-fA-F]{2}|[4-9]
 // $opt.innerText = pinyinRe0;
 
 for (let key in pinyinDefault) {
-  arr = pinyin_default[key].split('/');
+  arr = pinyinDefault[key].split('/');
   for (let i = 0; i < arr.length; i += 1) {
     pinyinRe1.push([arr[i], key]);
   }

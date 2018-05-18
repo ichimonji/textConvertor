@@ -1,6 +1,6 @@
 /* eslint no-unused-vars: 0 */
 
-const
+export const
   // export const
   // 新字体、旧字体の対応（基本）
   shin2kyu = [

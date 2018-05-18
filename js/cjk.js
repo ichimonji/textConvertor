@@ -1,6 +1,6 @@
 /* eslint no-unused-vars: 0 */
 
-const
+export const
   // export const
   // 簡体字、繁体字、日本漢字の単語
   cjkAll = [
