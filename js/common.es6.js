@@ -145,10 +145,10 @@ $(function () {
         oStr = iStr.replace(/[a-zA-Z]/g, r => r[(/[a-z]/g).test(r) ? 'toUpperCase' : 'toLowerCase']());
         break;
       case 'case-toDouble':
-        oStr = iStr.replace(/"/g, '\'');
+        oStr = iStr.replace(/'/g, '"');
         break;
       case 'case-toSingle':
-        oStr = iStr.replace(/'/g, '"');
+        oStr = iStr.replace(/"/g, '\'');
         break;
       case 'case-hyphenToUnder':
         oStr = iStr.replace(/(\w+)-(?=(\w+))/g, '$1_');
@@ -179,7 +179,7 @@ $(function () {
         oStr = escape(iStr);
         break;
       case 'url-decode':
-        oStr = decodeURIComponent(iStr);
+        oStr = decodeURIComponent(unescape(iStr));
         break;
       case 'b64-encode':
         oStr = btoa(unescape(encodeURIComponent(iStr)));
@@ -609,7 +609,7 @@ $(function () {
           return instStr.replace(',', '').replace('.', '点');
         });
         break;
-      case 'num-j_a': {
+      case 'num-toArabic': {
         const kTen1 = new RegExp('(([零点〇一二三四五六七八九十百千万億兆京垓穣溝澗正載極]|\uD855\uDF71|恒河沙|阿僧祇|那由他|不可思議|無量大数)+)', 'gu');
         oStr = iStr.replace(kTen1, r => {
           const kTen2 = new RegExp('(\uD855\uDF71|\u25771)', 'gu');
@@ -641,7 +641,7 @@ $(function () {
         });
         break;
       }
-      case 'num-a_r':
+      case 'num-arabicToRoman':
         oStr = iStr.replace(/(\d[\d.,]+|\d+)/g, n => {
           instNum = parseInt(n.replace(/,/g, '').split('.')[0], 10);
           let rom = '';
@@ -688,7 +688,7 @@ $(function () {
           return rom;
         });
         break;
-      case 'num-r_a':
+      case 'num-romanToArabic':
         oStr = iStr.replace(findR, n => {
           instStr = n.replace(/[ↀↁↂↇↈ]/g, s => romanStrBase[romanStr1.indexOf(s)]);
           instNum = 0;
@@ -732,46 +732,46 @@ $(function () {
         });
         break;
       // Jpn Characters
-      case 'jpn1':
+      case 'zhKana2zkKana':
         oStr = iStr.replace(/[\u3041-\u3096]/g, r => String.fromCharCode(r.charCodeAt(0) + 0x60));
         break;
-      case 'jpn2':
+      case 'zkKana2zhKana':
         oStr = iStr.replace(/[\u30a1-\u30f6]/g, r => String.fromCharCode(r.charCodeAt(0) - 0x60));
         break;
-      case 'jpn3':
+      case 'hkKana2zkKana':
         oStr = iStr.replace(kana1, r => kanaMap[kana1arr.indexOf(r)][1]).replace(/ﾞ/g, '゛').replace(/ﾟ/g, '゜');
         break;
-      case 'jpn4':
+      case 'zkKana2hkKana':
         oStr = iStr.replace(kana2, r => kanaMap[kana2arr.indexOf(r)][0]);
         break;
-      case 'jpn5':
+      case 'hLatinNum2zLatinNum':
         oStr = iStr.replace(alpha1, r => kanaAlpha[alpha1arr.indexOf(r)][1]).replace(/ﾞ/g, '゛').replace(/ﾟ/g, '゜');
         break;
-      case 'jpn6':
+      case 'zLatinNum2hLatinNum':
         oStr = iStr.replace(alpha2, r => kanaAlpha[alpha2arr.indexOf(r)][0]);
         break;
-      case 'jpn7':
+      case 'jpNew2OldM':
         instStr = iStr.replace(cjk1, r => shin2kyu[cjk1arr.indexOf(r)][1]);
         oStr = instStr;
         break;
-      case 'jpn7b':
+      case 'jpNew2OldL':
         instStr = iStr.replace(cjk1, r => shin2kyu[cjk1arr.indexOf(r)][1]);
         instStr = instStr.replace(shinSp1, r => unescape(shinSpBase[shinSp1arr.indexOf(r)][1]));
         oStr = instStr;
         break;
-      case 'jpn8':
+      case 'jpOld2New':
         instStr = iStr.replace(cjk2, r => shin2kyu[cjk2arr.indexOf(r)][0]);
         instStr = instStr.replace(cjk1add, r => kyu2shinAdd[cjk1addArr.indexOf(r)][1]);
         instStr = escape(instStr).replace(/(%uFE00|%uDB40%uDD[01][0-9a-fA-F])/g, '');
         oStr = unescape(instStr);
         break;
-      case 'jpn9':
+      case 'jpKansu2Daiji':
         oStr = iStr.replace(findDK, r => daizi.dai[daizi.kan.indexOf(r)]);
         break;
-      case 'jpna':
+      case 'jpDaiji2Kansu':
         oStr = iStr.replace(findDD, r => daizi.kan[daizi.dai.indexOf(r)]);
         break;
-      case 'jpnb':
+      case 'zkKana2Kunre':
         instStr = iStr.replace(/ン([ヤユヨアイウエオ])/g, 'ン\'$1');
         instStr = instStr.replace(kun1, r => kunre[kun1arr.indexOf(r)][1]);
         instStr = instStr.replace(/ッ([kstnhmyrgzjpbd])/g, '$1$1').replace(/ッ/g, '\'');
@@ -779,7 +779,7 @@ $(function () {
         instStr = instStr.replace(/([aiueo])ー/g, (r, r1) => 'âîûêô'['aiueo'.indexOf(r1)]);
         oStr = instStr;
         break;
-      case 'jpnc':
+      case 'zkKana2Hebon':
         instStr = iStr.replace(/ン([ヤユヨアイウエオ])/g, 'ン\'$1');
         instStr = instStr.replace(heb1, r => hebon[heb1arr.indexOf(r)][1]);
         instStr = instStr.replace(/n([bmp])/g, 'm$1');
@@ -787,14 +787,14 @@ $(function () {
         instStr = instStr.replace(/ー/g, '').replace(/o[uo]/g, 'o').replace(/uu/g, 'u').replace(/ii/g, 'i');
         oStr = instStr;
         break;
-      case 'jpnd':
+      case 'hebon2zkKana':
         instStr = iStr.replace(/[nm]([^aiueoyw])/g, 'ン$1');
         instStr = iStr.replace(/([kstnhmyrgzjpbd])\1/g, 'ッ$1');
         instStr = instStr.replace(kanaromaReg, r => kanaroma[kanaromaArr.indexOf(r)][1]);
         oStr = instStr;
         break;
       // CJK Characters
-      case 'tocjk1':
+      case 'kanji2Kantai':
         oStr = iStr.replace(findWordN, r => escape(cjkWord[findWordNArr.indexOf(r)][0]));
         oStr = oStr.replace(findN, r => {
           instArr = findNArr.arrIndex(r);
@@ -816,7 +816,7 @@ $(function () {
         });
         oStr = unescape(oStr);
         break;
-      case 'tocjk2':
+      case 'kanji2Hantai':
         oStr = iStr.replace(findWordN, r => escape(cjkWord[findWordNArr.indexOf(r)][1]));
         oStr = oStr.replace(findN, r => {
           instArr = findNArr.arrIndex(r);
@@ -838,7 +838,7 @@ $(function () {
         });
         oStr = unescape(oStr);
         break;
-      case 'tocjk3':
+      case 'kantai2Kanji':
         oStr = iStr.replace(findWordK, r => escape(cjkWord[findWordKArr.indexOf(r)][2]));
         oStr = oStr.replace(findK, r => {
           instArr = findKArr.arrIndex(r);
@@ -860,7 +860,7 @@ $(function () {
         });
         oStr = unescape(oStr);
         break;
-      case 'tocjk4':
+      case 'hantai2Kanji':
         oStr = iStr.replace(findWordH, r => escape(cjkWord[findWordHArr.indexOf(r)][2]));
         oStr = oStr.replace(findH, r => {
           instArr = findHArr.arrIndex(r);
@@ -882,7 +882,7 @@ $(function () {
         });
         oStr = unescape(oStr);
         break;
-      case 'tocjk5':
+      case 'kantai2Hantai':
         oStr = iStr.replace(findWordK, r => escape(cjkWord[findWordKArr.indexOf(r)][1]));
         oStr = oStr.replace(findK, r => {
           instArr = findKArr.arrIndex(r);
@@ -904,7 +904,7 @@ $(function () {
         });
         oStr = unescape(oStr);
         break;
-      case 'tocjk6':
+      case 'hantai2Kantai':
         oStr = iStr.replace(findWordH, r => escape(cjkWord[findWordHArr.indexOf(r)][1]));
         oStr = oStr.replace(findH, r => {
           instArr = findHArr.arrIndex(r);
@@ -926,12 +926,12 @@ $(function () {
         });
         oStr = unescape(oStr);
         break;
-      case 'tocjk7':
+      case 'addPinyin':
         instStr = escape(iStr).replace(pin, (r, r1) => ((r1 in pinyin) ? `${r}[${pinyin[r1]}]` : r));
         oStr = unescape(instStr);
         break;
       // skt
-      case 'skt1':
+      case 'sktDev2HK':
         oStr = iStr.replace(sktS, r => {
           instStr = r.replace(sktAddA, '$1a');
           instStr = instStr.replace(sktS2, s => {
@@ -942,7 +942,7 @@ $(function () {
           return instStr;
         });
         break;
-      case 'skt2':
+      case 'sktDev2IAST':
         oStr = iStr.replace(sktS, r => {
           instStr = r.replace(sktAddA, '$1a');
           instStr = instStr.replace(sktS2, s => {
@@ -953,7 +953,7 @@ $(function () {
           return instStr;
         });
         break;
-      case 'skt3':
+      case 'sktHK2Dev':
         oStr = iStr.replace(sktH, r => {
           flg = true;
           instStr = r.replace(sktH2, s => {
@@ -967,7 +967,7 @@ $(function () {
           return instStr;
         });
         break;
-      case 'skt4':
+      case 'sktHK2IAST':
         oStr = iStr.replace(sktH, r => {
           instStr = r.replace(sktH2, s => {
             [[, [instStr2]]] = sanskrit.filter(t => (t[0].indexOf(s) !== -1));
@@ -976,7 +976,7 @@ $(function () {
           return instStr;
         });
         break;
-      case 'skt5':
+      case 'sktIAST2Dev':
         oStr = iStr.replace(sktI, r => {
           flg = true;
           instStr = r.toLowerCase();
@@ -991,7 +991,7 @@ $(function () {
           return instStr;
         });
         break;
-      case 'skt6':
+      case 'sktIAST2HK':
         oStr = iStr.replace(sktI, r => {
           instStr = r.toLowerCase();
           instStr = instStr.replace(sktI2, s => {
@@ -1451,6 +1451,8 @@ $(function () {
     if (tName === 'areaHeight') {
       $pts.removeClass('s m l');
       $pts.addClass(tVal);
+    } else if (tVal === 'Noto Sans') {
+      $pts.css({ fontFamily: "'Noto Sans', 'Noto Sans JP'" });
     } else {
       $pts.css(tName, tVal);
     }

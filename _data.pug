@@ -25,6 +25,7 @@
       'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css',
       'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css',
       'https://fonts.googleapis.com/css?family=Lato:400,700,900',
+      'http://fonts.googleapis.com/earlyaccess/notosans.css',
       'http://fonts.googleapis.com/earlyaccess/notosansjp.css',
       'css/common.css'
     ],
@@ -44,7 +45,7 @@
           'sans-serif': 'sans-serif',
           'serif': 'serif',
           'monospace': 'monospace',
-          'Noto Sans': '\'Noto Sans\''
+          'Noto Sans': 'Noto Sans'
         }
       },
       'areaHeight': {
@@ -295,9 +296,9 @@
         'ctset_number': {
           'str': '数字',
           'bts': [
-            ['num-a_j', 'アラビア数字を漢数字に（桁付き）', '123→百二十三'],
-            ['num-a_j2', 'アラビア数字を漢数字に（桁なし）', '123→一二三'],
-            ['num-j_a', '漢数字をアラビア数字に', '百二十三→123']
+            ['num-toJpL', 'アラビア数字を漢数字に（桁付き）', '123→百二十三'],
+            ['num-toJpM', 'アラビア数字を漢数字に（桁なし）', '123→一二三'],
+            ['num-toArabic', '漢数字をアラビア数字に', '百二十三→123']
           ],
           'lbs': {
             'lb': [
@@ -306,51 +307,51 @@
               ['roman_class', 'rd', 'C2', 'CIↃ(1~399999)']
             ],
             'bt': [
-              ['num-a_r', 'アラビア数字をローマ数字に', 'Arabic→Roman'],
-              ['num-r_a', 'ローマ数字をアラビア数字に', 'Roman→Arabic']
+              ['num-arabicToRoman', 'アラビア数字をローマ数字に', 'Arabic→Roman'],
+              ['num-romanToArabic', 'ローマ数字をアラビア数字に', 'Roman→Arabic']
             ]
           }
         },
         'ctset_japan': {
           'str': '日本語関連',
           'bts': [
-            ['jpn1', '全角ひらがなを全角カタカナに', 'あ→ア'],
-            ['jpn2', '全角カタカナを全角ひらがなに', 'ア→あ'],
-            ['jpn3', '半角カタカナを全角カタカナに', 'ｱ→ア'],
-            ['jpn4', '全角カタカナを半角カタカナに', 'ア→ｱ'],
-            ['jpn5', '半角英数字を全角英数字に', 'A1→Ａ１'],
-            ['jpn6', '全角英数字を半角英数字に', 'Ａ１→A1'],
-            ['jpn7', '新字体を旧字体に（異体字セレクタ分を含まない）', '新字→旧字（中）'],
-            ['jpn7b', '新字体を旧字体に（異体字セレクタ分を含む）', '新字→旧字（強）'],
-            ['jpn8', '旧字体を新字体に（異体字セレクタ分を含む）', '旧字→新字'],
-            ['jpn9', '漢数字を大字に', '一二→壱弐'],
-            ['jpna', '大字を漢数字に', '壱弐→一二'],
-            ['jpnb', '全角カタカナを訓令式ローマ字表記に', 'トウキョウ→tôkyô'],
-            ['jpnc', '全角カタカナをヘボン式ローマ字表記に', 'トウキョウ→tokyo'],
-            ['jpnd', 'ヘボン式ローマ字を全角カタカナに', 'tokyo→トキョ']
+            ['zhKana2zkKana', '全角ひらがなを全角カタカナに', 'あ→ア'],
+            ['zkKana2zhKana', '全角カタカナを全角ひらがなに', 'ア→あ'],
+            ['hkKana2zkKana', '半角カタカナを全角カタカナに', 'ｱ→ア'],
+            ['zkKana2hkKana', '全角カタカナを半角カタカナに', 'ア→ｱ'],
+            ['hLatinNum2zLatinNum', '半角英数字を全角英数字に', 'A1→Ａ１'],
+            ['zLatinNum2hLatinNum', '全角英数字を半角英数字に', 'Ａ１→A1'],
+            ['jpNew2OldM', '新字体を旧字体に（異体字セレクタ分を含まない）', '新字→旧字（中）'],
+            ['jpNew2OldL', '新字体を旧字体に（異体字セレクタ分を含む）', '新字→旧字（強）'],
+            ['jpOld2New', '旧字体を新字体に（異体字セレクタ分を含む）', '旧字→新字'],
+            ['jpKansu2Daiji', '漢数字を大字に', '一二→壱弐'],
+            ['jpDaiji2Kansu', '大字を漢数字に', '壱弐→一二'],
+            ['zkKana2Kunre', '全角カタカナを訓令式ローマ字表記に', 'トウキョウ→tôkyô'],
+            ['zkKana2Hebon', '全角カタカナをヘボン式ローマ字表記に', 'トウキョウ→tokyo'],
+            ['hebon2zkKana', 'ヘボン式ローマ字を全角カタカナに', 'tokyo→トキョ']
           ]
         },
         'ctset_cjk': {
           'str': 'CJK関連',
           'bts': [
-            ['tocjk1', '日本字体を簡体字に', '日→簡体'],
-            ['tocjk2', '日本字体を繁体字に', '日→繁体'],
-            ['tocjk3', '簡体字を日本字体に', '簡体→日'],
-            ['tocjk4', '繁体字を日本字体に', '繁体→日'],
-            ['tocjk5', '簡体字を繁体字に', '簡体→繁体'],
-            ['tocjk6', '繁体字を簡体字に', '繁体→簡体'],
-            ['tocjk7', '漢字の直後にピンインを追加', 'ピンイン']
+            ['kanji2Kantai', '日本字体を簡体字に', '日→簡体'],
+            ['kanji2Hantai', '日本字体を繁体字に', '日→繁体'],
+            ['kantai2Kanji', '簡体字を日本字体に', '簡体→日'],
+            ['hantai2Kanji', '繁体字を日本字体に', '繁体→日'],
+            ['kantai2Hantai', '簡体字を繁体字に', '簡体→繁体'],
+            ['hantai2Kantai', '繁体字を簡体字に', '繁体→簡体'],
+            ['addPinyin', '漢字の直後にピンインを追加', 'ピンイン']
           ]
         },
         'ctset_skt': {
           'str': 'Sanskrit',
           'bts': [
-            ['skt1', 'デーヴァナガリーを京都・ハーバード方式に', 'संस्कृत→saMskRta'],
-            ['skt2', 'デーヴァナガリーをIASTに', 'संस्कृत→saṃskṛta'],
-            ['skt3', '京都・ハーバード方式をデーヴァナガリーに', 'saMskRta→संस्कृत'],
-            ['skt4', '京都・ハーバード方式をIASTに', 'saMskRta→saṃskṛta'],
-            ['skt5', 'IASTをデーヴァナガリーに', 'saṃskṛta→संस्कृत'],
-            ['skt6', 'IASTを京都・ハーバード方式に', 'saṃskṛta→saMskRta']
+            ['sktDev2HK', 'デーヴァナガリーを京都・ハーバード方式に', 'संस्कृत→saMskRta'],
+            ['sktDev2IAST', 'デーヴァナガリーをIASTに', 'संस्कृत→saṃskṛta'],
+            ['sktHK2Dev', '京都・ハーバード方式をデーヴァナガリーに', 'saMskRta→संस्कृत'],
+            ['sktHK2IAST', '京都・ハーバード方式をIASTに', 'saMskRta→saṃskṛta'],
+            ['sktIAST2Dev', 'IASTをデーヴァナガリーに', 'saṃskṛta→संस्कृत'],
+            ['sktIAST2HK', 'IASTを京都・ハーバード方式に', 'saṃskṛta→saMskRta']
           ]
         }
       }
