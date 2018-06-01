@@ -1,50 +1,16 @@
+@import '_variable'
+@import '_mixin'
+
 @import 'nib'
-@import url('https://fonts.googleapis.com/css?family=Noto+Sans')
-@import url("http://fonts.googleapis.com/earlyaccess/notosansjp.css")
-
-// width global
-sm = 768px
-lg = 1200px
-
-// color global
-$col_white = #fff
-$col_lightgray = #aaa
-$col_gray = #555
-$col_darkgray = #333
-$col_primary = #337ab7
-$col_primaryHover = #286090
-$col_info = #5bc0de
-$col_infoHover = #31b0d5
-
-// mixins
-// break(media query)
-break(scname)
-  @media only screen and (max-width: scname)
-    {block}
-
-breakUp(scname)
-  @media only screen and (min-width: scname + 1 )
-    {block}
-
-sp_ctset(idname)
-  #{idname} + .ct-set
-    {block}
-
-// flex shorthand
-flexer(dir = row, wr = nowrap, jc = flex-start, ai = stretch, ac = stretch)
-  display flex
-  flex-direction dir
-  flex-wrap wr
-  justify-content jc
-  align-items ai
-  align-content ac
+@import 'https://fonts.googleapis.com/css?family=Noto+Sans'
+@import 'http://fonts.googleapis.com/earlyaccess/notosansjp.css'
 
 :root
   font-size 14px
-  +break(sm)
-    font-size 0.86rem
+  +break( $w_sm )
+    font-size .86rem
 
-html,body
+html, body
   padding 0
   margin 0
   font-family 'Lato', 'Noto Sans', 'Noto Sans JP', sans-serif
@@ -57,7 +23,7 @@ body
 input[type=text]
   font-family inherit
   font-family 'Noto Sans JP', sans-serif
-  +break(sm)
+  +break( $w_sm )
     font-size 16px!important
 
 input[type=radio]
@@ -93,7 +59,7 @@ h1, h2, h3
   font-size 2rem
   padding 10px
   flexer( row, nowrap, space-between, center )
-  +break(sm)
+  +break( $w_sm )
     background-color $col_darkgray
     font-size 1.5rem
     margin-bottom 0
@@ -106,7 +72,7 @@ h1, h2, h3
   & > div > .btn
     line-height 1
     vertical-align middle
-    +break(sm)
+    +break( $w_sm )
       padding 4px
 
 .footer
@@ -116,7 +82,7 @@ h1, h2, h3
   color $col_lightgray
   font-size 1rem
   text-align right
-  +break(sm)
+  +break( $w_sm )
     background-color $col_darkgray
     margin-top 0
 
@@ -131,7 +97,7 @@ h1, h2, h3
   flexer( column, nowrap, flex-start, center )
   flex-grow 1
   margin 0 10px
-  +break(sm)
+  +break( $w_sm )
     margin 0
 
 .main-wrap
@@ -139,7 +105,7 @@ h1, h2, h3
   margin 0
   padding 0
   background-color $col_gray
-  width lg
+  width $w_lg
   width 800px
   max-width 100%
   box-sizing border-box
@@ -149,9 +115,9 @@ h1, h2, h3
   .form-group
     margin-bottom 0
     & > label
-      +break(sm)
+      +break( $w_sm )
         display none
-  +break(sm)
+  +break( $w_sm )
     padding 2px
     min-width 200px
     border-radius 0
@@ -182,35 +148,35 @@ h1, h2, h3
 
 .glyphicon
   &-undo
-    transform scale(-1,1)
+    transform scale( -1, 1 )
     &:before
       content "\e030"
   &-chevron-left
     &:before
-      +break(sm)
+      +break( $w_sm )
         content "\e113"
 .fa-exchange
-  +break(sm)
-    transform rotateZ(90deg)
+  +break( $w_sm )
+    transform rotateZ( 90deg )
 .area-control
   flexer( row, wrap, flex-start, flex-start )
-  +break(sm)
+  +break( $w_sm )
     flexer( row, wrap, stretch, flex-start )
     margin 0
 .genre
   display none
-  &:not(:checked)
+  &:not( :checked )
     & + .ct-set
       width auto
       margin-right -5px
-      +break(sm)
+      +break( $w_sm )
         margin-right 2px
       & > .body
         display none
       & > .head
         margin-right 5px
         text-align center
-        +break(sm)
+        +break( $w_sm )
           margin-right 0
 .ctLabel
   margin 0 -4px
@@ -218,7 +184,7 @@ h1, h2, h3
   border-radius 0
   .btn
     border-radius 0 !important
-  +break(sm)
+  +break( $w_sm )
     width auto
     margin 0 -2px 3px
 
@@ -226,7 +192,7 @@ h1, h2, h3
   flexer( row, wrap, stretch, flex-start )
   width auto
   margin 1px
-  +break(sm)
+  +break( $w_sm )
     width 100%
     flexer( row, wrap, stretch, flex-start )
     margin 0
@@ -268,13 +234,13 @@ h1, h2, h3
     & .form-control
       border none !important
       box-shadow none !important
-    .btn:not(:last-of-type)
-    .input-group:not(:last-of-type) .form-control:last-child
+    .btn:not( :last-of-type )
+    .input-group:not( :last-of-type ) .form-control:last-child
       border-top-right-radius 0
       border-bottom-right-radius 0
-      border-left-width 0px
-    .btn:not(:first-of-type)
-    .input-group:not(:first-of-type) .form-control:first-child
+      border-left-width 0
+    .btn:not( :first-of-type )
+    .input-group:not( :first-of-type ) .form-control:first-child
       border-top-left-radius 0
       border-bottom-left-radius 0
   & > .head
@@ -288,7 +254,7 @@ h1, h2, h3
     flex-shrink 0
     border-radius 3px
     background-color $col_white
-    padding 4px 4px
+    padding 4px
     font-size 12px
     line-height 1.5
     margin-right 10px
@@ -329,7 +295,7 @@ h1, h2, h3
 .link-list
   display block
   width 100%
-  margin 10px auto 10px
+  margin 10px auto
   text-align center
   li
     display inline-block
@@ -343,7 +309,7 @@ h1, h2, h3
   a
     color $col_white
 
-+break(sm)
++break( $w_sm )
   #lengthDisp
     font-size 12px
     line-height 16px
@@ -402,15 +368,15 @@ h1, h2, h3
         border-width 0 !important
       .btn
       .input-group .form-control
-      .btn:not(:first-of-type)
-      .input-group:not(:first-of-type) .form-control:first-child
-      .btn:not(:last-of-type)
-      .input-group:not(:last-of-type) .form-control:last-child
+      .btn:not( :first-of-type )
+      .input-group:not( :first-of-type ) .form-control:first-child
+      .btn:not( :last-of-type )
+      .input-group:not( :last-of-type ) .form-control:last-child
         flex-grow 1
         border-radius 0 !important
         border-width 0 !important
-      .btn:not(:last-of-type)
-      .input-group:not(:last-of-type) .form-control:last-child
+      .btn:not( :last-of-type )
+      .input-group:not( :last-of-type ) .form-control:last-child
         border-left-width 1px
       .form-inline
         display block
@@ -453,7 +419,7 @@ h1, h2, h3
         flexer( row, wrap, stretch, flex-start )
         border-radius 0
         width 50%
-        +break(sm)
+        +break( $w_sm )
           width 100%
         & > .form-control
           width 60%
@@ -476,7 +442,7 @@ h1, h2, h3
         flexer( row, wrap, stretch, flex-start )
         border-radius 0
         width 50%
-        +break(sm)
+        +break( $w_sm )
           width 100%
         & > .form-control
           width 80%
@@ -493,16 +459,16 @@ h1, h2, h3
   & > .form-inline
     & > .form-group
       & > .input-group-sm
-        &:nth-of-type(5)
-          +breakUp(sm)
+        &:nth-of-type( 5 )
+          +breakUp( $w_sm )
             border-bottom-right-radius 3px
             overflow hidden
 #ctset_dating + .ct-set > .body
   & > .form-inline
     & > .form-group
       & > .input-group-sm
-        &:nth-of-type(4)
-          +breakUp(sm)
+        &:nth-of-type( 4 )
+          +breakUp( $w_sm )
             border-top-right-radius 3px
             border-bottom-right-radius 3px
             overflow hidden
@@ -510,14 +476,14 @@ h1, h2, h3
   & > .form-inline
     & > .form-group
       & > .input-group-sm
-        &:nth-of-type(3)
-        &:nth-of-type(4)
-          +break(sm)
+        &:nth-of-type( 3 )
+        &:nth-of-type( 4 )
+          +break( $w_sm )
             width 33.33%
-        &:nth-of-type(5)
-          +break(sm)
+        &:nth-of-type( 5 )
+          +break( $w_sm )
             width 33.34%
-          +breakUp(sm)
+          +breakUp( $w_sm )
             border-bottom-right-radius 3px
             overflow hidden
 .section-ime #uni
@@ -557,7 +523,7 @@ h1, h2, h3
       table
         tr
           th, td
-            border 1px solid #666
+            border 1px solid $col_gray
             padding 3px 6px
       & > h1
         display none
@@ -571,7 +537,7 @@ h1, h2, h3
         display block
         background-color $col_gray
         color $col_white
-        margin 10px -10px 10px
+        margin 10px -10px
         padding 6px 10px
         font-size 16px
         & + br
@@ -580,7 +546,7 @@ h1, h2, h3
         display block
         margin 10px 0
         padding 10px 10px 4px 0
-        border-bottom 1px solid #000
+        border-bottom 1px solid $col_black
         font-size 14px
         line-height 1
         & + br
@@ -628,9 +594,9 @@ h1, h2, h3
     word-wrap break-word
   .pyinDisp + .pyinDisp
     margin-top 5px
-  .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle)
-  .btn-group > .btn:last-child:not(:first-child)
-  .btn-group > .dropdown-toggle:not(:first-child)
+  .btn-group > .btn:first-child:not( :last-child ):not( .dropdown-toggle )
+  .btn-group > .btn:last-child:not( :first-child )
+  .btn-group > .dropdown-toggle:not( :first-child )
     border-radius 0
   .btn-group
     margin-top 10px
@@ -670,7 +636,7 @@ h1, h2, h3
     overflow hidden
     .btn
       margin 0
-      border 0
+      border none
       flex-grow 1
       border-radius 0
     &.col3
@@ -681,10 +647,10 @@ h1, h2, h3
       .btn
         width 50%
     &.col5
-      .btn:nth-of-type(1)
-      .btn:nth-of-type(2)
-      .btn:nth-of-type(3)
+      .btn:nth-of-type( 1 )
+      .btn:nth-of-type( 2 )
+      .btn:nth-of-type( 3 )
         width 33.3%
-      .btn:nth-of-type(4)
-      .btn:nth-of-type(5)
+      .btn:nth-of-type( 4 )
+      .btn:nth-of-type( 5 )
         width 50px

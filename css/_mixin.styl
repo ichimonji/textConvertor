@@ -1,0 +1,19 @@
+break( $scname )
+  @media screen and ( max-width: $scname )
+    {block}
+
+breakUp( $scname )
+  @media screen and ( min-width: $scname + 1 )
+    {block}
+
+sp_ctset( idname )
+  #{idname} + .ct-set
+    {block}
+
+flexer( dir = row, wr = nowrap, jc = flex-start, ai = stretch, ac = stretch )
+  display flex
+  flex-direction dir
+  flex-wrap wr
+  justify-content jc
+  align-items ai
+  align-content ac

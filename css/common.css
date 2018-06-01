@@ -1,9 +1,9 @@
-@import url("https://fonts.googleapis.com/css?family=Noto+Sans");
-@import url("http://fonts.googleapis.com/earlyaccess/notosansjp.css");
+@import 'https://fonts.googleapis.com/css?family=Noto+Sans';
+@import 'http://fonts.googleapis.com/earlyaccess/notosansjp.css';
 :root {
   font-size: 14px;
 }
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   :root {
     font-size: 0.86rem;
   }
@@ -55,7 +55,7 @@ input[type=text] {
   font-family: inherit;
   font-family: 'Noto Sans JP', sans-serif;
 }
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   input[type=text] {
     font-size: 16px !important;
   }
@@ -129,7 +129,7 @@ h3 {
   -webkit-align-content: stretch;
   align-content: stretch;
 }
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .header {
     background-color: #333;
     font-size: 1.5rem;
@@ -147,7 +147,7 @@ h3 {
   line-height: 1;
   vertical-align: middle;
 }
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .header > div > .btn {
     padding: 4px;
   }
@@ -160,7 +160,7 @@ h3 {
   font-size: 1rem;
   text-align: right;
 }
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .footer {
     background-color: #333;
     margin-top: 0;
@@ -248,7 +248,7 @@ h3 {
   flex-grow: 1;
   margin: 0 10px;
 }
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .main {
     margin: 0;
   }
@@ -303,12 +303,12 @@ h3 {
 .main-wrap .form-group {
   margin-bottom: 0;
 }
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .main-wrap .form-group > label {
     display: none;
   }
 }
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .main-wrap {
     padding: 2px;
     min-width: 200px;
@@ -395,12 +395,12 @@ h3 {
 .glyphicon-undo:before {
   content: "\e030";
 }
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .glyphicon-chevron-left:before {
     content: "\e113";
   }
 }
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .fa-exchange {
     -webkit-transform: rotateZ(90deg);
     -moz-transform: rotateZ(90deg);
@@ -444,7 +444,7 @@ h3 {
   -webkit-align-content: stretch;
   align-content: stretch;
 }
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .area-control {
     display: -webkit-box;
     display: -moz-box;
@@ -485,24 +485,24 @@ h3 {
 .genre {
   display: none;
 }
-.genre:not(:checked) + .ct-set {
+.genre:not(:checked ) + .ct-set {
   width: auto;
   margin-right: -5px;
 }
-@media only screen and (max-width: 768px) {
-  .genre:not(:checked) + .ct-set {
+@media screen and (max-width: 768px) {
+  .genre:not(:checked ) + .ct-set {
     margin-right: 2px;
   }
 }
-.genre:not(:checked) + .ct-set > .body {
+.genre:not(:checked ) + .ct-set > .body {
   display: none;
 }
-.genre:not(:checked) + .ct-set > .head {
+.genre:not(:checked ) + .ct-set > .head {
   margin-right: 5px;
   text-align: center;
 }
-@media only screen and (max-width: 768px) {
-  .genre:not(:checked) + .ct-set > .head {
+@media screen and (max-width: 768px) {
+  .genre:not(:checked ) + .ct-set > .head {
     margin-right: 0;
   }
 }
@@ -514,7 +514,7 @@ h3 {
 .ctLabel .btn {
   border-radius: 0 !important;
 }
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .ctLabel {
     width: auto;
     margin: 0 -2px 3px;
@@ -557,7 +557,7 @@ h3 {
   width: auto;
   margin: 1px;
 }
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .ctGroup {
     width: 100%;
     display: -webkit-box;
@@ -753,14 +753,14 @@ h3 {
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
 }
-.ct-set > .body .btn:not(:last-of-type),
-.ct-set > .body .input-group:not(:last-of-type) .form-control:last-child {
+.ct-set > .body .btn:not(:last-of-type ),
+.ct-set > .body .input-group:not(:last-of-type ) .form-control:last-child {
   border-top-right-radius: 0;
   border-bottom-right-radius: 0;
-  border-left-width: 0px;
+  border-left-width: 0;
 }
-.ct-set > .body .btn:not(:first-of-type),
-.ct-set > .body .input-group:not(:first-of-type) .form-control:first-child {
+.ct-set > .body .btn:not(:first-of-type ),
+.ct-set > .body .input-group:not(:first-of-type ) .form-control:first-child {
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
 }
@@ -808,7 +808,7 @@ h3 {
   flex-shrink: 0;
   border-radius: 3px;
   background-color: #fff;
-  padding: 4px 4px;
+  padding: 4px;
   font-size: 12px;
   line-height: 1.5;
   margin-right: 10px;
@@ -897,7 +897,7 @@ h3 {
 .link-list {
   display: block;
   width: 100%;
-  margin: 10px auto 10px;
+  margin: 10px auto;
   text-align: center;
 }
 .link-list li {
@@ -915,7 +915,7 @@ h3 {
 .cd a {
   color: #fff;
 }
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   #lengthDisp {
     font-size: 12px;
     line-height: 16px;
@@ -1116,10 +1116,10 @@ h3 {
   }
   .ct-set > .body .btn,
   .ct-set > .body .input-group .form-control,
-  .ct-set > .body .btn:not(:first-of-type),
-  .ct-set > .body .input-group:not(:first-of-type) .form-control:first-child,
-  .ct-set > .body .btn:not(:last-of-type),
-  .ct-set > .body .input-group:not(:last-of-type) .form-control:last-child {
+  .ct-set > .body .btn:not(:first-of-type ),
+  .ct-set > .body .input-group:not(:first-of-type ) .form-control:first-child,
+  .ct-set > .body .btn:not(:last-of-type ),
+  .ct-set > .body .input-group:not(:last-of-type ) .form-control:last-child {
     -webkit-box-flex: 1;
     -moz-box-flex: 1;
     -o-box-flex: 1;
@@ -1130,8 +1130,8 @@ h3 {
     border-radius: 0 !important;
     border-width: 0 !important;
   }
-  .ct-set > .body .btn:not(:last-of-type),
-  .ct-set > .body .input-group:not(:last-of-type) .form-control:last-child {
+  .ct-set > .body .btn:not(:last-of-type ),
+  .ct-set > .body .input-group:not(:last-of-type ) .form-control:last-child {
     border-left-width: 1px;
   }
   .ct-set > .body .form-inline {
@@ -1248,7 +1248,7 @@ h3 {
   border-radius: 0;
   width: 50%;
 }
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   #ctset_tidy + .ct-set > .body > .form-inline > .form-group > .input-group-sm {
     width: 100%;
   }
@@ -1351,7 +1351,7 @@ h3 {
   border-radius: 0;
   width: 50%;
 }
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   #ctset_grep + .ct-set > .body > .form-inline > .form-group > .input-group-sm {
     width: 100%;
   }
@@ -1377,32 +1377,32 @@ h3 {
   border-radius: 0;
   width: 100%;
 }
-@media only screen and (min-width: 769px) {
-  #ctset_numbering + .ct-set > .body > .form-inline > .form-group > .input-group-sm:nth-of-type(5) {
+@media screen and (min-width: 769px) {
+  #ctset_numbering + .ct-set > .body > .form-inline > .form-group > .input-group-sm:nth-of-type(5 ) {
     border-bottom-right-radius: 3px;
     overflow: hidden;
   }
 }
-@media only screen and (min-width: 769px) {
-  #ctset_dating + .ct-set > .body > .form-inline > .form-group > .input-group-sm:nth-of-type(4) {
+@media screen and (min-width: 769px) {
+  #ctset_dating + .ct-set > .body > .form-inline > .form-group > .input-group-sm:nth-of-type(4 ) {
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
     overflow: hidden;
   }
 }
-@media only screen and (max-width: 768px) {
-  #ctset_listing + .ct-set > .body > .form-inline > .form-group > .input-group-sm:nth-of-type(3),
-  #ctset_listing + .ct-set > .body > .form-inline > .form-group > .input-group-sm:nth-of-type(4) {
+@media screen and (max-width: 768px) {
+  #ctset_listing + .ct-set > .body > .form-inline > .form-group > .input-group-sm:nth-of-type(3 ),
+  #ctset_listing + .ct-set > .body > .form-inline > .form-group > .input-group-sm:nth-of-type(4 ) {
     width: 33.33%;
   }
 }
-@media only screen and (max-width: 768px) {
-  #ctset_listing + .ct-set > .body > .form-inline > .form-group > .input-group-sm:nth-of-type(5) {
+@media screen and (max-width: 768px) {
+  #ctset_listing + .ct-set > .body > .form-inline > .form-group > .input-group-sm:nth-of-type(5 ) {
     width: 33.34%;
   }
 }
-@media only screen and (min-width: 769px) {
-  #ctset_listing + .ct-set > .body > .form-inline > .form-group > .input-group-sm:nth-of-type(5) {
+@media screen and (min-width: 769px) {
+  #ctset_listing + .ct-set > .body > .form-inline > .form-group > .input-group-sm:nth-of-type(5 ) {
     border-bottom-right-radius: 3px;
     overflow: hidden;
   }
@@ -1444,7 +1444,7 @@ h3 {
 }
 .help .modal-body table tr th,
 .help .modal-body table tr td {
-  border: 1px solid #666;
+  border: 1px solid #555;
   padding: 3px 6px;
 }
 .help .modal-body > h1 {
@@ -1461,7 +1461,7 @@ h3 {
   display: block;
   background-color: #555;
   color: #fff;
-  margin: 10px -10px 10px;
+  margin: 10px -10px;
   padding: 6px 10px;
   font-size: 16px;
 }
@@ -1472,7 +1472,7 @@ h3 {
   display: block;
   margin: 10px 0;
   padding: 10px 10px 4px 0;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid $col_black;
   font-size: 14px;
   line-height: 1;
 }
@@ -1531,9 +1531,9 @@ h3 {
 .section-ime .pyinDisp + .pyinDisp {
   margin-top: 5px;
 }
-.section-ime .btn-group > .btn:first-child:not(:last-child):not(.dropdown-toggle),
-.section-ime .btn-group > .btn:last-child:not(:first-child),
-.section-ime .btn-group > .dropdown-toggle:not(:first-child) {
+.section-ime .btn-group > .btn:first-child:not(:last-child ):not(.dropdown-toggle ),
+.section-ime .btn-group > .btn:last-child:not(:first-child ),
+.section-ime .btn-group > .dropdown-toggle:not(:first-child ) {
   border-radius: 0;
 }
 .section-ime .btn-group {
@@ -1648,7 +1648,7 @@ h3 {
 }
 #settings .btn-group .btn {
   margin: 0;
-  border: 0;
+  border: none;
   -webkit-box-flex: 1;
   -moz-box-flex: 1;
   -o-box-flex: 1;
@@ -1665,12 +1665,12 @@ h3 {
 #settings .btn-group.col4 .btn {
   width: 50%;
 }
-#settings .btn-group.col5 .btn:nth-of-type(1),
-#settings .btn-group.col5 .btn:nth-of-type(2),
-#settings .btn-group.col5 .btn:nth-of-type(3) {
+#settings .btn-group.col5 .btn:nth-of-type(1 ),
+#settings .btn-group.col5 .btn:nth-of-type(2 ),
+#settings .btn-group.col5 .btn:nth-of-type(3 ) {
   width: 33.3%;
 }
-#settings .btn-group.col5 .btn:nth-of-type(4),
-#settings .btn-group.col5 .btn:nth-of-type(5) {
+#settings .btn-group.col5 .btn:nth-of-type(4 ),
+#settings .btn-group.col5 .btn:nth-of-type(5 ) {
   width: 50px;
 }

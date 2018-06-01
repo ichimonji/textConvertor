@@ -3,7 +3,7 @@
 // 各変数を各ファイルからインポート
 import {
   romanTh, latin, latinVariety, latinVariety2, latinVariety3, chara, charaMap,
-  zero, zero2nine, suffices, ten2thou, point, roman,
+  zero, zero2nine, suffices, ten2thou, point, roman, findR2Arr,
   romanStrBase, romanStr1, romanStr2, findR, findR2, romanUni, sktS, sktAddA,
   sktS2, sanskrit, sktH, sktH2, sktRemoveA, sktAddVirama, sktI, sktI2, DayArr,
   MonthArr, serialData
@@ -692,7 +692,10 @@ $(function () {
         oStr = iStr.replace(findR, n => {
           instStr = n.replace(/[ↀↁↂↇↈ]/g, s => romanStrBase[romanStr1.indexOf(s)]);
           instNum = 0;
-          instStr = instStr.replace(findR2, r => romanUni[r]);
+          instStr = instStr.replace(findR2, r => {
+            let unir = ('000' + r.charCodeAt().toString(16)).slice(-4);
+            return romanUni[findR2Arr.indexOf(unir)][1];
+          });
           instStr = instStr
             .replace(/CCCIↃↃↃ/g, 'Z')
             .replace(/IↃↃↃ/g, 'F')

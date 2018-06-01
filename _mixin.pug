@@ -44,7 +44,7 @@ mixin dlBox(id, arr)
         each val in setBts
           +bt(val[0], val[1], val[2])
       if setLbs
-        div.btn-group.btn-group-sm(role = 'group', aria-label = '...')
+        .btn-group.btn-group-sm(role = 'group', aria-label = '...')
           if setLbs.lb
             each val in setLbs.lb
               +lb(...val)
@@ -57,10 +57,10 @@ mixin dlBox(id, arr)
               each val in sl.list
                 option(value = val[0])= val[1]
       if setIts
-        div.form-inline
-          div.form-group
+        .form-inline
+          .form-group
             each val in setIts.arr
-              div.input-group.input-group-sm
+              .input-group.input-group-sm
                 label.input-group-addon(title = val[0]) !{val[1]}
                 if val[3] === 'select'
                   select.form-control(class =  val[2], name =  val[2])
@@ -68,7 +68,7 @@ mixin dlBox(id, arr)
                       option(value = key2, selected = (val[5] === key2)) !{val2}
                 else
                   input.form-control(id = val[2], type = val[3], value = val[4])&attributes(val[5])
-            div.input-group.input-group-sm.input-group-bt
+            .input-group.input-group-sm.input-group-bt
               label.input-group-addon #[input(id = setIts.overflow, type = 'checkbox', checked = 'checked')] overflow
               button.form-control.btn.btn-primary.bt-control(type = 'button', title = setIts.title, value = setIts.value) !{setIts.text}
       if block
