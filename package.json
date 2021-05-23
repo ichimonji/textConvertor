@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "p": "pug index.pug",
     "b": "browserify -t [ babelify --presets [ env ] ] js/common.es6.js > js/common.js",
     "bm": "browserify -t [ babelify --presets [ env ] --compact [ true ] ] js/common.es6.js > js/common.js"
   },
@@ -21,7 +22,13 @@
   "devDependencies": {
     "babel-core": "^6.26.3",
     "babel-preset-env": "^1.7.0",
-    "babelify": "^8.0.0"
+    "babelify": "^8.0.0",
+    "browserify": "^17.0.0",
+    "jstransformer": "^1.0.0",
+    "jstransformer-html-beautify": "^0.0.1",
+    "jstransformer-markdown-it": "^2.1.0",
+    "pug": "^3.0.2",
+    "pug-cli": "^1.0.0-alpha6"
   },
   "dependencies": {
     "bootstrap": "^3.3.7",

@@ -195,17 +195,37 @@ $(function () {
         oStr = unescape(iStr);
         break;
       case 'uniH-escapeM':
-        oStr = escape(iStr).replace(/%(\w{2,2})/gi, '&#x00$1;').replace(/%u(\w{4,5})/gi, '&#x$1;');
+        oStr = iStr.replace(/([\uD800-\uDBFF][\uDC00-\uDFFF]|\W)/gi, function (r) {
+          instNum = r.codePointAt(0);
+          if (instNum <= 160) {
+            return r;
+          } else {
+            return '&#x' + instNum.toString(16) + ';';
+          }
+        });
+        break;
+      case 'uniH-escapeM':
+        oStr = iStr.replace(/([\uD800-\uDBFF][\uDC00-\uDFFF]|\W)/gi, function (r) {
+          instNum = r.codePointAt(0);
+          if (instNum <= 160) {
+            return r;
+          } else {
+            return '&#x' + instNum.toString(16) + ';';
+          }
+        });
         break;
       case 'uniH-escapeL':
-        oStr = iStr.replace(/(.)/g, r => `&#x${(String(r)).charCodeAt(0).toString(16)};`);
+        oStr = iStr.replace(/./gi, r => `&#x${instNum.toString(16)};`);
         break;
       case 'uniH-unescape':
-        instStr = iStr.replace(chara, (r, r1) => charaMap[r1]);
-        instStr = instStr.replace(/&#(\d{4,5});/g, (r, r1) => `%u${(parseInt(r1, 10)).toString(16)}`);
-        instStr = instStr.replace(/(&#\x)([\da-f]{2};)/g, (r, r1, r2) => `${r1}00${r2}`);
-        instStr = instStr.replace(/(&#\x)([\da-f]{3};)/g, (r, r1, r2) => `${r1}0${r2}`);
-        instStr = instStr.replace(/&#\x([\da-f]{4,5});/g, '%u$1');
+        instStr = iStr.replace(/\&#(x[0-9a-f]{4,5}|[0-9]{4,6});/g, function (r, r1) {
+          if (r1.charAt(0) === 'x') {
+            instNum = parseInt(r1.slice(1),16);
+          } else {
+            instNum = parseInt(r1,10);
+          }
+          return String.fromCodePoint(instNum);
+        });
         oStr = unescape(instStr);
         break;
       case 'uni-escapeForHtml':
@@ -931,6 +951,10 @@ $(function () {
         break;
       case 'addPinyin':
         instStr = escape(iStr).replace(pin, (r, r1) => ((r1 in pinyin) ? `${r}[${pinyin[r1]}]` : r));
+        oStr = unescape(instStr);
+        break;
+      case 'addPinyin2':
+        instStr = escape(iStr).replace(pin, (r, r1) => ((r1 in pinyin) ? `${pinyin[r1]} ` : r));
         oStr = unescape(instStr);
         break;
       // skt
